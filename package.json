@@ -1,0 +1,20 @@
+{
+  "name": "sos1617-10",
+  "version": "0.0.0",
+  "description": "Grupo 10 de SOS curso 2016/17",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SOS1617/SOS1617-10.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SOS1617/SOS1617-10/issues"
+  },
+  "homepage": "https://github.com/SOS1617/SOS1617-10#readme"
+}
