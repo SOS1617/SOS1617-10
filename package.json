@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/SOS1617/SOS1617-10/issues"
   },
-  "homepage": "https://github.com/SOS1617/SOS1617-10#readme"
+  "homepage": "https://github.com/SOS1617/SOS1617-10#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
 }
