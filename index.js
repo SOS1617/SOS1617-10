@@ -3,6 +3,7 @@ var format = require('dateformat');
 
 var port = (process.env.PORT || 16778);
 var date = new Date();
+date.setHours(date.getHours()+1);
 var app = express();
 
 //Return the current day and time of the server in the format: "1st March of 2017, 08:35:00"
