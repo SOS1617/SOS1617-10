@@ -1,46 +1,21 @@
-var dateformat=require("format-date");
-
-function date(){
-    var date= new Date();
-    var day = dateformat('{day}',date);
-    var valor="";
-    switch (day) {
-        case '1':
-            valor="st";
-            break;
-        case '2':
-            valor="nd";
-            break;
-        case '3':
-            valor="rd";
-            break;
-        default:
-            valor="th";
-    }
-    var res= dateformat('{day}',date)+valor+" "+dateformat('{month-name}',date)+" of "+dateformat('{year}',date)+", "+dateformat('{hours}:{minutes}:{seconds}');
-    return res;
-    
-}
-
-
-
-
-
-
 var express = require("express");
+var format = require('dateformat');
 
 var port = (process.env.PORT || 16778);
-
+var date = new Date();
 var app = express();
 
-app.get("/time",(req,res) =>{
-    res.send("<html><h1>"+date()+"</h1></html>");
-
+//
+app.get("/time",(req,res) => {
+   res.send("<html><h1>"+format(date, "UTC:dS mmmm 'of' yyyy, HH:MM:ss")+"</h1></html>"); 
 });
 
-app.listen(port);
+app.listen(port,(err) => {
+    if(!err)
+        console.log("Server initialized on port "+port);
+    else
+        console.log("ERROR initializing server on port "+port+ ":"+ err);
+});
 
-console.log("Server initialized on port " + port);
 
-
-
+console.log("------------------------");  
