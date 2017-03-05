@@ -12,7 +12,7 @@ app.get("/time",(req,res) => {
    res.send("<html><h1>"+format(date, "dS mmmm 'of' yyyy, HH:MM:ss")+"</h1></html>"); 
 });
 
-//Static files folder at "/"
+//Shtatic files folder at "/"
 app.use("/", express.static(path.join(__dirname,"public")));
 
 app.listen(port,(err) => {
