@@ -129,11 +129,11 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
 
 
 //POST over a collection
-app.post(BASE_API_PATH + "/name", function(request, response) {
+app.post(BASE_API_PATH + "/beers-stats", function(request, response) {
     var newBeer = request.body;
     console.log(newBeer);
     if (!newBeer) {
-        console.log("WARNING: New POST request to /beers-stats/ without establishment, sending 400...");
+        console.log("WARNING: New POST request to /beers-stats/ without name, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
@@ -179,7 +179,7 @@ app.post(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
 
 
 //PUT over a collection
-app.put(BASE_API_PATH + "/beers", function(request, response) {
+app.put(BASE_API_PATH + "/beers-stats", function(request, response) {
     console.log("WARNING: New PUT request to /beers, sending 405...");
     response.sendStatus(405); // method not allowed
 });
@@ -188,7 +188,8 @@ app.put(BASE_API_PATH + "/beers", function(request, response) {
 //PUT over a single resource
 app.put(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
     var updatedBeer = request.body;
-    var name = request.params.beer;
+    var name = request.params.name;
+    console.log(name);
     if (!updatedBeer) {
         console.log("WARNING: New PUT request to /beers-stats/ without establishment, sending 400...");
         response.sendStatus(400); // bad request
