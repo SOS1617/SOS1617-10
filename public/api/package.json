@@ -1,0 +1,19 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "establishments.js",
+  "author": "nurtrioje",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node establishments.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "helmet": "^3.5.0",
+    "mongodb": "^2.2.24",
+    "nedb": "^1.8.0",
+    "path": "^0.12.7"
+  }
+}
