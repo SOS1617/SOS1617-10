@@ -415,7 +415,7 @@ app.post(BASE_API_PATH + "/establishments", function(request, response) {
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            db.find({}, function(err, establishments) {
+            db.find({}).toArray(function(err, establishments) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
