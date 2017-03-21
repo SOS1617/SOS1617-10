@@ -357,7 +357,8 @@ app.get(BASE_API_PATH + "/establishments/:country", function(request, response) 
                     var establishment = filteredEstablishments[0]; //since we expect to have exactly ONE establishment with this country
                     console.log("INFO: Sending establishment: " + JSON.stringify(establishment, 2, null));
                     response.send(establishment);
-                } else if (country === "loadInitialData") {
+                }
+                else if (country === "loadInitialData") {
                     db.find({}).toArray(function(err, establishment) {
                         console.log(establishment);
                         if (err) {
@@ -382,13 +383,21 @@ app.get(BASE_API_PATH + "/establishments/:country", function(request, response) 
                             response.sendStatus(201);
                         }
                         else {
-                            console.log("WARNING: There are not any establishment with country " + country);
-                            response.sendStatus(404); // not found
+                            console.log("Establishment has more size than 0");
+                            response.sendStatus(200);
                         }
-            }
-        );
-    };
+                    });
 
+
+                }
+                else {
+                    console.log("WARNING: There are not any establishment with country " + country);
+                    response.sendStatus(404); // not found
+                }
+            }
+        });
+    }
+});
 
 //POST over a collection
 app.post(BASE_API_PATH + "/establishments", function(request, response) {
