@@ -349,7 +349,7 @@ app.get(BASE_API_PATH + "/establishments/:country", function(request, response) 
         console.log("INFO: New GET request to /establishments/" + country);
         db.find({
             "country": country
-        }, function(err, filteredEstablishments) {
+        }).toArray( function(err, filteredEstablishments) {
             if (err) {
                 console.error('WARNING: Error getting data from DB');
                 response.sendStatus(500); // internal server error
@@ -621,7 +621,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response
         console.log("INFO: New GET request to /motorcycling-stats/" + pilot);
         dbMotorcycling.find({
             "pilot": pilot
-        }, function(err, filteredMotorcycling) {
+        }).toArray( function(err, filteredMotorcycling) {
             if (err) {
                 console.error('WARNING: Error getting data from DB');
                 response.sendStatus(500); // internal server error
