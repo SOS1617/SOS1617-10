@@ -62,7 +62,6 @@ app.get(BASE_API_PATH + "/beers-stats", function(request, response) {
     });
 });
 
-
 // GET a single resource
 app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
     var name = request.params.name;
@@ -85,6 +84,36 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
                     console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                     response.send(beer);
                 }
+                else if (name === "loadInitialData") {
+                    dbBeer.find({}).toArray(function(err, beers) {
+                        console.log(beers);
+                        if (err) {
+                            console.error('Error while getting data from DB');
+                        }
+                        if (beers.length === 0) {
+                            beers = [{
+                                "name": "Kronenbourg",
+                                "country": "France",
+                                "birthyear": 1664,
+                                "province": "Strasbourg"
+                            }, {
+                                "name": "Chimay",
+                                "country": "Belgium",
+                                "birthyear": 1862,
+                                "province": "Hainaut"
+                            }];
+                            console.log(beers);
+                            dbBeer.insert(beers);
+                            response.sendStatus(201);
+                        }
+                        else {
+                            console.log("Beers has more size than 0");
+                            response.sendStatus(200);
+                        }
+                    });
+
+
+                }
                 else {
                     console.log("WARNING: There are not any name with country " + name);
                     response.sendStatus(404); // not found
@@ -93,6 +122,8 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
         });
     }
 });
+
+
 
 
 //POST over a collection
@@ -227,7 +258,7 @@ app.delete(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New DELETE request to /beers-stats/" +name);
+        console.log("INFO: New DELETE request to /beers-stats/" + name);
         dbBeer.remove({
             name: name
         }, {}, function(err, numRemoved) {
