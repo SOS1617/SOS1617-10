@@ -491,3 +491,244 @@ app.delete(BASE_API_PATH + "/establishments/:country", function(request, respons
         });
     }
 });
+
+
+
+
+
+"------------------------------------motorcycling-stats---------------------------------------------------------------------------------";
+
+"use strict";
+/* global __dirname */
+
+var MongoClient = require('mongodb').MongoClient;
+
+var mdbURL = "mongodb://david:sosdavid@ds133290.mlab.com:33290/sos1617-10";
+
+
+var dbMotorcycling;
+
+MongoClient.connect(mdbURL, {
+    native_parser: true
+}, function(err, database) {
+
+    if (err) {
+        console.log("CAN NOT CONEECT TO DB: " + err);
+        process.exit(1);
+    }
+
+    dbMotorcycling = database.collection("motorcycling");
+
+
+});
+
+
+// Base GET
+app.get("/", function(request, response) {
+    console.log("INFO: Redirecting to /motorcycling-stats");
+    response.redirect(301, BASE_API_PATH + "/motorcycling-stats");
+});
+
+
+// GET a collection
+app.get(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
+    console.log("INFO: New GET request to /motorcycling-stats");
+    dbMotorcycling.find({}).toArray(function(err, motorcycling) {
+        if (err) {
+            console.error('WARNING: Error getting data from DB');
+            response.sendStatus(500); // internal server error
+        }
+        else {
+            console.log("INFO: Sending motorcycling: " + JSON.stringify(motorcycling, 2, null));
+            response.send(motorcycling);
+        }
+    });
+});
+
+
+// GET a single resource
+app.get(BASE_API_PATH + "/motorcycling-stats/:country", function(request, response) {
+    var country = request.params.country;
+    if (!country) {
+        console.log("WARNING: New GET request to /motorcycling-stats/:country without country, sending 400...");
+        response.sendStatus(400); // bad request
+    }
+    else {
+        console.log("INFO: New GET request to /motorcycling-stats/" + country);
+        dbMotorcycling.find({
+            "country": country
+        }, function(err, filteredMotorcycling) {
+            if (err) {
+                console.error('WARNING: Error getting data from DB');
+                response.sendStatus(500); // internal server error
+            }
+            else {
+                if (filteredMotorcycling.length > 0) {
+                    var motorcycling = filteredMotorcycling[0]; //since we expect to have exactly ONE motorcycling with this country
+                    console.log("INFO: Sending motorcycling: " + JSON.stringify(motorcycling, 2, null));
+                    response.send(motorcycling);
+                }
+                else {
+                    console.log("WARNING: There are not any motorcycling with country " + country);
+                    response.sendStatus(404); // not found
+                }
+            }
+        });
+    }
+});
+
+
+//POST over a collection
+app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
+    var newMotorcycling = request.body;
+    if (!newMotorcycling) {
+        console.log("WARNING: New POST request to /motorcycling-stats/ without motorcycling, sending 400...");
+        response.sendStatus(400); // bad request
+    }
+    else {
+        console.log("INFO: New POST request to /motorcycling-stats with body: " + JSON.stringify(newMotorcycling, 2, null));
+        if (!newMotorcycling.country || !newMotorcycling.year || !newMotorcycling.pilot || !newMotorcycling.team) {
+            console.log("WARNING: The motorcycling " + JSON.stringify(newMotorcycling, 2, null) + " is not well-formed, sending 422...");
+            response.sendStatus(422); // unprocessable entity
+        }
+        else {
+            dbMotorcycling.find({}, function(err, motorcycling) {
+                if (err) {
+                    console.error('WARNING: Error getting data from DB');
+                    response.sendStatus(500); // internal server error
+                }
+                else {
+                    var motorcyclingBeforeInsertion = motorcycling.filter((motorcycling) => {
+                        return (motorcycling.country.localeCompare(newMotorcycling.country, "en", {
+                            'sensitivity': 'base'
+                        }) === 0);
+                    });
+                    if (motorcyclingBeforeInsertion.length > 0) {
+                        console.log("WARNING: The motorcycling " + JSON.stringify(newMotorcycling, 2, null) + " already exist, sending 409...");
+                        response.sendStatus(409); // conflict
+                    }
+                    else {
+                        console.log("INFO: Adding motorcycling " + JSON.stringify(newMotorcycling, 2, null));
+                        dbMotorcycling.insert(newMotorcycling);
+                        response.sendStatus(201); // created
+                    }
+                }
+            });
+        }
+    }
+});
+
+
+//POST over a single resource
+app.post(BASE_API_PATH + "/motorcycling-stats/:country", function(request, response) {
+    var country = request.params.country;
+    console.log("WARNING: New POST request to /motorcycling-stats/" + country + ", sending 405...");
+    response.sendStatus(405); // method not allowed
+});
+
+
+//PUT over a collection
+app.put(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
+    console.log("WARNING: New PUT request to /motorcycling-stats, sending 405...");
+    response.sendStatus(405); // method not allowed
+});
+
+
+//PUT over a single resource
+app.put(BASE_API_PATH + "/motorcycling-stats/:country", function(request, response) {
+    var updatedMotorcycling = request.body;
+    var country = request.params.country;
+    if (!updatedMotorcycling) {
+        console.log("WARNING: New PUT request to /motorcycling-stats/ without motorcycling, sending 400...");
+        response.sendStatus(400); // bad request
+    }
+    else {
+        console.log("INFO: New PUT request to /motorcycling-stats/" + country + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
+        if (!updatedMotorcycling.country || !updatedMotorcycling.year || !updatedMotorcycling.pilot || !updatedMotorcycling.team) {
+            console.log("WARNING: The motorcycling " + JSON.stringify(updatedMotorcycling, 2, null) + " is not well-formed, sending 422...");
+            response.sendStatus(422); // unprocessable entity
+        }
+        else {
+            dbMotorcycling.find({}, function(err, motorcycling) {
+                if (err) {
+                    console.error('WARNING: Error getting data from DB');
+                    response.sendStatus(500); // internal server error
+                }
+                else {
+                    var motorcyclingBeforeInsertion = motorcycling.filter((motorcycling) => {
+                        return (motorcycling.country.localeCompare(country, "en", {
+                            'sensitivity': 'base'
+                        }) === 0);
+                    });
+                    if (motorcyclingBeforeInsertion.length > 0) {
+                        dbMotorcycling.update({
+                            country: country
+                        }, updatedMotorcycling);
+                        console.log("INFO: Modifying motorcycling with country " + country + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
+                        response.send(updatedMotorcycling); // return the updated establishment
+                    }
+                    else {
+                        console.log("WARNING: There is not any motorcycling with country " + country);
+                        response.sendStatus(404); // not found
+                    }
+                }
+            });
+        }
+    }
+});
+
+
+//DELETE over a collection
+app.delete(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
+    console.log("INFO: New DELETE request to /motorcycling-stats");
+    dbMotorcycling.remove({}, {
+        multi: true
+    }, function(err, numRemoved) {
+        if (err) {
+            console.error('WARNING: Error removing data from DB');
+            response.sendStatus(500); // internal server error
+        }
+        else {
+            if (numRemoved > 0) {
+                console.log("INFO: All the motorcycling (" + numRemoved + ") have been succesfully deleted, sending 204...");
+                response.sendStatus(204); // no content
+            }
+            else {
+                console.log("WARNING: There are no motorcycling to delete");
+                response.sendStatus(404); // not found
+            }
+        }
+    });
+});
+
+
+//DELETE over a single resource
+app.delete(BASE_API_PATH + "/motorcycling-stats/:country", function(request, response) {
+    var country = request.params.country;
+    if (!country) {
+        console.log("WARNING: New DELETE request to /motorcycling-stats/:country without country, sending 400...");
+        response.sendStatus(400); // bad request
+    }
+    else {
+        console.log("INFO: New DELETE request to /motorcycling-stats/" + country);
+        dbMotorcycling.remove({
+            country: country
+        }, {}, function(err, numRemoved) {
+            if (err) {
+                console.error('WARNING: Error removing data from DB');
+                response.sendStatus(500); // internal server error
+            }
+            else {
+                console.log("INFO: motorcycling removed: " + numRemoved);
+                if (numRemoved === 1) {
+                    console.log("INFO: The motorcycling with country " + country + " has been succesfully deleted, sending 204...");
+                    response.sendStatus(204); // no content
+                }
+                else {
+                    console.log("WARNING: There are no motorcycling to delete");
+                    response.sendStatus(404); // not found
+                }
+            }
+        });
+    }
+});
