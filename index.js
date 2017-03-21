@@ -115,7 +115,7 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
 
                 }
                 else {
-                    console.log("WARNING: There are not any name with country " + name);
+                    console.log("WARNING: There are not any name with " + name);
                     response.sendStatus(404); // not found
                 }
             }
