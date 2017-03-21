@@ -2,7 +2,7 @@ GET a la ruta base (p.e. “/towns”) devuelve una lista con todos los recursos
     curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/beers-stats'
 
 POST a la ruta base (p.e. “/towns”) crea un nuevo recurso
-    curl -v -XPOST -H 'Content-type: application/json' -d '{ \"name\": \"Altiber\", \"country\": \"Germany\", \"birthyear\": \"1800\", \"province\": \"Düsseldorf\"}' 'http://localhost:8080/api/v1/beers-stats'
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ \"name\": \"Altiber\", \"country\": \"Germany\", \"birthyear\": \1800\, \"province\": \"Düsseldorf\"}' 'http://localhost:8080/api/v1/beers-stats'
 
 GET a un recurso (p.e. “/towns/seville”) devuelve ese recurso:
     curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/beers-stats/Altbier'

@@ -260,18 +260,10 @@ app.delete(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
 "use strict";
 /* global __dirname */
 
-var express = require("express");
-var bodyParser = require("body-parser");
-var helmet = require("helmet");
-var path = require('path');
-var DataStore = require('nedb');
-
 var MongoClient = require('mongodb').MongoClient;
 
 var mdbURL = "mongodb://test:test@ds133450.mlab.com:33450/sos1617-10-sandbox";
 
-var port = (process.env.PORT || 10000);
-var BASE_API_PATH = "/api/v1";
 
 var db;
 
@@ -291,11 +283,6 @@ MongoClient.connect(mdbURL, {
     console.log("Magic is happening on port " + port);
 
 });
-
-var app = express();
-
-app.use(bodyParser.json()); //use default json enconding/decoding
-app.use(helmet()); //improve security
 
 
 // Base GET
