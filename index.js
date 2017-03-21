@@ -1,4 +1,4 @@
-"-----------------------------API BEERSTATS--------------------------------------------------------"
+"-----------------------------API BEERSTATS--------------------------------------------------------";
 "use strict";
 /* global __dirname */
 
@@ -278,9 +278,6 @@ MongoClient.connect(mdbURL, {
 
     db = database.collection("establishments");
 
-
-    app.listen(port);
-    console.log("Magic is happening on port " + port);
 
 });
 
