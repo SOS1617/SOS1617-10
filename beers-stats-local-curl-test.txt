@@ -21,3 +21,5 @@ PUT a la ruta base (p.e. “/towns”) debe dar un error de método no permitido
     
 DELETE a la ruta base (p.e. “/towns”) borra todos los recursos:
     curl -v -XDELETE -H 'Content-type: application/json'  'http://localhost:8080/api/v1/beers-stats'
+Cargar datos iniciales:
+    curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/beers-stats/loadInitialData'
