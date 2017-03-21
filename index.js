@@ -65,6 +65,7 @@ app.get(BASE_API_PATH + "/beers-stats", function(request, response) {
 // GET a single resource
 app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
     var name = request.params.name;
+    console.log(name);
     if (!name) {
         console.log("WARNING: New GET request to /beers-stats/:name without country, sending 400...");
         response.sendStatus(400); // bad request
@@ -73,12 +74,13 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
         console.log("INFO: New GET request to /beers-stats/" + name);
         dbBeer.find({
             "name": name
-        }, function(err, filteredBeers) {
+        }).toArray( function(err, filteredBeers) {
             if (err) {
                 console.error('WARNING: Error getting data from DB');
                 response.sendStatus(500); // internal server error
             }
             else {
+                console.log(filteredBeers);
                 if (filteredBeers.length > 0) {
                     var beer = filteredBeers[0]; //since we expect to have exactly ONE establishment with this country
                     console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
