@@ -599,14 +599,45 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:country", function(request, respon
                     console.log("INFO: Sending motorcycling: " + JSON.stringify(motorcycling, 2, null));
                     response.send(motorcycling);
                 }
+                else if (country === "loadInitialData") {
+                    dbMotorcycling.find({}).toArray(function(err, motorcycling) {
+                        console.log(motorcycling);
+                        if (err) {
+                            console.error('Error while getting data from DB');
+                        }
+                        if (motorcycling.length === 0) {
+                            motorcycling = [{
+                                "pilot": "Leslie Graham",
+                                "country": "United Kingdom",
+                                "year": 1949,
+                                "team": "AJS"
+                            }, {
+                                "pilot": "Umberto Masetti",
+                                "country": "Italy",
+                                "year": 1950,
+                                "team": "Gilera"
+                            }];
+                            console.log(motorcycling);
+                            dbMotorcycling.insert(motorcycling);
+                            response.sendStatus(201);
+                        }
+                        else {
+                            console.log("Motorcycling has more size than 0");
+                            response.sendStatus(200);
+                        }
+                    });
+
+
+                }
                 else {
-                    console.log("WARNING: There are not any motorcycling with country " + country);
+                    console.log("WARNING: There are not any name with country " + country);
                     response.sendStatus(404); // not found
                 }
             }
         });
     }
 });
+
 
 
 //POST over a collection
