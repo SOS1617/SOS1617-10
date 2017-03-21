@@ -357,15 +357,37 @@ app.get(BASE_API_PATH + "/establishments/:country", function(request, response) 
                     var establishment = filteredEstablishments[0]; //since we expect to have exactly ONE establishment with this country
                     console.log("INFO: Sending establishment: " + JSON.stringify(establishment, 2, null));
                     response.send(establishment);
-                }
-                else {
-                    console.log("WARNING: There are not any establishment with country " + country);
-                    response.sendStatus(404); // not found
-                }
+                } else if (country === "loadInitialData") {
+                    db.find({}).toArray(function(err, establishment) {
+                        console.log(establishment);
+                        if (err) {
+                            console.error('Error while getting data from DB');
+                        }
+                        if (establishment.length === 0) {
+                            establishment = [{
+                                "country": "belgium",
+                                "year": 2014,
+                                "number": 5139,
+                                "beds": 366200,
+                                "nights": 32600000
+                            }, {
+                                "country": "bulgaria",
+                                "year": 2014,
+                                "number": 3163,
+                                "beds": 314300,
+                                "nights": 21700000
+                            }];
+                            console.log(establishment);
+                            db.insert(establishment);
+                            response.sendStatus(201);
+                        }
+                        else {
+                            console.log("WARNING: There are not any establishment with country " + country);
+                            response.sendStatus(404); // not found
+                        }
             }
-        });
-    }
-});
+        );
+    };
 
 
 //POST over a collection
