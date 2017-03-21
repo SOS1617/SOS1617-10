@@ -131,6 +131,7 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
 //POST over a collection
 app.post(BASE_API_PATH + "/name", function(request, response) {
     var newBeer = request.body;
+    console.log(newBeer);
     if (!newBeer) {
         console.log("WARNING: New POST request to /beers-stats/ without establishment, sending 400...");
         response.sendStatus(400); // bad request
@@ -142,7 +143,7 @@ app.post(BASE_API_PATH + "/name", function(request, response) {
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            dbBeer.find({}, function(err, beers) {
+            dbBeer.find({}).toArray( function(err, beers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
@@ -199,7 +200,7 @@ app.put(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            dbBeer.find({}, function(err, beers) {
+            dbBeer.find({}).toArray( function(err, beers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
