@@ -15,7 +15,7 @@ var mdbURLBeer = "mongodb://jesus:sosdatabase@ds137370.mlab.com:37370/beers-stat
 var port = (process.env.PORT || 10000);
 var BASE_API_PATH = "/api/v1";
 
-var db;
+var dbBeer;
 
 MongoClientBeer.connect(mdbURLBeer, {
     native_parser: true
@@ -26,7 +26,7 @@ MongoClientBeer.connect(mdbURLBeer, {
         process.exit(1);
     }
 
-    db = database.collection("beers");
+    dbBeer = database.collection("beers");
 
 
     app.listen(port);
@@ -50,7 +50,7 @@ app.get("/", function(request, response) {
 // GET a collection
 app.get(BASE_API_PATH + "/beers-stats", function(request, response) {
     console.log("INFO: New GET request to /beers-stats");
-    db.find({}).toArray(function(err, beers) {
+    dbBeer.find({}).toArray(function(err, beers) {
         if (err) {
             console.error('WARNING: Error getting data from DB');
             response.sendStatus(500); // internal server error
@@ -72,7 +72,7 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
     }
     else {
         console.log("INFO: New GET request to /beers-stats/" + name);
-        db.find({
+        dbBeer.find({
             "name": name
         }, function(err, filteredBeers) {
             if (err) {
@@ -109,7 +109,7 @@ app.post(BASE_API_PATH + "/name", function(request, response) {
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            db.find({}, function(err, beers) {
+            dbBeer.find({}, function(err, beers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
@@ -126,7 +126,7 @@ app.post(BASE_API_PATH + "/name", function(request, response) {
                     }
                     else {
                         console.log("INFO: Adding Beer " + JSON.stringify(newBeer, 2, null));
-                        db.insert(newBeer);
+                        dbBeer.insert(newBeer);
                         response.sendStatus(201); // created
                     }
                 }
@@ -166,7 +166,7 @@ app.put(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            db.find({}, function(err, beers) {
+            dbBeer.find({}, function(err, beers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
@@ -178,7 +178,7 @@ app.put(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
                         }) === 0);
                     });
                     if (beersBeforeInsertion.length > 0) {
-                        db.update({
+                        dbBeer.update({
                             name: name
                         }, updatedBeer);
                         console.log("INFO: Modifying beer with name " + name + " with data " + JSON.stringify(updatedBeer, 2, null));
@@ -198,7 +198,7 @@ app.put(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
 //DELETE over a collection
 app.delete(BASE_API_PATH + "/beers-stats", function(request, response) {
     console.log("INFO: New DELETE request to /beers-stats");
-    db.remove({}, {
+    dbBeer.remove({}, {
         multi: true
     }, function(err, numRemoved) {
         if (err) {
@@ -228,7 +228,7 @@ app.delete(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
     }
     else {
         console.log("INFO: New DELETE request to /beers-stats/" +name);
-        db.remove({
+        dbBeer.remove({
             name: name
         }, {}, function(err, numRemoved) {
             if (err) {

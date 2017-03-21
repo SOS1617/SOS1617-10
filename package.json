@@ -20,7 +20,7 @@
   "dependencies": {
     "dateformat": "^2.0.0",
     "express": "^4.15.0",
-    "format-date": "^1.0.0"
+    "format-date": "^1.0.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "helmet": "^3.5.0",
