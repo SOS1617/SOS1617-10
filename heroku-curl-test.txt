@@ -71,7 +71,7 @@ DELETE a la ruta base (p.e. “/towns”) borra todos los recursos:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 GET a la ruta base (p.e. “/towns”) devuelve una lista con todos los recursos:
-    curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/motorcycling-stats'
+    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats'
 
 POST a la ruta base (p.e. “/towns”) crea un nuevo recurso
     curl -v -XPOST -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2004, "team": "Yamaha"}' 'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats'
