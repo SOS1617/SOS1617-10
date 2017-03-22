@@ -1,3 +1,38 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                        BEERS
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+GET a la ruta base (p.e. “/towns”) devuelve una lista con todos los recursos:
+    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats'
+
+POST a la ruta base (p.e. “/towns”) crea un nuevo recurso
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ "name": "Altiber", "country": "Germany", "birthyear": 1800, "province": "Düsseldorf"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats'
+
+GET a un recurso (p.e. “/towns/seville”) devuelve ese recurso:
+    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Altiber'
+    
+DELETE a un recurso (p.e. “/towns/seville”) borra ese recurso:
+    curl -v -XDELETE -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Altiber'
+
+PUT a un recurso (p.e. “/towns/seville”) actualiza ese recurso:
+    curl -v -XPUT -H 'Content-type: application/json' -d '{ "name": "Cruzcampo", "country": "Spain", "birthyear": 1850, "province": "Seville"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Kronenbourg'
+    
+POST a un recurso (p.e. “/towns/seville”) debe dar un error de método no permitido:
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "Germany", "birthyear": 1800, "province": "Düsseldorf", "name": "Altiber"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Cruzcampo'
+    
+PUT a la ruta base (p.e. “/towns”) debe dar un error de método no permitido:
+   curl -v -XPUT -H 'Content-type: application/json' -d '{ "country": "Germany", "birthyear": 1850, "province": "Düsseldorf", "name": "Cruzcampo"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats'
+    
+DELETE a la ruta base (p.e. “/towns”) borra todos los recursos:
+    curl -v -XDELETE -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats'
+    
+Cargar datos iniciales:
+    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/loadInitialData'
+
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                         ESTABLISHMENTS
@@ -27,6 +62,7 @@ PUT a la ruta base (p.e. “/towns”) debe dar un error de método no permitido
 DELETE a la ruta base (p.e. “/towns”) borra todos los recursos:
     curl -v -XDELETE -H 'Content-type: application/json'  'https://sos1617-10.herokuapp.com/api/v1/establishments'
     
+
 
 
 
