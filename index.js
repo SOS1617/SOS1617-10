@@ -247,14 +247,7 @@ app.delete(BASE_API_PATH + "/beers-stats", function(request, response) {
             response.sendStatus(500); // internal server error
         }
         else {
-            if (numRemoved > 0) {
-                console.log("INFO: All the beers (" + numRemoved + ") have been succesfully deleted, sending 204...");
-                response.sendStatus(204); // no content
-            }
-            else {
-                console.log("WARNING: There are no beers to delete");
-                response.sendStatus(404); // not found
-            }
+            response.sendStatus(204);
         }
     });
 });
@@ -277,15 +270,7 @@ app.delete(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
                 response.sendStatus(500); // internal server error
             }
             else {
-                console.log("INFO: beers removed: " + numRemoved);
-                if (numRemoved === 1) {
-                    console.log("INFO: The beer with name " + name + " has been succesfully deleted, sending 204...");
-                    response.sendStatus(204); // no content
-                }
-                else {
-                    console.log("WARNING: There are no beers to delete");
-                    response.sendStatus(404); // not found
-                }
+               response.sendStatus(204);
             }
         });
     }
