@@ -1,19 +1,29 @@
-"-----------------------------API BEERSTATS--------------------------------------------------------";
-"use strict";
-/* global __dirname */
-
 var express = require("express");
 var bodyParser = require("body-parser");
 var helmet = require("helmet");
 var path = require('path');
-var DataStore = require('nedb');
+
+var port = (process.env.PORT || 10000);
+var BASE_API_PATH = "/api/v1";
+
+var app = express();
+
+app.use(bodyParser.json()); //use default json enconding/decoding
+app.use(helmet()); //improve security
+
+app.use("/",express.static(path.join(__dirname,"public")));
+
+
+
+"-----------------------------API BEERSTATS--------------------------------------------------------";
+"use strict";
+/* global __dirname */
+
+
 
 var MongoClientBeer = require('mongodb').MongoClient;
 
 var mdbURLBeer = "mongodb://jesus:sosdatabase@ds137370.mlab.com:37370/beers-stats";
-
-var port = (process.env.PORT || 10000);
-var BASE_API_PATH = "/api/v1";
 
 var dbBeer;
 
@@ -28,22 +38,18 @@ MongoClientBeer.connect(mdbURLBeer, {
 
     dbBeer = database.collection("beers");
 
-
     app.listen(port);
     console.log("Magic is happening on port " + port);
 
 });
 
-var app = express();
 
-app.use(bodyParser.json()); //use default json enconding/decoding
-app.use(helmet()); //improve security
 
 
 // Base GET
 app.get("/", function(request, response) {
-    console.log("INFO: Redirecting to /beers-stats");
-    response.redirect(301, BASE_API_PATH + "/beers-stats");
+    console.log("INFO: Redirecting to /");
+    response.redirect(301, "/beers-stats");
 });
 
 
