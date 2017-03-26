@@ -12,7 +12,7 @@ app.use(bodyParser.json()); //use default json enconding/decoding
 app.use(helmet()); //improve security
 
 app.use("/",express.static(path.join(__dirname,"public")));
-
+app.use("/tests",express.static(path.join(__dirname,"tests")));
 
 
 "-----------------------------API BEERSTATS--------------------------------------------------------";
