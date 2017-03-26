@@ -73,7 +73,7 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
     var name = request.params.name;
     console.log(name);
     if (!name) {
-        console.log("WARNING: New GET request to /beers-stats/:name without country, sending 400...");
+        console.log("WARNING: New GET request to /beers-stats/:name without name, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
@@ -88,7 +88,7 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
             else {
                 console.log(filteredBeers);
                 if (filteredBeers.length > 0) {
-                    var beer = filteredBeers[0]; //since we expect to have exactly ONE establishment with this country
+                    var beer = filteredBeers[0];
                     console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                     response.send(beer);
                 }
@@ -197,7 +197,7 @@ app.put(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
     var name = request.params.name;
     console.log(name);
     if (!updatedBeer) {
-        console.log("WARNING: New PUT request to /beers-stats/ without establishment, sending 400...");
+        console.log("WARNING: New PUT request to /beers-stats/ without beer, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
