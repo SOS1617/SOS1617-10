@@ -410,37 +410,38 @@ app.get(BASE_API_PATH + "/establishments/:country", function(request, response) 
 });
 
 //POST over a collection
-app.post(BASE_API_PATH + "/establishments", function(request, response) {
-    var newEstablishment = request.body;
-    if (!newEstablishment) {
-        console.log("WARNING: New POST request to /establishments/ without establishment, sending 400...");
+app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
+    var newMotorcycling = request.body;
+    console.log(newMotorcycling);
+    if (!newMotorcycling) {
+        console.log("WARNING: New POST request to /motorcycling-stats/ without pilot, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New POST request to /establishments with body: " + JSON.stringify(newEstablishment, 2, null));
-        if (!newEstablishment.country || !newEstablishment.year || !newEstablishment.number || !newEstablishment.beds || !newEstablishment.nights) {
-            console.log("WARNING: The establishment " + JSON.stringify(newEstablishment, 2, null) + " is not well-formed, sending 422...");
+        console.log("INFO: New POST request to /motorcycling-stats with body: " + JSON.stringify(newMotorcycling, 2, null));
+        if (!newMotorcycling.pilot || !newMotorcycling.country || !newMotorcycling.year || !newMotorcycling.team) {
+            console.log("WARNING: The motorcycling " + JSON.stringify(newMotorcycling, 2, null) + " is not well-formed, sending 422...");
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            db.find({}).toArray(function(err, establishments) {
+            dbMotorcycling.find({}).toArray( function(err, motorcycling) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    var establishmentsBeforeInsertion = establishments.filter((establishment) => {
-                        return (establishment.country.localeCompare(newEstablishment.country, "en", {
+                    var MotorcyclingBeforeInsertion = motorcycling.filter((motor) => {
+                        return (motor.country.localeCompare(newMotorcycling.country, "en", {
                             'sensitivity': 'base'
                         }) === 0);
                     });
-                    if (establishmentsBeforeInsertion.length > 0) {
-                        console.log("WARNING: The establishment " + JSON.stringify(newEstablishment, 2, null) + " already extis, sending 409...");
+                    if (MotorcyclingBeforeInsertion.length > 0) {
+                        console.log("WARNING: The motor " + JSON.stringify(newMotorcycling, 2, null) + " already exist, sending 409...");
                         response.sendStatus(409); // conflict
                     }
                     else {
-                        console.log("INFO: Adding establishment " + JSON.stringify(newEstablishment, 2, null));
-                        db.insert(newEstablishment);
+                        console.log("INFO: Adding motor " + JSON.stringify(newMotorcycling, 2, null));
+                        dbMotorcycling.insert(newMotorcycling);
                         response.sendStatus(201); // created
                     }
                 }
@@ -585,7 +586,6 @@ var dbMotorcycling;
 MongoClient.connect(mdbURL, {
     native_parser: true
 }, function(err, database) {
-
     if (err) {
         console.log("CAN NOT CONEECT TO DB: " + err);
         process.exit(1);
@@ -620,7 +620,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 });
 
 
-// GET a single resource
+// GET a single resource (pilot)
 app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response) {
     var pilot = request.params.pilot;
     if (!pilot) {
@@ -638,7 +638,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response
             }
             else {
                 if (filteredMotorcycling.length > 0) {
-                    var motorcycling = filteredMotorcycling[0]; //since we expect to have exactly ONE motorcycling with this pilot
+                    var motorcycling = filteredMotorcycling; //since we expect to have exactly ONE motorcycling with this pilot
                     console.log("INFO: Sending motorcycling: " + JSON.stringify(motorcycling, 2, null));
                     response.send(motorcycling);
                 }
@@ -658,6 +658,21 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response
                                 "pilot": "Valentino Rossi",
                                 "country": "Italy",
                                 "year": 2004,
+                                "team": "Yamaha"
+                            }, {
+                                "pilot": "Valentino Rossi",
+                                "country": "Italy",
+                                "year": 2005,
+                                "team": "Yamaha"
+                            }, {
+                                "pilot": "Marquez",
+                                "country": "Italy",
+                                "year": 2015,
+                                "team": "Yamaha"
+                            }, {
+                                "pilot": "Marquez",
+                                "country": "Italy",
+                                "year": 2016,
                                 "team": "Yamaha"
                             }];
                             console.log(motorcycling);
@@ -681,19 +696,17 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response
     }
 });
 
-
-
 //POST over a collection
-app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
+app.post(BASE_API_PATH + "/motorcycling", function(request, response) {
     var newMotorcycling = request.body;
     if (!newMotorcycling) {
-        console.log("WARNING: New POST request to /motorcycling-stats/ without pilot, sending 400...");
+        console.log("WARNING: New POST request to /motorcycling/ without motorcycling, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New POST request to /motorcycling-stats with body: " + JSON.stringify(newMotorcycling, 2, null));
+        console.log("INFO: New POST request to /motorcycling with body: " + JSON.stringify(newMotorcycling, 2, null));
         if (!newMotorcycling.pilot || !newMotorcycling.country || !newMotorcycling.year || !newMotorcycling.team) {
-            console.log("WARNING: The pilot " + JSON.stringify(newMotorcycling, 2, null) + " is not well-formed, sending 422...");
+            console.log("WARNING: The motorcycling " + JSON.stringify(newMotorcycling, 2, null) + " is not well-formed, sending 422...");
             response.sendStatus(422); // unprocessable entity
         }
         else {
