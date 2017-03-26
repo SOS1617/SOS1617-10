@@ -514,14 +514,15 @@ app.delete(BASE_API_PATH + "/establishments", function(request, response) {
     console.log("INFO: New DELETE request to /establishments");
     db.remove({}, {
         multi: true
-    }, function(err, numRemoved) {
+    }, function(err, result) {
+        var numRemoved=JSON.parse(result);
         if (err) {
             console.error('WARNING: Error removing data from DB');
             response.sendStatus(500); // internal server error
         }
         else {
-            if (numRemoved > 0) {
-                console.log("INFO: All the establishments (" + numRemoved + ") have been succesfully deleted, sending 204...");
+            if (numRemoved.n > 0) {
+                console.log("INFO: All the establishments (" + numRemoved.n + ") have been succesfully deleted, sending 204...");
                 response.sendStatus(204); // no content
             }
             else {
@@ -531,6 +532,7 @@ app.delete(BASE_API_PATH + "/establishments", function(request, response) {
         }
     });
 });
+
 
 
 //DELETE over a single resource
@@ -544,14 +546,15 @@ app.delete(BASE_API_PATH + "/establishments/:country", function(request, respons
         console.log("INFO: New DELETE request to /establishments/" + country);
         db.remove({
             country: country
-        }, {}, function(err, numRemoved) {
+        }, {}, function(err, result) {
+            var numRemoved = JSON.parse(result);
             if (err) {
                 console.error('WARNING: Error removing data from DB');
                 response.sendStatus(500); // internal server error
             }
             else {
-                console.log("INFO: establishments removed: " + numRemoved);
-                if (numRemoved === 1) {
+                console.log("INFO: establishments removed: " + numRemoved.n);
+                if (numRemoved.n === 1) {
                     console.log("INFO: The establishment with country " + country + " has been succesfully deleted, sending 204...");
                     response.sendStatus(204); // no content
                 }
@@ -563,7 +566,6 @@ app.delete(BASE_API_PATH + "/establishments/:country", function(request, respons
         });
     }
 });
-
 
 
 
