@@ -697,7 +697,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response
 });
 
 //POST over a collection
-app.post(BASE_API_PATH + "/motorcycling", function(request, response) {
+app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
     var newMotorcycling = request.body;
     if (!newMotorcycling) {
         console.log("WARNING: New POST request to /motorcycling/ without motorcycling, sending 400...");
@@ -717,7 +717,7 @@ app.post(BASE_API_PATH + "/motorcycling", function(request, response) {
                 }
                 else {
                     var motorcyclingBeforeInsertion = motorcycling.filter((motor) => {
-                        return (motor.pilot.localeCompare(newMotorcycling.pilot, "en", {
+                        return (motor.country.localeCompare(newMotorcycling.country, "en", {
                             'sensitivity': 'base'
                         }) === 0);
                     });
