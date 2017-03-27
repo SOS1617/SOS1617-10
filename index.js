@@ -833,14 +833,15 @@ app.delete(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, respo
         console.log("INFO: New DELETE request to /motorcycling-stats/" + pilot);
         dbMotorcycling.remove({
             pilot: pilot
-        }, {}, function(err, numRemoved) {
+        }, {}, function(err, result) {
+            var numRemoved = JSON.parse(result);
             if (err) {
                 console.error('WARNING: Error removing data from DB');
                 response.sendStatus(500); // internal server error
             }
             else {
-                console.log("INFO: motorcycling removed: " + numRemoved);
-                if (numRemoved === 1) {
+                console.log("INFO: motorcycling removed: " + numRemoved.n);
+                if (numRemoved.n === 1) {
                     console.log("INFO: The motorcycling with pilot " + pilot + " has been succesfully deleted, sending 204...");
                     response.sendStatus(204); // no content
                 }
