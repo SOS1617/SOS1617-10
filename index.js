@@ -11,8 +11,8 @@ var app = express();
 app.use(bodyParser.json()); //use default json enconding/decoding
 app.use(helmet()); //improve security
 
-app.use("/",express.static(path.join(__dirname,"public")));
-app.use("/tests",express.static(path.join(__dirname,"tests")));
+app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/tests", express.static(path.join(__dirname, "tests")));
 
 
 "-----------------------------API BEERSTATS--------------------------------------------------------";
@@ -80,7 +80,7 @@ app.get(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
         console.log("INFO: New GET request to /beers-stats/" + name);
         dbBeer.find({
             "name": name
-        }).toArray( function(err, filteredBeers) {
+        }).toArray(function(err, filteredBeers) {
             if (err) {
                 console.error('WARNING: Error getting data from DB');
                 response.sendStatus(500); // internal server error
@@ -149,7 +149,7 @@ app.post(BASE_API_PATH + "/beers-stats", function(request, response) {
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            dbBeer.find({}).toArray( function(err, beers) {
+            dbBeer.find({}).toArray(function(err, beers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
@@ -207,7 +207,7 @@ app.put(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            dbBeer.find({}).toArray( function(err, beers) {
+            dbBeer.find({}).toArray(function(err, beers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
@@ -242,16 +242,17 @@ app.delete(BASE_API_PATH + "/beers-stats", function(request, response) {
     dbBeer.remove({}, {
         multi: true
     }, function(err, result) {
-        var numRemoved=JSON.parse(result);
+        var numRemoved = JSON.parse(result);
         if (err) {
             console.error('WARNING: Error removing data from DB');
             response.sendStatus(500); // internal server error
         }
         else {
-             if (numRemoved.n > 0) {
+            if (numRemoved.n > 0) {
                 console.log("INFO: All the Beers (" + numRemoved.n + ") have been succesfully deleted, sending 204...");
                 response.sendStatus(204); // no content
-            } else {
+            }
+            else {
                 console.log("WARNING: There are no contacts to delete");
                 response.sendStatus(404); // not found
             }
@@ -271,7 +272,7 @@ app.delete(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
         console.log("INFO: New DELETE request to /beers-stats/" + name);
         dbBeer.remove({
             name: name
-        },{},function(err, result) {
+        }, {}, function(err, result) {
             var numRemoved = JSON.parse(result);
             if (err) {
                 console.error('WARNING: Error removing data from DB');
@@ -282,7 +283,8 @@ app.delete(BASE_API_PATH + "/beers-stats/:name", function(request, response) {
                 if (numRemoved.n === 1) {
                     console.log("INFO: The Beer with name " + name + " has been succesfully deleted, sending 204...");
                     response.sendStatus(204); // no content
-                } else {
+                }
+                else {
                     console.log("WARNING: There are no beer to delete");
                     response.sendStatus(404); // not found
                 }
@@ -357,7 +359,7 @@ app.get(BASE_API_PATH + "/establishments/:country", function(request, response) 
         console.log("INFO: New GET request to /establishments/" + country);
         db.find({
             "country": country
-        }).toArray( function(err, filteredEstablishments) {
+        }).toArray(function(err, filteredEstablishments) {
             if (err) {
                 console.error('WARNING: Error getting data from DB');
                 response.sendStatus(500); // internal server error
@@ -410,38 +412,37 @@ app.get(BASE_API_PATH + "/establishments/:country", function(request, response) 
 });
 
 //POST over a collection
-app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
-    var newMotorcycling = request.body;
-    console.log(newMotorcycling);
-    if (!newMotorcycling) {
-        console.log("WARNING: New POST request to /motorcycling-stats/ without pilot, sending 400...");
+app.post(BASE_API_PATH + "/establishments", function(request, response) {
+    var newEstablishment = request.body;
+    if (!newEstablishment) {
+        console.log("WARNING: New POST request to /establishments/ without establishment, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New POST request to /motorcycling-stats with body: " + JSON.stringify(newMotorcycling, 2, null));
-        if (!newMotorcycling.pilot || !newMotorcycling.country || !newMotorcycling.year || !newMotorcycling.team) {
-            console.log("WARNING: The motorcycling " + JSON.stringify(newMotorcycling, 2, null) + " is not well-formed, sending 422...");
+        console.log("INFO: New POST request to /establishments with body: " + JSON.stringify(newEstablishment, 2, null));
+        if (!newEstablishment.country || !newEstablishment.year || !newEstablishment.number || !newEstablishment.beds || !newEstablishment.nights) {
+            console.log("WARNING: The establishment " + JSON.stringify(newEstablishment, 2, null) + " is not well-formed, sending 422...");
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            dbMotorcycling.find({}).toArray( function(err, motorcycling) {
+            db.find({}).toArray(function(err, establishments) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    var MotorcyclingBeforeInsertion = motorcycling.filter((motor) => {
-                        return (motor.country.localeCompare(newMotorcycling.country, "en", {
+                    var establishmentsBeforeInsertion = establishments.filter((establishment) => {
+                        return (establishment.country.localeCompare(newEstablishment.country, "en", {
                             'sensitivity': 'base'
                         }) === 0);
                     });
-                    if (MotorcyclingBeforeInsertion.length > 0) {
-                        console.log("WARNING: The motor " + JSON.stringify(newMotorcycling, 2, null) + " already exist, sending 409...");
+                    if (establishmentsBeforeInsertion.length > 0) {
+                        console.log("WARNING: The establishment " + JSON.stringify(newEstablishment, 2, null) + " already extis, sending 409...");
                         response.sendStatus(409); // conflict
                     }
                     else {
-                        console.log("INFO: Adding motor " + JSON.stringify(newMotorcycling, 2, null));
-                        dbMotorcycling.insert(newMotorcycling);
+                        console.log("INFO: Adding establishment " + JSON.stringify(newEstablishment, 2, null));
+                        db.insert(newEstablishment);
                         response.sendStatus(201); // created
                     }
                 }
@@ -449,7 +450,6 @@ app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
         }
     }
 });
-
 
 //POST over a single resource
 app.post(BASE_API_PATH + "/establishments/:country", function(request, response) {
@@ -516,7 +516,7 @@ app.delete(BASE_API_PATH + "/establishments", function(request, response) {
     db.remove({}, {
         multi: true
     }, function(err, result) {
-        var numRemoved=JSON.parse(result);
+        var numRemoved = JSON.parse(result);
         if (err) {
             console.error('WARNING: Error removing data from DB');
             response.sendStatus(500); // internal server error
@@ -631,7 +631,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response
         console.log("INFO: New GET request to /motorcycling-stats/" + pilot);
         dbMotorcycling.find({
             "pilot": pilot
-        }).toArray( function(err, filteredMotorcycling) {
+        }).toArray(function(err, filteredMotorcycling) {
             if (err) {
                 console.error('WARNING: Error getting data from DB');
                 response.sendStatus(500); // internal server error
@@ -803,7 +803,7 @@ app.delete(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
     dbMotorcycling.remove({}, {
         multi: true
     }, function(err, result) {
-        var numRemoved=JSON.parse(result);
+        var numRemoved = JSON.parse(result);
         if (err) {
             console.error('WARNING: Error removing data from DB');
             response.sendStatus(500); // internal server error
