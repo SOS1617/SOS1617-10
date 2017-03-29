@@ -96,13 +96,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:parameter", function(request, resp
     }else{
         year=parseInt(parameter);
     }
-    var parameters = function (country,year) {
-         if (!year){
-             return 'country : country';
-        }else{
-             return 'year : year';
-        }
-    };
+    
    // var parametros=parameters(country,year);
     if (!country && !year) {
         console.log("WARNING: New GET request to /motorcycling-stats/:country without country, sending 400...");
@@ -122,7 +116,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:parameter", function(request, resp
             else {
                 console.log(filteredMotorcycling);
                 if (filteredMotorcycling.length > 0) {
-                    var motor = filteredMotorcycling[0];
+                    var motor = filteredMotorcycling;
                     console.log("INFO: Sending motor: " + JSON.stringify(motor, 2, null));
                     response.send(motor);
                 }
@@ -147,7 +141,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:parameter", function(request, resp
             else {
                 console.log(filteredMotorcycling);
                 if (filteredMotorcycling.length > 0) {
-                    var motor = filteredMotorcycling[0];
+                    var motor = filteredMotorcycling;
                     console.log("INFO: Sending motor: " + JSON.stringify(motor, 2, null));
                     response.send(motor);
                 }
@@ -237,7 +231,7 @@ app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 
 
 //POST over a single resource
-app.post(BASE_API_PATH + "/motorcycling-stats/:country", function(request, response) {
+app.post(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
     var country = request.params.country;
     var year = parseInt(request.params.year);
     console.log("WARNING: New POST request to /motorcycling-stats/" + country + ", sending 405...");
