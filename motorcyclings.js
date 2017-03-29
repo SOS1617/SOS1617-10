@@ -1,60 +1,24 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var helmet = require("helmet");
-var path = require('path');
-
-var port = (process.env.PORT || 10000);
-var BASE_API_PATH = "/api/v1";
-
-var app = express();
-
-app.use(bodyParser.json()); //use default json enconding/decoding
-app.use(helmet()); //improve security
-
-app.use("/", express.static(path.join(__dirname, "public")));
-
-app.use(BASE_API_PATH + "/tests", express.static(path.join(__dirname, "tests")));
-
-app.listen(port);
-
-"-----------------------------API BEERSTATS--------------------------------------------------------";
-
-var jesus = require('./beers');
-
-jesus.register_beers_api(app);
-
-
-"------------------------------------establishment-------------------------------------------------";
-
-var establishments = require('./establishments');
-
-establishments.register_establishments_api(app);
-
-
-"------------------------------------motorcycling-stats---------------------------------------------------------------------------------";
-
-"use strict";
-/* global __dirname */
-
 var MongoClient = require('mongodb').MongoClient;
 
 var mdbURL = "mongodb://david:sosdavid@ds133290.mlab.com:33290/sos1617-10";
 
+var BASE_API_PATH = "/api/v1";
 
 var dbMotorcycling;
 
-MongoClient.connect(mdbURL, {
-    native_parser: true
-}, function(err, database) {
-    if (err) {
-        console.log("CAN NOT CONEECT TO DB: " + err);
-        process.exit(1);
-    }
+module.exports.register_motorcyclings_api = function(app) {
 
-    dbMotorcycling = database.collection("motorcyclings");
+    MongoClient.connect(mdbURL, {
+        native_parser: true
+    }, function(err, database) {
+        if (err) {
+            console.log("CAN NOT CONNECT TO DB: " + err);
+            process.exit(1);
+        }
 
+        db = database.collection("motorcyclings");
 
-});
+    });
 
 
 //loadInitialData
@@ -320,4 +284,10 @@ app.delete(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(reques
             }
         });
     }
+    
 });
+
+   console.log("Registered API establishments");
+};
+
+    

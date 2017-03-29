@@ -9,16 +9,20 @@ POST a la ruta base (p.e. “/towns”) crea un nuevo recurso
     curl -v -XPOST -H 'Content-type: application/json' -d '{ "name": "Altiber", "country": "Germany", "birthyear": 1800, "province": "Düsseldorf"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats'
 
 GET a un recurso (p.e. “/towns/seville”) devuelve ese recurso:
-    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Altiber'
+    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Germany'
+    
+    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/1800'
+     
+    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Germany/1800'
     
 DELETE a un recurso (p.e. “/towns/seville”) borra ese recurso:
-    curl -v -XDELETE -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Altiber'
+    curl -v -XDELETE -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Germany/1800'
 
 PUT a un recurso (p.e. “/towns/seville”) actualiza ese recurso:
-    curl -v -XPUT -H 'Content-type: application/json' -d '{ "name": "Cruzcampo", "country": "Spain", "birthyear": 1850, "province": "Seville"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Kronenbourg'
+    curl -v -XPUT -H 'Content-type: application/json' -d '{ "name": "Cruzcampo", "country": "France", "birthyear": 1644, "province": "Seville"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats/France/1664'
     
 POST a un recurso (p.e. “/towns/seville”) debe dar un error de método no permitido:
-    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "Germany", "birthyear": 1800, "province": "Düsseldorf", "name": "Altiber"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Cruzcampo'
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "Germany", "birthyear": 1800, "province": "Düsseldorf", "name": "Altiber"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats/Spain/1850'
     
 PUT a la ruta base (p.e. “/towns”) debe dar un error de método no permitido:
    curl -v -XPUT -H 'Content-type: application/json' -d '{ "country": "Germany", "birthyear": 1850, "province": "Düsseldorf", "name": "Cruzcampo"}' 'http://sos1617-10.herokuapp.com/api/v1/beers-stats'
@@ -28,8 +32,6 @@ DELETE a la ruta base (p.e. “/towns”) borra todos los recursos:
     
 Cargar datos iniciales:
     curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/beers-stats/loadInitialData'
-
-
 
 
 
@@ -77,16 +79,16 @@ POST a la ruta base (p.e. “/towns”) crea un nuevo recurso
     curl -v -XPOST -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2004, "team": "Yamaha"}' 'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats'
 
 GET a un recurso (p.e. “/towns/seville”) devuelve ese recurso:
-    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats/Valentino%20Rossi'
+    curl -v -XGET -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats/Italy/2004'
     
 DELETE a un recurso (p.e. “/towns/seville”) borra ese recurso:
-    curl -v -XDELETE -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats/Valentino%20Rossi'
+    curl -v -XDELETE -H 'Content-type: application/json'  'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats/Italy/2004'
 
 PUT a un recurso (p.e. “/towns/seville”) actualiza ese recurso:
-    curl -v -XPUT -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2005, "team": "Yamaha"}' 'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats/Valentino%20Rossi'
+    curl -v -XPUT -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2005, "team": "Yamaha"}' 'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats/Italy/2005'
     
 POST a un recurso (p.e. “/towns/seville”) debe dar un error de método no permitido:
-    curl -v -XPOST -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2004, "team": "Yamaha"}' 'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats/Valentino%20Rossi'
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2004, "team": "Yamaha"}' 'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats/Italy'
     
 PUT a la ruta base (p.e. “/towns”) debe dar un error de método no permitido:
     curl -v -XPUT -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 1952,  "team": "Yamaha"}' 'http://sos1617-10.herokuapp.com/api/v1/motorcycling-stats'
