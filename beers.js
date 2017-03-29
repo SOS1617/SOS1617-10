@@ -47,7 +47,7 @@ module.exports.register_beers_api = function(app) {
         });
     });
     //GET loadInitialData
-    
+
     app.get(BASE_API_PATH + "/beers-stats/loadInitialData", function(request, response) {
         dbBeer.find({}).toArray(function(err, beers) {
             console.log(beers);
@@ -78,32 +78,34 @@ module.exports.register_beers_api = function(app) {
     });
     // GET a single resource
     app.get(BASE_API_PATH + "/beers-stats/:parameter", function(request, response) {
-        var parameter= request.params.parameter;
+        var parameter = request.params.parameter;
         var birthyear;
         var country;
-        if(isNaN(parameter)){
-            country=parameter;
-        }else{
-            birthyear=parseInt(parameter);
+        if (isNaN(parameter)) {
+            country = parameter;
         }
-        var parameters = function (country,birthyear) {
-             if (!birthyear){
-                 return 'country : country';
-            }else{
-                 return 'birthyear : birthyear';
+        else {
+            birthyear = parseInt(parameter);
+        }
+        var parameters = function(country, birthyear) {
+            if (!birthyear) {
+                return 'country : country';
+            }
+            else {
+                return 'birthyear : birthyear';
             }
         };
-       // var parametros=parameters(country,birthyear);
+        // var parametros=parameters(country,birthyear);
         if (!country && !birthyear) {
             console.log("WARNING: New GET request to /beers-stats/:country without country, sending 400...");
             response.sendStatus(400); // bad request
         }
-        else if (!birthyear){
-            
+        else if (!birthyear) {
+
             //console.log(parametros);
             console.log("INFO: New GET request to /beers-stats/" + country + " and birthyear " + birthyear);
             dbBeer.find({
-                "country" : country
+                "country": country
             }).toArray(function(err, filteredBeers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
@@ -122,13 +124,13 @@ module.exports.register_beers_api = function(app) {
                     }
                 }
             });
-            
+
         }
-        else{
+        else {
             //console.log(parametros);
             console.log("INFO: New GET request to /beers-stats/" + country + " and birthyear " + birthyear);
             dbBeer.find({
-                "birthyear" : birthyear
+                "birthyear": birthyear
             }).toArray(function(err, filteredBeers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
@@ -147,16 +149,15 @@ module.exports.register_beers_api = function(app) {
                     }
                 }
             });
-            
+
         }
-            
-        }
-    );
+
+    });
     //GET a single resource with 2 params
     app.get(BASE_API_PATH + "/beers-stats/:country/:birthyear", function(request, response) {
         var birthyear = parseInt(request.params.birthyear);
         var country = request.params.country;
-        
+
         if (!country && !birthyear) {
             console.log("WARNING: New GET request to /beers-stats/:country without country, sending 400...");
             response.sendStatus(400); // bad request
@@ -164,7 +165,8 @@ module.exports.register_beers_api = function(app) {
         else {
             console.log("INFO: New GET request to /beers-stats/" + country);
             dbBeer.find({
-                "country" : country , "birthyear":birthyear
+                "country": country,
+                "birthyear": birthyear
             }).toArray(function(err, filteredBeers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
@@ -252,28 +254,31 @@ module.exports.register_beers_api = function(app) {
         var updatedBeer = request.body;
         var country = request.params.country;
         var birthyear = parseInt(request.params.birthyear);
-        console.log();
         if (!updatedBeer) {
             console.log("WARNING: New PUT request to /beers-stats/ without beer, sending 400...");
             response.sendStatus(400); // bad request
         }
         else {
-            console.log("INFO: New PUT request to /beers-stats/" + country +" and year "+ birthyear +" with data " + JSON.stringify(updatedBeer, 2, null));
+            console.log("INFO: New PUT request to /beers-stats/" + country + " and year " + birthyear + " with data " + JSON.stringify(updatedBeer, 2, null));
             if (!updatedBeer.country || !updatedBeer.birthyear || !updatedBeer.province || !updatedBeer.name) {
                 console.log("WARNING: The beer " + JSON.stringify(updatedBeer, 2, null) + " is not well-formed, sending 422...");
                 response.sendStatus(422); // unprocessable entity
             }
             else {
-                dbBeer.find({"country": country,"birthyear":birthyear}).toArray(function(err, beersBeforeInsertion) {
+                dbBeer.find({
+                    "country": country,
+                    "birthyear": birthyear
+                }).toArray(function(err, beersBeforeInsertion) {
                     if (err) {
                         console.error('WARNING: Error getting data from DB');
                         response.sendStatus(500); // internal server error
                     }
                     else {
+                        console.log(beersBeforeInsertion)
                         if (beersBeforeInsertion.length > 0) {
                             dbBeer.update({
                                 "country": country,
-                                "birthyear" : birthyear
+                                "birthyear": birthyear
                             }, updatedBeer);
                             console.log("INFO: Modifying beer with country " + country + " with data " + JSON.stringify(updatedBeer, 2, null));
                             response.send(updatedBeer); // return the updated Beer
@@ -325,8 +330,8 @@ module.exports.register_beers_api = function(app) {
         else {
             console.log("INFO: New DELETE request to /beers-stats/" + country);
             dbBeer.remove({
-                country: country ,
-                birthyear : birthyear
+                country: country,
+                birthyear: birthyear
             }, {}, function(err, result) {
                 var numRemoved = JSON.parse(result);
                 if (err) {
