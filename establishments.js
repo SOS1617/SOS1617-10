@@ -1,4 +1,3 @@
-
 var MongoClient = require('mongodb').MongoClient;
 
 var mdbURL = "mongodb://test:test@ds133450.mlab.com:33450/sos1617-10-sandbox";
@@ -73,7 +72,7 @@ module.exports.register_establishments_api = function(app) {
     });
 
 
-    // GET a single resource
+    // GET a single resource with two params
     app.get(BASE_API_PATH + "/establishments/:country/:year", function(request, response) {
         var country = request.params.country;
         var year = Number(request.params.year);
@@ -106,6 +105,57 @@ module.exports.register_establishments_api = function(app) {
         }
     });
 
+    //GET a single resource with one param
+    app.get(BASE_API_PATH + "/establishments/:parameter", function(request, response) {
+        var parameter = request.params.parameter;
+        var country;
+        var year;
+        var name;
+        if (isNaN(parameter)) {
+            country = parameter;
+        }
+        else {
+            year = parseInt(parameter);
+        }
+        var parametros = function(country, year) {
+            if (!year) {
+                parametros = country;
+                name = "country";
+            }
+            else {
+                parametros = year;
+                name = "year";
+            }
+        }
+
+        if (!country && !year) {
+            console.log("WARNING: New GET request to /establishments/ without country or year, sending 400...");
+            response.sendStatus(400); // bad request
+        }
+        else {
+            console.log("INFO: New GET request to /establishments/"  + year);
+            db.find({
+                name: parametros
+            }).toArray(function(err, filteredEstablishments) {
+                if (err) {
+                    console.error('WARNING: Error getting data from DB');
+                    response.sendStatus(500); // internal server error
+                }
+                else {
+                    if (filteredEstablishments.length > 0) {
+                        var establishment = filteredEstablishments; //since we expect to have exactly ONE establishment with this country
+                        console.log("INFO: Sending establishment: " + JSON.stringify(establishment, 2, null));
+                        response.send(establishment);
+                    }
+                    else {
+                        console.log("WARNING: There are not establishments");
+                        response.sendStatus(404); // not found
+                    }
+                }
+            });
+        }
+    });
+
     //POST over a collection
     app.post(BASE_API_PATH + "/establishments", function(request, response) {
         var newEstablishment = request.body;
@@ -120,17 +170,15 @@ module.exports.register_establishments_api = function(app) {
                 response.sendStatus(422); // unprocessable entity
             }
             else {
-                db.find({}).toArray(function(err, establishments) {
+                db.find({
+                    "country": newEstablishment.country,
+                    "year": newEstablishment.year
+                }).toArray(function(err, establishmentsBeforeInsertion) {
                     if (err) {
                         console.error('WARNING: Error getting data from DB');
                         response.sendStatus(500); // internal server error
                     }
                     else {
-                        var establishmentsBeforeInsertion = establishments.filter((establishment) => {
-                            return (establishment.country.localeCompare(newEstablishment.country, "en", {
-                                'sensitivity': 'base'
-                            }) === 0);
-                        });
                         if (establishmentsBeforeInsertion.length > 0) {
                             console.log("WARNING: The establishment " + JSON.stringify(newEstablishment, 2, null) + " already extis, sending 409...");
                             response.sendStatus(409); // conflict
@@ -188,17 +236,11 @@ module.exports.register_establishments_api = function(app) {
                     }
                     else {
                         if (establishmentsBeforeInsertion.length > 0) {
-                            db.updateOne({
+                            db.update({
                                 "country": country,
                                 "year": year
-                            }, {
-                                $set: {
-                                    "number": updatedEstablishment.number,
-                                    "beds": updatedEstablishment.beds,
-                                    "nights": updatedEstablishment.nights
-                                }
-                            });
-                            console.log("INFO: Modifying establishment with country " + updatedEstablishment.country + " with data " + JSON.stringify(updatedEstablishment, 2, null));
+                            }, updatedEstablishment)
+                            console.log("INFO: Modifying establishment with country " + country + " with data " + JSON.stringify(updatedEstablishment, 2, null));
                             response.send(updatedEstablishment); // return the updated establishment
                         }
                         else {
@@ -271,5 +313,4 @@ module.exports.register_establishments_api = function(app) {
         }
     });
 
-    console.log("Registered API establishments");
 };
