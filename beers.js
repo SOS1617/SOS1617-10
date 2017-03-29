@@ -87,22 +87,11 @@ module.exports.register_beers_api = function(app) {
         else {
             birthyear = parseInt(parameter);
         }
-        var parameters = function(country, birthyear) {
-            if (!birthyear) {
-                return 'country : country';
-            }
-            else {
-                return 'birthyear : birthyear';
-            }
-        };
-        // var parametros=parameters(country,birthyear);
         if (!country && !birthyear) {
             console.log("WARNING: New GET request to /beers-stats/:country without country, sending 400...");
             response.sendStatus(400); // bad request
         }
         else if (!birthyear) {
-
-            //console.log(parametros);
             console.log("INFO: New GET request to /beers-stats/" + country + " and birthyear " + birthyear);
             dbBeer.find({
                 "country": country
