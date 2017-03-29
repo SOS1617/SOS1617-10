@@ -241,8 +241,10 @@ module.exports.register_beers_api = function(app) {
             console.log("WARNING: New PUT request to /beers-stats/ without beer, sending 400...");
             response.sendStatus(400); // bad request
         }else if (country!==updatedBeer.country){
+            console.log("INFO: country changed");
             response.sendStatus(400);
         }else if (birthyear!==updatedBeer.birthyear){
+            console.log("INFO: birthyear changed");
             response.sendStatus(400);
         }
         
