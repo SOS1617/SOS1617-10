@@ -255,6 +255,10 @@ app.put(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, 
     if (!updatedMotorcycling) {
         console.log("WARNING: New PUT request to /motorcycling-stats/ without motorcycling, sending 400...");
         response.sendStatus(400); // bad request
+    }else if (country!==updatedMotorcycling.country){
+        response.sendStatus(400);
+    }else if (year!==updatedMotorcycling.year){
+        response.sendStatus(400);
     }
     else {
         console.log("INFO: New PUT request to /motorcycling-stats/" + country +" and year "+ year +" with data " + JSON.stringify(updatedMotorcycling, 2, null));
