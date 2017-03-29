@@ -110,22 +110,11 @@ module.exports.register_establishments_api = function(app) {
         var parameter = request.params.parameter;
         var country;
         var year;
-        var name;
         if (isNaN(parameter)) {
             country = parameter;
         }
         else {
             year = parseInt(parameter);
-        }
-        var parametros = function(country, year) {
-            if (!year) {
-                parametros = country;
-                name = "country";
-            }
-            else {
-                parametros = year;
-                name = "year";
-            }
         }
 
         if (!country && !year) {
@@ -133,26 +122,50 @@ module.exports.register_establishments_api = function(app) {
             response.sendStatus(400); // bad request
         }
         else {
-            console.log("INFO: New GET request to /establishments/"  + year);
-            db.find({
-                name: parametros
-            }).toArray(function(err, filteredEstablishments) {
-                if (err) {
-                    console.error('WARNING: Error getting data from DB');
-                    response.sendStatus(500); // internal server error
-                }
-                else {
-                    if (filteredEstablishments.length > 0) {
-                        var establishment = filteredEstablishments; //since we expect to have exactly ONE establishment with this country
-                        console.log("INFO: Sending establishment: " + JSON.stringify(establishment, 2, null));
-                        response.send(establishment);
+            if (!year) {
+                console.log("INFO: New GET request to /establishments/" + country);
+                db.find({
+                    "country": country
+                }).toArray(function(err, filteredEstablishments) {
+                    if (err) {
+                        console.error('WARNING: Error getting data from DB');
+                        response.sendStatus(500); // internal server error
                     }
                     else {
-                        console.log("WARNING: There are not establishments");
-                        response.sendStatus(404); // not found
+                        if (filteredEstablishments.length > 0) {
+                            var establishment = filteredEstablishments;
+                            console.log("INFO: Sending establishment: " + JSON.stringify(establishment, 2, null));
+                            response.send(establishment);
+                        }
+                        else {
+                            console.log("WARNING: There are not establishments");
+                            response.sendStatus(404); // not found
+                        }
                     }
-                }
-            });
+                });
+            }
+            else {
+                console.log("INFO: New GET request to /establishments/" + year);
+                db.find({
+                    "year": year
+                }).toArray(function(err, filteredEstablishments) {
+                    if (err) {
+                        console.error('WARNING: Error getting data from DB');
+                        response.sendStatus(500); // internal server error
+                    }
+                    else {
+                        if (filteredEstablishments.length > 0) {
+                            var establishment = filteredEstablishments;
+                            console.log("INFO: Sending establishment: " + JSON.stringify(establishment, 2, null));
+                            response.send(establishment);
+                        }
+                        else {
+                            console.log("WARNING: There are not establishments");
+                            response.sendStatus(404); // not found
+                        }
+                    }
+                });
+            }
         }
     });
 
