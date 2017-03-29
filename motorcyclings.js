@@ -16,7 +16,7 @@ module.exports.register_motorcyclings_api = function(app) {
             process.exit(1);
         }
 
-        db = database.collection("motorcyclings");
+        dbMotorcycling = database.collection("motorcyclings");
 
     });
 
