@@ -114,7 +114,7 @@ module.exports.register_beers_api = function(app) {
                 else {
                     console.log(filteredBeers);
                     if (filteredBeers.length > 0) {
-                        var beer = filteredBeers[0];
+                        var beer = filteredBeers;
                         console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                         response.send(beer);
                     }
@@ -139,7 +139,7 @@ module.exports.register_beers_api = function(app) {
                 else {
                     console.log(filteredBeers);
                     if (filteredBeers.length > 0) {
-                        var beer = filteredBeers[0];
+                        var beer = filteredBeers;
                         console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                         response.send(beer);
                     }
@@ -173,9 +173,9 @@ module.exports.register_beers_api = function(app) {
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    console.log(filteredBeers);
                     if (filteredBeers.length > 0) {
-                        var beer = filteredBeers[0];
+                        var beer = filteredBeers;
+                        console.log(beer);
                         console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                         response.send(beer);
                     }
@@ -206,17 +206,12 @@ module.exports.register_beers_api = function(app) {
                 response.sendStatus(422); // unprocessable entity
             }
             else {
-                dbBeer.find({}).toArray(function(err, beers) {
+                dbBeer.find({"country":newBeer.country , "birthyear":newBeer.birthyear}).toArray(function(err, BeersBeforeInsertion) {
                     if (err) {
                         console.error('WARNING: Error getting data from DB');
                         response.sendStatus(500); // internal server error
                     }
                     else {
-                        var BeersBeforeInsertion = beers.filter((beer) => {
-                            return (beer.country.localeCompare(newBeer.country, "en", {
-                                'sensitivity': 'base'
-                            }) === 0);
-                        });
                         if (BeersBeforeInsertion.length > 0) {
                             console.log("WARNING: The Beer " + JSON.stringify(newBeer, 2, null) + " already extis, sending 409...");
                             response.sendStatus(409); // conflict
