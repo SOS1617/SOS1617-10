@@ -33,7 +33,7 @@ establishments.register_establishments_api(app);
 
 "------------------------------------motorcycling-stats---------------------------------------------------------------------------------";
 
-"-----------------------------API BEERSTATS--------------------------------------------------------";
-var david = require('./motorcyclings.js');
+var david = require('./motorcyclings');
+
 david.register_motorcyclings_api(app);
 
