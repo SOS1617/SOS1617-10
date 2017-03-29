@@ -5,16 +5,16 @@ POST a la ruta base (p.e. “/towns”) crea un nuevo recurso
     curl -v -XPOST -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2005, "team": "Yamaha"}' 'http://localhost:8080/api/v1/motorcycling-stats'
 
 GET a un recurso (p.e. “/towns/seville”) devuelve ese recurso:
-    curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/motorcycling-stats/Valentino%20Rossi'
+    curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/motorcycling-stats/Italy/2005'
     
 DELETE a un recurso (p.e. “/towns/seville”) borra ese recurso:
     curl -v -XDELETE -H 'Content-type: application/json'  'http://localhost:8080/api/v1/motorcycling-stats/Italy/2005'
 
 PUT a un recurso (p.e. “/towns/seville”) actualiza ese recurso:
-    curl -v -XPUT -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "France", "year": 2004, "team": "Ducatti"}' 'http://localhost:8080/api/v1/motorcycling-stats/Italy/2004'
+    curl -v -XPUT -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2004}' 'http://localhost:8080/api/v1/motorcycling-stats/Italy/2004'
     
 POST a un recurso (p.e. “/towns/seville”) debe dar un error de método no permitido:
-    curl -v -XPOST -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2004, "team": "Yamaha"}' 'http://localhost:8080/api/v1/motorcycling-stats/Valentino%20Rossi'
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 2004, "team": "Yamaha"}' 'http://localhost:8080/api/v1/motorcycling-stats/Italy'
     
 PUT a la ruta base (p.e. “/towns”) debe dar un error de método no permitido:
     curl -v -XPUT -H 'Content-type: application/json' -d '{ "pilot": "Valentino Rossi", "country": "Italy", "year": 1952,  "team": "Yamaha"}' 'http://localhost:8080/api/v1/motorcycling-stats'
