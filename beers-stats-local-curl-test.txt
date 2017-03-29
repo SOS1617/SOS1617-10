@@ -11,10 +11,10 @@ DELETE a un recurso (p.e. “/towns/seville”) borra ese recurso:
     curl -v -XDELETE -H 'Content-type: application/json'  'http://localhost:8080/api/v1/beers-stats/Germany'
 
 PUT a un recurso (p.e. “/towns/seville”) actualiza ese recurso:
-    curl -v -XPUT -H 'Content-type: application/json' -d '{ "name": "Cruzcampo", "country": "Spain", "birthyear": 1850, "province": "Seville"}' 'http://localhost:8080/api/v1/beers-stats/France'
+    curl -v -XPUT -H 'Content-type: application/json' -d '{ "name": "Cruzcampo", "country": "Spain", "birthyear": 1850, "province": "Seville"}' 'http://localhost:8080/api/v1/beers-stats/France/1664'
     
 POST a un recurso (p.e. “/towns/seville”) debe dar un error de método no permitido:
-    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "Germany", "birthyear": 1800, "province": "Düsseldorf", "name": "Altiber"}' 'http://localhost:8080/api/v1/beers-stats/Spain'
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "Germany", "birthyear": 1800, "province": "Düsseldorf", "name": "Altiber"}' 'http://localhost:8080/api/v1/beers-stats/Spain/1850'
     
 PUT a la ruta base (p.e. “/towns”) debe dar un error de método no permitido:
    curl -v -XPUT -H 'Content-type: application/json' -d '{ "country": "Germany", "birthyear": 1850, "province": "Düsseldorf", "name": "Cruzcampo"}' 'http://localhost:8080/api/v1/beers-stats'
