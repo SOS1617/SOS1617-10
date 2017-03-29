@@ -591,16 +591,59 @@ MongoClient.connect(mdbURL, {
         process.exit(1);
     }
 
-    dbMotorcycling = database.collection("motorcycling");
+    dbMotorcycling = database.collection("motorcyclings");
 
 
 });
 
 
-// Base GET
-app.get("/", function(request, response) {
-    console.log("INFO: Redirecting to /motorcycling-stats");
-    response.redirect(301, BASE_API_PATH + "/motorcycling-stats");
+//loadInitialData
+app.get(BASE_API_PATH + "/motorcycling-stats/loadInitialData", function(request, response) {
+    dbMotorcycling.find({}).toArray(function(err, motorcycling) {
+        console.log('INFO: Initialiting DB...');
+
+        if (err) {
+            console.error('WARNING: Error while getting initial data from DB');
+            return 0;
+        }
+
+        if (motorcycling.length === 0) {
+            console.log('INFO: Empty DB, loading initial data');
+
+            var initialMotorcyclings = [{
+                "pilot": "Leslie Graham",
+                "country": "United Kingdom",
+                "year": 1949,
+                "team": "AJS"
+            }, {
+                "pilot": "Valentino Rossi",
+                "country": "Italy",
+                "year": 2004,
+                "team": "Yamaha"
+            }, {
+                "pilot": "Valentino Rossi",
+                "country": "Italy",
+                "year": 2005,
+                "team": "Yamaha"
+            }, {
+                "pilot": "Marquez",
+                "country": "Italy",
+                "year": 2015,
+                "team": "Yamaha"
+            }, {
+                "pilot": "Marquez",
+                "country": "Italy",
+                "year": 2016,
+            "team": "Yamaha"
+            }];
+            dbMotorcycling.insert(initialMotorcyclings);
+            response.sendStatus(201);
+        }
+        else {
+            console.log('INFO: DB has ' + motorcycling.length + ' motorcycling ');
+            response.sendStatus(200);
+        }
+    });
 });
 
 
@@ -620,17 +663,19 @@ app.get(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 });
 
 
-// GET a single resource (pilot)
-app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response) {
-    var pilot = request.params.pilot;
-    if (!pilot) {
-        console.log("WARNING: New GET request to /motorcycling-stats/:pilot without pilot, sending 400...");
+// GET a single resource
+app.get(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
+    var country = request.params.country;
+    var year = parseInt(request.params.year);
+    if (!country || !year) {
+        console.log("WARNING: New GET request to /motorcycling-stats/:country/:year without country or year, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New GET request to /motorcycling-stats/" + pilot);
+        console.log("INFO: New GET request to /motorcycling-stats/" + country + "/" + year);
         dbMotorcycling.find({
-            "pilot": pilot
+            "country": country,
+            "year": year
         }).toArray(function(err, filteredMotorcycling) {
             if (err) {
                 console.error('WARNING: Error getting data from DB');
@@ -638,57 +683,12 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response
             }
             else {
                 if (filteredMotorcycling.length > 0) {
-                    var motorcycling = filteredMotorcycling; //since we expect to have exactly ONE motorcycling with this pilot
+                    var motorcycling = filteredMotorcycling[0]; //since we expect to have exactly ONE motorcycling with this country or year
                     console.log("INFO: Sending motorcycling: " + JSON.stringify(motorcycling, 2, null));
                     response.send(motorcycling);
                 }
-                else if (pilot === "loadInitialData") {
-                    dbMotorcycling.find({}).toArray(function(err, motorcycling) {
-                        console.log(motorcycling);
-                        if (err) {
-                            console.error('Error while getting data from DB');
-                        }
-                        if (motorcycling.length === 0) {
-                            motorcycling = [{
-                                "pilot": "Leslie Graham",
-                                "country": "United Kingdom",
-                                "year": 1949,
-                                "team": "AJS"
-                            }, {
-                                "pilot": "Valentino Rossi",
-                                "country": "Italy",
-                                "year": 2004,
-                                "team": "Yamaha"
-                            }, {
-                                "pilot": "Valentino Rossi",
-                                "country": "Italy",
-                                "year": 2005,
-                                "team": "Yamaha"
-                            }, {
-                                "pilot": "Marquez",
-                                "country": "Italy",
-                                "year": 2015,
-                                "team": "Yamaha"
-                            }, {
-                                "pilot": "Marquez",
-                                "country": "Italy",
-                                "year": 2016,
-                                "team": "Yamaha"
-                            }];
-                            console.log(motorcycling);
-                            dbMotorcycling.insert(motorcycling);
-                            response.sendStatus(201);
-                        }
-                        else {
-                            console.log("Motorcycling has more size than 0");
-                            response.sendStatus(200);
-                        }
-                    });
-
-
-                }
                 else {
-                    console.log("WARNING: There are not any name with pilot " + pilot);
+                    console.log("WARNING: There are not motorcyclings");
                     response.sendStatus(404); // not found
                 }
             }
@@ -738,9 +738,9 @@ app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 
 
 //POST over a single resource
-app.post(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response) {
-    var pilot = request.params.pilot;
-    console.log("WARNING: New POST request to /motorcycling-stats/" + pilot + ", sending 405...");
+app.post(BASE_API_PATH + "/motorcycling-stats/:country", function(request, response) {
+    var country = request.params.country;
+    console.log("WARNING: New POST request to /motorcycling-stats/" + country + ", sending 405...");
     response.sendStatus(405); // method not allowed
 });
 
@@ -753,45 +753,43 @@ app.put(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 
 
 //PUT over a single resource
-app.put(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response) {
+app.put(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
     var updatedMotorcycling = request.body;
-    var pilot = request.params.pilot;
+    var country = request.params.country;
+    var year = Number(request.params.year);
     if (!updatedMotorcycling) {
         console.log("WARNING: New PUT request to /motorcycling-stats/ without motorcycling, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New PUT request to /motorcycling-stats/" + pilot + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
+        console.log("INFO: New PUT request to /motorcycling-stats/" + country + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
         if (!updatedMotorcycling.pilot || !updatedMotorcycling.country || !updatedMotorcycling.year || !updatedMotorcycling.team) {
             console.log("WARNING: The motorcycling " + JSON.stringify(updatedMotorcycling, 2, null) + " is not well-formed, sending 422...");
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            dbMotorcycling.find({}).toArray(function(err, motorcycling) {
+            dbMotorcycling.find({
+                "country": country,
+                "year": year
+            }).toArray(function(err, motorcycling) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
                 }
-                else {
-                    var motorcyclingBeforeInsertion = motorcycling.filter((motor) => {
-                        return (motor.pilot.localeCompare(pilot, "en", {
-                            'sensitivity': 'base'
-                        }) === 0);
-                    });
-                    if (motorcyclingBeforeInsertion.length > 0) {
+                else if (motorcycling.length > 0) {
                         dbMotorcycling.update({
-                            pilot: pilot
+                            "country": country,
+                            "year": year
                         }, updatedMotorcycling);
-                        console.log("INFO: Modifying motor with pilot " + pilot + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
+                        console.log("INFO: Modifying motor with country " + country + "/" + year + " with data" + JSON.stringify(updatedMotorcycling, 2, null));
                         response.send(updatedMotorcycling); // return the updated motor
                     }
                     else {
-                        console.log("WARNING: There is not any motor with pilot " + pilot);
+                        console.log("WARNING: There is not any motor with country " + country + "and" + year);
                         response.sendStatus(404); // not found
                     }
                 }
-            });
-        }
+            )}
     }
 });
 
@@ -823,30 +821,32 @@ app.delete(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 
 
 //DELETE over a single resource
-app.delete(BASE_API_PATH + "/motorcycling-stats/:pilot", function(request, response) {
-    var pilot = request.params.pilot;
-    if (!pilot) {
-        console.log("WARNING: New DELETE request to /motorcycling-stats/:pilot without pilot, sending 400...");
+app.delete(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
+    var country = request.params.country;
+    var year = Number(request.params.year);
+    if (!country || !year) {
+        console.log("WARNING: New DELETE request to /motorcycling-stats/:country/:year without country or year, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New DELETE request to /motorcycling-stats/" + pilot);
+        console.log("INFO: New DELETE request to /motorcycling-stats/" + country + "/" + year);
         dbMotorcycling.remove({
-            pilot: pilot
-        }, {}, function(err, result) {
+            "country": country,
+            "year":year
+        }, true, function(err, result) {
             var numRemoved = JSON.parse(result);
             if (err) {
                 console.error('WARNING: Error removing data from DB');
                 response.sendStatus(500); // internal server error
             }
             else {
-                console.log("INFO: motorcycling removed: " + numRemoved.n);
+                console.log("INFO: Countries removed: " + numRemoved.n);
                 if (numRemoved.n === 1) {
-                    console.log("INFO: The motorcycling with pilot " + pilot + " has been succesfully deleted, sending 204...");
+                    console.log("INFO: The motorcycling with country " + country + "and year " + year + " has been succesfully deleted, sending 204...");
                     response.sendStatus(204); // no content
                 }
                 else {
-                    console.log("WARNING: There are no motorcycling to delete");
+                    console.log("WARNING: There are no countries to delete");
                     response.sendStatus(404); // not found
                 }
             }
