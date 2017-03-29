@@ -20,7 +20,22 @@ module.exports.register_motorcyclings_api = function(app) {
 
     });
 
-
+// GET a collection
+    app.get(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
+        console.log("INFO: New GET request to /motorcycling-stats");
+        dbMotorcycling.find({}).toArray(function(err, motorcycling) {
+            if (err) {
+                console.error('WARNING: Error getting data from DB');
+                response.sendStatus(500); // internal server error
+            }
+            else {
+                console.log("INFO: Sending motorcycling: " + JSON.stringify(motorcycling, 2, null));
+                response.send(motorcycling);
+            }
+        });
+    });
+    
+    
 //loadInitialData
 app.get(BASE_API_PATH + "/motorcycling-stats/loadInitialData", function(request, response) {
     dbMotorcycling.find({}).toArray(function(err, motorcycling) {
@@ -71,23 +86,83 @@ app.get(BASE_API_PATH + "/motorcycling-stats/loadInitialData", function(request,
 });
 
 
-// GET a collection
-app.get(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
-    console.log("INFO: New GET request to /motorcycling-stats");
-    dbMotorcycling.find({}).toArray(function(err, motorcycling) {
-        if (err) {
-            console.error('WARNING: Error getting data from DB');
-            response.sendStatus(500); // internal server error
-        }
-        else {
-            console.log("INFO: Sending motorcycling: " + JSON.stringify(motorcycling, 2, null));
-            response.send(motorcycling);
-        }
-    });
-});
-
-
 // GET a single resource
+app.get(BASE_API_PATH + "/motorcycling-stats/:parameter", function(request, response) {
+    var parameter = request.params.parameter;
+    var country;
+    var year;
+    if(isNaN(parameter)){
+        country=parameter;
+    }else{
+        year=parseInt(parameter);
+    }
+    var parameters = function (country,year) {
+         if (!year){
+             return 'country : country';
+        }else{
+             return 'year : year';
+        }
+    };
+   // var parametros=parameters(country,year);
+    if (!country && !year) {
+        console.log("WARNING: New GET request to /motorcycling-stats/:country without country, sending 400...");
+        response.sendStatus(400); // bad request
+    }
+    else if (!year){
+            
+        //console.log(parametros);
+        console.log("INFO: New GET request to /motorcycling-stats/" + country + " and year " + year);
+        dbMotorcycling.find({
+            "country" : country
+        }).toArray(function(err, filteredMotorcycling) {
+            if (err) {
+                console.error('WARNING: Error getting data from DB');
+                response.sendStatus(500); // internal server error
+            }
+            else {
+                console.log(filteredMotorcycling);
+                if (filteredMotorcycling.length > 0) {
+                    var motor = filteredMotorcycling[0];
+                    console.log("INFO: Sending motor: " + JSON.stringify(motor, 2, null));
+                    response.send(motor);
+                }
+                else {
+                    console.log("WARNING: There are not any country with " + country);
+                    response.sendStatus(404); // not found
+                }
+            }
+        });
+        
+    }
+    else{
+        //console.log(parametros);
+        console.log("INFO: New GET request to /motorcycling-stats/" + country + " and year " + year);
+        dbMotorcycling.find({
+            "year" : year
+        }).toArray(function(err, filteredMotorcycling) {
+            if (err) {
+                console.error('WARNING: Error getting data from DB');
+                response.sendStatus(500); // internal server error
+            }
+            else {
+                console.log(filteredMotorcycling);
+                if (filteredMotorcycling.length > 0) {
+                    var motor = filteredMotorcycling[0];
+                    console.log("INFO: Sending motor: " + JSON.stringify(motor, 2, null));
+                    response.send(motor);
+                }
+                else {
+                    console.log("WARNING: There are not any country with " + country);
+                    response.sendStatus(404); // not found
+                }
+            }
+        });
+        
+    }
+        
+    }
+);
+//GET a single resource with 2 params
 app.get(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
     var country = request.params.country;
     var year = parseInt(request.params.year);
@@ -164,6 +239,7 @@ app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 //POST over a single resource
 app.post(BASE_API_PATH + "/motorcycling-stats/:country", function(request, response) {
     var country = request.params.country;
+    var year = parseInt(request.params.year);
     console.log("WARNING: New POST request to /motorcycling-stats/" + country + ", sending 405...");
     response.sendStatus(405); // method not allowed
 });
@@ -180,42 +256,35 @@ app.put(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 app.put(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
     var updatedMotorcycling = request.body;
     var country = request.params.country;
-    var year = Number(request.params.year);
+    var year = parseInt(request.params.year);
+    console.log();
     if (!updatedMotorcycling) {
-        console.log("WARNING: New PUT request to /motorcycling-stats/ without content, sending 400...");
+        console.log("WARNING: New PUT request to /motorcycling-stats/ without motorcycling, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New PUT request to /motorcycling-stats/" + country + "/" + year + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
-        if (!country || !year) {
+        console.log("INFO: New PUT request to /motorcycling-stats/" + country +" and year "+ year +" with data " + JSON.stringify(updatedMotorcycling, 2, null));
+        if (!updatedMotorcycling.pilot || !updatedMotorcycling.country || !updatedMotorcycling.year || !updatedMotorcycling.team) {
             console.log("WARNING: The motorcycling " + JSON.stringify(updatedMotorcycling, 2, null) + " is not well-formed, sending 422...");
             response.sendStatus(422); // unprocessable entity
         }
         else {
-            dbMotorcycling.find({
-                "country": country,
-                "year": year
-            }).toArray(function(err, motorcyclingBeforeInsertion) {
+            dbMotorcycling.find({"country": country,"year":year}).toArray(function(err, motorcyclingBeforeInsertion) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
                 }
                 else {
                     if (motorcyclingBeforeInsertion.length > 0) {
-                        dbMotorcycling.updateOne({
+                        dbMotorcycling.update({
                             "country": country,
-                            "year": year
-                        }, {
-                            $set: {
-                                "pilot": updatedMotorcycling.pilot,
-                                "team": updatedMotorcycling.team
-                            }
-                        });
-                        console.log("INFO: Modifying motorcycling with country " + updatedMotorcycling.country + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
+                            "year" : year
+                        }, updatedMotorcycling);
+                        console.log("INFO: Modifying motorcycling with country " + country + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
                         response.send(updatedMotorcycling); // return the updated motorcycling
                     }
                     else {
-                        console.log("WARNING: There are not any motorcycling with country " + updatedMotorcycling.country);
+                        console.log("WARNING: There is not any motorcycling with country " + country);
                         response.sendStatus(404); // not found
                     }
                 }
@@ -284,10 +353,7 @@ app.delete(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(reques
             }
         });
     }
-    
 });
 
-   console.log("Registered API establishments");
+    console.log("Registered API establishments");
 };
-
-    
