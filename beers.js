@@ -116,7 +116,6 @@ module.exports.register_beers_api = function(app) {
 
         }
         else {
-            //console.log(parametros);
             console.log("INFO: New GET request to /beers-stats/" + country + " and birthyear " + birthyear);
             dbBeer.find({
                 "birthyear": birthyear
@@ -241,7 +240,14 @@ module.exports.register_beers_api = function(app) {
         if (!updatedBeer) {
             console.log("WARNING: New PUT request to /beers-stats/ without beer, sending 400...");
             response.sendStatus(400); // bad request
+        }else if (country!==updatedBeer.country){
+            response.sendStatus(400);
+        }else if (birthyear!==updatedBeer.birthyear){
+            response.sendStatus(400);
         }
+        
+        
+        
         else {
             console.log("INFO: New PUT request to /beers-stats/" + country + " and year " + birthyear + " with data " + JSON.stringify(updatedBeer, 2, null));
             if (!updatedBeer.country || !updatedBeer.birthyear || !updatedBeer.province || !updatedBeer.name) {
