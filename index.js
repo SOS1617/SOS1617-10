@@ -15,8 +15,9 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 app.use(BASE_API_PATH + "/tests", express.static(path.join(__dirname, "tests")));
 
-app.listen(port);
-
+app.listen(port,() =>{
+        console.log("Magic is happening on port " + port);
+    });
 "-----------------------------API BEERSTATS--------------------------------------------------------";
 
 var jesus = require('./beers');
