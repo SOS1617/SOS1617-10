@@ -247,9 +247,6 @@ module.exports.register_beers_api = function(app) {
             console.log("INFO: birthyear changed");
             response.sendStatus(400);
         }
-        
-        
-        
         else {
             console.log("INFO: New PUT request to /beers-stats/" + country + " and year " + birthyear + " with data " + JSON.stringify(updatedBeer, 2, null));
             if (!updatedBeer.country || !updatedBeer.birthyear || !updatedBeer.province || !updatedBeer.name) {
