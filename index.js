@@ -758,12 +758,12 @@ app.put(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, 
     var country = request.params.country;
     var year = Number(request.params.year);
     if (!updatedMotorcycling) {
-        console.log("WARNING: New PUT request to /motorcycling-stats/ without motorcycling, sending 400...");
+        console.log("WARNING: New PUT request to /motorcycling-stats/ without content, sending 400...");
         response.sendStatus(400); // bad request
     }
     else {
-        console.log("INFO: New PUT request to /motorcycling-stats/" + country + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
-        if (!updatedMotorcycling.pilot || !updatedMotorcycling.country || !updatedMotorcycling.year || !updatedMotorcycling.team) {
+        console.log("INFO: New PUT request to /motorcycling-stats/" + country + "/" + year + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
+        if (!country || !year) {
             console.log("WARNING: The motorcycling " + JSON.stringify(updatedMotorcycling, 2, null) + " is not well-formed, sending 422...");
             response.sendStatus(422); // unprocessable entity
         }
@@ -771,27 +771,35 @@ app.put(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, 
             dbMotorcycling.find({
                 "country": country,
                 "year": year
-            }).toArray(function(err, motorcycling) {
+            }).toArray(function(err, motorcyclingBeforeInsertion) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
                 }
-                else if (motorcycling.length > 0) {
-                        dbMotorcycling.update({
+                else {
+                    if (motorcyclingBeforeInsertion.length > 0) {
+                        dbMotorcycling.updateOne({
                             "country": country,
                             "year": year
-                        }, updatedMotorcycling);
-                        console.log("INFO: Modifying motor with country " + country + "/" + year + " with data" + JSON.stringify(updatedMotorcycling, 2, null));
-                        response.send(updatedMotorcycling); // return the updated motor
+                        }, {
+                            $set: {
+                                "pilot": updatedMotorcycling.pilot,
+                                "team": updatedMotorcycling.team
+                            }
+                        });
+                        console.log("INFO: Modifying motorcycling with country " + updatedMotorcycling.country + " with data " + JSON.stringify(updatedMotorcycling, 2, null));
+                        response.send(updatedMotorcycling); // return the updated motorcycling
                     }
                     else {
-                        console.log("WARNING: There is not any motor with country " + country + "and" + year);
+                        console.log("WARNING: There are not any motorcycling with country " + updatedMotorcycling.country);
                         response.sendStatus(404); // not found
                     }
                 }
-            )}
+            });
+        }
     }
 });
+
 
 
 
