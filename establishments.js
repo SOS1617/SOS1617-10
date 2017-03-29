@@ -234,7 +234,7 @@ module.exports.register_establishments_api = function(app) {
         }
         else {
             console.log("INFO: New PUT request to /establishments/" + country + "/" + year + " with data " + JSON.stringify(updatedEstablishment, 2, null));
-            if (!country || !year) {
+            if (!updatedEstablishment.country || !updatedEstablishment.year || !updatedEstablishment.number || !updatedEstablishment.beds || !updatedEstablishment.nights) {
                 console.log("WARNING: The establishment " + JSON.stringify(updatedEstablishment, 2, null) + " is not well-formed, sending 422...");
                 response.sendStatus(422); // unprocessable entity
             }
