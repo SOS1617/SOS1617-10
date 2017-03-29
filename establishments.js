@@ -232,6 +232,12 @@ module.exports.register_establishments_api = function(app) {
             console.log("WARNING: New PUT request to /establishments/ without content, sending 400...");
             response.sendStatus(400); // bad request
         }
+        else if (country !== updatedEstablishment.country) {
+            response.sendStatus(400);
+        }
+        else if (year !== updatedEstablishment.year) {
+            response.sendStatus(400);
+        }
         else {
             console.log("INFO: New PUT request to /establishments/" + country + "/" + year + " with data " + JSON.stringify(updatedEstablishment, 2, null));
             if (!updatedEstablishment.country || !updatedEstablishment.year || !updatedEstablishment.number || !updatedEstablishment.beds || !updatedEstablishment.nights) {
