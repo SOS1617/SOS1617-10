@@ -46,7 +46,7 @@ module.exports.register_establishments_api = function(app) {
         if (limit == undefined)
             limit = array.length;
         if (offset > array.length) {
-            console.log("Error: Offset is greater than the array size.");
+            console.log("ERROR: Offset is greater than the array size");
             response.sendStatus(400);
         }
         else
@@ -58,6 +58,17 @@ module.exports.register_establishments_api = function(app) {
         return res;
     }
 
+    function search(from, to) {
+        return (data) => {
+            if (from !== undefined && to !== undefined)
+                return data.year >= from && data.year <= to;
+            else if (from !== undefined && to === undefined)
+                return data.year >= from;
+            else if (from === undefined && to !== undefined)
+                return data.year <= to;
+            else return data;
+        }
+    }
 
     //loadInitialData
     app.get(BASE_API_PATH + "/establishments/loadInitialData", function(request, response) {
@@ -104,6 +115,8 @@ module.exports.register_establishments_api = function(app) {
         if (checkApikey(key, response)) {
             var offset = request.query.offset;
             var limit = request.query.limit;
+            var from = request.query.from;
+            var to = request.query.to;
             console.log("INFO: New GET request to /establishments");
             db.find({}).toArray(function(err, establishments) {
                 if (err) {
@@ -111,7 +124,7 @@ module.exports.register_establishments_api = function(app) {
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    var pagination = paginate(offset, limit, establishments, response);
+                    var pagination = paginate(offset, limit, establishments, response).filter(search(from,to));
                     if (pagination.length != 0) {
                         console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                         response.send(pagination);
@@ -131,6 +144,8 @@ module.exports.register_establishments_api = function(app) {
         if (checkApikey(key, response)) {
             var offset = request.query.offset;
             var limit = request.query.limit;
+            var from = request.query.from;
+            var to = request.query.to;
             var country = request.params.country;
             var year = Number(request.params.year);
             if (!country || !year) {
@@ -149,7 +164,7 @@ module.exports.register_establishments_api = function(app) {
                     }
                     else {
                         if (filteredEstablishments.length > 0) {
-                            var pagination = paginate(offset, limit, filteredEstablishments, response);
+                            var pagination = paginate(offset, limit, filteredEstablishments, response).filter(search(from,to));
                             if (pagination.length != 0) {
                                 console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                 response.send(pagination);
@@ -173,6 +188,8 @@ module.exports.register_establishments_api = function(app) {
         if (checkApikey(key, response)) {
             var offset = request.query.offset;
             var limit = request.query.limit;
+            var from = request.query.from;
+            var to = request.query.to;
             var parameter = request.params.parameter;
             var country;
             var year;
@@ -199,7 +216,7 @@ module.exports.register_establishments_api = function(app) {
                         }
                         else {
                             if (filteredEstablishments.length > 0) {
-                                var pagination = paginate(offset, limit, filteredEstablishments, response);
+                                var pagination = paginate(offset, limit, filteredEstablishments, response).filter(search(from,to));
                                 if (pagination.length != 0) {
                                     console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                     response.send(pagination);
@@ -225,7 +242,7 @@ module.exports.register_establishments_api = function(app) {
                         }
                         else {
                             if (filteredEstablishments.length > 0) {
-                                var pagination = paginate(offset, limit, filteredEstablishments, response);
+                                var pagination = paginate(offset, limit, filteredEstablishments, response).filter(search(from,to));
                                 if (pagination.length != 0) {
                                     console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                     response.send(pagination);
