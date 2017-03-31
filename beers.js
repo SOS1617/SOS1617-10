@@ -51,10 +51,10 @@ module.exports.register_beers_api = function(app) {
     function Paginate(data, limit, offset) {
         var page = [];
         var cont = 0;
-        if (limit === undefined) {
+        if (limit == undefined) {
             limit = data.length;
         }
-        if (offset === undefined) {
+        if (offset == undefined) {
             offset = 0;
         }
         if (offset > data.length) {
@@ -63,7 +63,7 @@ module.exports.register_beers_api = function(app) {
         }
         else {
             for (var j = offset; j < data.length; j++) {
-                if (limit>=cont) {
+                if (limit > cont) {
                     page.push(data[j]);
                     cont++;
                 }
