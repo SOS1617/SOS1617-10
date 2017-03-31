@@ -63,7 +63,7 @@ module.exports.register_beers_api = function(app) {
         }
         else {
             for (var j = offset; j < data.length; j++) {
-                if (limit >= cont) {
+                if (limit > cont) {
                     page.push(data[j]);
                     cont++;
                 }
