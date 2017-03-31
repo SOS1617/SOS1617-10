@@ -27,7 +27,7 @@ module.exports.register_beers_api = function(app) {
     function Search(yearfrom, yearto) {
         return (object) => {
             if (yearfrom != undefined && yearto == undefined) {
-                return object.birthyear > yearfrom;
+                return object.birthyear >= yearfrom;
 
             }
             else
@@ -39,7 +39,7 @@ module.exports.register_beers_api = function(app) {
             else
             if (yearfrom != undefined && yearto != undefined) {
                 console.log("entra");
-                return object.birthyear < yearto && object.birthyear > yearfrom;
+                return object.birthyear < yearto && object.birthyear >= yearfrom;
 
             }
             else
