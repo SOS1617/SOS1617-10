@@ -32,11 +32,11 @@ module.exports.register_beers_api = function(app) {
             }
             else
             if (yearfrom == undefined && yearto != undefined) {
-                return object.birthyear < yearto;
+                return object.birthyear <= yearto;
             }
             else
             if (yearfrom != undefined && yearto != undefined) {
-                return object.birthyear < yearto && object.birthyear >= yearfrom;
+                return object.birthyear <= yearto && object.birthyear >= yearfrom;
 
             }
             else
