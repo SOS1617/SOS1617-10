@@ -1,23 +1,23 @@
 GET a la ruta base (p.e. “/towns”) devuelve una lista con todos los recursos:
-    curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/establishments'
+    curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/establishments/?apikey=nurtrioje'
 
 POST a la ruta base (p.e. “/towns”) crea un nuevo recurso
-    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "france", "year": 2014, "number": 28895, "beds": 5109900, "nights": 402300000}' 'http://localhost:8080/api/v1/establishments'
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "france", "year": 2014, "number": 28895, "beds": 5109900, "nights": 402300000}' 'http://localhost:8080/api/v1/establishments/?apikey=nurtrioje'
 
 GET a un recurso (p.e. “/towns/seville”) devuelve ese recurso:
-    curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/establishments/denmark'
+    curl -v -XGET -H 'Content-type: application/json'  'http://localhost:8080/api/v1/establishments/denmark?apikey=nurtrioje'
     
 DELETE a un recurso (p.e. “/towns/seville”) borra ese recurso:
-    curl -v -XDELETE -H 'Content-type: application/json'  'http://localhost:8080/api/v1/establishments/france/2013'
+    curl -v -XDELETE -H 'Content-type: application/json'  'http://localhost:8080/api/v1/establishments/france/2013?apikey=nurtrioje'
 
 PUT a un recurso (p.e. “/towns/seville”) actualiza ese recurso:
-    curl -v -XPUT -H 'Content-type: application/json' -d '{ "country": "france", "year": 2013, "number": 28895, "beds": 5109900, "nights": 402300000 }' 'http://localhost:8080/api/v1/establishments/france/2014'
+    curl -v -XPUT -H 'Content-type: application/json' -d '{ "country": "france", "year": 2013, "number": 28895, "beds": 5109900, "nights": 402300000 }' 'http://localhost:8080/api/v1/establishments/france/2014?apikey=nurtrioje'
     
 POST a un recurso (p.e. “/towns/seville”) debe dar un error de método no permitido:
-    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "france", "year": 2014, "number": 28895, "beds": 5109900, "nights": 402300000}' 'http://localhost:8080/api/v1/establishments/belgium'
+    curl -v -XPOST -H 'Content-type: application/json' -d '{ "country": "france", "year": 2014, "number": 28895, "beds": 5109900, "nights": 402300000}' 'http://localhost:8080/api/v1/establishments/belgium?apikey=nurtrioje'
     
 PUT a la ruta base (p.e. “/towns”) debe dar un error de método no permitido:
-    curl -v -XPUT -H 'Content-type: application/json' -d '{ "country": "france", "year": 2013, "number": 28895, "beds": 5109900, "nights": 402300000 }' 'http://localhost:8080/api/v1/establishments'
+    curl -v -XPUT -H 'Content-type: application/json' -d '{ "country": "france", "year": 2013, "number": 28895, "beds": 5109900, "nights": 402300000 }' 'http://localhost:8080/api/v1/establishments?apikey=nurtrioje'
     
 DELETE a la ruta base (p.e. “/towns”) borra todos los recursos:
-    curl -v -XDELETE -H 'Content-type: application/json'  'http://localhost:8080/api/v1/establishments'
+    curl -v -XDELETE -H 'Content-type: application/json'  'http://localhost:8080/api/v1/establishments?apikey=nurtrioje'
