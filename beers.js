@@ -63,7 +63,7 @@ module.exports.register_beers_api = function(app) {
         }
         else {
             for (var j = offset; j < data.length; j++) {
-                if (cont < limit) {
+                if (cont <= limit) {
                     page.push(data[j]);
                     cont++;
                 }
@@ -154,6 +154,8 @@ module.exports.register_beers_api = function(app) {
         var limit = request.query.limit;
         var offset = request.query.offset;
         var keyprovided = request.query.apikey;
+        var yearfrom = request.query.yearfrom;
+        var yearto = request.query.yearto;
         if (CheckKey(keyprovided, response)) {
             if (isNaN(parameter)) {
                 country = parameter;
@@ -177,7 +179,7 @@ module.exports.register_beers_api = function(app) {
                     else {
                         console.log(filteredBeers);
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers, limit, offset);
+                            var beer = Paginate(filteredBeers, limit, offset).filter(Search(yearfrom, yearto));
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
                         }
@@ -201,9 +203,9 @@ module.exports.register_beers_api = function(app) {
                     else {
                         console.log(filteredBeers);
                         if (filteredBeers.length > 0) {
-                            var beer = filteredBeers;
+                            var beer = Paginate(filteredBeers, limit, offset).filter(Search(yearfrom, yearto));
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
-                            response.send(Paginate(beer, limit, offset));
+                            response.send(beer);
                         }
                         else {
                             console.log("WARNING: There are not any country with " + country);
@@ -223,7 +225,8 @@ module.exports.register_beers_api = function(app) {
             var country = request.params.country;
             var limit = request.query.limit;
             var offset = request.query.offset;
-
+            var yearfrom = request.query.yearfrom;
+            var yearto = request.query.yearto;
             if (!country && !birthyear) {
                 console.log("WARNING: New GET request to /beers-stats/:country without country, sending 400...");
                 response.sendStatus(400); // bad request
@@ -240,7 +243,7 @@ module.exports.register_beers_api = function(app) {
                     }
                     else {
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers, limit, offset);
+                            var beer = Paginate(filteredBeers, limit, offset).filter(Search(yearfrom, yearto));
                             console.log(beer);
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
