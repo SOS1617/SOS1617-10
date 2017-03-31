@@ -48,19 +48,20 @@ module.exports.register_beers_api = function(app) {
 
 
 
-    function Paginate(data, limit, offset,response) {
+    function Paginate(data, limit, offset, response) {
         var page = [];
         var cont = 0;
         if (limit == undefined) {
             limit = data.length;
-        } else
+        }
         if (offset == undefined) {
             offset = 0;
-        } else
+        }
         if (offset >= data.length) {
             console.log("Offset out of the array!");
             response.sendStatus(400);
-        }else {
+        }
+        else {
             for (var j = offset; j < data.length; j++) {
                 if (limit > cont) {
                     page.push(data[j]);
@@ -105,7 +106,7 @@ module.exports.register_beers_api = function(app) {
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    var beersToSend = Paginate(beers, limit, offset,response).filter(Search(yearfrom, yearto));
+                    var beersToSend = Paginate(beers, limit, offset, response).filter(Search(yearfrom, yearto));
                     console.log("INFO: Sending beers: " + JSON.stringify(beersToSend, 2, null));
                     response.send(beersToSend);
                 }
@@ -178,7 +179,7 @@ module.exports.register_beers_api = function(app) {
                     else {
                         console.log(filteredBeers);
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers, limit, offset,response).filter(Search(yearfrom, yearto));
+                            var beer = Paginate(filteredBeers, limit, offset, response).filter(Search(yearfrom, yearto));
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
                         }
@@ -202,7 +203,7 @@ module.exports.register_beers_api = function(app) {
                     else {
                         console.log(filteredBeers);
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers, limit, offset,response).filter(Search(yearfrom, yearto));
+                            var beer = Paginate(filteredBeers, limit, offset, response).filter(Search(yearfrom, yearto));
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
                         }
@@ -242,7 +243,7 @@ module.exports.register_beers_api = function(app) {
                     }
                     else {
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers, limit, offset,response).filter(Search(yearfrom, yearto));
+                            var beer = Paginate(filteredBeers, limit, offset, response).filter(Search(yearfrom, yearto));
                             console.log(beer);
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
