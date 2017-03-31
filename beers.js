@@ -7,7 +7,7 @@ var mdbURLBeer = "mongodb://jesus:sosdatabase@ds137370.mlab.com:37370/beers-stat
 
 var dbBeer;
 
-var apikey = "sos1617-jesusguerre"
+var apikey = "sos1617-jesusguerre";
 
 module.exports.register_beers_api = function(app) {
 
@@ -38,7 +38,6 @@ module.exports.register_beers_api = function(app) {
             }
             else
             if (yearfrom != undefined && yearto != undefined) {
-                console.log("entra");
                 return object.birthyear < yearto && object.birthyear >= yearfrom;
 
             }
@@ -79,7 +78,7 @@ module.exports.register_beers_api = function(app) {
     function CheckKey(key, response) {
         var valid = false;
         if (key == undefined) {
-            console.log("ERROR: FORBIDEN API DOESN'T PROVIDED.");
+            console.log("ERROR: FORBIDEN. APIKEY DOESN'T PROVIDED.");
             response.sendStatus(401);
         }
         else if (key !== apikey) {
