@@ -53,15 +53,14 @@ module.exports.register_beers_api = function(app) {
         var cont = 0;
         if (limit == undefined) {
             limit = data.length;
-        }
+        } else
         if (offset == undefined) {
             offset = 0;
-        }
+        } else
         if (offset >= data.length) {
             console.log("Offset out of the array!");
             response.sendStatus(400);
-        }
-        else {
+        }else {
             for (var j = offset; j < data.length; j++) {
                 if (limit > cont) {
                     page.push(data[j]);
