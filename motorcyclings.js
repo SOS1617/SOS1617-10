@@ -30,15 +30,15 @@ module.exports.register_motorcyclings_api = function(app) {
             }
             else
             if (yearfrom == undefined && yearto != undefined) {
-                return object.year < yearto;
+                return object.year <= yearto;
             }
             else
             if (yearfrom != undefined && yearto != undefined) {
-                return object.year < yearto && object.year >= yearfrom;
+                return object.year <= yearto && object.year >= yearfrom;
             }
             else
             if (yearfrom == undefined && yearto == undefined) {
-                return object;
+                return object.year;
             }
         };
     }
@@ -67,8 +67,9 @@ module.exports.register_motorcyclings_api = function(app) {
             }
         }
         return page;
-
     }
+    
+    
 
     function CheckKey(key, response) {
         var valid = false;
@@ -84,10 +85,11 @@ module.exports.register_motorcyclings_api = function(app) {
             valid = true;
         }
         return valid;
-
     }
 
-// GET a collection
+
+
+    // GET a collection
     app.get(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
         var limit = request.query.limit;
         var offset = request.query.offset;
