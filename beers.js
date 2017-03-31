@@ -57,7 +57,7 @@ module.exports.register_beers_api = function(app) {
         if (offset == undefined) {
             offset = 0;
         }
-        if (offset > data.length) {
+        if (offset >= data.length) {
             console.log("Offset out of the array!");
             response.sendStatus(400);
         }
