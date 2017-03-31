@@ -48,30 +48,27 @@ module.exports.register_beers_api = function(app) {
 
 
 
-    function Paginate(data, limit, offset, response) {
-        var page = [];
+    function Paginate(offset, limit, array, response) {
+        var res = [];
         var cont = 0;
-        if (limit == undefined) {
-            limit = data.length;
-        }
-        if (offset == undefined) {
+
+        if (offset == undefined)
             offset = 0;
-        }
-        if (offset >= data.length) {
-            console.log("Offset out of the array!");
+        if (limit == undefined)
+            limit = array.length;
+        if (offset >= array.length) {
+            console.log("ERROR: Offset is greater than the array size");
             response.sendStatus(400);
         }
-        else {
-            for (var j = offset; j < data.length; j++) {
+        else
+            for (var i = offset; i < array.length; i++)
                 if (limit > cont) {
-                    page.push(data[j]);
+                    res.push(array[i]);
                     cont++;
                 }
-            }
-        }
-        return page;
-
+        return res;
     }
+
 
     function CheckKey(key, response) {
         var valid = false;
