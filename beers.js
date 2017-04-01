@@ -56,7 +56,7 @@ module.exports.register_beers_api = function(app) {
             offset = 0;
         if (limit == undefined)
             limit = array.length;
-        if (offset >= array.length) {
+        if (offset > array.length) {
             console.log("ERROR: Offset is greater than the array size");
             response.sendStatus(400);
         }
