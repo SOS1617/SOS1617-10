@@ -48,7 +48,7 @@ module.exports.register_beers_api = function(app) {
 
 
 
-    function Paginate(array,limit,offset,  response) {
+    function Paginate(array,limit, offset,  response) {
         var res = [];
         var cont = 0;
 
