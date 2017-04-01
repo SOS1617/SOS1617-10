@@ -103,7 +103,7 @@ module.exports.register_beers_api = function(app) {
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    var beersToSend = Paginate(beers, limit, offset, response).filter(Search(yearfrom, yearto));
+                    var beersToSend = Paginate(beers.filter(Search(yearfrom, yearto)), limit, offset, response);
                     console.log("INFO: Sending beers: " + JSON.stringify(beersToSend, 2, null));
                     response.send(beersToSend);
                 }
@@ -176,7 +176,7 @@ module.exports.register_beers_api = function(app) {
                     else {
                         console.log(filteredBeers);
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers, limit, offset, response).filter(Search(yearfrom, yearto));
+                            var beer = Paginate(filteredBeers.filter(Search(yearfrom, yearto)), limit, offset, response);
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
                         }
@@ -200,7 +200,7 @@ module.exports.register_beers_api = function(app) {
                     else {
                         console.log(filteredBeers);
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers, limit, offset, response).filter(Search(yearfrom, yearto));
+                            var beer = Paginate(filteredBeers.filter(Search(yearfrom, yearto)), limit, offset, response);
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
                         }
@@ -240,7 +240,7 @@ module.exports.register_beers_api = function(app) {
                     }
                     else {
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers, limit, offset, response).filter(Search(yearfrom, yearto));
+                            var beer = Paginate(filteredBeers.filter(Search(yearfrom, yearto)), limit, offset, response);
                             console.log(beer);
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
