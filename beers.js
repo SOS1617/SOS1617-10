@@ -24,52 +24,6 @@ module.exports.register_beers_api = function(app) {
 
     });
 
-    function Search(yearfrom, yearto) {
-        return (object) => {
-            if (yearfrom != undefined && yearto == undefined) {
-                return object.birthyear >= yearfrom;
-
-            }
-            else
-            if (yearfrom == undefined && yearto != undefined) {
-                return object.birthyear <= yearto;
-            }
-            else
-            if (yearfrom != undefined && yearto != undefined) {
-                return object.birthyear <= yearto && object.birthyear >= yearfrom;
-
-            }
-            else
-            if (yearfrom == undefined && yearto == undefined) {
-                return object;
-            }
-        };
-    }
-
-
-
-    function Paginate(array,limit, offset,  response) {
-        var res = [];
-        var cont = 0;
-
-        if (offset == undefined)
-            offset = 0;
-        if (limit == undefined)
-            limit = array.length;
-        if (offset > array.length) {
-            console.log("ERROR: Offset is greater than the array size");
-            response.sendStatus(400);
-        }
-        else
-            for (var i = offset; i < array.length; i++)
-                if (limit > cont) {
-                    res.push(array[i]);
-                    cont++;
-                }
-        return res;
-    }
-
-
     function CheckKey(key, response) {
         var valid = false;
         if (key == undefined) {
@@ -90,20 +44,38 @@ module.exports.register_beers_api = function(app) {
 
     // GET a collection
     app.get(BASE_API_PATH + "/beers-stats", function(request, response) {
-        var limit = request.query.limit;
-        var offset = request.query.offset;
+        var limit = Number(request.query.limit);
+        var offset = Number(request.query.offset);
         var yearfrom = request.query.from;
         var yearto = request.query.to;
         var keyprovided = request.query.apikey;
+        var mongoquery = {};
+        if (yearfrom == undefined) {
+            yearfrom = 0;
+        }
+        if (yearto == undefined) {
+            yearto = Number.POSITIVE_INFINITY;
+        }
+        mongoquery.$and = [{
+            "birthyear": {
+                "$gte": Number(yearfrom)
+            }
+        }, {
+            "birthyear": {
+                "$lte": Number(yearto)
+            }
+        }];
+
+        console.log(mongoquery);
         if (CheckKey(keyprovided, response)) {
             console.log("INFO: New GET request to /beers-stats");
-            dbBeer.find({}).toArray(function(err, beers) {
+            dbBeer.find(mongoquery).limit(limit).skip(offset).toArray(function(err, beers) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    var beersToSend = Paginate(beers.filter(Search(yearfrom, yearto)), limit, offset, response);
+                    var beersToSend = beers;
                     console.log("INFO: Sending beers: " + JSON.stringify(beersToSend, 2, null));
                     response.send(beersToSend);
                 }
@@ -148,70 +120,66 @@ module.exports.register_beers_api = function(app) {
         var parameter = request.params.parameter;
         var birthyear;
         var country;
-        var limit = request.query.limit;
-        var offset = request.query.offset;
+        var limit = Number(request.query.limit);
+        var offset = Number(request.query.offset);
         var keyprovided = request.query.apikey;
-        var yearfrom = request.query.yearfrom;
-        var yearto = request.query.yearto;
+        var yearfrom = request.query.from;
+        var yearto = request.query.to;
+        var mongoquery = {}
+        if (parameter == undefined) {
+            console.log("WARNING: New GET request to /beers-stats/:country without country, sending 400...");
+            response.sendStatus(400); // bad request
+        }
+        if (isNaN(parameter)) {
+            mongoquery = {
+                "country": parameter
+            };
+        }
+        else {
+            mongoquery = {
+                "birthyear": Number(parameter)
+            };
+        }
+        if (yearfrom == undefined) {
+            yearfrom = 0;
+        }
+        if (yearto == undefined) {
+            yearto = Number.POSITIVE_INFINITY;
+        }
+        mongoquery.$and = [{
+            "birthyear": {
+                "$gte": Number(yearfrom)
+            }
+        }, {
+            "birthyear": {
+                "$lte": Number(yearto)
+            }
+        }];
         if (CheckKey(keyprovided, response)) {
-            if (isNaN(parameter)) {
-                country = parameter;
-            }
-            else {
-                birthyear = parseInt(parameter);
-            }
-            if (!country && !birthyear) {
-                console.log("WARNING: New GET request to /beers-stats/:country without country, sending 400...");
-                response.sendStatus(400); // bad request
-            }
-            else if (!birthyear) {
-                console.log("INFO: New GET request to /beers-stats/" + country + " and birthyear " + birthyear);
-                dbBeer.find({
-                    "country": country
-                }).toArray(function(err, filteredBeers) {
-                    if (err) {
-                        console.error('WARNING: Error getting data from DB');
-                        response.sendStatus(500); // internal server error
+            console.log(mongoquery);
+            console.log("INFO: New GET request to /beers-stats/" + country + " and birthyear " + birthyear);
+            dbBeer.find(
+                mongoquery
+            ).skip(offset).limit(limit).toArray(function(err, filteredBeers) {
+                if (err) {
+                    console.error('WARNING: Error getting data from DB');
+                    response.sendStatus(500); // internal server error
+                }
+                else {
+                    console.log(filteredBeers);
+                    if (filteredBeers.length > 0) {
+                        var beer = filteredBeers;
+                        console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
+                        response.send(beer);
                     }
                     else {
-                        console.log(filteredBeers);
-                        if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers.filter(Search(yearfrom, yearto)), limit, offset, response);
-                            console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
-                            response.send(beer);
-                        }
-                        else {
-                            console.log("WARNING: There are not any country with " + country);
-                            response.sendStatus(404); // not found
-                        }
+                        console.log("WARNING: There are not any country with " + country);
+                        response.sendStatus(404); // not found
                     }
-                });
+                }
+            });
 
-            }
-            else {
-                console.log("INFO: New GET request to /beers-stats/" + country + " and birthyear " + birthyear);
-                dbBeer.find({
-                    "birthyear": birthyear
-                }).toArray(function(err, filteredBeers) {
-                    if (err) {
-                        console.error('WARNING: Error getting data from DB');
-                        response.sendStatus(500); // internal server error
-                    }
-                    else {
-                        console.log(filteredBeers);
-                        if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers.filter(Search(yearfrom, yearto)), limit, offset, response);
-                            console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
-                            response.send(beer);
-                        }
-                        else {
-                            console.log("WARNING: There are not any country with " + country);
-                            response.sendStatus(404); // not found
-                        }
-                    }
-                });
-
-            }
+            
         }
     });
     //GET a single resource with 2 params
@@ -240,7 +208,7 @@ module.exports.register_beers_api = function(app) {
                     }
                     else {
                         if (filteredBeers.length > 0) {
-                            var beer = Paginate(filteredBeers.filter(Search(yearfrom, yearto)), limit, offset, response);
+                            var beer = filteredBeers[0];
                             console.log(beer);
                             console.log("INFO: Sending beer: " + JSON.stringify(beer, 2, null));
                             response.send(beer);
