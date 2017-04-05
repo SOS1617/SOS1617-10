@@ -40,6 +40,8 @@ module.exports.register_establishments_api = function(app) {
     function paginate(offset, limit, array, response) {
         var res = [];
         var cont = 0;
+//        var offsetLocal = parseInt(offset);
+//        var limitLocal = parseInt(limit);
 
         if (offset == undefined)
             offset = 0;
@@ -126,12 +128,12 @@ module.exports.register_establishments_api = function(app) {
                 }
                 else {
                     var pagination = paginate(offset, limit, establishments.filter(search(from, to)), response);
-                    if (pagination.length != 0) {
+//                    if (pagination.length != 0) {
                         console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                         response.send(pagination);
-                    }
-                    else
-                        response.sendStatus(404);
+//                    }
+//                    else
+//                        response.sendStatus(404);
                 }
             });
 
@@ -166,12 +168,12 @@ module.exports.register_establishments_api = function(app) {
                     else {
                         if (filteredEstablishments.length > 0) {
                             var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-                            if (pagination.length != 0) {
+//                            if (pagination.length != 0) {
                                 console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                 response.send(pagination);
-                            }
-                            else
-                                response.sendStatus(404);
+//                            }
+//                            else
+//                                response.sendStatus(404);
                         }
                         else {
                             console.log("WARNING: There are not establishments");
@@ -218,12 +220,12 @@ module.exports.register_establishments_api = function(app) {
                         else {
                             if (filteredEstablishments.length > 0) {
                                 var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-                                if (pagination.length != 0) {
+//                                if (pagination.length != 0) {
                                     console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                     response.send(pagination);
-                                }
-                                else
-                                    response.sendStatus(404);
+//                                }
+//                                else
+//                                    response.sendStatus(404);
                             }
                             else {
                                 console.log("WARNING: There are not establishments");
@@ -244,12 +246,12 @@ module.exports.register_establishments_api = function(app) {
                         else {
                             if (filteredEstablishments.length > 0) {
                                 var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-                                if (pagination.length != 0) {
+//                                if (pagination.length != 0) {
                                     console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                     response.send(pagination);
-                                }
-                                else
-                                    response.sendStatus(404);
+//                                }
+//                                else
+//                                    response.sendStatus(404);
                             }
                             else {
                                 console.log("WARNING: There are not establishments");
