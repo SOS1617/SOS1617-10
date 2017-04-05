@@ -48,6 +48,7 @@ module.exports.register_establishments_api = function(app) {
         if (offset > array.length) {
             console.log("ERROR: Offset is greater than the array size");
             response.sendStatus(400);
+            return;
         }
         else
             for (var i = offset; i < array.length; i++)
@@ -124,13 +125,13 @@ module.exports.register_establishments_api = function(app) {
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    var pagination = paginate(offset, limit, establishments.filter(search(from,to)), response);
-//                    if (pagination.length != 0) {
+                    var pagination = paginate(offset, limit, establishments.filter(search(from, to)), response);
+                    if (pagination.length != 0) {
                         console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                         response.send(pagination);
-//                    }
-//                    else
-//                        response.sendStatus(404);
+                    }
+                    else
+                        response.sendStatus(404);
                 }
             });
 
@@ -164,13 +165,13 @@ module.exports.register_establishments_api = function(app) {
                     }
                     else {
                         if (filteredEstablishments.length > 0) {
-                            var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from,to)), response);
-//                            if (pagination.length != 0) {
+                            var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
+                            if (pagination.length != 0) {
                                 console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                 response.send(pagination);
-//                            }
-//                            else
-//                                response.sendStatus(404);
+                            }
+                            else
+                                response.sendStatus(404);
                         }
                         else {
                             console.log("WARNING: There are not establishments");
@@ -216,13 +217,13 @@ module.exports.register_establishments_api = function(app) {
                         }
                         else {
                             if (filteredEstablishments.length > 0) {
-                                var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from,to)), response);
-//                                if (pagination.length != 0) {
+                                var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
+                                if (pagination.length != 0) {
                                     console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                     response.send(pagination);
-//                                }
-//                                else
-//                                    response.sendStatus(404);
+                                }
+                                else
+                                    response.sendStatus(404);
                             }
                             else {
                                 console.log("WARNING: There are not establishments");
@@ -242,13 +243,13 @@ module.exports.register_establishments_api = function(app) {
                         }
                         else {
                             if (filteredEstablishments.length > 0) {
-                                var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from,to)), response);
-//                                if (pagination.length != 0) {
+                                var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
+                                if (pagination.length != 0) {
                                     console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
                                     response.send(pagination);
-//                                }
-//                                else
-//                                    response.sendStatus(404);
+                                }
+                                else
+                                    response.sendStatus(404);
                             }
                             else {
                                 console.log("WARNING: There are not establishments");
