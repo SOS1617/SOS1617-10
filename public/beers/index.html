@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="BeersManagerApp">
+
+<head>
+    <title>Beers app</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/contact-manager-app.js"></script>
+    <script type="text/javascript" src="/list-ctrl.js"></script>
+
+
+</head>
+
+<body>
+    <div ng-controller="ListCtrl">
+        <h2>Beers</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Birthyear</th>
+                    <th>Province</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> <input class="from-control" ng-model="newBeer.country" /></td>
+                    <td> <input class="from-control" ng-model="newBeer.birthyear" /></td>
+                    <td> <input class="from-control" ng-model="newBeer.province" /></td>
+                    <td> <input class="from-control" ng-model="newBeer.name" /></td>
+                    <td><button class="btn btn-primary" ng-click="addBeer()">Add</button></td>
+                </tr>
+                <tr ng-repeat="beer in beers">
+                    <td>{{beer.country}}</td>
+                    <td>{{beer.birthyear}}</td>
+                    <td>{{beer.province}}</td>
+                    <td>{{beer.name}}</td>
+                    <td><button class="btn btn-danger" ng-click="deleteBeer(beer.country,beer.year)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>
