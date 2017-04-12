@@ -1,5 +1,5 @@
 angular
-    .module("ContactManagerApp")
+    .module("BeersManagerApp")
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
         console.log("Controller initialized right");
         refresh();
