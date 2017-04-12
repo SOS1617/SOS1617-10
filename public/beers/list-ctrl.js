@@ -1,7 +1,7 @@
 angular
     .module("BeersManagerApp")
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
-        var url = "http://sos1617-10.herokuapp.com/"
+        var url = "http://sos1617-10.herokuapp.com"
         console.log("Controller initialized right");
         refresh();
         function refresh(){
