@@ -1,18 +1,19 @@
 angular
     .module("BeersManagerApp")
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
+        var url = "http://sos1617-10.herokuapp.com/"
         console.log("Controller initialized right");
         refresh();
         function refresh(){
         $http
-            .get("/api/v1/beers-stats")
+            .get(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre")
             .then(function(response) {
                 $scope.beers = response.data;
             });
         }
         $scope.addBeer = function() {
             $http
-                .post("/api/v1/beers-stats", $scope.newBeer)
+                .post(url+"/api/v1/beers-stats", $scope.newBeer)
                 .then(function(response) {
                     console.log("Beer added");
                     refresh();
@@ -21,7 +22,7 @@ angular
         };
         $scope.deleteBeer = function(country,birthyear){
             $http
-                .delete("/api/v1/beers-stats/"+country+"/"+birthyear).then(function (response){
+                .delete(url+"/api/v1/beers-stats/"+country+"/"+birthyear).then(function (response){
                     console.log("Beer deleted");
                     refresh();
                 }
