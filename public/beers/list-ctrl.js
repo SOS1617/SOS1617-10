@@ -13,7 +13,7 @@ angular
         }
         $scope.addBeer = function() {
             $http
-                .post(url+"/api/v1/beers-stats", $scope.newBeer)
+                .post(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre", $scope.newBeer)
                 .then(function(response) {
                     console.log("Beer added");
                     refresh();
@@ -22,7 +22,7 @@ angular
         };
         $scope.deleteBeer = function(country,birthyear){
             $http
-                .delete(url+"/api/v1/beers-stats/"+country+"/"+birthyear).then(function (response){
+                .delete(url+"/api/v1/beers-stats/"+country+"/"+birthyear+"?apikey=sos1617-jesusguerre").then(function (response){
                     console.log("Beer deleted");
                     refresh();
                 }
