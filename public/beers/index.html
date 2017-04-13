@@ -33,8 +33,10 @@
                     <td> <input class="from-control" ng-model="newBeer.birthyear" /></td>
                     <td> <input class="from-control" ng-model="newBeer.province" /></td>
                     <td> <input class="from-control" ng-model="newBeer.name" /></td>
-                    <td><button class="btn btn-primary" ng-click="addBeer()">Add</button></td>
-                    <td><button class="btn btn-warning" ng-click="updateBeer()">Update</button></td>
+                    <td><button class="btn btn-primary" ng-click="addBeer()">Add</button>
+                    <button class="btn btn-warning" ng-click="updateBeer()">Update</button>
+                    <button class="btn btn-warning" ng-click="DeleteBeers()">DeleteAll</button>
+                    </td>
                 </tr>
                 <tr ng-repeat="beer in beers">
                     <td>{{beer.country}}</td>
