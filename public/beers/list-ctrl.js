@@ -13,7 +13,7 @@ angular
         }
         $scope.addBeer = function() {
             $http
-                .post(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre", JSON.stringify($scope.newBeer))
+                .post(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre", $scope.newBeer)
                 .then(function(response) {
                     console.log("Beer added"+$scope.newBeer.name);
                     refresh();
@@ -30,12 +30,12 @@ angular
                     );
         };
         $scope.updateBeer = function(country,birthyear){
-            $http.put(url+"/api/v1/beers-stats/"+country+"/"+birthyear+"?apikey=sos1617-jesusguerre",JSON.stringify($scope.newBeer)).then(function (response){
+            $http.put(url+"/api/v1/beers-stats/"+country+"/"+birthyear+"?apikey=sos1617-jesusguerre",$scope.newBeer).then(function (response){
                 console.log("Beer updated", $scope.newBeer);
                 refresh();
                 
             },function (response){
-                console.log(JSON.stringify($scope.newBeer));
+                console.log($scope.newBeer);
                 console.log(response.data);
             });
         };
