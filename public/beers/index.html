@@ -21,6 +21,28 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Search</th>
+                    <td></td>
+                    <th>Paginate</th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><label>YearFrom: <input class="from-control" ng-model="YearFrom"/></label></td>
+                    <td><label>YearTo: <input class="from-control" ng-model="YearTo"/></label></td>
+                    <td><label>Limit: <input class="from-control" ng-model="Limit"/></label></td>
+                    <td><label>Offset: <input class="from-control" ng-model="Offset"/></label></td>
+                    <td><button class="btn btn-info" ng-click="filter(YearFrom,YearTo,Limit,Offset)"><span class="glyphicon glyphicon-search"></span> Filter</button>
+                        <button class="btn btn-success" ng-click="clearSearch()">Clear</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
                     <th>Name</th>
                     <th>Country</th>
                     <th>Birthyear</th>
@@ -40,20 +62,7 @@
                         <button class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
                     </td>
                 </tr>
-                <tr>
-                    <th>Search</th>
-                    <td></td>
-                    <th>Paginate</th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><label>YearFrom: <input class="from-control" ng-model="YearFrom"/></label></td>
-                    <td><label>YearTo: <input class="from-control" ng-model="YearTo"/></label></td>
-                    <td><label>Limit: <input class="from-control" ng-model="Limit"/></label></td>
-                    <td><label>Offset: <input class="from-control" ng-model="Offset"/></label></td>
-                    <td><button class="btn btn-info" ng-click="filter(YearFrom,YearTo,Limit,Offset)"><span class="glyphicon glyphicon-search"></span> Filter</button>
-                    <button class="btn btn-success" ng-click="clearSearch()">Clear</button></td>
-                </tr>
+
                 <tr ng-repeat="beer in beers">
                     <td>{{beer.name}}</td>
                     <td>{{beer.country}}</td>
