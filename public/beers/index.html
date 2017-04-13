@@ -51,7 +51,7 @@
                     <td><label>YearTo: <input class="from-control" ng-model="YearTo"/></label></td>
                     <td><label>Limit: <input class="from-control" ng-model="Limit"/></label></td>
                     <td><label>Offset: <input class="from-control" ng-model="Offset"/></label></td>
-                    <td><button class="btn btn-info"><span class="glyphicon glyphicon-search" ng-click="filter(YearFrom,YearTo,Limit,Offset)"></span> Filter</button></td>
+                    <td><button class="btn btn-info" ng-click="filter(YearFrom,YearTo,Limit,Offset)"><span class="glyphicon glyphicon-search"></span> Filter</button></td>
                 </tr>
                 <tr ng-repeat="beer in beers">
                     <td>{{beer.name}}</td>
