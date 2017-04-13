@@ -29,13 +29,30 @@ angular
 
         };
         $scope.deleteBeer = function(country, birthyear) {
-            $http
-                .delete(url + "/beers-stats/" + country + "/" + birthyear + "?" + apikey).then(function(response) {
-                        console.log("Beer deleted");
-                        refresh();
+            bootbox.confirm({
+                title: "Delete Beer?",
+                message: "Are you Sure? This cannot be undone.",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
                     }
+                },
+                callback: function(result) {
+                    if (result == true) {
+                        $http
+                            .delete(url + "/beers-stats/" + country + "/" + birthyear + "?" + apikey).then(function(response) {
+                                    console.log("Beer deleted");
+                                    refresh();
+                                }
 
-                );
+                            );
+                    }
+                }
+            });
+
         };
         $scope.updateBeer = function(country, birthyear) {
             $scope.Beer.birthyear = Number($scope.Beer.birthyear);
@@ -61,7 +78,7 @@ angular
                     }
                 },
                 callback: function(result) {
-                    if (result==true) {
+                    if (result == true) {
                         $http
                             .delete(url + "/beers-stats/?" + apikey).then(function(response) {
                                     console.log("Beers deleted");
