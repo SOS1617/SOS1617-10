@@ -29,12 +29,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td> <input class="from-control" ng-model="newBeer.name" /></td>
-                    <td> <input class="from-control" ng-model="newBeer.country" /></td>
-                    <td> <input class="from-control" ng-model="newBeer.birthyear" /></td>
-                    <td> <input class="from-control" ng-model="newBeer.province" /></td>
+                    <td> <input class="from-control" ng-model="Beer.name" /></td>
+                    <td> <input class="from-control" ng-model="Beer.country" /></td>
+                    <td> <input class="from-control" ng-model="Beer.birthyear" /></td>
+                    <td> <input class="from-control" ng-model="Beer.province" /></td>
                     <td><button class="btn btn-primary" ng-click="addBeer()">Add</button>
-                    <button class="btn btn-warning" ng-click="updateBeer(newBeer.country,newBeer.birthyear)">Update</button>
+                    <button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button>
                     <button class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
                     </td>
                 </tr>

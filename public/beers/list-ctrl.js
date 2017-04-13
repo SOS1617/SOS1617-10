@@ -12,11 +12,11 @@ angular
             });
         }
         $scope.addBeer = function() {
-            $scope.newBeer.birthyear=Number($scope.newBeer.birthyear);
+            $scope.Beer.birthyear=Number($scope.Beer.birthyear);
             $http
-                .post(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre", $scope.newBeer)
+                .post(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre", $scope.Beer)
                 .then(function(response) {
-                    console.log("Beer added"+$scope.newBeer.name);
+                    console.log("Beer added"+$scope.Beer.name);
                     refresh();
                 });
             
@@ -31,13 +31,13 @@ angular
                     );
         };
         $scope.updateBeer = function(country,birthyear){
-            $scope.newBeer.birthyear=Number($scope.newBeer.birthyear);
-            $http.put(url+"/api/v1/beers-stats/"+country+"/"+Number(birthyear)+"?apikey=sos1617-jesusguerre",$scope.newBeer).then(function (response){
-                console.log("Beer updated", $scope.newBeer);
+            $scope.Beer.birthyear=Number($scope.Beer.birthyear);
+            $http.put(url+"/api/v1/beers-stats/"+country+"/"+Number(birthyear)+"?apikey=sos1617-jesusguerre",$scope.Beer).then(function (response){
+                console.log("Beer updated", $scope.Beer);
                 refresh();
                 
             },function (response){
-                console.log($scope.newBeer);
+                console.log($scope.Beer);
                 console.log(response.data);
             });
         };
@@ -51,11 +51,11 @@ angular
                     );
         };
         $scope.fillfields = function(country,birthyear){
-            $scope.newBeer = $http
+            $scope.Beer = $http
             .get(url+"/api/v1/beers-stats/"+country+"/"+birthyear+"?apikey=sos1617-jesusguerre")
             .then(function(response) {
-                $scope.newBeer = response.data;
-                delete $scope.newBeer["_id"];
+                $scope.Beer = response.data;
+                delete $scope.Beer["_id"];
             });
         };
         
