@@ -12,6 +12,7 @@ angular
             });
         }
         $scope.addBeer = function() {
+            $scope.newBeer.birthyear=Number($scope.newBeer.birthyear);
             $http
                 .post(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre", $scope.newBeer)
                 .then(function(response) {
