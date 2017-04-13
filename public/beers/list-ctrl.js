@@ -10,7 +10,7 @@ angular
         console.log("Controller initialized right");
 
         function refresh() {
-            var urlrequest=url+"/beers-stats?"+apikey+yearfrom+yearto+limit+offset;
+            var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
             console.log(urlrequest);
             $http
                 .get(urlrequest)
@@ -49,13 +49,30 @@ angular
             });
         };
         $scope.deleteBeers = function() {
-            $http
-                .delete(url + "/beers-stats/?" + apikey).then(function(response) {
-                        console.log("Beers deleted");
-                        refresh();
+            bootbox.confirm({
+                title: "Are you Sure?",
+                message: "Do you want to delete ALL Beers? This cannot be undone.",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
                     }
+                },
+                callback: function(result) {
+                    if (result) {
+                        $http
+                            .delete(url + "/beers-stats/?" + apikey).then(function(response) {
+                                    console.log("Beers deleted");
+                                    refresh();
+                                }
 
-                );
+                            );
+                    }
+                }
+            });
+
         };
         $scope.fillfields = function(country, birthyear) {
             $scope.Beer = $http
@@ -70,35 +87,42 @@ angular
             refresh();
         };
         $scope.filter = function(YearFrom, YearTo, Limit, Offset) {
-            if (YearFrom){
+            if (YearFrom) {
                 yearfrom = "&from=" + Number(YearFrom);
-            }else{
-                yearfrom="";
             }
-            if (YearTo){
+            else {
+                yearfrom = "";
+            }
+            if (YearTo) {
                 yearto = "&to=" + Number(YearTo);
-            }else {
-                yearto="";
             }
-            if (Limit){
+            else {
+                yearto = "";
+            }
+            if (Limit) {
                 limit = "&limit=" + Number(Limit);
-            }else{
-                limit="";
             }
-            if (Offset){
+            else {
+                limit = "";
+            }
+            if (Offset) {
                 offset = "&offset=" + Number(Offset);
-            }else{
-                offset="";
+            }
+            else {
+                offset = "";
             }
             refresh();
 
         };
-        $scope.clearSearch = function(){
-            yearfrom=""; yearto=""; offset="";limit="";
-            $scope.YearFrom=null;
-            $scope.YearTo=null;
-            $scope.Limit=null;
-            $scope.Offset=null;
+        $scope.clearSearch = function() {
+            yearfrom = "";
+            yearto = "";
+            offset = "";
+            limit = "";
+            $scope.YearFrom = null;
+            $scope.YearTo = null;
+            $scope.Limit = null;
+            $scope.Offset = null;
             refresh();
         };
 
