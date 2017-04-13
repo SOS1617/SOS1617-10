@@ -35,7 +35,7 @@ angular
                 refresh();
                 
             },function (response){
-                console.log($scope.newBeer);
+                console.log(JSON.stringify($scope.newBeer));
                 console.log(response.data);
             });
         };
