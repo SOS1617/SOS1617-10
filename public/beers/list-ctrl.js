@@ -61,7 +61,7 @@ angular
                     }
                 },
                 callback: function(result) {
-                    if (result) {
+                    if (result==true) {
                         $http
                             .delete(url + "/beers-stats/?" + apikey).then(function(response) {
                                     console.log("Beers deleted");
