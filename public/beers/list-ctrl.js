@@ -16,7 +16,7 @@ angular
                 .get(urlrequest)
                 .then(function(response) {
                     $scope.beers = response.data;
-                });
+                },bootbox.alert("Check apikey or filter parameters."));
         }
         $scope.addBeer = function() {
             $scope.Beer.birthyear = Number($scope.Beer.birthyear);
