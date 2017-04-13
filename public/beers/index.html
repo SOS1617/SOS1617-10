@@ -18,6 +18,10 @@
     <div ng-controller="ListCtrl">
         <h2>Beers</h2>
         <table class="table">
+            <tr>
+                <td><label for="api">apikey</label> <input id="api" type="password" class="from-control" ng-model="apikeyfield" /> <button class="btn btn-success" ng-click="sendapi()">Access</button></td>
+
+            </tr>
             <thead>
                 <tr>
                     <th>Name</th>
@@ -28,31 +32,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                   <td><label for="api">apikey</label> <input id="api" type="password" class="from-control" ng-model="apikeyfield" /> <button class="btn btn-success" ng-click="sendapi()">Access</button></td>
-                    
-                </tr>
+
                 <tr>
                     <td> <input class="from-control" ng-model="Beer.name" /></td>
                     <td> <input class="from-control" ng-model="Beer.country" /></td>
                     <td> <input class="from-control" ng-model="Beer.birthyear" /></td>
                     <td> <input class="from-control" ng-model="Beer.province" /></td>
                     <td><button class="btn btn-primary" ng-click="addBeer()">Add</button>
-                    <button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button>
-                    <button class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
+                        <button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button>
+                        <button class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
                     </td>
                 </tr>
                 <tr>
                     <th>Search</th>
                     <td></td>
                     <th>Paginate</th>
+                    <td></td>
                 </tr>
                 <tr>
                     <td><label for="">YearFrom: </label></td>
                     <td><label for="">YearTo: </label></td>
                     <td><label for="">Limit: </label></td>
                     <td><label for="">Offset: </label></td>
-                    <td><button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>Filter</button></td>
+                    <td><button class="btn btn-info"><span class="glyphicon glyphicon-search"></span> Filter</button></td>
                 </tr>
                 <tr ng-repeat="beer in beers">
                     <td>{{beer.name}}</td>
@@ -60,7 +62,7 @@
                     <td>{{beer.birthyear}}</td>
                     <td>{{beer.province}}</td>
                     <td><button class="btn btn-danger" ng-click="deleteBeer(beer.country,beer.birthyear)">Delete</button>
-                    <button class="btn btn-warning" ng-click="fillfields(beer.country,beer.birthyear)">Update</button></td>
+                        <button class="btn btn-warning" ng-click="fillfields(beer.country,beer.birthyear)">Update</button></td>
                 </tr>
             </tbody>
         </table>
