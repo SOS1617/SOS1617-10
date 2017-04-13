@@ -3,11 +3,15 @@ angular
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
         var url = "http://sos1617-10.herokuapp.com/api/v1";
         var apikey="";
+        var yearfrom="";
+        var yearto="";
+        var offset="";
+        var limit="";
         console.log("Controller initialized right");
         function refresh(){
         console.log(apikey);
         $http
-            .get(url+"/beers-stats?"+apikey)
+            .get(url+"/beers-stats?"+apikey+yearfrom+yearto+limit+offset)
             .then(function(response) {
                 $scope.beers = response.data;
             });
@@ -63,6 +67,13 @@ angular
             apikey="apikey="+$scope.apikeyfield;
             refresh();
         };
-        
+        $scope.filter = function (YearFrom,YearTo,Limit,Offset) {
+            yearfrom="&from="+Number(YearFrom);
+            yearto="&to="+Number(YearTo);
+            limit="&limit"+Number(Limit);
+            offset="&offset"+Number(Offset);
+            refresh();
+            
+        };
         
     }]);
