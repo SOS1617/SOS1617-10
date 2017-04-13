@@ -30,7 +30,7 @@ angular
                     );
         };
         $scope.updateBeer = function(country,birthyear){
-            $http.put(url+"/api/v1/beers-stats/"+country+"/"+birthyear+"?apikey=sos1617-jesusguerre",$scope.newBeer).then(function (response){
+            $http.put(url+"/api/v1/beers-stats/"+country+"/"+birthyear+"?apikey=sos1617-jesusguerre",JSON.stringify($scope.newBeer)).then(function (response){
                 console.log("Beer updated", $scope.newBeer);
                 refresh();
                 
