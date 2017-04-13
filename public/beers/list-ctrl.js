@@ -72,15 +72,23 @@ angular
         $scope.filter = function(YearFrom, YearTo, Limit, Offset) {
             if (YearFrom){
                 yearfrom = "&from=" + Number(YearFrom);
+            }else{
+                yearfrom="";
             }
             if (YearTo){
                 yearto = "&to=" + Number(YearTo);
+            }else {
+                yearto="";
             }
             if (Limit){
                 limit = "&limit=" + Number(Limit);
+            }else{
+                limit="";
             }
             if (Offset){
                 offset = "&offset=" + Number(Offset);
+            }else{
+                offset="";
             }
             refresh();
 
