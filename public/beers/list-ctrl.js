@@ -7,6 +7,7 @@ angular
         refresh();
         function refresh(){
         apikey="apikey="+$scope.apikey;
+        console.log(apikey);
         $http
             .get(url+"/api/v1/beers-stats?"+apikey)
             .then(function(response) {
