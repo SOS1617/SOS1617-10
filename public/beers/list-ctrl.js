@@ -77,16 +77,20 @@ angular
                 yearto = "&to=" + Number(YearTo);
             }
             if (Limit){
-                limit = "&limit" + Number(Limit);
+                limit = "&limit=" + Number(Limit);
             }
             if (Offset){
-                offset = "&offset" + Number(Offset);
+                offset = "&offset=" + Number(Offset);
             }
             refresh();
 
         };
         $scope.clearSearch = function(){
             yearfrom=""; yearto=""; offset="";limit="";
+            $scope.YearFrom=null;
+            $scope.YearTo=null;
+            $scope.Limit=null;
+            $scope.Offset=null;
             refresh();
         };
 
