@@ -68,6 +68,7 @@ angular
             refresh();
         };
         $scope.filter = function (YearFrom,YearTo,Limit,Offset) {
+            console.log("entra");
             yearfrom="&from="+Number(YearFrom);
             yearto="&to="+Number(YearTo);
             limit="&limit"+Number(Limit);
