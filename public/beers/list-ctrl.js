@@ -6,6 +6,7 @@ angular
         console.log("Controller initialized right");
         refresh();
         function refresh(){
+        apikey=$scope.apikey;
         $http
             .get(url+"/api/v1/beers-stats?"+apikey)
             .then(function(response) {
