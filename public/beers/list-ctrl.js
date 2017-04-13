@@ -82,6 +82,7 @@ angular
         };
         $scope.clearSearch = function(){
             yearfrom=""; yearto=""; offset="";limit="";
+            refresh();
         };
 
     }]);
