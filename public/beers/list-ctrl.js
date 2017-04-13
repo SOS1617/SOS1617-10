@@ -4,9 +4,7 @@ angular
         var url = "http://sos1617-10.herokuapp.com";
         var apikey="";
         console.log("Controller initialized right");
-        refresh();
         function refresh(){
-        apikey="apikey="+$scope.apikey;
         console.log(apikey);
         $http
             .get(url+"/api/v1/beers-stats?"+apikey)
@@ -61,6 +59,10 @@ angular
                 delete $scope.Beer["_id"];
             });
         };
+        $scope.sendapi = function(){
+            apikey="apikey="+$scope.apikeyfield;
+            refresh();
+        }
         
         
     }]);
