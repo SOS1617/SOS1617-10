@@ -35,7 +35,10 @@ angular
                 console.log("Beer updated", newbeer);
                 refresh();
                 
-            });
+            }),function (response){
+                console.log(newbeer);
+                console.log(response.data);
+            };
         };
          $scope.deleteBeers = function(){
             $http
