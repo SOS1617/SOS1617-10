@@ -10,9 +10,10 @@ angular
         console.log("Controller initialized right");
 
         function refresh() {
-            console.log(apikey);
+            var urlrequest=url+"/beers-stats?"+apikey+yearfrom+yearto+limit+offset;
+            console.log(urlrequest);
             $http
-                .get(url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset)
+                .get(urlrequest)
                 .then(function(response) {
                     $scope.beers = response.data;
                 });
