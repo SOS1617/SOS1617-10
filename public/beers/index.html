@@ -17,11 +17,8 @@
 <body>
     <div ng-controller="ListCtrl">
         <h2>Beers</h2>
+        <label for="api">apikey</label> <input id="api" type="password" class="from-control" ng-model="apikeyfield" /> <button class="btn btn-success" ng-click="sendapi()">Access</button>
         <table class="table">
-            <tr>
-                <td><label for="api">apikey</label> <input id="api" type="password" class="from-control" ng-model="apikeyfield" /> <button class="btn btn-success" ng-click="sendapi()">Access</button></td>
-
-            </tr>
             <thead>
                 <tr>
                     <th>Name</th>
