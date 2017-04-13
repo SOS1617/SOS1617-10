@@ -13,7 +13,7 @@ angular
         }
         $scope.addBeer = function() {
             $http
-                .post(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre", $scope.newBeer)
+                .post(url+"/api/v1/beers-stats?apikey=sos1617-jesusguerre", JSON.stringify($scope.newBeer))
                 .then(function(response) {
                     console.log("Beer added"+$scope.newBeer.name);
                     refresh();
