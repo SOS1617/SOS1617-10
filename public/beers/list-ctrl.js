@@ -70,14 +70,18 @@ angular
             refresh();
         };
         $scope.filter = function(YearFrom, YearTo, Limit, Offset) {
-            if (yearfrom)
+            if (yearfrom){
                 yearfrom = "&from=" + Number(YearFrom);
-            if (yearto)
+            }
+            if (yearto){
                 yearto = "&to=" + Number(YearTo);
-            if (limit)
+            }
+            if (limit){
                 limit = "&limit" + Number(Limit);
-            if (offset)
+            }
+            if (offset){
                 offset = "&offset" + Number(Offset);
+            }
             refresh();
 
         };
