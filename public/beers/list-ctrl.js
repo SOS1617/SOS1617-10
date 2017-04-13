@@ -2,11 +2,11 @@ angular
     .module("BeersManagerApp")
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
         var url = "http://sos1617-10.herokuapp.com";
-        var apikey="apikey="+$scope.apikey;
+        var apikey="";
         console.log("Controller initialized right");
         refresh();
         function refresh(){
-        apikey=$scope.apikey;
+        apikey="apikey="+$scope.apikey;
         $http
             .get(url+"/api/v1/beers-stats?"+apikey)
             .then(function(response) {
