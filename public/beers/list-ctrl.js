@@ -37,7 +37,7 @@ angular
                 
             });
         };
-         $scope.deleteBeer = function(){
+         $scope.deleteBeers = function(){
             $http
                 .delete(url+"/api/v1/beers-stats/?apikey=sos1617-jesusguerre").then(function (response){
                     console.log("Beers deleted");
