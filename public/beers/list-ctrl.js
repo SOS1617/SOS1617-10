@@ -50,7 +50,7 @@ angular
             $scope.newBeer = $http
             .get(url+"/api/v1/beers-stats/"+country+"/"+birthyear+"?apikey=sos1617-jesusguerre")
             .then(function(response) {
-                $scope.beers = response.data;
+                $scope.newBeer = response.data;
             });
         };
         
