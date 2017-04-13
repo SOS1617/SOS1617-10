@@ -28,7 +28,17 @@ angular
                 }
                     
                     );
-        }
+        };
+        $scope.updateBeer = function(){
+            var newbeer = $scope.newBeer;
+            $http.put(url+"/api/v1/beers-stats/"+newbeer.country+"/"+newbeer.birthyear+"?apikey=sos1617-jesusguerre",$scope.newBeer).then(function (response){
+                console.log("Beer updated");
+                refresh();
+                
+            }
+                
+                );
+        };
         
         
     }]);
