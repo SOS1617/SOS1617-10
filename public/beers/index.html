@@ -29,20 +29,20 @@
             </thead>
             <tbody>
                 <tr>
-                    <td> <input class="from-control" ng-model="newBeer.country" /></td>
+                    <td> <input class="from-control" ng-model="newBeer.name" /></td>
+                    <td> <input class="from-control" ng-model="newBeer.contry" /></td>
                     <td> <input class="from-control" ng-model="newBeer.birthyear" /></td>
                     <td> <input class="from-control" ng-model="newBeer.province" /></td>
-                    <td> <input class="from-control" ng-model="newBeer.name" /></td>
                     <td><button class="btn btn-primary" ng-click="addBeer()">Add</button>
                     <button class="btn btn-warning" ng-click="updateBeer(newBeer.country,newBeer.birthyear)">Update</button>
                     <button class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
                     </td>
                 </tr>
                 <tr ng-repeat="beer in beers">
+                    <td>{{beer.name}}</td>
                     <td>{{beer.country}}</td>
                     <td>{{beer.birthyear}}</td>
                     <td>{{beer.province}}</td>
-                    <td>{{beer.name}}</td>
                     <td><button class="btn btn-danger" ng-click="deleteBeer(beer.country,beer.birthyear)">Delete</button>
                     <button class="btn btn-update" ng-click="fillfields(beer.country,beer.birthyear)">Update</button></td>
                 </tr>
