@@ -38,6 +38,10 @@
                     <button class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
                     </td>
                 </tr>
+                <tr>
+                   <td><label for="api">apikey</label> <input id="api" class="from-control" ng-model="apikey" /></td>
+                    
+                </tr>
                 <tr ng-repeat="beer in beers">
                     <td>{{beer.name}}</td>
                     <td>{{beer.country}}</td>
