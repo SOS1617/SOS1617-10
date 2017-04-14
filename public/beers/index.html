@@ -50,7 +50,7 @@
     <div ng-controller="ListCtrl">
         <div id="centeredtext">
             <h2>Beers</h2>
-            <label for="api">apikey</label> <input id="api" type="password" class="from-control" ng-model="apikeyfield" /> <button class="btn btn-success" ng-click="sendapi()">Access</button>
+            <label for="api">apikey</label> <input id="api" type="password" class="from-control" ng-model="apikeyfield" /> <button class="btn btn-success" ng-click="sendapi()"><span class="glyphicon glyphicon-ok"></span> Access</button>
         </div>
         <table class="table">
             <thead>
@@ -69,14 +69,14 @@
                     <td><label>Limit: <input class="from-control" ng-model="Limit"/></label></td>
                     <td><label>Offset: <input class="from-control" ng-model="Offset"/></label></td>
                     <td><button class="btn btn-info" ng-click="filter(YearFrom,YearTo,Limit,Offset)"><span class="glyphicon glyphicon-search"></span> Filter</button>
-                        <button class="btn btn-success" ng-click="clearSearch()">Clear</button></td>
+                        <button class="btn btn-success" ng-click="clearSearch()"><span class="glyphicon glyphicon-remove"></span> Clear</button></td>
                 </tr>
             </tbody>
         </table>
 
-        <button id="buttonAddModal" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</button>
+        <button id="buttonAddModal" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span>Add</button>
 
-        <button id="buttonDeleteAll" class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
+        <button id="buttonDeleteAll" class="btn btn-danger" ng-click="deleteBeers()"><span class="glyphicon glyphicon-trash"></span> DeleteAll</button>
 
         <table class="table" id="datatable">
             <thead>
@@ -96,8 +96,8 @@
                     <td>{{beer.birthyear}}</td>
                     <td>{{beer.province}}</td>
                     <td>
-                        <button class="btn btn-warning" ng-click="fillfields(beer.country,beer.birthyear)" data-toggle="modal" data-target="#updateModal">Update</button>
-                        <button class="btn btn-danger" ng-click="deleteBeer(beer.country,beer.birthyear)">Delete</button>
+                        <button class="btn btn-warning" ng-click="fillfields(beer.country,beer.birthyear)" data-toggle="modal" data-target="#updateModal"><span class="glyphicon glyphicon-pencil"> Update</button>
+                        <button class="btn btn-danger" ng-click="deleteBeer(beer.country,beer.birthyear)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -117,7 +117,7 @@
                         <p><label class="fieldsname">Country<input class="from-control" ng-model="Beer.country" /></label></p>
                         <p><label class="fieldsname">Birthyear<input class="from-control" ng-model="Beer.birthyear" /></label></p>
                         <p><label class="fieldsname">Province<input class="from-control" ng-model="Beer.province" /></label></p>
-                        <p><button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button></p>
+                        <p><button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)"><span class="	glyphicon glyphicon-pencil"></span>Update</button></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearResponseData()">Close</button>
@@ -141,7 +141,7 @@
                         <p><label class="fieldsname">Country<input class="from-control" ng-model="newBeer.country" /></label></p>
                         <p><label class="fieldsname">Birthyear<input class="from-control" ng-model="newBeer.birthyear" /></label></p>
                         <p><label class="fieldsname">Province<input class="from-control" ng-model="newBeer.province" /></label></p>
-                        <p><button class="btn btn-primary" ng-click="addBeer()">Add</button></p>
+                        <p><button class="btn btn-primary" ng-click="addBeer()"><span class="glyphicon glyphicon-floppy-save"></span> Add</button></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearResponseData()">Close</button>
