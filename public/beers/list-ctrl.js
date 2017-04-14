@@ -27,7 +27,7 @@ angular
             $http
                 .post(url + "/beers-stats?" + apikey, $scope.newBeer)
                 .then(function(response) {
-                    console.log("Beer added" + $scope.newBeer.name);
+                    $scope.responsedata=response.data;
                     refresh();
                 },function(response){
                     $scope.responsedata=response.data;
@@ -63,7 +63,7 @@ angular
         $scope.updateBeer = function(country, birthyear) {
             $scope.Beer.birthyear = Number($scope.Beer.birthyear);
             $http.put(url + "/beers-stats/" + country + "/" + Number(birthyear) + "?" + apikey, $scope.Beer).then(function(response) {
-                console.log("Beer updated", $scope.Beer);
+                $scope.responsedata=response.data;
                 refresh();
 
             }, function(response) {
