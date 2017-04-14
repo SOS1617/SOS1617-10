@@ -58,7 +58,8 @@
                     <td> <input class="from-control" ng-model="Beer.country" /></td>
                     <td> <input class="from-control" ng-model="Beer.birthyear" /></td>
                     <td> <input class="from-control" ng-model="Beer.province" /></td>
-                    <td><button class="btn btn-primary" ng-click="addBeer()">Add</button>
+                    <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addModal"></button>
                         <button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button>
                         <button class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
                     </td>
@@ -69,8 +70,10 @@
                     <td>{{beer.country}}</td>
                     <td>{{beer.birthyear}}</td>
                     <td>{{beer.province}}</td>
-                    <td><button class="btn btn-danger" ng-click="deleteBeer(beer.country,beer.birthyear)">Delete</button>
-                        <button class="btn btn-warning" ng-click="fillfields(beer.country,beer.birthyear)" data-toggle="modal" data-target="#updateModal">Update</button></td>
+                    <td>
+                        <button class="btn btn-warning" ng-click="fillfields(beer.country,beer.birthyear)" data-toggle="modal" data-target="#updateModal">Update</button>
+                        <button class="btn btn-danger" ng-click="deleteBeer(beer.country,beer.birthyear)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -85,14 +88,43 @@
                     </div>
                     <div class="modal-body">
                         <style type="text/css">
-                            .modal-body {text-align:center;}
-                            .fieldsname{margin-right:10px;}
+                            .modal-body {
+                                text-align: center;
+                            }
                         </style>
                         <p><label class="fieldsname">Name<input class="from-control" ng-model="Beer.name" /></label></p>
                         <p><label class="fieldsname">Country<input class="from-control" ng-model="Beer.country" /></label></p>
                         <p><label class="fieldsname">Birthyear<input class="from-control" ng-model="Beer.birthyear" /></label></p>
                         <p><label class="fieldsname">Province<input class="from-control" ng-model="Beer.province" /></label></p>
                         <p><button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="addModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Beer</h4>
+                    </div>
+                    <div class="modal-body">
+                        <style type="text/css">
+                            .modal-body {
+                                text-align: center;
+                            }
+                        </style>
+                        <p><label class="fieldsname">Name<input class="from-control" ng-model="Beer.name" /></label></p>
+                        <p><label class="fieldsname">Country<input class="from-control" ng-model="Beer.country" /></label></p>
+                        <p><label class="fieldsname">Birthyear<input class="from-control" ng-model="Beer.birthyear" /></label></p>
+                        <p><label class="fieldsname">Province<input class="from-control" ng-model="Beer.province" /></label></p>
+                        <p><button class="btn btn-primary" ng-click="addBeer()">Add</button></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
