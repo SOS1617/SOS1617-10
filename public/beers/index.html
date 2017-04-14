@@ -70,10 +70,29 @@
                     <td>{{beer.birthyear}}</td>
                     <td>{{beer.province}}</td>
                     <td><button class="btn btn-danger" ng-click="deleteBeer(beer.country,beer.birthyear)">Delete</button>
-                        <button class="btn btn-warning" ng-click="fillfields(beer.country,beer.birthyear)">Update</button></td>
+                        <button class="btn btn-warning" ng-click="fillfields(beer.country,beer.birthyear)" data-toggle="modal" data-target="#myModal>Update</button></td>
                 </tr>
             </tbody>
         </table>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </div>
 
