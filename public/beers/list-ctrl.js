@@ -29,6 +29,8 @@ angular
                 .then(function(response) {
                     console.log("Beer added" + $scope.newBeer.name);
                     refresh();
+                },function(response){
+                    $scope.responsedata=response.data;
                 });
 
         };
@@ -65,8 +67,7 @@ angular
                 refresh();
 
             }, function(response) {
-                console.log($scope.Beer);
-                console.log(response.data);
+                $scope.responsedata=response.data;
             });
         };
         $scope.deleteBeers = function() {
