@@ -11,7 +11,18 @@
     <script type="text/javascript" src="/beers/contact-manager-app.js"></script>
     <script type="text/javascript" src="/beers/list-ctrl.js"></script>
     <script type="text/javascript" src="/bower_components/bootbox.js/bootbox.js"></script>
-
+    <style type="text/css">
+        .modal-body {
+            text-align: center;
+        }
+        #buttonAddModal {
+            right:10px;
+        }
+        #buttonDeleteAll{
+            right:5px;
+        }
+        
+    </style>
 
 </head>
 
@@ -41,6 +52,10 @@
             </tbody>
         </table>
 
+        <button id="buttonAddModal" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</button>
+
+        <button id="buttonDeleteAll" class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
+
         <table class="table">
             <thead>
                 <tr>
@@ -52,18 +67,6 @@
                 </tr>
             </thead>
             <tbody>
-
-                <tr>
-                    <td> <input class="from-control" ng-model="Beer.name" /></td>
-                    <td> <input class="from-control" ng-model="Beer.country" /></td>
-                    <td> <input class="from-control" ng-model="Beer.birthyear" /></td>
-                    <td> <input class="from-control" ng-model="Beer.province" /></td>
-                    <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</button>
-                        <button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button>
-                        <button class="btn btn-danger" ng-click="deleteBeers()">DeleteAll</button>
-                    </td>
-                </tr>
 
                 <tr ng-repeat="beer in beers">
                     <td>{{beer.name}}</td>
@@ -87,11 +90,6 @@
                         <h4 class="modal-title">Update Beer</h4>
                     </div>
                     <div class="modal-body">
-                        <style type="text/css">
-                            .modal-body {
-                                text-align: center;
-                            }
-                        </style>
                         <p><label class="fieldsname">Name<input class="from-control" ng-model="Beer.name" /></label></p>
                         <p><label class="fieldsname">Country<input class="from-control" ng-model="Beer.country" /></label></p>
                         <p><label class="fieldsname">Birthyear<input class="from-control" ng-model="Beer.birthyear" /></label></p>
@@ -115,11 +113,6 @@
                         <h4 class="modal-title">Add Beer</h4>
                     </div>
                     <div class="modal-body">
-                        <style type="text/css">
-                            .modal-body {
-                                text-align: center;
-                            }
-                        </style>
                         <p><label class="fieldsname">Name<input class="from-control" ng-model="newBeer.name" /></label></p>
                         <p><label class="fieldsname">Country<input class="from-control" ng-model="newBeer.country" /></label></p>
                         <p><label class="fieldsname">Birthyear<input class="from-control" ng-model="newBeer.birthyear" /></label></p>
