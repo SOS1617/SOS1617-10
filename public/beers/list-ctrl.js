@@ -23,6 +23,7 @@ angular
                 });
         }
         $scope.addBeer = function() {
+            $scope.responsedata="";
             $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
             $http
                 .post(url + "/beers-stats?" + apikey, $scope.newBeer)
@@ -61,6 +62,7 @@ angular
 
         };
         $scope.updateBeer = function(country, birthyear) {
+            $scope.responsedata="";
             $scope.Beer.birthyear = Number($scope.Beer.birthyear);
             $http.put(url + "/beers-stats/" + country + "/" + Number(birthyear) + "?" + apikey, $scope.Beer).then(function(response) {
                 $scope.responsedata=response.data;
