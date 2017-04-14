@@ -81,10 +81,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">Update Beer</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                        <label>Name<input class="from-control" ng-model="Beer.name" /></label>
+                        <label>Country<input class="from-control" ng-model="Beer.country" /></label>
+                        <label>Birthyear<input class="from-control" ng-model="Beer.birthyear" /></label>
+                        <label><input class="from-control" ng-model="Beer.province" /></label>
+                        <button class="btn btn-warning" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
