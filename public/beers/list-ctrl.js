@@ -23,11 +23,11 @@ angular
                 });
         }
         $scope.addBeer = function() {
-            $scope.Beer.birthyear = Number($scope.Beer.birthyear);
+            $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
             $http
-                .post(url + "/beers-stats?" + apikey, $scope.Beer)
+                .post(url + "/beers-stats?" + apikey, $scope.newBeer)
                 .then(function(response) {
-                    console.log("Beer added" + $scope.Beer.name);
+                    console.log("Beer added" + $scope.newBeer.name);
                     refresh();
                 });
 
