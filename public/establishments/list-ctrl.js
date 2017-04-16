@@ -50,21 +50,55 @@ angular
         };
 
         $scope.deleteEstablishment = function(country, year) {
-            $http
-                .delete(url + "/establishments/" + country + "/" + year + "?" + apikey)
-                .then(function(response) {
-                    console.log("Establishment deleted");
-                    refresh();
-                });
+            bootbox.confirm({
+                title: "Delete Establishment?",
+                message: "Are you Sure? This cannot be undone.",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
+                    }
+                },
+                callback: function(result) {
+                    if (result == true) {
+                        $http
+                            .delete(url + "/establishments/" + country + "/" + year + "?" + apikey)
+                            .then(function(response) {
+                                console.log("Establishment deleted");
+                                refresh();
+                            });
+                    }
+                }
+            });
+
         };
 
         $scope.deleteAllEstablishments = function() {
-            $http
-                .delete(url + "/establishments?" + apikey)
-                .then(function(response) {
-                    console.log("All establishments deleted");
-                    refresh();
-                });
+            bootbox.confirm({
+                title: "Are you Sure?",
+                message: "Do you want to delete ALL Establishments? This cannot be undone.",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
+                    }
+                },
+                callback: function(result) {
+                    if (result == true) {
+                        $http
+                            .delete(url + "/establishments?" + apikey)
+                            .then(function(response) {
+                                console.log("All establishments deleted");
+                                refresh();
+                            });
+                    }
+                }
+            });
+
         };
 
         $scope.putEstablishment = function(country, year) {
