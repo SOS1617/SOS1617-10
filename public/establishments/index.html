@@ -11,6 +11,21 @@
 
     <script type="text/javascript" src="/establishments/establishment-manager-app.js"></script>
     <script type="text/javascript" src="/establishments/list-ctrl.js"></script>
+    
+    <style type="text/css">
+        body {
+            margin: 30px;
+        }
+        h2 {
+            background: #7FFFD4;
+            line-height: 2em;
+            color: #f5f5f0;
+            margin-bottom: 30px;
+            text-align: center;
+            margin-top: 0;
+            box-shadow: 0px 3px 4px grey;
+        }
+    </style>
 </head>
 
 <body>
@@ -46,7 +61,7 @@
                     <td>{{establishment.beds}}</td>
                     <td>{{establishment.nights}}</td>
                     <td>
-                        <button class="btn btn-warning" ng-click="fillFields(establishment.country, establishment.year)" data-toggle="modal" data-target="#updateModal">Update</button>
+                        <button class="btn btn-warning" ng-click="fillFields(establishment.country, establishment.year)" data-toggle="modal" data-target="#updateModal"><span class="glyphicon glyphicon-pencil"></span>Update</button>
                         <button class="btn btn-danger" ng-click="deleteEstablishment(establishment.country, establishment.year)"><span class="glyphicon glyphicon-erase"></span>Delete</button>
                     </td>
                 </tr>
@@ -70,7 +85,6 @@
                         <p><label class="fieldsname">Nights<input class="from-control" ng-model="Establishment.nights" /></label></p>
                         <p><button class="btn btn-warning" ng-click="putEstablishment(Establishment.country,Establishment.year)"><span class="glyphicon glyphicon-pencil"></span> Update</button></p>
                     </div>
-                    
                 </div>
 
             </div>
