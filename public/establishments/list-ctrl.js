@@ -40,7 +40,7 @@ angular
         
         $scope.putEstablishment = function(country,year) {
             $http
-                .put(url + "/establishments/" + country + "/" + Number(year) + "?" + apikey)
+                .put(url + "/establishments/" + country + "/" + Number(year) + "?" + apikey, $scope.Establishment)
                 .then(function(response) {
                     console.log("Establishment updated");
                 });
