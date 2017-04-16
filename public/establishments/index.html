@@ -21,8 +21,6 @@
             float:left;
         }
         #search {
-            float:right;
-            position:absolute;
         }
         
         h2 {
@@ -60,8 +58,8 @@
             <button class="btn btn-primary" ng-click="setApikey()"><span class="glyphicon glyphicon-ok"></span> Access</button>
         </div>
         <div id="search">
-            <label for="from">From year</label> <input class="form-control" ng-model="fromYear" />
-            <label for="to">To year</label> <input class="form-control" ng-model="toYear" />
+            <label for="from">From year</label> <input class="col-xs-1" class="form-control" ng-model="fromYear" />
+            <label for="to">To year</label> <input class="col-xs-1" class="form-control" ng-model="toYear" />
             <button class="btn btn-info" ng-click="search(fromYear,toYear)"><span class="glyphicon glyphicon-search"></span> Search</button>
         </div>
         <div id="table">
