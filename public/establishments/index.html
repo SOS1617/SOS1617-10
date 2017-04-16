@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="EstablishmentsManagerApp">
+
+<head>
+    <title>Establishments app</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+
+    <script type="text/javascript" src="/establishment-manager-app.js"></script>
+    <script type="text/javascript" src="/list-ctrl.js"></script>
+</head>
+
+<body>
+    <div ng-controller="ListCtrl">
+        <h2>Establishments</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Year</th>
+                    <th>Number</th>
+                    <th>Beds</th>
+                    <th>Nights</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="form-control" ng-model="newEstablishment.country" /></td>
+                    <td><input class="form-control" ng-model="newEstablishment.year" /></td>
+                    <td><input class="form-control" ng-model="newEstablishment.number" /></td>
+                    <td><input class="form-control" ng-model="newEstablishment.beds" /></td>
+                    <td><input class="form-control" ng-model="newEstablishment.nights" /></td>
+                    <td><button class="btn btn-primary" ng-click="addEstablishment()">Add</button></td>
+                </tr>
+                <tr ng-repeat="establishment in establishments">
+                    <td>{{establishment.country}}</td>
+                    <td>{{establishment.year}}</td>
+                    <td>{{establishment.number}}</td>
+                    <td>{{establishment.beds}}</td>
+                    <td>{{establishment.nights}}</td>
+                    <td><button class="btn btn-danger" ng-click="deleteEstablishment(establishment.country, establishment.year)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
