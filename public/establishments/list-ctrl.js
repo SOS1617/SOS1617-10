@@ -14,6 +14,11 @@ angular
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
+                }, function(err){
+                    if(err.data == "Unauthorized" || err.data == "Forbidden"){
+                        $scope.establishments = [];
+                        bootbox.alert("Incorrect apikey. Check apikey");
+                    }
                 });
         }
 
