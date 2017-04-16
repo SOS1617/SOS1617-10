@@ -3,7 +3,9 @@ angular
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyección de dependencia
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v1";
-        var apikey,from,to = "";
+        var apikey;
+        var from;
+        var to;
 
         function refresh() {
             $http
@@ -77,8 +79,8 @@ angular
         };
         
         $scope.search = function(fromYear,toYear){
-            if(fromYear) from = "&from=" + Number(fromYear);
-            if(toYear) to = "&to=" + Number(toYear);
+            if(fromYear) {from = "&from=" + Number(fromYear)};
+            if(toYear) {to = "&to=" + Number(toYear)};
         };
 
         refresh();
