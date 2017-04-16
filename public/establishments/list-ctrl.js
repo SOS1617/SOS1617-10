@@ -3,11 +3,11 @@ angular
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyección de dependencia
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v1";
-        var apikey = "";
+        var apikey,from,to = "";
 
         function refresh() {
             $http
-                .get(url + "/establishments?" + apikey)
+                .get(url + "/establishments?" + apikey + from + to)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
                     console.log("carga establishments");
@@ -74,6 +74,11 @@ angular
         $scope.setApikey = function() {
             apikey = "apikey=" + $scope.Apikey;
             refresh();
+        };
+        
+        $scope.search = function(fromYear,toYear){
+            if(fromYear) from = "&from=" + Number(fromYear);
+            if(toYear) to = "&to=" + Number(toYear);
         };
 
         refresh();
