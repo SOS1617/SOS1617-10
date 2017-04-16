@@ -13,7 +13,7 @@
     <script type="text/javascript" src="/establishments/list-ctrl.js"></script>
 
     <style type="text/css">
-        #table {
+        #table,#apikey {
             margin: 20px;
         }
         
@@ -47,7 +47,7 @@
         <div>
             <h2>Establishments</h2>
         </div>
-        <div>
+        <div id="apikey">
             <label for="apikey">Apikey</label> <input class="from-control" ng-model="Apikey" />
             <button class="btn btn-primary" ng-click="setApikey()"><span class="glyphicon glyphicon-ok"></span> Access</button>
         </div>
