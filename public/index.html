@@ -1,59 +1,94 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <style type="text/css">
-        body {
-            background-color: lightgray;
-            margin: 30px;
-        }
-        
-        h1 {
-            color: gray;
-            text-align: center;
-        }
-        
-        p {
-            font-weight: bold;
-        }
-    </style>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <h1>## SOS1617-10</h1>
-    <h4>
-Our sources of information are aimed at analyzing the relationship between the number of tourist accommodation establishments, the favorite beer and the champion of motorcycling at European level.</h4>
-    <ul>
-        <li>
-            <p>**Team**</p>
-        </li>
-        <ul>
-            <li> [Nuria Triguero Ojeda] (<a href='https://github.com/nurtrioje'>https://github.com/nurtrioje</a>)</li>
-            <li> [Jesús David Segovia Guerrero] (<a href='https://github.com/jesusguerre'>https://github.com/jesusguerre</a>)</li>
-            <li> [David Bote Cabeza] (<a href='https://github.com/daboca92'>https://github.com/daboca92</a>)</li>
+
+    <div class="container">
+        <h2>SOS1617-10</h2>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#menu1">Beers</a></li>
+            <li><a data-toggle="tab" href="#menu2">Establishments</a></li>
+            <li><a data-toggle="tab" href="#menu3">Motorcycling</a></li>
         </ul>
-        <li>
-            <p>**Project description**</p> Our sources of information are aimed at analyzing the relationship between the number of tourist accommodation establishments, the favorite beer and the champion of motorcycling at European level.</li>
-        <li>
-            <p>**Repository**</p> [SOS1617/SOS1617-10] (<a href='https://github.com/SOS1617/SOS1617-10'>https://github.com/SOS1617/SOS1617-10</a>)</li>
-        <li>
-            <p>**URL**</p> [TBD](#)</li>
-    </ul>
-    
-    <h2>API</h2>
-        <ul>
-            
-        <li><p>Jesús David Segovia Guerrero: <a href='/api/v1/beers-stats?apikey=sos1617-jesusguerre'>Beers</a></p>
-        Beers-stats: European beer brands per country and province.</li>
-        <li><p>Nuria Triguero Ojeda: <a href='/api/v1/establishments?apikey=nurtrioje'>Establishments</a></p>
-        Establishments-stats: number of tourist accommodation establishments, bed places and nights spent in Europe.</li>
-        <li><p>David Bote Cabeza: <a href='/api/v1/motorcycling-stats?apikey=davbotcab'>Motorcycling</a></p>
-        Motorcycling-stats: Grand Prix motorcycle racing Europe champions by year and team.</li>
-        </ul>
-        
-    <h2>Tests Postman</h2>
-        <ul>
-        <li><p><a href='/api/v1/tests'>Tests</a></p></li>
-        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h3>HOME</h3>
+                <p>
+                    <ul>
+                        <li>
+                            <p><strong>Team</strong></p>
+                        </li>
+                        <ul>
+                            <li> [Nuria Triguero Ojeda] (<a href='https://github.com/nurtrioje'>https://github.com/nurtrioje</a>)</li>
+                            <li> [Jesús David Segovia Guerrero] (<a href='https://github.com/jesusguerre'>https://github.com/jesusguerre</a>)</li>
+                            <li> [David Bote Cabeza] (<a href='https://github.com/daboca92'>https://github.com/daboca92</a>)</li>
+                        </ul>
+                        <li>
+                            <p><strong>Project description</strong></p> Our sources of information are aimed at analyzing the relationship between the number of tourist accommodation establishments, the favorite beer and the champion of motorcycling at European
+                            level.
+                        </li>
+                        <li>
+                            <p><strong>Repository</strong></p> [SOS1617/SOS1617-10] (<a href='https://github.com/SOS1617/SOS1617-10'>https://github.com/SOS1617/SOS1617-10</a>)</li>
+                        <li>
+                            <h2><strong>Tests Postman</strong></h2>
+                            <ul>
+                                <li>
+                                    <p><a href='/api/v1/tests'>Tests</a></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h3>Beers</h3>
+                <p>
+                    <h2><strong>API</strong></h2>
+                    <ul>
+                        <li>
+                            <p>Jesús David Segovia Guerrero: <a href='/api/v1/beers-stats?apikey=sos1617-jesusguerre'>Beers</a></p>
+                            Beers-stats: European beer brands per country and province.
+                        </li>
+                    </ul>
+                </p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h3>Establishments</h3>
+                <p>
+                    <h2><strong>API</strong></h2>
+                    <ul>
+                        <li>
+                            <p>Nuria Triguero Ojeda: <a href='/api/v1/establishments?apikey=nurtrioje'>Establishments</a></p>
+                            Establishments-stats: number of tourist accommodation establishments, bed places and nights spent in Europe.</li>
+                    </ul>
+                </p>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <h3>Motorcycling</h3>
+                <p>
+                    <h2><strong>API</strong></h2>
+                    <ul>
+                        <li>
+                            <p>David Bote Cabeza: <a href='/api/v1/motorcycling-stats?apikey=davbotcab'>Motorcycling</a></p>
+                            Motorcycling-stats: Grand Prix motorcycle racing Europe champions by year and team.</li>
+                    </ul>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
