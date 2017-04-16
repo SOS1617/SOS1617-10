@@ -14,9 +14,6 @@ angular
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
-                    console.log("carga establishments");
-                }, function(response) {
-                    console.log("no carga");
                 });
         }
 
@@ -90,9 +87,9 @@ angular
         
         $scope.paginate = function(Limit,Offset){
             if(Limit) limit = "&limit=" + Number(Limit);
-            else limit="";
+            else Limit="";
             if(Offset) offset = "&offset=" + Number(Offset);
-            else offset="";
+            else Offset="";
             refresh();
         };
 
