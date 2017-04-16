@@ -18,6 +18,9 @@ angular
 
         $scope.addEstablishment = function() {
             $scope.newEstablishment.year=Number($scope.newEstablishment.year);
+            $scope.newEstablishment.number=Number($scope.newEstablishment.number);
+            $scope.newEstablishment.beds=Number($scope.newEstablishment.beds);
+            $scope.newEstablishment.nights=Number($scope.newEstablishment.nights);
             $http
                 .post(url + "/establishments?" + apikey, $scope.newEstablishment)
                 .then(function(response) {
@@ -30,9 +33,30 @@ angular
             $http
                 .delete(url + "/establishments/" + country + "/" + year + "?" + apikey)
                 .then(function(response) {
-                    console.log("Contact deleted");
+                    console.log("Establishment deleted");
                     refresh();
                 });
+        };
+        
+        $scope.putEstablishment = function(country,year) {
+            $http
+                .put(url + "/establishments/" + country + "/" + year + "?" + apikey)
+                .then(function(response) {
+                    console.log("Establishment updated");
+                });
+        };
+        
+        $scope.fillFields = function(country, year) {
+            $http
+                .get(url + "/establishments/" + country + "/" + year + "?" + apikey)
+                .then(function(response) {
+                    $scope.establishments = response.data;
+                    delete $scope.establishments["_id"];
+                });
+        };
+        
+        $scope.clearResponseData = function() {
+            $scope.responseData="";
         };
 
         refresh();

@@ -42,10 +42,34 @@
                     <td>{{establishment.number}}</td>
                     <td>{{establishment.beds}}</td>
                     <td>{{establishment.nights}}</td>
-                    <td><button class="btn btn-danger" ng-click="deleteEstablishment(establishment.country, establishment.year)">Delete</button></td>
+                    <td><button class="btn btn-warning" ng-click="putEstablishment(establishment.country, establishment.year)">Update</button>
+                        <button class="btn btn-danger" ng-click="deleteEstablishment(establishment.country, establishment.year)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
+        <div id="updateModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" ng-click="clearResponseData()">&times;</button>
+                        <h4 class="modal-title">Update Establishments</h4>
+                    </div>
+                    <div class="modal-body">
+                        <pre>{{responseData}}</pre>
+                        <p><label class="fieldsname">Country<input class="from-control" ng-model="establishment.country" /></label></p>
+                        <p><label class="fieldsname">Year<input class="from-control" ng-model="establishment.year" /></label></p>
+                        <p><label class="fieldsname">Number<input class="from-control" ng-model="establishment.number" /></label></p>
+                        <p><label class="fieldsname">Beds<input class="from-control" ng-model="establishment.beds" /></label></p>
+                        <p><label class="fieldsname">Nights<input class="from-control" ng-model="establishment.nights" /></label></p>
+                        <p><button class="btn btn-warning" ng-click="updateEstablishment(establishment.country,establishment.year)"><span class="glyphicon glyphicon-pencil"></span> Update</button></p>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
     </div>
 </body>
 
