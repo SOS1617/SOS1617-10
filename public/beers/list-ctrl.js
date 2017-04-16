@@ -16,10 +16,20 @@ angular
                 .get(urlrequest)
                 .then(function(response) {
                     $scope.beers = response.data;
-                },function(response) {
-                    if (response.data=="Forbidden" || response.data=="Unauthorized"){
+                    document.getElementById("buttonLoad").className = "btn btn-info";
+                    document.getElementById("buttonAddModal").className = "btn btn-primary";
+                    document.getElementById("buttonDeleteAll").className = "btn btn-danger";
+                    document.getElementById("buttonFilter").className = "btn btn-info";
+                    document.getElementById("buttonClear").className = "btn btn-success";
+                }, function(response) {
+                    if (response.data == "Forbidden" || response.data == "Unauthorized") {
                         $scope.beers = [];
-                        bootbox.alert("Apikey incorrect. Check apikey")
+                        bootbox.alert("Apikey incorrect. Check apikey");
+                        document.getElementById("buttonLoad").className = "btn btn-info disabled";
+                        document.getElementById("buttonAddModal").className = "btn btn-primary disabled";
+                        document.getElementById("buttonDeleteAll").className = "btn btn-danger disabled";
+                        document.getElementById("buttonFilter").className = "btn btn-info disabled";
+                        document.getElementById("buttonClear").className = "btn btn-success disabled";
                     }
                 });
         }
@@ -28,10 +38,10 @@ angular
             $http
                 .post(url + "/beers-stats?" + apikey, $scope.newBeer)
                 .then(function(response) {
-                    $scope.responsedata=response.data;
+                    $scope.responsedata = response.data;
                     refresh();
-                },function(response){
-                    $scope.responsedata=response.data;
+                }, function(response) {
+                    $scope.responsedata = response.data;
                 });
 
         };
@@ -64,11 +74,11 @@ angular
         $scope.updateBeer = function(country, birthyear) {
             $scope.Beer.birthyear = Number($scope.Beer.birthyear);
             $http.put(url + "/beers-stats/" + country + "/" + Number(birthyear) + "?" + apikey, $scope.Beer).then(function(response) {
-                $scope.responsedata=response.data;
+                $scope.responsedata = response.data;
                 refresh();
 
             }, function(response) {
-                $scope.responsedata=response.data;
+                $scope.responsedata = response.data;
             });
         };
         $scope.deleteBeers = function() {
@@ -107,7 +117,6 @@ angular
         };
         $scope.sendapi = function() {
             apikey = "apikey=" + $scope.apikeyfield;
-            document.getElementById("buttonLoad").className = "btn btn-info";
             refresh();
         };
         $scope.filter = function(YearFrom, YearTo, Limit, Offset) {
@@ -150,10 +159,10 @@ angular
             refresh();
         };
         $scope.clearResponseData = function() {
-            $scope.responsedata="";
+            $scope.responsedata = "";
         };
-        $scope.load = function () {
-            $http.get(url + "/beers-stats/loadInitialData?"+apikey).then(function (response) {
+        $scope.load = function() {
+            $http.get(url + "/beers-stats/loadInitialData?" + apikey).then(function(response) {
                 bootbox.alert("Loaded");
                 refresh();
             });

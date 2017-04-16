@@ -96,17 +96,17 @@
                     <td><label>YearTo: <input class="from-control" ng-model="YearTo"/></label></td>
                     <td><label>Limit: <input class="from-control" ng-model="Limit"/></label></td>
                     <td><label>Offset: <input class="from-control" ng-model="Offset"/></label></td>
-                    <td><button class="btn btn-info" ng-click="filter(YearFrom,YearTo,Limit,Offset)"><span class="glyphicon glyphicon-search"></span> Filter</button>
-                        <button class="btn btn-success" ng-click="clearSearch()"><span class="glyphicon glyphicon-remove"></span> Clear</button></td>
+                    <td><button id="buttonFilter" class="btn btn-info disabled" ng-click="filter(YearFrom,YearTo,Limit,Offset)"><span class="glyphicon glyphicon-search"></span> Filter</button>
+                        <button id="buttonClear" class="btn btn-success disabled" ng-click="clearSearch()"><span class="glyphicon glyphicon-remove"></span> Clear</button></td>
                 </tr>
             </tbody>
         </table>
         
         <button id="buttonLoad" class="btn btn-info disabled" ng-click="load()"><span class="glyphicon glyphicon-import"></span>Load Initial Data</button>
         
-        <button id="buttonAddModal" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
+        <button id="buttonAddModal" class="btn btn-primary disabled" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
             
-        <button id="buttonDeleteAll" class="btn btn-danger" ng-click="deleteBeers()"><span class="glyphicon glyphicon-trash"></span> DeleteAll</button>
+        <button id="buttonDeleteAll" class="btn btn-danger disabled" ng-click="deleteBeers()"><span class="glyphicon glyphicon-trash"></span> DeleteAll</button>
         
         <table class="table" id="datatable">
             <thead>
