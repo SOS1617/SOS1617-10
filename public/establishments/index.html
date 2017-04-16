@@ -15,15 +15,26 @@
 
     <style type="text/css">
         #table,
-        #apikey, #search, #paginate{
+        #apikey,
+        #search,
+        #paginate {
             margin: 20px;
         }
+        
         #loadInitialData {
             margin-top: 50px;
             margin-left: 50px;
         }
+        
         h2 {
-            background: #008B8B;
+            background: rgb(99, 104, 207);
+            background: -moz-linear-gradient(top, rgb(99, 104, 207) 0%, rgb(0, 139, 139) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgb(99, 104, 207)), color-stop(100%, rgb(0, 139, 139)));
+            background: -webkit-linear-gradient(top, rgb(99, 104, 207) 0%, rgb(0, 139, 139) 100%);
+            background: -o-linear-gradient(top, rgb(99, 104, 207) 0%, rgb(0, 139, 139) 100%);
+            background: -ms-linear-gradient(top, rgb(99, 104, 207) 0%, rgb(0, 139, 139) 100%);
+            background: linear-gradient(to bottom, rgb(99, 104, 207) 0%, rgb(0, 139, 139) 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6368cf', endColorstr='#008b8b', GradientType=0);
             line-height: 2em;
             color: #f5f5f0;
             margin-bottom: 30px;
@@ -48,6 +59,7 @@
         ul {
             list-style-type: none;
         }
+        
         li {
             float: left;
         }
@@ -75,8 +87,8 @@
             </li>
             <li>
                 <div id="paginate">
-                    <label for="limit">Limit</label> <input class="form-control" ng-model="Limit"/>
-                    <label for="offset">Offset</label> <input class="form-control" ng-model="Offset"/>
+                    <label for="limit">Limit</label> <input class="form-control" ng-model="Limit" />
+                    <label for="offset">Offset</label> <input class="form-control" ng-model="Offset" />
                     <button id="Paginate" class="btn btn-default disabled" ng-click="paginate(Limit,Offset)"><span class="glyphicon glyphicon-th-list"></span> Paginate</button>
                 </div>
             </li>
