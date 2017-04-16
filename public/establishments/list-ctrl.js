@@ -17,6 +17,7 @@ angular
         }
 
         $scope.addEstablishment = function() {
+            $scope.newEstablishment.year=Number($scope.newEstablishment.year);
             $http
                 .post(url + "/establishments?" + apikey, $scope.newEstablishment)
                 .then(function(response) {
