@@ -47,7 +47,7 @@ angular
         };
         
         $scope.fillFields = function(country, year) {
-            $http
+            $scope.establishments = $http
                 .get(url + "/establishments/" + country + "/" + year + "?" + apikey)
                 .then(function(response) {
                     $scope.establishments = response.data;
