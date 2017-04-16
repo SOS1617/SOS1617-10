@@ -50,9 +50,9 @@ angular
             $http
                 .get(url + "/establishments/" + country + "/" + year + "?" + apikey)
                 .then(function(response) {
-                    console.log(response.data);
                     $scope.Establishment = response.data;
                     delete $scope.Establishment["_id"];
+                    console.log($scope.Establishment);
                 });
         };
         
