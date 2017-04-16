@@ -88,6 +88,7 @@ angular
         
         $scope.setApikey = function() {
             apikey = "apikey=" + $scope.Apikey;
+            document.getElementById("Search").className = "btn btn-info active";
             refresh();
         };
         
