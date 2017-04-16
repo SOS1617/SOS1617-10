@@ -79,17 +79,17 @@ angular
         
         $scope.search = function(fromYear,toYear){
             if (fromYear) from = "&from=" + Number(fromYear);
-            else fromYear="";
+            else from="";
             if (toYear) to = "&to=" + Number(toYear);
-            else toYear="";
+            else to="";
             refresh();
         };
         
         $scope.paginate = function(Limit,Offset){
             if(Limit) limit = "&limit=" + Number(Limit);
-            else Limit="";
+            else limit="";
             if(Offset) offset = "&offset=" + Number(Offset);
-            else Offset="";
+            else offset="";
             refresh();
         };
 
