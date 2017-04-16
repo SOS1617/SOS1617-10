@@ -14,7 +14,7 @@
 
     <style type="text/css">
         #table,
-        #apikey {
+        #apikey, #search, #paginate {
             margin: 20px;
         }
         
@@ -73,7 +73,7 @@
                 <div id="paginate">
                     <label for="limit">Limit</label> <input class="form-control" ng-model="limit"/>
                     <label for="offset">Offset</label> <input class="form-control" ng-model="offset"/>
-                    <button class="btn btn-default" ng-click="paginate(limit,offset)"><span class="glyphicon glyphicon-th-list"></span>Paginate</button>
+                    <button class="btn btn-default" ng-click="paginate(limit,offset)"><span class="glyphicon glyphicon-th-list"></span> Paginate</button>
                 </div>
             </li>
         </ul>
