@@ -47,13 +47,13 @@ angular
         };
         
         $scope.fillFields = function(country, year) {
-            $http
+            $scope.Establishment = $http
                 .get(url + "/establishments/" + country + "/" + year + "?" + apikey)
                 .then(function(response) {
                     $scope.Establishment = response.data[0];
                     delete $scope.Establishment["_id"];
                     console.log($scope.Establishment);
-                });
+                })[0];
         };
         
         $scope.clearResponseData = function() {
