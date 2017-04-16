@@ -3,7 +3,7 @@ angular
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyección de dependencia
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v1";
-        var apikey = "apikey=nurtrioje";
+        var apikey = "";
 
         function refresh() {
             $http
@@ -44,7 +44,7 @@ angular
                 .then(function(response) {
                     console.log("All establishments deleted");
                     refresh();
-                })
+                });
         };
 
         $scope.putEstablishment = function(country, year) {
@@ -69,6 +69,11 @@ angular
 
         $scope.clearResponseData = function() {
             $scope.responseData = "";
+        };
+        
+        $scope.setApikey = function() {
+            apikey = "apikey=" + $scope.Apikey;
+            refresh();
         };
 
         refresh();
