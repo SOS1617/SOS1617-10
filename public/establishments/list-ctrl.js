@@ -3,13 +3,15 @@ angular
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyección de dependencia
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v1";
-        var apikey="";
-        var from="";
-        var to="";
+        var apikey;
+        var from;
+        var to;
+        var limit;
+        var offset;
 
         function refresh() {
             $http
-                .get(url + "/establishments?" + apikey + from + to)
+                .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
                     console.log("carga establishments");
@@ -83,6 +85,14 @@ angular
             else fromYear="";
             if (toYear) to = "&to=" + Number(toYear);
             else toYear="";
+            refresh();
+        };
+        
+        $scope.paginate = function(Limit,Offset){
+            if(Limit) limit = "&limit=" + Number(Limit);
+            else limit="";
+            if(Offset) offset = "&offset=" + Number(Offset);
+            else offset="";
             refresh();
         };
 
