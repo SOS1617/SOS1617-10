@@ -22,17 +22,17 @@ angular
                 .then(function(response) {
                     console.log("Establishment added");
                     refresh();
-                })
-        }
+                });
+        };
 
         $scope.deleteEstablishment = function(country, year) {
             $http
-                .delete("/establishments/" + country + year + "?" + apikey)
+                .delete("/establishments/" + country + "/" + year + "?" + apikey)
                 .then(function(response) {
                     console.log("Contact deleted");
                     refresh();
-                })
-        }
+                });
+        };
 
         refresh();
 
