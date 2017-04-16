@@ -43,6 +43,10 @@
             position: absolute;
             right: 30px;
         }
+        #buttonLoad{
+            position: absolute;
+            right:250px;
+        }
         
         table {
             margin-top: 20px;
@@ -97,11 +101,13 @@
                 </tr>
             </tbody>
         </table>
-
+        
+        <button id="buttonLoad" class="btn btn-info" ng-click="load()">Load Initial Data</button>
+        
         <button id="buttonAddModal" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
-
+            
         <button id="buttonDeleteAll" class="btn btn-danger" ng-click="deleteBeers()"><span class="glyphicon glyphicon-trash"></span> DeleteAll</button>
-
+        
         <table class="table" id="datatable">
             <thead>
                 <tr>

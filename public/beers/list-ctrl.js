@@ -151,5 +151,9 @@ angular
         $scope.clearResponseData = function() {
             $scope.responsedata="";
         };
-
+        $scope.load = function () {
+            $http.get(url + "/beers-stats/loadInitialData").then(function (response) {
+                bootbox.alert("Loaded");
+            });
+        };
     }]);
