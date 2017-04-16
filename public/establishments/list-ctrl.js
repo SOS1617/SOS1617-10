@@ -43,6 +43,7 @@ angular
                 .put(url + "/establishments/" + country + "/" + Number(year) + "?" + apikey, $scope.Establishment)
                 .then(function(response) {
                     console.log("Establishment updated");
+                    refresh();
                 });
         };
         
