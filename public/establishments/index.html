@@ -77,12 +77,12 @@
                 <div id="paginate">
                     <label for="limit">Limit</label> <input class="form-control" ng-model="Limit"/>
                     <label for="offset">Offset</label> <input class="form-control" ng-model="Offset"/>
-                    <button class="btn btn-default" ng-click="paginate(Limit,Offset)"><span class="glyphicon glyphicon-th-list"></span> Paginate</button>
+                    <button id="Paginate" class="btn btn-default disabled" ng-click="paginate(Limit,Offset)"><span class="glyphicon glyphicon-th-list"></span> Paginate</button>
                 </div>
             </li>
             <li>
                 <div id="loadInitialData">
-                    <button class="btn btn-success btn-lg" ng-click="loadData()"><span class="glyphicon glyphicon-floppy-open"></span> Load data</button>
+                    <button id="Load" class="btn btn-success btn-lg disabled" ng-click="loadData()"><span class="glyphicon glyphicon-floppy-open"></span> Load data</button>
                 </div>
             </li>
         </ul>
@@ -106,8 +106,8 @@
                         <td><input class="form-control" ng-model="newEstablishment.beds" /></td>
                         <td><input class="form-control" ng-model="newEstablishment.nights" /></td>
                         <td>
-                            <button class="btn btn-primary" ng-click="addEstablishment()"><span class="glyphicon glyphicon-plus"></span> Add</button>
-                            <button class="btn btn-danger" ng-click="deleteAllEstablishments()"><span class="glyphicon glyphicon-trash"></span> Delete all</button>
+                            <button id="Add" class="btn btn-primary disabled" ng-click="addEstablishment()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                            <button id="Delete" class="btn btn-danger disabled" ng-click="deleteAllEstablishments()"><span class="glyphicon glyphicon-trash"></span> Delete all</button>
                         </td>
                     </tr>
                     <tr ng-repeat="establishment in establishments">

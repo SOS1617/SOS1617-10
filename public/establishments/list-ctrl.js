@@ -14,18 +14,23 @@ angular
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
-                }, function(err){
-                    if(err.data == "Unauthorized" || err.data == "Forbidden"){
+                }, function(err) {
+                    if (err.data == "Unauthorized" || err.data == "Forbidden") {
                         $scope.establishments = [];
+                        document.getElementById("Search").className = "btn btn-info disabled";
+                        document.getElementById("Paginate").className = "btn btn-default disabled";
+                        document.getElementById("Load").className = "btn btn-success btn-lg disabled";
+                        document.getElementById("Add").className = "btn btn-primary disabled";
+                        document.getElementById("Delete").className = "btn btn-danger disabled";
                         bootbox.alert("Incorrect apikey. Check apikey");
                     }
                 });
         }
-        
+
         $scope.loadData = function() {
             $http
                 .get(url + "/establishments/loadInitialData?" + apikey)
-                .then(function(response){
+                .then(function(response) {
                     console.log(response.data);
                     refresh();
                 });
@@ -85,26 +90,30 @@ angular
         $scope.clearResponseData = function() {
             $scope.responseData = "";
         };
-        
+
         $scope.setApikey = function() {
             apikey = "apikey=" + $scope.Apikey;
             document.getElementById("Search").className = "btn btn-info active";
+            document.getElementById("Paginate").className = "btn btn-default active";
+            document.getElementById("Load").className = "btn btn-success btn-lg active";
+            document.getElementById("Add").className = "btn btn-primary active";
+            document.getElementById("Delete").className = "btn btn-danger active";
             refresh();
         };
-        
-        $scope.search = function(fromYear,toYear){
+
+        $scope.search = function(fromYear, toYear) {
             if (fromYear) from = "&from=" + Number(fromYear);
-            else from="";
+            else from = "";
             if (toYear) to = "&to=" + Number(toYear);
-            else to="";
+            else to = "";
             refresh();
         };
-        
-        $scope.paginate = function(Limit,Offset){
-            if(Limit) limit = "&limit=" + Number(Limit);
-            else limit="";
-            if(Offset) offset = "&offset=" + Number(Offset);
-            else offset="";
+
+        $scope.paginate = function(Limit, Offset) {
+            if (Limit) limit = "&limit=" + Number(Limit);
+            else limit = "";
+            if (Offset) offset = "&offset=" + Number(Offset);
+            else offset = "";
             refresh();
         };
 
