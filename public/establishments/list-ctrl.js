@@ -11,16 +11,16 @@ angular
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
                     console.log("carga establishments");
-                },function(response){
+                }, function(response) {
                     console.log("no carga");
                 });
         }
 
         $scope.addEstablishment = function() {
-            $scope.newEstablishment.year=Number($scope.newEstablishment.year);
-            $scope.newEstablishment.number=Number($scope.newEstablishment.number);
-            $scope.newEstablishment.beds=Number($scope.newEstablishment.beds);
-            $scope.newEstablishment.nights=Number($scope.newEstablishment.nights);
+            $scope.newEstablishment.year = Number($scope.newEstablishment.year);
+            $scope.newEstablishment.number = Number($scope.newEstablishment.number);
+            $scope.newEstablishment.beds = Number($scope.newEstablishment.beds);
+            $scope.newEstablishment.nights = Number($scope.newEstablishment.nights);
             $http
                 .post(url + "/establishments?" + apikey, $scope.newEstablishment)
                 .then(function(response) {
@@ -37,8 +37,17 @@ angular
                     refresh();
                 });
         };
-        
-        $scope.putEstablishment = function(country,year) {
+
+        $scope.deleteAllEstablishments = function() {
+            $http
+                .delete(url + "/establishments?" + apikey)
+                .then(function(response) {
+                    console.log("All establishments deleted");
+                    refresh();
+                })
+        };
+
+        $scope.putEstablishment = function(country, year) {
             $http
                 .put(url + "/establishments/" + country + "/" + Number(year) + "?" + apikey, $scope.Establishment)
                 .then(function(response) {
@@ -46,9 +55,9 @@ angular
                     refresh();
                 });
         };
-        
+
         $scope.fillFields = function(country, year) {
-            $scope.Establishment= $http
+            $scope.Establishment = $http
                 .get(url + "/establishments/" + country + "/" + year + "?" + apikey)
                 .then(function(response) {
                     $scope.Establishment = response.data[0];
@@ -56,9 +65,9 @@ angular
                     console.log($scope.Establishment);
                 })[0];
         };
-        
+
         $scope.clearResponseData = function() {
-            $scope.responseData="";
+            $scope.responseData = "";
         };
 
         refresh();
