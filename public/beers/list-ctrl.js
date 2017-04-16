@@ -154,6 +154,7 @@ angular
         $scope.load = function () {
             $http.get(url + "/beers-stats/loadInitialData").then(function (response) {
                 bootbox.alert("Loaded");
+                refresh();
             });
         };
     }]);
