@@ -93,6 +93,4 @@ angular
             refresh();
         };
 
-        refresh();
-
     }]);
