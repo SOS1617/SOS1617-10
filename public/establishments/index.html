@@ -14,7 +14,10 @@
     
     <style type="text/css">
         table {
-            margin: 10px;
+            margin: 30px;
+        }
+        input {
+            width:180px;
         }
         h2 {
             background: #008B8B;
@@ -33,7 +36,6 @@
             text-align: center;
         }
         .modal-body label { 
-             
             width: 210px; 
             text-align: left; 
         }
@@ -56,11 +58,11 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input class="form-control" ng-model="newEstablishment.country" /></td>
-                    <td><input class="form-control" ng-model="newEstablishment.year" /></td>
-                    <td><input class="form-control" ng-model="newEstablishment.number" /></td>
-                    <td><input class="form-control" ng-model="newEstablishment.beds" /></td>
-                    <td><input class="form-control" ng-model="newEstablishment.nights" /></td>
+                    <td><input id="addInput" class="form-control" ng-model="newEstablishment.country" /></td>
+                    <td><input id="addInput" class="form-control" ng-model="newEstablishment.year" /></td>
+                    <td><input id="addInput" class="form-control" ng-model="newEstablishment.number" /></td>
+                    <td><input id="addInput" class="form-control" ng-model="newEstablishment.beds" /></td>
+                    <td><input id="addInput" class="form-control" ng-model="newEstablishment.nights" /></td>
                     <td>
                         <button class="btn btn-primary" ng-click="addEstablishment()"><span class="glyphicon glyphicon-plus"></span> Add</button>
                         <button class="btn btn-danger" ng-click="deleteAllEstablishments()"><span class="glyphicon glyphicon-trash"></span> Delete all</button>
