@@ -27,7 +27,7 @@ angular
 
         $scope.deleteEstablishment = function(country, year) {
             $http
-                .delete("/establishments/" + country + "/" + year + "?" + apikey)
+                .delete(url + "/establishments/" + country + "/" + year + "?" + apikey)
                 .then(function(response) {
                     console.log("Contact deleted");
                     refresh();
