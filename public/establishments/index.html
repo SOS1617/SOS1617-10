@@ -13,7 +13,7 @@
     <script type="text/javascript" src="/establishments/list-ctrl.js"></script>
 
     <style type="text/css">
-        button {
+        #deleteButton {
             position: absolute;
             right: 30px;
         }
@@ -67,7 +67,7 @@
                     <td class="col-xs-2"><input class="form-control" ng-model="newEstablishment.nights" /></td>
                     <td>
                         <button class="btn btn-primary" ng-click="addEstablishment()"><span class="glyphicon glyphicon-plus"></span> Add</button>
-                        <button class="btn btn-danger" ng-click="deleteAllEstablishments()"><span class="glyphicon glyphicon-trash"></span> Delete all</button>
+                        <button id="deleteButton" class="btn btn-danger" ng-click="deleteAllEstablishments()"><span class="glyphicon glyphicon-trash"></span> Delete all</button>
                     </td>
                 </tr>
                 <tr ng-repeat="establishment in establishments">
@@ -78,7 +78,7 @@
                     <td>{{establishment.nights}}</td>
                     <td>
                         <button class="btn btn-warning" ng-click="fillFields(establishment.country, establishment.year)" data-toggle="modal" data-target="#updateModal"><span class="glyphicon glyphicon-pencil"></span> Update</button>
-                        <button class="btn btn-danger" ng-click="deleteEstablishment(establishment.country, establishment.year)"><span class="glyphicon glyphicon-erase"></span> Delete</button>
+                        <button id="deleteButton" class="btn btn-danger" ng-click="deleteEstablishment(establishment.country, establishment.year)"><span class="glyphicon glyphicon-erase"></span> Delete</button>
                     </td>
                 </tr>
             </tbody>
