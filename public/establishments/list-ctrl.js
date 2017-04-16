@@ -79,8 +79,11 @@ angular
         };
         
         $scope.search = function(fromYear,toYear){
-            if(fromYear) {from = "&from=" + Number(fromYear)};
-            if(toYear) {to = "&to=" + Number(toYear)};
+            if(fromYear) from = "&from=" + Number(fromYear);
+            else fromYear="";
+            if(toYear) to = "&to=" + Number(toYear);
+            else toYear="";
+            refresh();
         };
 
         refresh();
