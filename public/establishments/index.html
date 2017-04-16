@@ -16,6 +16,9 @@
         table {
             margin: 40px;
         }
+        #deleteButton {
+            right:30px;
+        }
         h2 {
             background: #008B8B;
             line-height: 2em;
@@ -32,7 +35,7 @@
             text-align: center;
         }
         .modal-body label { 
-            display: inline-block; 
+             
             width: 210px; 
             text-align: left; 
         }
@@ -61,8 +64,8 @@
                     <td><input class="form-control" ng-model="newEstablishment.beds" /></td>
                     <td><input class="form-control" ng-model="newEstablishment.nights" /></td>
                     <td>
-                        <button class="btn btn-primary" ng-click="addEstablishment()"><span class="glyphicon glyphicon-plus"></span>Add</button>
-                        <button class="btn btn-danger" ng-click="deleteAllEstablishments()"><span class="glyphicon glyphicon-trash"></span>Delete all</button>
+                        <button class="btn btn-primary" ng-click="addEstablishment()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                        <button id="deleteButton" class="btn btn-danger" ng-click="deleteAllEstablishments()"><span class="glyphicon glyphicon-trash"></span> Delete all</button>
                     </td>
                 </tr>
                 <tr ng-repeat="establishment in establishments">
@@ -72,8 +75,8 @@
                     <td>{{establishment.beds}}</td>
                     <td>{{establishment.nights}}</td>
                     <td>
-                        <button class="btn btn-warning" ng-click="fillFields(establishment.country, establishment.year)" data-toggle="modal" data-target="#updateModal"><span class="glyphicon glyphicon-pencil"></span>Update</button>
-                        <button class="btn btn-danger" ng-click="deleteEstablishment(establishment.country, establishment.year)"><span class="glyphicon glyphicon-erase"></span>Delete</button>
+                        <button class="btn btn-warning" ng-click="fillFields(establishment.country, establishment.year)" data-toggle="modal" data-target="#updateModal"><span class="glyphicon glyphicon-pencil"></span> Update</button>
+                        <button id="deleteButton" class="btn btn-danger" ng-click="deleteEstablishment(establishment.country, establishment.year)"><span class="glyphicon glyphicon-erase"></span> Delete</button>
                     </td>
                 </tr>
             </tbody>
