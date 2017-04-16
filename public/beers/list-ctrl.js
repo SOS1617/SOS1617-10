@@ -107,6 +107,7 @@ angular
         };
         $scope.sendapi = function() {
             apikey = "apikey=" + $scope.apikeyfield;
+            document.getElementById("buttonLoad").className = "btn btn-info";
             refresh();
         };
         $scope.filter = function(YearFrom, YearTo, Limit, Offset) {
