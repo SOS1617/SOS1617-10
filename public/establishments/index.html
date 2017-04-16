@@ -17,8 +17,9 @@
         #apikey {
             margin: 20px;
         }
+        
         #apikey {
-            float:left;
+            float: left;
         }
         
         h2 {
@@ -43,6 +44,10 @@
             width: 210px;
             text-align: left;
         }
+        
+        ul {
+            list-style-type: none;
+        }
     </style>
 </head>
 
@@ -51,15 +56,21 @@
         <div>
             <h2>Establishments</h2>
         </div>
-        <div id="apikey">
-            <label for="apikey">Apikey</label> <input class="from-control" ng-model="Apikey" />
-            <button class="btn btn-primary" ng-click="setApikey()"><span class="glyphicon glyphicon-ok"></span> Access</button>
-        </div>
-        <div id="search">
-            <label for="from">From year</label> <input class="form-control" ng-model="fromYear" />
-            <label for="to">To year</label> <input class="form-control" ng-model="toYear" />
-            <button class="btn btn-info" ng-click="search(fromYear,toYear)"><span class="glyphicon glyphicon-search"></span> Search</button>
-        </div>
+        <ul>
+            <li>
+                <div id="apikey">
+                    <label for="apikey">Apikey</label> <input class="from-control" ng-model="Apikey" />
+                    <button class="btn btn-primary" ng-click="setApikey()"><span class="glyphicon glyphicon-ok"></span> Access</button>
+                </div>
+            </li>
+            <li>
+                <div id="search">
+                    <label for="from">From year</label> <input class="form-control" ng-model="fromYear" />
+                    <label for="to">To year</label> <input class="form-control" ng-model="toYear" />
+                    <button class="btn btn-info" ng-click="search(fromYear,toYear)"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </li>
+        </ul>
         <div id="table">
             <table class="table">
                 <thead>
