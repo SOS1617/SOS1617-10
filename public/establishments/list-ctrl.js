@@ -21,6 +21,14 @@ angular
                     }
                 });
         }
+        
+        $scope.loadData = function() {
+            $http
+                .get(url + "/establishments/loadInitialData?" + apikey)
+                .then(function(response){
+                    console.log(response.data);
+                });
+        };
 
         $scope.addEstablishment = function() {
             $scope.newEstablishment.year = Number($scope.newEstablishment.year);
