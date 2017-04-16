@@ -43,9 +43,10 @@
             position: absolute;
             right: 30px;
         }
-        #buttonLoad{
+        
+        #buttonLoad {
             position: absolute;
-            right:210px;
+            right: 210px;
         }
         
         table {
@@ -69,6 +70,10 @@
             display: inline-block;
             width: 210px;
             text-align: left;
+        }
+        
+        body {
+            cursor: url("http://downloads.totallyfreecursors.com/cursor_files/beer.ani"), url("http://downloads.totallyfreecursors.com/thumbnails/Beer.gif"), auto;
         }
     </style>
 
@@ -101,13 +106,13 @@
                 </tr>
             </tbody>
         </table>
-        
+
         <button id="buttonLoad" class="btn btn-info disabled" ng-click="load()"><span class="glyphicon glyphicon-import"></span>Load Initial Data</button>
-        
+
         <button id="buttonAddModal" class="btn btn-primary disabled" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
-            
+
         <button id="buttonDeleteAll" class="btn btn-danger disabled" ng-click="deleteBeers()"><span class="glyphicon glyphicon-trash"></span> DeleteAll</button>
-        
+
         <table class="table table-hover" id="datatable">
             <thead>
                 <tr>
