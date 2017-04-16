@@ -18,6 +18,7 @@ angular
                     $scope.beers = response.data;
                 },function(response) {
                     if (response.data=="Forbidden" || response.data=="Unauthorized"){
+                        $scope.beers = [];
                         bootbox.alert("Apikey incorrect. Check apikey")
                     }
                 });
