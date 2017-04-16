@@ -3,11 +3,11 @@ angular
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyección de dependencia
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v1";
-        var apikey;
-        var from;
-        var to;
-        var limit;
-        var offset;
+        var apikey = "";
+        var from = "";
+        var to = "";
+        var limit = "";
+        var offset = "";
 
         function refresh() {
             $http
