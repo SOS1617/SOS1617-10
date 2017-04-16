@@ -44,7 +44,7 @@
         ul {
             list-style-type: none;
         }
-        li {
+        li,#from {
             float: left;
         }
     </style>
@@ -64,7 +64,7 @@
             </li>
             <li>
                 <div id="search">
-                    <label for="from">From year</label> <input class="form-control" ng-model="fromYear" />
+                    <label id="from" for="from">From year</label> <input class="form-control" ng-model="fromYear" />
                     <label for="to">To year</label> <input class="form-control" ng-model="toYear" />
                     <button class="btn btn-info" ng-click="search(fromYear,toYear)"><span class="glyphicon glyphicon-search"></span> Search</button>
                 </div>
