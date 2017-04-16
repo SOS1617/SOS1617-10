@@ -27,6 +27,7 @@ angular
                 .get(url + "/establishments/loadInitialData?" + apikey)
                 .then(function(response){
                     console.log(response.data);
+                    refresh();
                 });
         };
 
