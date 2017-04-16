@@ -10,6 +10,9 @@ angular
                 .get(url + "/establishments?" + apikey)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
+                    console.log("carga establishments");
+                },function(response){
+                    console.log("no carga");
                 });
         }
 
