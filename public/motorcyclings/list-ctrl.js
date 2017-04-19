@@ -24,10 +24,6 @@ angular
     };
         
     $scope.addMotorcycling = function(){
-        $scope.newMotorcycling.country = String($scope.newMotorcycling.country);
-        $scope.newMotorcycling.year = Number($scope.newMotorcycling.year);
-        $scope.newMotorcycling.pilot = String($scope.newMotorcycling.pilot);
-        $scope.newMotorcycling.team = String($scope.newMotorcycling.team);
         $http
             .post(url + "/motorcycling-stats?" + apikey, $scope.newMotorcycling)
             .then(function(response){
