@@ -68,5 +68,5 @@ angular
                 console.log($scope.Motorcycling);
             });
     };
-
+ refresh();
 }]);
