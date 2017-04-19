@@ -11,7 +11,7 @@ angular
     
     function refresh(){
         $http
-            .get(url + "motorcycling-stats/?" + apikey + from + to + limit + offset)
+            .get(url + "/motorcycling-stats/?" + apikey + from + to + limit + offset)
             .then(function(response){
                 $scope.motorcyclings = response.data;
             }, function(err) {
