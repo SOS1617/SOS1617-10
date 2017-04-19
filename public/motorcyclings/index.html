@@ -180,7 +180,9 @@ h2 a {
                          <td><input class="form-control" ng-model="newMotorcycling.pilot"/></td>
                          <td><input class="form-control" ng-model="newMotorcycling.team"/></td>
                          <td><button class="button btn-primary" ng-click="addMotorcycling()">Add</button>
-                         <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button></td>
+                         <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button>
+                         <button class="btn btn-warning" ng-click="putMotorcycling(motorcycling.country, motorcycling.year)">Update</button></td>
+                         
                      </tr>
                      <tr ng-repeat = "motorcycling in motorcyclings">
                          <td>{{motorcycling.country}}</td>
@@ -188,7 +190,6 @@ h2 a {
                          <td>{{motorcycling.pilot}}</td>
                          <td>{{motorcycling.team}}</td>
                          <td>
-                            <button class="btn btn-warning" ng-click="putMotorcycling(motorcycling.country, motorcycling.year)">Update</button>
                             <button class="btn btn-danger" ng-click="deleteMotorcycling(motorcycling.country, motorcycling.year)">Delete</button>
                         </td>
                      </tr>
