@@ -3,11 +3,7 @@ angular
 .controller("ListCtrl",["$scope","$http",function($scope,$http){
     console.log("Controller initialized (splited right)");
     var url = "http://sos1617-10.herokuapp.com/api/v1";
-    var apikey = "davbotcab";
-    var from = "";
-    var to = "";
-    var limit = "";
-    var offset = "";
+    var apikey = "";
     
     function refresh(){
         $http
