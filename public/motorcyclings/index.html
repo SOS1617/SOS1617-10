@@ -21,6 +21,10 @@
                 <input id="apikey" class="from-control"/>
                 <button class="button btn-primary" ng-click="setApikey()">Access</button>
             </div>
+            <div id="loadInitialData">
+                <button class="btn btn-success btn-lg disabled" ng-click="loadInitialData()">Load data</button>
+            </div>
+            
              <table class = "table">
                  <thead>
                      <tr>
@@ -37,13 +41,19 @@
                          <td><input class="form-control" ng-model="newMotorcycling.year"/></td>
                          <td><input class="form-control" ng-model="newMotorcycling.pilot"/></td>
                          <td><input class="form-control" ng-model="newMotorcycling.team"/></td>
-                         <td><button class="button btn-primary" ng-click="addMotorcycling()">Add</button></td>
+                         <td><button class="button btn-primary" ng-click="addMotorcycling()">Add</button>
+                         <button class="btn btn-danger disabled" ng-click="deleteAllMotorcyclings()">Delete all</button>
+                         </td>
                      </tr>
                      <tr ng-repeat = "motorcycling in motorcyclings">
                          <td>{{motorcycling.country}}</td>
                          <td>{{motorcycling.year}}</td>
                          <td>{{motorcycling.pilot}}</td>
                          <td>{{motorcycling.team}}</td>
+                         <td>
+                            <button class="btn btn-warning" ng-click="fillFields(motorcycling.country, motorcycling.year)">Update</button>
+                            <button class="btn btn-danger" ng-click="deleteMotorcycling(motorcycling.country, motorcycling.year)">Delete</button>
+                        </td>
                      </tr>
                  </tbody>
              </table>
