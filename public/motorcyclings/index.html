@@ -136,10 +136,21 @@ h2 a {
 <body> 
     <div ng-controller="ListCtrl">
         <h2>Motorcycling</h2>
-            <div id="loadInitialData">
-                <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
-            </div>
-             <table class="container">
+          <div id="apikey">
+                <input type="text" name="" ng-model="apikey"/>
+                <button class="btn btn-success" ng-click="sendapi()">Access/button>
+          </div>
+          <div id="filter">
+              <input type="text" name="" ng-model="filter"/>
+              <input type="text" name="" ng-model="filter"/>
+              <input type="text" name="" ng-model="filter"/>
+              <input type="text" name="" ng-model="filter"/>
+              <button class="btn btn-success" ng-click="filter()">Filtrar/button>
+          </div>
+          <div id="loadInitialData">
+              <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
+          </div>
+           <table class="container">
   <thead>
     <tr>
       <th>
