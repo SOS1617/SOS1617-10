@@ -67,7 +67,7 @@ angular
     };
     
     $scope.sendapi = function() {
-        apikey = "apikey=" + $scope.apikeyfield;
+        apikey = "apikey=" + $scope.apikey;
         refresh();
     };
     
