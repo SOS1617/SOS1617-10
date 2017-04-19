@@ -69,10 +69,6 @@ angular
                 console.log($scope.Motorcycling);
             });
     };
-    
-    $scope.clearResponseData = function() {
-        $scope.responseData = "";
-    };
 
     $scope.setApikey = function() {
         apikey = "apikey=" + $scope.Apikey;
