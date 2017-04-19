@@ -60,13 +60,5 @@ angular
             });
     };
     
-    $scope.fillFields = function(country, year) {
-        $scope.Establishment = $http
-            .get(url + "/motorcycling-stats/" + country + "/" + year + "?apikey=davbotcab")
-            .then(function(response) {
-                $scope.Motorcycling = response.data;
-                console.log($scope.Motorcycling);
-            });
-    };
  refresh();
 }]);
