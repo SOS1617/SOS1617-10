@@ -51,6 +51,7 @@ angular
     };
     
     $scope.putMotorcycling = function(){
+    $scope.newMotorcycling.year=Number( $scope.newMotorcycling.year);
         $http
             .put(url +"/motorcycling-stats/"+ $scope.newMotorcycling.country + "/" +  $scope.newMotorcycling.year + "?apikey=davbotcab", $scope.newMotorcycling )
             .then(function(response){
