@@ -17,8 +17,6 @@ angular
             }, function(err) {
                     if (err.data == "Unauthorized" || err.data == "Forbidden") {
                         $scope.establishments = [];
-                        document.getElementById("Search").className = "btn btn-info disabled";
-                        document.getElementById("Paginate").className = "btn btn-default disabled";
                         document.getElementById("Load").className = "btn btn-success btn-lg disabled";
                         document.getElementById("Add").className = "btn btn-primary disabled";
                         document.getElementById("Delete").className = "btn btn-danger disabled";
