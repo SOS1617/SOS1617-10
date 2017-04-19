@@ -40,8 +40,10 @@ angular
                 .then(function(response) {
                     $scope.responsedata = response.data;
                     refresh();
+                    $scope.newBeer="";
                 }, function(response) {
                     $scope.responsedata = response.data;
+                    $scope.newBeer="";
                 });
 
         };
