@@ -10,14 +10,6 @@ angular
             .get(url + "/motorcycling-stats/?" + apikey)
             .then(function(response){
                 $scope.motorcyclings = response.data;
-            }, function(err) {
-                    if (err.data == "Unauthorized" || err.data == "Forbidden") {
-                        $scope.establishments = [];
-                        document.getElementById("Load").className = "btn btn-success btn-lg disabled";
-                        document.getElementById("Add").className = "btn btn-primary disabled";
-                        document.getElementById("Delete").className = "btn btn-danger disabled";
-                        bootbox.alert("Incorrect apikey. Check apikey");
-                    }
             });
     }
 
@@ -32,6 +24,10 @@ angular
     };
         
     $scope.addMotorcycling = function(){
+        $scope.newMotorcycling.country = String($scope.newMotorcycling.country);
+        $scope.newMotorcycling.year = Number($scope.newMotorcycling.year);
+        $scope.newMotorcycling.pilot = String($scope.newMotorcycling.pilot);
+        $scope.newMotorcycling.team = String($scope.newMotorcycling.team);
         $http
             .post(url + "/motorcycling-stats?" + apikey, $scope.newMotorcycling)
             .then(function(response){
