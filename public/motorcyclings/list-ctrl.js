@@ -50,14 +50,9 @@ angular
             });
     };
     
-    $scope.putMotorcycling = function(data) {
+    $scope.putMotorcycling = function() {
         $http
-            .put(url + "/motorcycling-stats/" + data.country + "/" + data.year + "?apikey=davbotcab", {
-                country:data.country,
-                year:data.year,
-                pilot:data.pilot,
-                team:data.team
-            })
+            .put(url + "/motorcycling-stats/" + $scope.newPutMotorcycling.country + "/" + $scope.newPutMotorcycling.year + "?apikey=davbotcab", $scope.newPutMotorcycling)
             .then(function(response) {
                 console.log("Motorcycling updated");
                 refresh();
