@@ -151,10 +151,6 @@ h2 a {
 <body> 
     <div ng-controller="ListCtrl">
         <h2>Motorcycling</h2>
-            <div id="apikey">
-                <input id="apikey" class="from-control"/>
-                <button class="button btn-primary" ng-click="setApikey()">Access</button>
-            </div>
             <div id="loadInitialData">
                 <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
             </div>
@@ -181,7 +177,7 @@ h2 a {
                          <td><input class="form-control" ng-model="newMotorcycling.team"/></td>
                          <td><button class="button btn-primary" ng-click="addMotorcycling()">Add</button>
                          <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button>
-                         <button class="btn btn-warning" ng-click="putMotorcycling(motorcycling.country, motorcycling.year)">Update</button></td>
+                         <button class="btn btn-warning" ng-click="putMotorcycling()">Update</button></td>
                          
                      </tr>
                      <tr ng-repeat = "motorcycling in motorcyclings">
