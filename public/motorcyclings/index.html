@@ -1,96 +1,48 @@
 <!DOCTYPE html>
 <html ng-app="MotorcyclingsManagerApp">
-
+    
 <head>
-    <title>Motorcyclings App</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
-    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="/bower_components/bootbox.js/bootbox.js"></script>
+    <title>Motorcycling app</title>
 
-    <script type="text/javascript" src="/motorcyclings/motorcycling-manager-app.js"></script>
-    <script type="text/javascript" src="/motorcyclings/list-ctrl.js"></script>
+<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
+<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="/motorcyclings/motorcycling-manager-app.js"></script>
+<script type="text/javascript" src="/motorcyclings/list-ctrl.js"></script>
+<script type="text/javascript" src="/bower_components/bootbox.js/bootbox.js"></script>
 
-    
-</head>
-    
 
-<body>
+<body> 
     <div ng-controller="ListCtrl">
-        <div>
-            <h2>Motorcyclings</h2>
+        <h2>Motorcycling</h2>
+             <table class = "table">
+                 <thead>
+                     <tr>
+                         <th>Country</th>
+                         <th>Year</th>
+                         <th>Pilot</th>
+                         <th>Team</th>
+                         <th>Actions</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td><input class="form-control" ng-model="newMotorcycling.country"/></td>
+                         <td><input class="form-control" ng-model="newMotorcycling.year"/></td>
+                         <td><input class="form-control" ng-model="newMotorcycling.pilot"/></td>
+                         <td><input class="form-control" ng-model="newMotorcycling.team"/></td>
+                         <td><button class="button btn-primary" ng-click="addMotorcycling()">Add</button></td>
+                     </tr>
+                     <tr ng-repeat = "motorcycling in motorcyclings">
+                         <td>{{motorcycling.country}}</td>
+                         <td>{{motorcycling.year}}</td>
+                         <td>{{motorcycling.pilot}}</td>
+                         <td>{{motorcycling.team}}</td>
+                     </tr>
+                 </tbody>
+             </table>
         </div>
-        <ul>
-            <li>
-                <div id="apikey">
-                    <label for="apikey">Apikey</label> <input id="apikey" class="from-control" ng-model="Apikey" />
-                    <button class="btn btn-primary" ng-click="setApikey()"><span class="glyphicon glyphicon-ok"></span>Access</button>
-                </div>
-            </li>
-            <li>
-                <div id="loadInitialData">
-                    <button id="Load" class="btn btn-success btn-lg disabled" ng-click="loadInitialData()"><span class="glyphicon glyphicon-floppy-open"></span> Load Initial Data</button>
-                </div>
-            </li>
-        </ul>
-        <div id="table">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Country</th>
-                        <th>Year</th>
-                        <th>Pilot</th>
-                        <th>Team</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input class="form-control" ng-model="newMotorcycling.country" /></td>
-                        <td class="col-xs-1"><input class="form-control" ng-model="newMotorcycling.year" /></td>
-                        <td class="col-xs-2"><input class="form-control" ng-model="newMotorcycling.pilot" /></td>
-                        <td><input class="form-control" ng-model="newMotorcycling.team" /></td>
-                        <td>
-                            <button id="Add" class="btn btn-primary disabled" ng-click="addMotorcycling()"><span class="glyphicon glyphicon-plus"></span> Add</button>
-                            <button id="Delete" class="btn btn-danger disabled" ng-click="deleteAllMotorcyclings()"><span class="glyphicon glyphicon-trash"></span> Delete all</button>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="motorcycling in motorcyclings">
-                        <td>{{motorcycling.country}}</td>
-                        <td>{{motorcycling.year}}</td>
-                        <td>{{motorcycling.pilot}}</td>
-                        <td>{{motorcycling.team}}</td>
-                        <td>
-                            <button class="btn btn-warning" ng-click="fillFields(motorcycling.country, motorcycling.year)" data-toggle="modal" data-target="#updateModal"><span class="glyphicon glyphicon-pencil"></span> Update</button>
-                            <button class="btn btn-danger" ng-click="deleteEstablishment(motorcycling.country, motorcycling.year)"><span class="glyphicon glyphicon-erase"></span> Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="updateModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" ng-click="clearResponseData()">&times;</button>
-                        <h4 class="modal-title">Update Motorcyclings</h4>
-                    </div>
-                    <div class="modal-body">
-                        <pre>{{responseData}}</pre>
-                        <p><label class="fieldsname">Country<input class="from-control" ng-model="Motorcycling.country" /></label></p>
-                        <p><label class="fieldsname">Year<input class="from-control" ng-model="Motorcycling.year" /></label></p>
-                        <p><label class="fieldsname">Pilot<input class="from-control" ng-model="Motorcycling.pilot" /></label></p>
-                        <p><label class="fieldsname">Team<input class="from-control" ng-model="Motorcycling.team" /></label></p>
-                        <p><button class="btn btn-warning" ng-click="putEstablishment(Motorcycling.country,Motorcycling.year)"><span class="glyphicon glyphicon-pencil"></span> Update</button></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-
+    </body>
 </html>
