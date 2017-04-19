@@ -54,7 +54,6 @@ angular
         $http
             .put(url + "/motorcycling-stats/" + country + "/" + year + "?apikey=davbotcab", $scope.Motorcycling)
             .then(function(response) {
-                $scope.responseData = response.data;
                 console.log("Motorcycling updated");
                 refresh();
             });
