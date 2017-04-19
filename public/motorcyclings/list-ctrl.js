@@ -3,7 +3,7 @@ angular
 .controller("ListCtrl",["$scope","$http",function($scope,$http){
     console.log("Controller initialized (splited right)");
     var url = "http://sos1617-10.herokuapp.com/api/v1";
-    var apikey = "davbotcab";
+    var apikey = "";
     
     function refresh(){
         $http
@@ -67,6 +67,14 @@ angular
                 $scope.Motorcycling = response.data;
                 console.log($scope.Motorcycling);
             });
+    };
+
+    $scope.setApikey = function() {
+        apikey = "apikey=" + $scope.Apikey;
+        document.getElementById("Load").className = "btn btn-success btn-lg";
+        document.getElementById("Add").className = "btn btn-primary";
+        document.getElementById("Delete").className = "btn btn-danger";
+        refresh();
     };
 
 }]);
