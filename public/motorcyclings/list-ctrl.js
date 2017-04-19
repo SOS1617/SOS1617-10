@@ -18,7 +18,7 @@ angular
         $http
             .get(url + "/motorcycling-stats/loadInitialData?" + apikey)
             .then(function(response) {
-                console.log(response.data);
+                console.log("Carga inicial");
                 refresh();
             });
     };
