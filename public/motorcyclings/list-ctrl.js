@@ -52,7 +52,7 @@ angular
     
     $scope.putMotorcycling = function(){
         $http
-            .put(url +"/motorcycling-stats/"+ $scope.newPutMotorcycling.country + "/" +  $scope.newPutMotorcycling.year + "?apikey=davbotcab", $scope.newPutMotorcycling )
+            .put(url +"/motorcycling-stats/"+ $scope.newMotorcycling.country + "/" +  $scope.newMotorcycling.year + "?apikey=davbotcab", $scope.newMotorcycling )
             .then(function(response){
                 console.log("Motorcycling Updated");
                 refresh();
