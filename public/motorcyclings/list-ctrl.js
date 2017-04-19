@@ -3,21 +3,13 @@ angular
 .controller("ListCtrl",["$scope","$http",function($scope,$http){
     console.log("Controller initialized (splited right)");
     var url = "http://sos1617-10.herokuapp.com/api/v1";
-    var apikey = "";
+    var apikey = "davbotcab";
     
     function refresh(){
         $http
             .get(url + "/motorcycling-stats/?" + apikey)
             .then(function(response){
                 $scope.motorcyclings = response.data;
-            }, function(err) {
-                    if (err.data == "Unauthorized" || err.data == "Forbidden") {
-                        $scope.establishments = [];
-                        document.getElementById("Load").className = "btn btn-success btn-lg disabled";
-                        document.getElementById("Add").className = "btn btn-primary disabled";
-                        document.getElementById("Delete").className = "btn btn-danger disabled";
-                        bootbox.alert("Incorrect apikey. Check apikey");
-                    }
             });
     }
     
@@ -75,14 +67,6 @@ angular
                 $scope.Motorcycling = response.data;
                 console.log($scope.Motorcycling);
             });
-    };
-
-    $scope.setApikey = function() {
-        apikey = "apikey=" + $scope.Apikey;
-        document.getElementById("Load").className = "btn btn-success btn-lg";
-        document.getElementById("Add").className = "btn btn-primary";
-        document.getElementById("Delete").className = "btn btn-danger";
-        refresh();
     };
 
 }]);
