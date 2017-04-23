@@ -9,7 +9,7 @@ angular
         var size = 5;
         var limit = "&limit=" + size;
         var offset = "";
-        
+
 
         $scope.currentPage = 1;
         $scope.pages = [];
@@ -19,10 +19,10 @@ angular
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
-                    $scope.pages = [1..Math.floor(response.data.length/size)];
-                              if (response.data.length%size > 0){
-                                    $scope.pages = [1..$scope.pages + 1];
-                              }
+                    $scope.pages = range(1, Math.floor(response.data.length / size));
+                    if (response.data.length % size > 0) {
+                        $scope.pages = range(1, $scope.pages + 1);
+                    }
 
                 }, function(err) {
                     if (err.data == "Unauthorized" || err.data == "Forbidden") {
@@ -158,7 +158,7 @@ angular
             else limit = "";
             if (Offset) offset = "&offset=" + Number(Offset);
             else offset = "";
-            
+
             refresh();
         };
 
@@ -174,9 +174,17 @@ angular
             $(".active").removeClass("active");
             $("#Page" + $scope.currentPage).addClass("active");
 
-            offset = "&offset="+(($scope.currentPage * size) - size);
-            
+            offset = "&offset=" + (($scope.currentPage * size) - size);
+
             refresh();
         };
+
+        function range(start, end) {
+            var res = [];
+            for (var i = start; i <= end; i++) {
+                res.push(i);
+            }
+            return res;
+        }
 
     }]);
