@@ -23,6 +23,7 @@ angular
                     if (response.data.length % size > 0) {
                         $scope.pages = range(1, $scope.pages + 1);
                     }
+                    console.log($scope.pages)
 
                 }, function(err) {
                     if (err.data == "Unauthorized" || err.data == "Forbidden") {

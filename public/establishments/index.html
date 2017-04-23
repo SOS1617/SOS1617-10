@@ -146,7 +146,7 @@
                         <span class="page-link">Previous</span>
                     </li>
                     <li id="Page{{page}}" class="page-item" ng-class="{active: page == currentPage}" ng-repeat="page in pages" ng-click="setPage(page)">
-                        <span>{{page.num}}</span>
+                        <span>{{page}}</span>
                     </li>
                     <li id="nextPage" class="page-item" ng-disabled="currentPage >= pages.length" ng-click="setPage(currentPage + 1)">
                         <span class="page-link">Next</span>
