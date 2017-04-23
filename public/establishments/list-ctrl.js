@@ -26,11 +26,9 @@ angular
                 .get(url + "/establishments?" + apikey)
                 .then(function(response) {
                     console.log(response.data.length);
-                    console.log(Math.floor(response.data.length / size));
+                    console.log(Math.ceil(response.data.length / size));
                     $scope.pages = range(1, Math.floor(response.data.length / size));
-                    if (response.data.length % size > 0) {
-                        $scope.pages = range(1, $scope.pages + 1);
-                    }
+                    
                     console.log($scope.pages);
                 });
             $http
