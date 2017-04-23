@@ -6,14 +6,24 @@ angular
         var apikey = "";
         var from = "";
         var to = "";
-        var limit = "";
+        var size = 5;
+        var limit = "&limit=" + size;
         var offset = "";
+        
+
+        $scope.currentPage = 1;
+        $scope.pages = [];
 
         function refresh() {
             $http
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
+                    $scope.pages = [1..Math.floor(response.data.length/size)];
+                              if (response.data.length%size > 0){
+                                    $scope.pages = [1..$scope.pages + 1];
+                              }
+
                 }, function(err) {
                     if (err.data == "Unauthorized" || err.data == "Forbidden") {
                         $scope.establishments = [];
@@ -148,6 +158,24 @@ angular
             else limit = "";
             if (Offset) offset = "&offset=" + Number(Offset);
             else offset = "";
+            
+            refresh();
+        };
+
+        $scope.setPage = function(page) {
+            $scope.currentPage = page;
+
+            if (page == 1) $("#previousPage").addClass("disabled");
+            else $("#previousPage").removeClass("disabled");
+
+            if (page == $scope.pages.length) $("#nextPage").addClass("disabled");
+            else $("#nextPage").removeClass("disabled");
+
+            $(".active").removeClass("active");
+            $("#Page" + $scope.currentPage).addClass("active");
+
+            offset = "&offset="+(($scope.currentPage * size) - size);
+            
             refresh();
         };
 
