@@ -164,14 +164,14 @@ angular
             refresh();
         };
 
-        $scope.paginate = function(Limit, Offset) {
-            if (Limit) limit = "&limit=" + Number(Limit);
-            else limit = "";
-            if (Offset) offset = "&offset=" + Number(Offset);
-            else offset = "";
-
-            refresh();
-        };
+//        $scope.paginate = function(Limit, Offset) {
+//            if (Limit) limit = "&limit=" + Number(Limit);
+//            else limit = "";
+//            if (Offset) offset = "&offset=" + Number(Offset);
+//            else offset = "";
+//
+//            refresh();
+//        };
 
         $scope.setPage = function(page) {
             $scope.currentPage = page;
