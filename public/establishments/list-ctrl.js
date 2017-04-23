@@ -174,14 +174,14 @@ angular
         $scope.setPage = function(page) {
             $scope.currentPage = page;
 
-            if (page == 1) $("#previousPage").addClass("disabled");
-            else $("#previousPage").removeClass("disabled");
+            if (page == 1) document.getElementById("previousPage").addClass("disabled");
+            else document.getElementById("previousPage").removeClass("disabled");
 
-            if (page == $scope.pages.length) $("#nextPage").addClass("disabled");
-            else $("#nextPage").removeClass("disabled");
+            if (page == $scope.pages.length) document.getElementById("nextPage").addClass("disabled");
+            else document.getElementById("nextPage").removeClass("disabled");
 
             $(".active").removeClass("active");
-            $("#Page" + $scope.currentPage).addClass("active");
+           document.getElementById("Page" + $scope.currentPage).addClass("active");
 
             offset = "&offset=" + (($scope.currentPage * size) - size);
 
