@@ -26,6 +26,7 @@ angular
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
+                    console.log(response.data.length);
                     console.log(Math.floor(response.data.length / size));
                     $scope.pages = range(1, Math.floor(response.data.length / size));
                     if (response.data.length % size > 0) {
