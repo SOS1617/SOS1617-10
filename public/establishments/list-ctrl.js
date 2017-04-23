@@ -23,9 +23,8 @@ angular
 
         function refresh() {
             $http
-                .get(url + "/establishments?" + apikey + from + to + limit + offset)
-                .then(function(response) { //promesas
-                    $scope.establishments = response.data;
+                .get(url + "/establishments?" + apikey)
+                .then(function(response) {
                     console.log(response.data.length);
                     console.log(Math.floor(response.data.length / size));
                     $scope.pages = range(1, Math.floor(response.data.length / size));
@@ -33,7 +32,11 @@ angular
                         $scope.pages = range(1, $scope.pages + 1);
                     }
                     console.log($scope.pages);
-
+                });
+            $http
+                .get(url + "/establishments?" + apikey + from + to + limit + offset)
+                .then(function(response) { //promesas
+                    $scope.establishments = response.data;
                 }, function(err) {
                     if (err.data == "Unauthorized" || err.data == "Forbidden") {
                         $scope.establishments = [];
