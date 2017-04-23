@@ -148,7 +148,6 @@ angular
         $scope.setApikey = function() {
             apikey = "apikey=" + $scope.Apikey;
             document.getElementById("Search").className = "btn btn-info";
-            document.getElementById("Paginate").className = "btn btn-default";
             document.getElementById("Load").className = "btn btn-success btn-lg";
             document.getElementById("Add").className = "btn btn-primary";
             document.getElementById("Delete").className = "btn btn-danger";
