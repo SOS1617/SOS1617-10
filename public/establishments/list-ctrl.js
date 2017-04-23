@@ -26,11 +26,12 @@ angular
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
+                    console.log(Math.floor(response.data.length / size));
                     $scope.pages = range(1, Math.floor(response.data.length / size));
                     if (response.data.length % size > 0) {
                         $scope.pages = range(1, $scope.pages + 1);
                     }
-                    console.log($scope.pages)
+                    console.log($scope.pages);
 
                 }, function(err) {
                     if (err.data == "Unauthorized" || err.data == "Forbidden") {
