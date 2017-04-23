@@ -10,9 +10,16 @@ angular
         var limit = "&limit=" + size;
         var offset = "";
 
-
         $scope.currentPage = 1;
         $scope.pages = [];
+
+        function range(start, end) {
+            var res = [];
+            for (var i = start; i <= end; i++) {
+                res.push(i);
+            }
+            return res;
+        }
 
         function refresh() {
             $http
@@ -179,13 +186,5 @@ angular
 
             refresh();
         };
-
-        function range(start, end) {
-            var res = [];
-            for (var i = start; i <= end; i++) {
-                res.push(i);
-            }
-            return res;
-        }
 
     }]);
