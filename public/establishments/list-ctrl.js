@@ -27,7 +27,7 @@ angular
                 .then(function(response) {
                     console.log(response.data.length);
                     console.log(Math.ceil(response.data.length / size));
-                    $scope.pages = range(1, Math.floor(response.data.length / size));
+                    $scope.pages = range(1, Math.ceil(response.data.length / size));
                     
                     console.log($scope.pages);
                 });
