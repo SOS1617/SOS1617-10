@@ -6,7 +6,7 @@ angular
         var yearfrom = "";
         var yearto = "";
         var offset = "";
-        var limit = "";
+        var limit = "&limit=" + size;
         var size = 5;
         console.log("Controller initialized right");
 
