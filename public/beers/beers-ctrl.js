@@ -1,6 +1,6 @@
 angular
     .module("BeersManagerApp")
-    .controller("ListCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
+    .controller("BeersCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
         var url = "http://sos1617-10.herokuapp.com/api/v1";
         var apikey = "";
         var yearfrom = "";
