@@ -8,11 +8,12 @@ angular
         var offset = "";
         var size = 5;
         var limit = "&limit=" + size;
-        
+
         console.log("Controller initialized right");
 
         $scope.currentPage = 1;
         $scope.pages = [];
+
         function range(start, end) {
             var res = [];
             for (var i = start; i <= end; i++) {
@@ -21,12 +22,12 @@ angular
             return res;
         }
 
-        
+
         function refresh() {
             var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
             console.log(urlrequest);
 
-            $http.get(url + "/beers-stats?" + apikey + yearfrom + yearto).then(function(response){
+            $http.get(url + "/beers-stats?" + apikey + yearfrom + yearto).then(function(response) {
                 $scope.pages = range(1, Math.ceil(response.data.length / size));
             });
             $http
@@ -43,18 +44,18 @@ angular
                     if (response.data == "Forbidden") {
                         $scope.beers = [];
                         bootbox.alert("Incorrect apikey.");
-                       
+
                     }
                     if (response.data == "Unauthorized") {
                         $scope.beers = [];
                         bootbox.alert("You have to introduce an apikey");
-                       
+
                     }
-                     document.getElementById("buttonLoad").className = "btn btn-info disabled";
-                     document.getElementById("buttonAddModal").className = "btn btn-primary disabled";
-                     document.getElementById("buttonDeleteAll").className = "btn btn-danger disabled";
-                     document.getElementById("buttonFilter").className = "btn btn-info disabled";
-                     document.getElementById("buttonClear").className = "btn btn-success disabled";
+                    document.getElementById("buttonLoad").className = "btn btn-info disabled";
+                    document.getElementById("buttonAddModal").className = "btn btn-primary disabled";
+                    document.getElementById("buttonDeleteAll").className = "btn btn-danger disabled";
+                    document.getElementById("buttonFilter").className = "btn btn-info disabled";
+                    document.getElementById("buttonClear").className = "btn btn-success disabled";
                 });
         }
         $scope.addBeer = function() {
@@ -142,7 +143,9 @@ angular
                 });
         };
         $scope.sendapi = function() {
-            apikey = "apikey=" + $scope.apikeyfield;
+            if ($scope.apikeyfield != "") {
+                apikey = "apikey=" + $scope.apikeyfield;
+            }
             refresh();
         };
         $scope.filter = function(YearFrom, YearTo, Limit, Offset) {
@@ -158,22 +161,22 @@ angular
             else {
                 yearto = "";
             }
-            $scope.currentPage=1;
-            offset="";
-           /*
-           if (Limit) {
-                limit = "&limit=" + Number(Limit);
-            }
-            else {
-                limit = "";
-            }
-            if (Offset) {
-                offset = "&offset=" + Number(Offset);
-            }
-            else {
-                offset = "";
-            }
-            */
+            $scope.currentPage = 1;
+            offset = "";
+            /*
+            if (Limit) {
+                 limit = "&limit=" + Number(Limit);
+             }
+             else {
+                 limit = "";
+             }
+             if (Offset) {
+                 offset = "&offset=" + Number(Offset);
+             }
+             else {
+                 offset = "";
+             }
+             */
             refresh();
 
         };
@@ -185,7 +188,7 @@ angular
             $scope.YearTo = null;
             $scope.Limit = null;
             $scope.Offset = null;
-            $scope.currentPage=1;
+            $scope.currentPage = 1;
             refresh();
         };
         $scope.clearResponseData = function() {
