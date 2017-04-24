@@ -7,6 +7,7 @@ angular
         var yearto = "";
         var offset = "";
         var limit = "";
+        var size=5;
         console.log("Controller initialized right");
 
         function refresh() {
