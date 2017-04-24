@@ -114,7 +114,7 @@
         <button id="buttonAddModal" class="btn btn-primary disabled" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
 
         <button id="buttonDeleteAll" class="btn btn-danger disabled" ng-click="deleteBeers()"><span class="glyphicon glyphicon-trash"></span> DeleteAll</button>
-
+        <div>
         <table class="table table-hover" id="datatable">
             <thead>
                 <tr>
@@ -139,6 +139,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
         <div id="paginate">
             <nav aria-label="Page navigation" ng-hide="pages.length <= 1">
                 <ul class="pagination">
