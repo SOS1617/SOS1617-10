@@ -159,6 +159,8 @@ angular
             else from = "";
             if (toYear) to = "&to=" + Number(toYear);
             else to = "";
+            
+            $scope.establishments=[];
             refresh();
         };
 
