@@ -38,16 +38,23 @@ angular
                     document.getElementById("buttonDeleteAll").className = "btn btn-danger";
                     document.getElementById("buttonFilter").className = "btn btn-info";
                     document.getElementById("buttonClear").className = "btn btn-success";
+                    bootbox.alert("Correct apikey.")
                 }, function(response) {
-                    if (response.data == "Forbidden" || response.data == "Unauthorized") {
+                    if (response.data == "Forbidden") {
                         $scope.beers = [];
-                        bootbox.alert("Apikey incorrect. Check apikey");
-                        document.getElementById("buttonLoad").className = "btn btn-info disabled";
-                        document.getElementById("buttonAddModal").className = "btn btn-primary disabled";
-                        document.getElementById("buttonDeleteAll").className = "btn btn-danger disabled";
-                        document.getElementById("buttonFilter").className = "btn btn-info disabled";
-                        document.getElementById("buttonClear").className = "btn btn-success disabled";
+                        bootbox.alert("Apikey incorrect.");
+                       
                     }
+                    if (response.data == "Unauthorized") {
+                        $scope.beers = [];
+                        bootbox.alert("You have to introduce an apikey");
+                       
+                    }
+                     document.getElementById("buttonLoad").className = "btn btn-info disabled";
+                     document.getElementById("buttonAddModal").className = "btn btn-primary disabled";
+                     document.getElementById("buttonDeleteAll").className = "btn btn-danger disabled";
+                     document.getElementById("buttonFilter").className = "btn btn-info disabled";
+                     document.getElementById("buttonClear").className = "btn btn-success disabled";
                 });
         }
         $scope.addBeer = function() {
