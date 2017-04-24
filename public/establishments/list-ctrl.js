@@ -36,14 +36,20 @@ angular
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
                 }, function(err) {
-                    if (err.data == "Unauthorized" || err.data == "Forbidden") {
+                   if (response.data == "Forbidden") {
                         $scope.establishments = [];
+                        bootbox.alert("Incorrect apikey.");
+
+                    }
+                    if (response.data == "Unauthorized") {
+                        $scope.establishments = [];
+                        bootbox.alert("You have to introduce an apikey");
+
+                    }
                         document.getElementById("Search").className = "btn btn-info disabled";
                         document.getElementById("Load").className = "btn btn-success btn-lg disabled";
                         document.getElementById("Add").className = "btn btn-primary disabled";
                         document.getElementById("Delete").className = "btn btn-danger disabled";
-                        bootbox.alert("Incorrect apikey. Check apikey");
-                    }
                 });
         }
 
@@ -146,7 +152,8 @@ angular
         };
 
         $scope.setApikey = function() {
-            apikey = "apikey=" + $scope.Apikey;
+            if($scope.Apikey == undefined) apikey= "";
+            else apikey = "apikey=" + $scope.Apikey;
             document.getElementById("Search").className = "btn btn-info";
             document.getElementById("Load").className = "btn btn-success btn-lg";
             document.getElementById("Add").className = "btn btn-primary";
