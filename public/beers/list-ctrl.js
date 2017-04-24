@@ -12,7 +12,15 @@ angular
 
         $scope.currentPage = 1;
         $scope.pages = [];
+        function range(start, end) {
+            var res = [];
+            for (var i = start; i <= end; i++) {
+                res.push(i);
+            }
+            return res;
+        }
 
+        
         function refresh() {
             var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
             console.log(urlrequest);
