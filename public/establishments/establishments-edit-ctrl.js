@@ -6,8 +6,9 @@ angular
         var apikey = "apikey=nurtrioje";
 
         function refresh() {
+            var year = Number($routeParams.year);
             $http
-                .get(url + "/establishments/" + $routeParams.country + "/" + $routeParams.year + "?" + apikey)
+                .get(url + "/establishments/" + $routeParams.country + "/" + year + "?" + apikey)
                 .then(function(response) { //promesas
                     $scope.newEstablishment = response.data;
                 });
