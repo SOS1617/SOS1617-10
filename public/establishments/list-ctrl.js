@@ -23,7 +23,7 @@ angular
 
         function refresh() {
             $http
-                .get(url + "/establishments?" + apikey)
+                .get(url + "/establishments?" + apikey + from + to)
                 .then(function(response) {
                     console.log(response.data.length);
                     console.log(Math.ceil(response.data.length / size));
