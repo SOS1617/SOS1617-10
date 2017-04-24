@@ -1,0 +1,22 @@
+<h2>Edit Beer</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Birthyear</th>
+            <th>Province</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> <input class="from-control" ng-model="Beer.name" /></td></td>
+            <td> {{Beer.country}}</td>
+            <td>{{Beer.birthyear}}</td>
+            <td> <input class="from-control" ng-model="Beer.province" /></td>
+            <td><button class="btn btn-basic" ng-click="updateBeer(Beer.country,Beer.birthyear)">Update</button></td>
+        </tr>
+    </tbody>
+</table>
+  
