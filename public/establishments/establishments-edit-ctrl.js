@@ -7,7 +7,7 @@ angular
 
         function refresh() {
             $http
-                .get(url + "/establishments/" + $routeParams.country + $routeParams.year + "?" + apikey)
+                .get(url + "/establishments/" + $routeParams.country + "/" + $routeParams.year + "?" + apikey)
                 .then(function(response) { //promesas
                     $scope.newEstablishment = response.data;
                 });
