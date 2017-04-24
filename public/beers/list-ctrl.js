@@ -152,7 +152,7 @@ angular
                 yearto = "";
             }
             $scope.currentPage=1;
-            $scope.offset="";
+            offset="";
            /*
            if (Limit) {
                 limit = "&limit=" + Number(Limit);
