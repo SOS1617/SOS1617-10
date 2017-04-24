@@ -160,6 +160,8 @@ angular
             if (toYear) to = "&to=" + Number(toYear);
             else to = "";
             
+            offset = "";
+            $scope.currentPage = 1;
             $scope.establishments=[];
             refresh();
         };
