@@ -139,7 +139,8 @@ angular
             else {
                 yearto = "";
             }
-            if (Limit) {
+           /*
+           if (Limit) {
                 limit = "&limit=" + Number(Limit);
             }
             else {
@@ -151,6 +152,7 @@ angular
             else {
                 offset = "";
             }
+            */
             refresh();
 
         };
