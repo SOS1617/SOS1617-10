@@ -47,7 +47,7 @@
                 </td>
             </tr>
             <tr ng-repeat="establishment in establishments">
-                <td>{{establishment.country}}</td>
+                <td><a href="#!/establishment/{{establishment.country}}/{{establishment.year}}">{{establishment.country}}</a></td>
                 <td>{{establishment.year}}</td>
                 <td>{{establishment.number}}</td>
                 <td>{{establishment.beds}}</td>
