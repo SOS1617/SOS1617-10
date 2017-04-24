@@ -24,11 +24,13 @@ angular
         function refresh() {
             var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
             console.log(urlrequest);
+            $http.get(url + "/beers-stats?" + apikey).then(function(response){
+                $scope.pages = range(1, Math.ceil(response.data.length / size));
+            });
             $http
                 .get(urlrequest)
                 .then(function(response) {
                     $scope.beers = response.data;
-                    $scope.pages = range(1, Math.ceil(response.data.length / size));
                     document.getElementById("buttonLoad").className = "btn btn-info";
                     document.getElementById("buttonAddModal").className = "btn btn-primary";
                     document.getElementById("buttonDeleteAll").className = "btn btn-danger";
