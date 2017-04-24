@@ -143,7 +143,7 @@ angular
                 });
         };
         $scope.sendapi = function() {
-            if ($scope.apikeyfield == "") {
+            if ($scope.apikeyfield == undefined) {
                 apikey= "";
             }else{
                  apikey = "apikey=" + $scope.apikeyfield;
