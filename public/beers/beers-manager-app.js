@@ -1,7 +1,7 @@
 angular.module("BeersManagerApp",["ngRoute"]).config(function ($routeProvider){
     $routeProvider.when("/",{
-        templateUrl : "BeersList.html",
-        controller : "beers-ctrl.js"
+        templateUrl : "/beers/BeersList.html",
+        controller : "/beers/beers-ctrl.js"
         
     });
 });
