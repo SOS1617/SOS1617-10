@@ -39,7 +39,6 @@ angular
                     document.getElementById("buttonDeleteAll").className = "btn btn-danger";
                     document.getElementById("buttonFilter").className = "btn btn-info";
                     document.getElementById("buttonClear").className = "btn btn-success";
-                    bootbox.alert("Correct apikey.")
                 }, function(response) {
                     if (response.data == "Forbidden") {
                         $scope.beers = [];
