@@ -36,12 +36,12 @@ angular
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
                 }, function(err) {
-                   if (response.data == "Forbidden") {
+                   if (err.data == "Forbidden") {
                         $scope.establishments = [];
                         bootbox.alert("Incorrect apikey.");
 
                     }
-                    if (response.data == "Unauthorized") {
+                    if (err.data == "Unauthorized") {
                         $scope.establishments = [];
                         bootbox.alert("You have to introduce an apikey");
 
