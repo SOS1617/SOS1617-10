@@ -15,7 +15,9 @@ angular
         }
         $scope.updateBeer = function (country,birthyear) {
           $http.put("/api/v1/beers-stats/"+ country + "/" + Number(birthyear)+ '?apikey=sos1617-jesusguerre',$scope.Beer).then( function (response){
-             $location.path("/beers");
+             $location.path("/");
+          },function (response){
+              console.log(response.data);
           });  
         };
        
