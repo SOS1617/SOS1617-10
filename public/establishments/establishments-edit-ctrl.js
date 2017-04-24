@@ -10,8 +10,12 @@ angular
             $http
                 .get(url + "/establishments/" + $routeParams.country + "/" + year + "?" + apikey)
                 .then(function(response) { //promesas
+                    console.log(url + "/establishments/" + $routeParams.country + "/" + year + "?" + apikey);
                     $scope.updatedEstablishment = response.data;
+                    console.log(response.data);
                     delete $scope.updatedEstablishment["_id"];
+                }, function(err){
+                    console.log(err.data);
                 });
         }
         
