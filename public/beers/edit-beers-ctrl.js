@@ -14,7 +14,10 @@ angular
             });
         }
         $scope.updateBeer = function (country,birthyear) {
-          $http.put("/api/v1/beers-stats/"+ country + "/" + Number(birthyear)+ '?apikey=sos1617-jesusguerre',$scope.Beer).then( function (response){
+            var url = "/api/v1/beers-stats/"+ country + "/" + Number(birthyear)+ '?apikey=sos1617-jesusguerre';
+          $http.put(url,$scope.Beer).then( function (response){
+             console.log(url);
+             console.log(response.data);
              $location.path("/");
           },function (response){
               console.log(response.data);
