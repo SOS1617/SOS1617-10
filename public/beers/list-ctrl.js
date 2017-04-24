@@ -25,7 +25,7 @@ angular
         function refresh() {
             var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
             console.log(urlrequest);
-            $http.get(url + "/beers-stats?" + apikey).then(function(response){
+            $http.get(url + "/beers-stats?" + apikey + yearfrom +yearto).then(function(response){
                 $scope.pages = range(1, Math.ceil(response.data.length / size));
             });
             $http
