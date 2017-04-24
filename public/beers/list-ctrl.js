@@ -150,6 +150,7 @@ angular
             else {
                 yearto = "";
             }
+            $scope.currentPage=1;
            /*
            if (Limit) {
                 limit = "&limit=" + Number(Limit);
@@ -175,6 +176,7 @@ angular
             $scope.YearTo = null;
             $scope.Limit = null;
             $scope.Offset = null;
+            $scope.currentPage=1;
             refresh();
         };
         $scope.clearResponseData = function() {
