@@ -42,7 +42,7 @@ angular
                 }, function(response) {
                     if (response.data == "Forbidden") {
                         $scope.beers = [];
-                        bootbox.alert("Apikey incorrect.");
+                        bootbox.alert("Incorrect apikey.");
                        
                     }
                     if (response.data == "Unauthorized") {
