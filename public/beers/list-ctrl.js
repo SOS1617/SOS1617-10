@@ -6,8 +6,9 @@ angular
         var yearfrom = "";
         var yearto = "";
         var offset = "";
-        var limit = "&limit=" + size;
         var size = 5;
+        var limit = "&limit=" + size;
+        
         console.log("Controller initialized right");
 
         $scope.currentPage = 1;
