@@ -1,0 +1,27 @@
+<div>
+    <h2>Establishments</h2>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>Year</th>
+            <th>Number</th>
+            <th>Beds</th>
+            <th>Nights</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{newEstablishment.country}}</td>
+            <td class="col-xs-1">{{newEstablishment.year}}</td>
+            <td class="col-xs-2"><input class="form-control" ng-model="newEstablishment.number" /></td>
+            <td><input class="form-control" ng-model="newEstablishment.beds" /></td>
+            <td><input class="form-control" ng-model="newEstablishment.nights" /></td>
+            <td>
+                <button class="btn btn-warning" ng-click="putEstablishment(newEstablishment.country,newEstablishment.year)"><span class="glyphicon glyphicon-pencil"></span> Update</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
