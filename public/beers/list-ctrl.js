@@ -7,8 +7,11 @@ angular
         var yearto = "";
         var offset = "";
         var limit = "";
-        var size=5;
+        var size = 5;
         console.log("Controller initialized right");
+
+        $scope.currentPage = 1;
+        $scope.pages = [];
 
         function refresh() {
             var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
@@ -17,6 +20,7 @@ angular
                 .get(urlrequest)
                 .then(function(response) {
                     $scope.beers = response.data;
+                    $scope.pages = range(1, Math.ceil(response.data.length / size));
                     document.getElementById("buttonLoad").className = "btn btn-info";
                     document.getElementById("buttonAddModal").className = "btn btn-primary";
                     document.getElementById("buttonDeleteAll").className = "btn btn-danger";
@@ -41,10 +45,10 @@ angular
                 .then(function(response) {
                     $scope.responsedata = response.data;
                     refresh();
-                    $scope.newBeer="";
+                    $scope.newBeer = "";
                 }, function(response) {
                     $scope.responsedata = response.data;
-                    $scope.newBeer="";
+                    $scope.newBeer = "";
                 });
 
         };
