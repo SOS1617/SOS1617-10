@@ -28,7 +28,7 @@ angular
                     console.log(response.data.length);
                     console.log(Math.ceil(response.data.length / size));
                     $scope.pages = range(1, Math.ceil(response.data.length / size));
-                    
+
                     console.log($scope.pages);
                 });
             $http
@@ -36,7 +36,7 @@ angular
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
                 }, function(err) {
-                   if (err.data == "Forbidden") {
+                    if (err.data == "Forbidden") {
                         $scope.establishments = [];
                         bootbox.alert("Incorrect apikey.");
 
@@ -46,10 +46,10 @@ angular
                         bootbox.alert("You have to introduce an apikey");
 
                     }
-                        document.getElementById("Search").className = "btn btn-info disabled";
-                        document.getElementById("Load").className = "btn btn-success btn-lg disabled";
-                        document.getElementById("Add").className = "btn btn-primary disabled";
-                        document.getElementById("Delete").className = "btn btn-danger disabled";
+                    document.getElementById("Search").className = "btn btn-info disabled";
+                    document.getElementById("Load").className = "btn btn-success btn-lg disabled";
+                    document.getElementById("Add").className = "btn btn-primary disabled";
+                    document.getElementById("Delete").className = "btn btn-danger disabled";
                 });
         }
 
@@ -63,15 +63,31 @@ angular
         };
 
         $scope.addEstablishment = function() {
-            $scope.newEstablishment.year = Number($scope.newEstablishment.year);
-            $scope.newEstablishment.number = Number($scope.newEstablishment.number);
-            $scope.newEstablishment.beds = Number($scope.newEstablishment.beds);
-            $scope.newEstablishment.nights = Number($scope.newEstablishment.nights);
+            if ($scope.newEstablishment) {
+                $scope.newEstablishment.year = Number($scope.newEstablishment.year);
+                $scope.newEstablishment.number = Number($scope.newEstablishment.number);
+                $scope.newEstablishment.beds = Number($scope.newEstablishment.beds);
+                $scope.newEstablishment.nights = Number($scope.newEstablishment.nights);
+            }
+
             $http
                 .post(url + "/establishments?" + apikey, $scope.newEstablishment)
                 .then(function(response) {
                     console.log("Establishment added");
+                    bootbox.alert("Establishment added.");
+                    $scope.newEstablishment = {};
                     refresh();
+                }, function(response) {
+                    switch (response.status) {
+                        case 409:
+                            bootbox.alert("Conflict. The establishment added already exists.");
+                            break;
+                        case 422:
+                            bootbox.alert("Please make sure you have introduced all fields.");
+                            break;
+                        default:
+                            // code
+                    }
                 });
         };
 
@@ -152,7 +168,7 @@ angular
         };
 
         $scope.setApikey = function() {
-            if($scope.Apikey == undefined) apikey= "";
+            if ($scope.Apikey == undefined) apikey = "";
             else apikey = "apikey=" + $scope.Apikey;
             document.getElementById("Search").className = "btn btn-info";
             document.getElementById("Load").className = "btn btn-success btn-lg";
@@ -166,21 +182,21 @@ angular
             else from = "";
             if (toYear) to = "&to=" + Number(toYear);
             else to = "";
-            
+
             offset = "";
             $scope.currentPage = 1;
-            $scope.establishments=[];
+            $scope.establishments = [];
             refresh();
         };
 
-//        $scope.paginate = function(Limit, Offset) {
-//            if (Limit) limit = "&limit=" + Number(Limit);
-//            else limit = "";
-//            if (Offset) offset = "&offset=" + Number(Offset);
-//            else offset = "";
-//
-//            refresh();
-//        };
+        //        $scope.paginate = function(Limit, Offset) {
+        //            if (Limit) limit = "&limit=" + Number(Limit);
+        //            else limit = "";
+        //            if (Offset) offset = "&offset=" + Number(Offset);
+        //            else offset = "";
+        //
+        //            refresh();
+        //        };
 
         $scope.setPage = function(page) {
             $scope.currentPage = page;
