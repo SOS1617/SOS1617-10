@@ -48,19 +48,30 @@ describe('Add beer', function() {
 		browser.takeScreenshot().then(function (png) {
     			writeScreenShot(png, 'ng-test.png');
     		});
-
 		element.all(by.repeater('beer in beers')).then(function(initialBeers) {
+			
+			
 			browser.driver.sleep(2000);
 			
 			element(by.buttonText('Add')).click()
+			browser.driver.sleep(2000);
 			
-			element(by.model('Beer.name')).sendKeys('prueba');
-			element(by.model('Beer.country')).sendKeys('spain');
-			element(by.model('Beer.birthyear')).sendKeys(1890);
-			element(by.model('Beer.province')).sendKeys('Sevilla');
+			browser.takeScreenshot().then(function (png) {
+    			writeScreenShot(png, 'ng-test2.png');
+    		});
+			
+			element(by.model('newBeer.name')).sendKeys("test");
+			element(by.model('newBeer.country')).sendKeys("Spain");
+			element(by.model('newBeer.birthyear')).sendKeys("1890");
+			element(by.model('newBeer.province')).sendKeys("Sevilla");
+			
+			
 
-			element(by.buttonText('Add')).click().then(function() {
-				
+			element(by.buttonText('Add Beer')).click().then(function() {
+				browser.driver.sleep(2000);
+				browser.takeScreenshot().then(function (png) {
+    			writeScreenShot(png, 'ng-test3.png');
+    		});
 				element.all(by.repeater('beer in beers')).then(function(beers) {
 					expect(beers.length).toEqual(initialBeers.length + 1);
 				});
