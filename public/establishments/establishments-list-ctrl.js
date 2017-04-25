@@ -14,7 +14,7 @@ angular
         $scope.pages = [];
         
         if ($rootScope.data) {
-                $scope.Apikey=$rootScope.data.apikey;
+                $scope.Apikey=$rootScope.data.simpleApikey;
                 apikey = $rootScope.data.apikey;
                 refresh();
             }
@@ -198,7 +198,8 @@ angular
             else {
                 apikey = "apikey=" + $scope.Apikey;
                 $rootScope.data = {
-                    apikey: apikey
+                    apikey: apikey,
+                    simpleApikey: $scope.Apikey
 
                 };
             }
