@@ -160,6 +160,7 @@ angular
                                     bootbox.alert("Beers deleted");
                                     console.log("Beers deleted");
                                     refresh();
+                                    console.log($scope.beers.length);
                                     if($scope.beers.length==0 && $scope.currentPage>1){
                                         $scope.setPage($scope.currentPage-1);
                                         
