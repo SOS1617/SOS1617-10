@@ -103,6 +103,36 @@ module.exports.register_beers_api = function(app) {
                         "country": "Belgium",
                         "birthyear": 1862,
                         "province": "Hainaut"
+                    },{
+                        "name": "Jupiler",
+                        "country": "Belgium",
+                        "birthyear": 1966,
+                        "province": "Valona"
+                    },{
+                        "name": "Altbier",
+                        "country": "Germany",
+                        "birthyear": 1800,
+                        "province": "Düsseldorf"
+                    },{
+                        "name": "Grolsch",
+                        "country": "Nerthelands",
+                        "birthyear": 1615,
+                        "province": "Enschede"
+                    },{
+                        "name": "Birra Moretti",
+                        "country": "Italy",
+                        "birthyear": 1859,
+                        "province": "Udine"
+                    },{
+                        "name": "Sagres",
+                        "country": "Portugal",
+                        "birthyear": 1940,
+                        "province": "Lisboa"
+                    },{
+                        "name": "Fuller's",
+                        "country": "United Kingdom",
+                        "birthyear": 1845,
+                        "province": "London"
                     }];
                     console.log(beers);
                     dbBeer.insert(beers);
