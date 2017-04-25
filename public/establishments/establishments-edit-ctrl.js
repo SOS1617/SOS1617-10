@@ -26,7 +26,7 @@ angular
                 .then(function(response){
                     console.log("Establishment updated");
                     bootbox.alert("Establishment updated.");
-                    $location.path("/");
+                    $location.path("/establishments/");
                 }, function(response) {
                     switch (response.status) {
                         case 400:
