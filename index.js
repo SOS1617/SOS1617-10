@@ -24,6 +24,10 @@ var jesus = require('./beers');
 
 jesus.register_beers_api(app);
 
+var jesusv2 = require('./beersv2');
+
+jesusv2.register_beers_apiv2(app);
+
 
 "------------------------------------establishment-------------------------------------------------";
 
