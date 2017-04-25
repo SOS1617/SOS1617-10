@@ -12,7 +12,7 @@ angular
                 console.log("exite sesion");
                 console.log($rootScope.data.apikey);
                 apikey = $rootScope.data.apikey;
-                console.log(apikey);
+                refresh();
             }
 
         console.log("Controller initialized right");
