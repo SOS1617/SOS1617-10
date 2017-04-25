@@ -8,7 +8,11 @@ angular
         var offset = "";
         var size = 5;
         var limit = "&limit=" + size;
-
+        if ($rootScope.data) {
+                console.log("exite sesion");
+                console.log($rootScope.data.apikey);
+                apikey = $rootScope.data.apikey;
+            }
 
         console.log("Controller initialized right");
 
@@ -25,11 +29,7 @@ angular
 
 
         function refresh() {
-            if ($rootScope.data) {
-                console.log("exite sesion");
-                console.log($rootScope.data.apikey);
-                apikey = $rootScope.data.apikey;
-            }
+            
             var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
             console.log(urlrequest);
 
