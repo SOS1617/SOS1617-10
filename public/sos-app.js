@@ -1,5 +1,5 @@
 angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
-    $routeProvider.when("/:params", {
+    $routeProvider.when("/", {
         templateUrl: "/home.html",
     }).when("/beers/", {
         templateUrl: "/beers/BeersList.html",
