@@ -12,6 +12,12 @@ angular
 
         $scope.currentPage = 1;
         $scope.pages = [];
+        
+        if ($rootScope.data) {
+                $scope.Apikey=$rootScope.data.apikey;
+                apikey = $rootScope.data.apikey;
+                refresh();
+            }
 
         function range(start, end) {
             var res = [];
@@ -189,7 +195,13 @@ angular
 
         $scope.setApikey = function() {
             if ($scope.Apikey == undefined) apikey = "";
-            else apikey = "apikey=" + $scope.Apikey;
+            else {
+                apikey = "apikey=" + $scope.Apikey;
+                $rootScope.data = {
+                    apikey: apikey
+
+                };
+            }
             document.getElementById("Search").className = "btn btn-info";
             document.getElementById("Load").className = "btn btn-success btn-lg";
             document.getElementById("Add").className = "btn btn-primary";
