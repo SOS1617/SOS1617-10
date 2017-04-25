@@ -9,8 +9,7 @@ angular
         var size = 5;
         var limit = "&limit=" + size;
         if ($rootScope.data) {
-                console.log("exite sesion");
-                console.log($rootScope.data.apikey);
+                $scope.apikeyfield=$rootScope.data.apikey;
                 apikey = $rootScope.data.apikey;
                 refresh();
             }
