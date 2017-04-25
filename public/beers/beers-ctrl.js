@@ -71,7 +71,7 @@ angular
 
                     bootbox.alert("Beer Created");
                     refresh();
-                    $scope.newBeer = "";
+                   $scope.newBeer = $scope.$new(true);
                 }, function(response) {
                     switch (response.status) {
                         case 409:
@@ -87,7 +87,7 @@ angular
                         default:
                             // code
                     }
-                    $scope.newBeer = $scope.$new(true);
+                    
                 });
 
         };
