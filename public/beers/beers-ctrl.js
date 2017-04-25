@@ -72,7 +72,7 @@ angular
 
                     bootbox.alert("Beer Created");
                     refresh();
-                    $scope.newBeer = $scope.$new(true);
+                    $scope.newBeer = {};
                 }, function(response) {
                     switch (response.status) {
                         case 409:
@@ -81,12 +81,9 @@ angular
                         case 400:
                             bootbox.alert("The Beer that you are trying to add, Have bad data. Please insert all the fields");
                             break;
-
-                        case 422:
+                        default:
                             bootbox.alert("Please make sure that you have entered all the fields");
                             break;
-                        default:
-                            // code
                     }
                     
                 });
