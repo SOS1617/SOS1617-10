@@ -139,6 +139,7 @@ angular
                             .delete(url + "/establishments?" + apikey)
                             .then(function(response) {
                                 console.log("All establishments deleted");
+                                bootbox.alert("All establishments deleted.");
                                 refresh();
                             });
                     }
@@ -153,7 +154,19 @@ angular
                 .then(function(response) {
                     $scope.responseData = response.data;
                     console.log("Establishment updated");
+                    bootbox.alert("Establishment updated.");
                     refresh();
+                }, function(response) {
+                    switch (response.status) {
+                        case 400:
+                            bootbox.alert("Bad Request. Please make sure you have introduced correctly all fields.");
+                            break;
+                        case 422:
+                            bootbox.alert("Please make sure you have introduced all fields.");
+                            break;
+                        default:
+                            // code
+                    }
                 });
         };
 

@@ -25,7 +25,19 @@ angular
                 .put(url + "/establishments/" + $routeParams.country + "/" + year + "?" + apikey, $scope.updatedEstablishment)
                 .then(function(response){
                     console.log("Establishment updated");
+                    bootbox.alert("Establishment updated.");
                     $location.path("/");
+                }, function(response) {
+                    switch (response.status) {
+                        case 400:
+                            bootbox.alert("Bad Request. Please make sure you have introduced correctly all fields.");
+                            break;
+                        case 422:
+                            bootbox.alert("Please make sure you have introduced all fields.");
+                            break;
+                        default:
+                            // code
+                    }
                 });
         };
         
