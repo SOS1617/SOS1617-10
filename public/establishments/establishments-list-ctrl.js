@@ -112,6 +112,7 @@ angular
                             .delete(url + "/establishments/" + country + "/" + year + "?" + apikey)
                             .then(function(response) {
                                 console.log("Establishment deleted");
+                                bootbox.alert("Establishment deleted.");
                                 refresh();
                             });
                     }
