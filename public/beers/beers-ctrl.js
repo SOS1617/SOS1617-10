@@ -60,6 +60,7 @@ angular
         }
         $scope.addBeer = function() {
             if ($scope.newBeer == undefined) {
+                console.log("entraa");
                 $scope.newBeer =$scope.$new(true);
             }
             if ($scope.newBeer.birthyear != undefined) {
