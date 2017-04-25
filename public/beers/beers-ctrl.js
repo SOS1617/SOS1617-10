@@ -1,6 +1,6 @@
 angular
     .module("SOS161710")
-    .controller("BeersCtrl", ["$scope", "$http","$rootScope", function($scope, $http,$rootScope) { //inyeccion de dependencia
+    .controller("BeersCtrl", ["$scope", "$http", "$rootScope", function($scope, $http, $rootScope) { //inyeccion de dependencia
         var url = "http://sos1617-10.herokuapp.com/api/v2";
         var apikey = "";
         var yearfrom = "";
@@ -8,10 +8,7 @@ angular
         var offset = "";
         var size = 5;
         var limit = "&limit=" + size;
-        if($rootScope.data){
-            console.log("exite sesion");
-            apikey=$rootScope.data.apikey;
-        }
+
 
         console.log("Controller initialized right");
 
@@ -28,6 +25,11 @@ angular
 
 
         function refresh() {
+            if ($rootScope.data) {
+                console.log("exite sesion");
+                console.log($rootScope.data.apikey);
+                apikey = $rootScope.data.apikey;
+            }
             var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
             console.log(urlrequest);
 
@@ -126,7 +128,7 @@ angular
                 bootbox.alert("Beer Updated");
                 refresh();
 
-            },function(response) {
+            }, function(response) {
                 switch (response.status) {
                     case 400:
                         bootbox.alert("The Beer that you are trying to add, Have bad data. Please insert all the fields");
@@ -134,8 +136,8 @@ angular
                     default:
                         bootbox.alert("Please make sure that you have entered all the fields");
                         break;
-                
-                    
+
+
                 }
                 $scope.responsedata = response.data;
             });
@@ -181,12 +183,12 @@ angular
             }
             else {
                 apikey = "apikey=" + $scope.apikeyfield;
-                $rootScope.data ={
+                $rootScope.data = {
                     apikey: apikey
-                    
+
                 };
                 console.log($rootScope.data.apikey);
-                
+
             }
             refresh();
         };
