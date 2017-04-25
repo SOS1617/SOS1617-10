@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var mdbURL = "mongodb://test:test@ds133450.mlab.com:33450/sos1617-10-sandbox";
 
-var BASE_API_PATH = "/api/v1";
+var BASE_API_PATH = "/api/v2";
 
 var db;
 
