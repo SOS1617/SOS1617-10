@@ -1,9 +1,6 @@
 angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
     $routeProvider.when("/:params", {
-        templateUrl: "/home.html"
-        controller: function($scope, $stateParams) {
-            $scope.portfolioId = $stateParams.portfolioId;
-        }
+        templateUrl: "/home.html",
     }).when("/beers/", {
         templateUrl: "/beers/BeersList.html",
         controller: "BeersCtrl"
