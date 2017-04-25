@@ -17,7 +17,7 @@ angular
     
     function refresh(){
         $http
-            .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
+            .get(url + "/motorcycling-stats/?apikey=davbotcab"+ yearfrom + yearto + limit + offset)
             .then(function(response){
                 $scope.motorcyclings = response.data;
             });
@@ -26,7 +26,7 @@ angular
     
     $scope.loadInitialData = function() {
         $http
-            .get(url + "/motorcycling-stats/loadInitialData?"  + apikey)
+            .get(url + "/motorcycling-stats/loadInitialData?apikey=davbotcab")
             .then(function(response) {
                 console.log("Carga inicial");
                 refresh();
@@ -35,7 +35,7 @@ angular
         
     $scope.addMotorcycling = function(){
         $http
-            .post(url + "/motorcycling-stats?"  + apikey, $scope.newMotorcycling)
+            .post(url + "/motorcycling-stats?apikey=davbotcab", $scope.newMotorcycling)
             .then(function(response){
                 console.log("Motorcycling added");
                 refresh();
@@ -45,7 +45,7 @@ angular
     
     $scope.deleteMotorcycling = function(country, year) {
         $http
-            .delete(url + "/motorcycling-stats/" + country + "/" + year + "?"  + apikey)
+            .delete(url + "/motorcycling-stats/" + country + "/" + year + "?apikey=davbotcab")
             .then(function(response) {
                 console.log("Motorcycling deleted");
                 refresh();
@@ -54,7 +54,7 @@ angular
 
     $scope.deleteAllMotorcyclings = function() {
         $http
-            .delete(url + "/motorcycling-stats?"  + apikey)
+            .delete(url + "/motorcycling-stats?apikey=davbotcab")
             .then(function(response) {
                 console.log("All motorcyclings deleted");
                 refresh();
@@ -65,7 +65,7 @@ angular
     $scope.putMotorcycling = function(){
         $scope.newMotorcycling.year=Number($scope.newMotorcycling.year);
         $http
-            .put(url +"/motorcycling-stats/"+ $scope.newMotorcycling.country + "/" +  $scope.newMotorcycling.year + "?"  + apikey, $scope.newMotorcycling )
+            .put(url +"/motorcycling-stats/"+ $scope.newMotorcycling.country + "/" +  $scope.newMotorcycling.year + "?apikey=davbotcab", $scope.newMotorcycling )
             .then(function(response){
                 console.log("Motorcycling Updated");
                 refresh();
