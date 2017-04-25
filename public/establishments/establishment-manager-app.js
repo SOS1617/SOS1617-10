@@ -1,4 +1,4 @@
-angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
+angular.module("EstablishmentsManagerCtrl", ["ngRoute"]).config(function($routeProvider) {
     
     $routeProvider
         .when("/", {
