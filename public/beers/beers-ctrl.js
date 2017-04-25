@@ -40,7 +40,6 @@ angular
                 .then(function(response) {
 
                     $scope.beers = response.data;
-                    console.log($scope.beers.length);
                     if ($scope.beers.length == 0 && $scope.currentPage > 1) {
                         $scope.setPage($scope.currentPage - 1);
 
