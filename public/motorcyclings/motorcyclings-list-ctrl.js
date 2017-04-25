@@ -1,7 +1,7 @@
 angular
 .module("MotorcyclingsManagerApp")
 .controller("MotorcyclingsCtrl",["$scope","$http",function($scope,$http){
-    console.log("Controller initialized (splited right)");
+    console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v1";
     var apikey = "";
     var yearfrom = "";

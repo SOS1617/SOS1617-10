@@ -1,53 +1,45 @@
 <h2>Motorcycling</h2>
-          <div id="apikey">
-                <input type="text" name="" ng-model="apikey"/>
-                <button class="btn btn-success" ng-click="sendapi()">Access/button>
-          </div>
-          <div id="filter">
-              <input type="text" name="" ng-model="yearfrom"/>
-              <input type="text" name="" ng-model="yearto"/>
-              <input type="text" name="" ng-model="limit"/>
-              <input type="text" name="" ng-model="offset"/>
-              <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Filtrar/button>
-          </div>
-          <div id="loadInitialData">
-              <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
-          </div>
-           <table class="container">
-  <thead>
-    <tr>
-      <th>
-        <h1>Country</h1></th>
-      <th>
-        <h1>Year</h1></th>
-      <th>
-        <h1>Pilot</h1></th>
-      <th>
-        <h1>Team</h1></th>
-      <th>
-        <h1>Actions</h1></th>
-    </tr>
-  </thead>
- <tbody>
-                     <tr>
-                         <td><input class="form-control" ng-model="newMotorcycling.country"/></td>
-                         <td><input class="form-control" ng-model="newMotorcycling.year"/></td>
-                         <td><input class="form-control" ng-model="newMotorcycling.pilot"/></td>
-                         <td><input class="form-control" ng-model="newMotorcycling.team"/></td>
-                         <td><button class="button btn-primary" ng-click="addMotorcycling()">Add</button>
-                         <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button>
-                         <button class="btn btn-warning" ng-click="putMotorcycling()">Update</button></td>
-                         
-                     </tr>
-                     <tr ng-repeat = "motorcycling in motorcyclings">
-                         <td>{{motorcycling.country}}</td>
-                         <td>{{motorcycling.year}}</td>
-                         <td>{{motorcycling.pilot}}</td>
-                         <td>{{motorcycling.team}}</td>
-                         <td>
-                            <button class="btn btn-danger" ng-click="deleteMotorcycling(motorcycling.country, motorcycling.year)">Delete</button>
-                        </td>
-                     </tr>
-                 </tbody>
-</table>
-        </div>
+    <div id="apikey">
+        <input type="text" name="" ng-model="apikey"/>
+        <button class="btn btn-success" ng-click="sendapi()">Access/button>
+    </div>
+    <div id="filter">
+        <input type="text" name="" ng-model="yearfrom"/>
+        <input type="text" name="" ng-model="yearto"/>
+        <input type="text" name="" ng-model="limit"/>
+        <input type="text" name="" ng-model="offset"/>
+        <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Filtrar/button>
+    </div>
+    <div id="loadInitialData">
+        <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
+    </div>
+    <table class="container">
+        <thead>
+            <tr>
+              <th><h1>Country</h1></th>
+              <th><h1>Year</h1></th>
+              <th><h1>Pilot</h1></th>
+              <th><h1>Team</h1></th>
+              <th><h1>Actions</h1></th>
+            </tr>
+          </thead>
+    <tbody>
+        <tr>
+            <td><input class="form-control" ng-model="newMotorcycling.country"/></td>
+            <td><input class="form-control" ng-model="newMotorcycling.year"/></td>
+            <td><input class="form-control" ng-model="newMotorcycling.pilot"/></td>
+            <td><input class="form-control" ng-model="newMotorcycling.team"/></td>
+            <td><button class="button btn-primary" ng-click="addMotorcycling()">Add</button>
+            <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button>
+            <button class="btn btn-warning" ng-click="putMotorcycling()">Update</button></td>
+                 
+        </tr>
+        <tr ng-repeat = "motorcycling in motorcyclings">
+            <td>{{motorcycling.country}}</td>
+            <td>{{motorcycling.year}}</td>
+            <td>{{motorcycling.pilot}}</td>
+            <td>{{motorcycling.team}}</td>
+            <td><button class="btn btn-danger" ng-click="deleteMotorcycling(motorcycling.country, motorcycling.year)">Delete</button></td>
+        </tr>
+    </tbody>
+    </table>
