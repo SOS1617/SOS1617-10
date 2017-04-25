@@ -1,10 +1,12 @@
 angular.module("SOS161710",["ngRoute"]).config(function ($routeProvider){
     $routeProvider.when("/",{
-        templateUrl : "BeersList.html",
+        templateUrl : "/home.html"
+    }).when("/beers/",{
+        templateUrl : "/beers/BeersList.html",
         controller : "BeersCtrl"
         
-    }).when("/updateBeer/:country/:birthyear",{
-       templateUrl : "EditBeers.html",
+    }).when("/beers/updateBeer/:country/:birthyear",{
+       templateUrl : "/beers/EditBeers.html",
        controller : "EditBeersCtrl"
        
     });;

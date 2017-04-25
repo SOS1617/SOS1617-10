@@ -1,0 +1,21 @@
+<h2>Edit Motorcycling</h2>
+<table class = "table">
+    <thead>
+        <tr>
+            <th><h1>Country</h1></th>
+            <th><h1>Year</h1></th>
+            <th><h1>Pilot</h1></th>
+            <th><h1>Team</h1></th>
+            <th><h1>Actions</h1></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{updatedMotorcycling.country}}</td>
+            <td>{{updatedMotorcycling.year}}</td>
+            <td><input class="form-control" ng-model="updatedMotorcycling.pilot"/></td>
+            <td><input class="form-control" ng-model="updatedMotorcycling.team"/></td>
+            <td><button class="button btn-primary" ng-click="updateMotorcycling()">Update</button></td>
+        </tr>
+    </tbody>
+</table>

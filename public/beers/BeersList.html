@@ -43,7 +43,7 @@
             <tbody>
 
                 <tr ng-repeat="beer in beers">
-                    <td><a href="#!/updateBeer/{{beer.country}}/{{beer.birthyear}}">{{beer.name}}</a></td>
+                    <td><a href="#!/beers/updateBeer/{{beer.country}}/{{beer.birthyear}}">{{beer.name}}</a></td>
                     <td>{{beer.country}}</td>
                     <td>{{beer.birthyear}}</td>
                     <td>{{beer.province}}</td>
@@ -109,7 +109,7 @@
                         <p><label class="fieldsname">Country<input class="from-control" ng-model="newBeer.country" /></label></p>
                         <p><label class="fieldsname">Birthyear<input class="from-control" ng-model="newBeer.birthyear" /></label></p>
                         <p><label class="fieldsname">Province<input class="from-control" ng-model="newBeer.province" /></label></p>
-                        <p><button class="btn btn-primary" ng-click="addBeer()"><span class="glyphicon glyphicon-floppy-save"></span> Add</button></p>
+                        <p><button class="btn btn-primary" ng-click="addBeer()"><span class="glyphicon glyphicon-floppy-save"></span> Add Beer</button></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearResponseData()">Close</button>
