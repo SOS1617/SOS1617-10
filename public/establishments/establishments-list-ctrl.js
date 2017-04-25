@@ -1,6 +1,6 @@
 angular
     .module("SOS161710")
-    .controller("EstablishmentsCtrl", ["$scope", "$http","$rootScope", function($scope, $http, $rootScope) { //inyección de dependencia
+    .controller("EstablishmentsCtrl", ["$scope", "$http", "$rootScope", function($scope, $http, $rootScope) { //inyección de dependencia
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v2";
         var apikey = "";
@@ -12,12 +12,16 @@ angular
 
         $scope.currentPage = 1;
         $scope.pages = [];
-        
+
         if ($rootScope.data) {
-                $scope.Apikey=$rootScope.data.simpleApikey;
-                apikey = $rootScope.data.apikey;
-                refresh();
-            }
+            $scope.Apikey = $rootScope.data.simpleApikey;
+            apikey = $rootScope.data.apikey;
+            document.getElementById("Search").className = "btn btn-info";
+            document.getElementById("Load").className = "btn btn-success btn-lg";
+            document.getElementById("Add").className = "btn btn-primary";
+            document.getElementById("Delete").className = "btn btn-danger";
+            refresh();
+        }
 
         function range(start, end) {
             var res = [];
