@@ -11,7 +11,7 @@ describe('Add establishment', function () {
 				element(by.model('newEstablishment.beds')).sendKeys(3483000);
 				element(by.model('newEstablishment.nights')).sendKeys(404000000);
 				
-				element(by.buttonText(' Add')).click().then(function (){
+				element(by.buttonText('Add')).click().then(function (){
 
 					element.all(by.repeater('establishment in establishments')).then(function (establishments){
 						expect(establishments.length).toEqual(initialEstablishments.length+1);
