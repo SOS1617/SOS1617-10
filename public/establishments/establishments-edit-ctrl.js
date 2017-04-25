@@ -1,5 +1,5 @@
 angular
-    .module("EstablishmentsManagerApp")
+    .module("SOS161710")
     .controller("EstablishmentsEditCtrl", ["$scope", "$http", "$routeParams", "$location",function($scope, $http, $routeParams, $location) { //inyección de dependencia
         console.log("Edit controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v2";
