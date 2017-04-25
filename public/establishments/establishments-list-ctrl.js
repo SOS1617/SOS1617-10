@@ -16,10 +16,6 @@ angular
         if ($rootScope.data) {
             $scope.Apikey = $rootScope.data.simpleApikey;
             apikey = $rootScope.data.apikey;
-            document.getElementById("Search").className = "btn btn-info";
-            document.getElementById("Load").className = "btn btn-success btn-lg";
-            document.getElementById("Add").className = "btn btn-primary";
-            document.getElementById("Delete").className = "btn btn-danger";
             refresh();
         }
 
@@ -45,6 +41,10 @@ angular
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
+                    document.getElementById("Search").className = "btn btn-info";
+                    document.getElementById("Load").className = "btn btn-success btn-lg";
+                    document.getElementById("Add").className = "btn btn-primary";
+                    document.getElementById("Delete").className = "btn btn-danger";
                 }, function(err) {
                     if (err.data == "Forbidden") {
                         $scope.establishments = [];
@@ -207,10 +207,6 @@ angular
 
                 };
             }
-            document.getElementById("Search").className = "btn btn-info";
-            document.getElementById("Load").className = "btn btn-success btn-lg";
-            document.getElementById("Add").className = "btn btn-primary";
-            document.getElementById("Delete").className = "btn btn-danger";
             refresh();
         };
 
