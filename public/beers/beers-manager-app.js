@@ -1,4 +1,4 @@
-angular.module("BeersManagerApp",["ngRoute"]).config(function ($routeProvider){
+angular.module("SOS161710",["ngRoute"]).config(function ($routeProvider){
     $routeProvider.when("/",{
         templateUrl : "BeersList.html",
         controller : "BeersCtrl"
