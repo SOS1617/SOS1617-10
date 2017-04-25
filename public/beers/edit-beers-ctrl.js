@@ -1,5 +1,5 @@
 angular
-    .module("BeersManagerApp")
+    .module("SOS161710")
     .controller("EditBeersCtrl", ["$scope", "$http","$routeParams","$location", 
     function($scope, $http,$routeParams,$location) { //inyeccion de dependencia
         
@@ -19,7 +19,7 @@ angular
              
           $http.put(url,$scope.Beer).then( function (response){
             bootbox.alert("Beer Updated");
-             $location.path("/");
+             $location.path("#!/beers/");
           },function (response){
               switch (response.status) {
                         case 400:
