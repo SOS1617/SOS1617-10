@@ -40,6 +40,11 @@ angular
                 .then(function(response) {
 
                     $scope.beers = response.data;
+                    console.log($scope.beers.length);
+                    if ($scope.beers.length == 0 && $scope.currentPage > 1) {
+                        $scope.setPage($scope.currentPage - 1);
+
+                    }
                     document.getElementById("buttonLoad").className = "btn btn-info";
                     document.getElementById("buttonAddModal").className = "btn btn-primary";
                     document.getElementById("buttonDeleteAll").className = "btn btn-danger";
@@ -112,11 +117,7 @@ angular
                                     bootbox.alert("Beer remove");
                                     console.log("Beer deleted");
                                     refresh();
-                                    console.log($scope.beers.length);
-                                    if ($scope.beers.length == 0 && $scope.currentPage > 1) {
-                                        $scope.setPage($scope.currentPage - 1);
 
-                                    }
                                 }
 
                             );
