@@ -9,6 +9,6 @@ angular.module("MotorcyclingsManagerApp",["ngRoute"]).config(function($routeProv
             controller:"MotorcyclingsEditCtrl"
         });
 
-    console.log("App initialized");
+    console.log("App initialized and configured");
     
 });
