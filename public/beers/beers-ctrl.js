@@ -63,7 +63,7 @@ angular
               $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
             }
             if ($scope.newBeer==undefined){
-                $scope.newBeer="";
+                $scope.newBeer={};
             }
             $http
                 .post(url + "/beers-stats?" + apikey, $scope.newBeer)
