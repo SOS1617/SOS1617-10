@@ -12,6 +12,7 @@ angular
 
         $scope.currentPage = 1;
         $scope.pages = [];
+        $scope.Apikey = "nurtrioje";
 
         function range(start, end) {
             var res = [];
