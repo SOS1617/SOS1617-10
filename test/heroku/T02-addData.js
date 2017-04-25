@@ -41,7 +41,7 @@ describe('Add establishment', function() {
 describe('Add beer', function() {
 	it('should add a new beers', function() {
 		browser.get('http://sos1617-10.herokuapp.com/beers/#!/');
-		element(by.model('apikeyfield')).sendKeys('sos1617-jesusguerre');
+		element(by.model('apikeyfield')).sendKeys('jesusguerre');
 
 		element(by.buttonText('Access')).click().then(function (){
 		

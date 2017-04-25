@@ -1,7 +1,7 @@
 angular
     .module("SOS161710")
     .controller("BeersCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
-        var url = "http://sos1617-10.herokuapp.com/api/v1";
+        var url = "http://sos1617-10.herokuapp.com/api/v2";
         var apikey = "";
         var yearfrom = "";
         var yearto = "";

@@ -13,7 +13,7 @@ describe('Data is loaded', function () {
 describe('Data is loaded', function () {
 	it('should show a bunch of data', function (){
 		browser.get('http://sos1617-10.herokuapp.com/beers');
-		element(by.model('apikeyfield')).sendKeys('sos1617-jesusguerre');
+		element(by.model('apikeyfield')).sendKeys('jesusguerre');
 		var beers
 		element(by.buttonText('Access')).click().then(function (){
 			beers = element.all(by.repeater('beer in beers'));
