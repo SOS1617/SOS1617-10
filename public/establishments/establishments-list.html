@@ -1,14 +1,14 @@
 <div>
     <h2>Establishments</h2>
 </div>
-<ul>
-    <li>
+<ul id="menu">
+    <li id="menuElement">
         <div id="apikey">
             <label for="apikey">Apikey</label> <input id="apikey" class="from-control" ng-model="Apikey" placeholder="nurtrioje"/>
             <button class="btn btn-primary" ng-click="setApikey()"><span class="glyphicon glyphicon-ok"></span> Access</button>
         </div>
     </li>
-    <li>
+    <li id="menuElement">
         <div id="search">
             <label for="from">From year</label> <input id="from" class="form-control" ng-model="fromYear" />
             <label for="to">To year</label> <input id="to" class="form-control" ng-model="toYear" />
@@ -16,7 +16,7 @@
         </div>
     </li>
 
-    <li>
+    <li id="menuElement">
         <div id="loadInitialData">
             <button id="Load" class="btn btn-success btn-lg disabled" ng-click="loadData()"><span class="glyphicon glyphicon-floppy-open"></span> Load data</button>
         </div>
