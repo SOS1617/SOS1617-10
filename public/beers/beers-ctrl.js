@@ -61,7 +61,7 @@ angular
         $scope.addBeer = function() {
             if ($scope.newBeer == undefined) {
                 console.log("entraa");
-                $scope.newBeer =$scope.$new(true);
+                $scope.newBeer ={};
             }
             if ($scope.newBeer.birthyear != undefined) {
                     $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
