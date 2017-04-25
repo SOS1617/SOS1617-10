@@ -60,7 +60,7 @@ angular
         }
         $scope.addBeer = function() {
             if ($scope.newBeer == undefined) {
-                $scope.newBeer = {};
+                $scope.newBeer = "";
             }
             if ($scope.newBeer.birthyear != undefined) {
                     $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
