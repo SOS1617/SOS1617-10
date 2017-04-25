@@ -5,7 +5,7 @@ describe('Data is loaded', function () {
 		var establishments
 		element(by.buttonText('Access')).click().then(function (){
 			establishments = element.all(by.repeater('establishment in establishments'));
-		expect(establishments.count()).toBeGreaterThan(4);
+		expect(establishments.count()).toBeGreaterThan(3);
 		});
 	});
 });
@@ -17,7 +17,7 @@ describe('Data is loaded', function () {
 		var beers
 		element(by.buttonText('Access')).click().then(function (){
 			beers = element.all(by.repeater('beer in beers'));
-		expect(beers.count()).toBeGreaterThan(4);
+		expect(beers.count()).toBeGreaterThan(3);
 		});
 	});
 });

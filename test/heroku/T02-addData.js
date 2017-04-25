@@ -45,9 +45,7 @@ describe('Add beer', function() {
 
 		element(by.buttonText('Access')).click().then(function (){
 		
-		browser.takeScreenshot().then(function (png) {
-    			writeScreenShot(png, 'ng-test.png');
-    		});
+	
 		element.all(by.repeater('beer in beers')).then(function(initialBeers) {
 			
 			
@@ -56,9 +54,7 @@ describe('Add beer', function() {
 			element(by.buttonText('Add')).click()
 			browser.driver.sleep(2000);
 			
-			browser.takeScreenshot().then(function (png) {
-    			writeScreenShot(png, 'ng-test2.png');
-    		});
+			
 			
 			element(by.model('newBeer.name')).sendKeys("test");
 			element(by.model('newBeer.country')).sendKeys("Spain");
@@ -69,9 +65,7 @@ describe('Add beer', function() {
 
 			element(by.buttonText('Add Beer')).click().then(function() {
 				browser.driver.sleep(2000);
-				browser.takeScreenshot().then(function (png) {
-    			writeScreenShot(png, 'ng-test3.png');
-    		});
+			
 				element.all(by.repeater('beer in beers')).then(function(beers) {
 					expect(beers.length).toEqual(initialBeers.length + 1);
 				});
