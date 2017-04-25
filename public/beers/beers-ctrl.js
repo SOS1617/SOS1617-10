@@ -59,16 +59,19 @@ angular
                 });
         }
         $scope.addBeer = function() {
-            if ($scope.newBeer) {
-                $scope.newBeer =Number($scope.newBeer.birthyear);
+            if ($scope.newBeer == undefined) {
+                $scope.newBeer =$scope.$new(true);
             }
+            if ($scope.newBeer.birthyear != undefined) {
+                    $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
+                }
             $http
                 .post(url + "/beers-stats?" + apikey, $scope.newBeer)
                 .then(function(response) {
 
                     bootbox.alert("Beer Created");
                     refresh();
-                   $scope.newBeer = {};
+                    $scope.newBeer = $scope.$new(true);
                 }, function(response) {
                     switch (response.status) {
                         case 409:
