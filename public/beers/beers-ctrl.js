@@ -119,12 +119,10 @@ angular
             $scope.Beer.birthyear = Number($scope.Beer.birthyear);
             $http.put(url + "/beers-stats/" + country + "/" + Number(birthyear) + "?" + apikey, $scope.Beer).then(function(response) {
                 $scope.responsedata = response.data;
+                bootbox.alert("Beer Updated");
                 refresh();
 
-            }, function(response) {
-                bootbox.alert("Beer Updated");
-                $scope.responsedata = response.data;
-            }, function(response) {
+            },function(response) {
                 switch (response.status) {
                     case 400:
                         bootbox.alert("The Beer that you are trying to add, Have bad data. Please insert all the fields");
@@ -133,6 +131,7 @@ angular
                         bootbox.alert("Please make sure that you have entered all the fields");
                         break;
                 }
+                $scope.responsedata = response.data;
             });
         };
         $scope.deleteBeers = function() {
