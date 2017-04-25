@@ -100,6 +100,30 @@ module.exports.register_establishments_api = function(app) {
                         "number": 3163,
                         "beds": 314300,
                         "nights": 21700000
+                    }, {
+                        "country": "czech republic",
+                        "year": 2014,
+                        "number": 9013,
+                        "beds": 710400,
+                        "nights": 42900000
+                    }, {
+                        "country": "denmark",
+                        "year": 2014,
+                        "number": 1118,
+                        "beds": 420000,
+                        "nights": 29600000
+                    }, {
+                        "country": "germany",
+                        "year": 2014,
+                        "number": 50925,
+                        "beds": 3318600,
+                        "nights": 366500000
+                    }, {
+                        "country": "estonia",
+                        "year": 2014,
+                        "number": 1419,
+                        "beds": 58100,
+                        "nights": 5800000
                     }];
                     db.insert(initialEstablishments);
                     response.sendStatus(201);
