@@ -73,7 +73,7 @@ angular
                     refresh();
                     $scope.newBeer = "";
                 }, function(response) {
-                    switch (expression) {
+                    switch (response.status) {
                         case 409:
                             bootbox.alert("The Beer that you are trying to add, exits.");
                             break;
