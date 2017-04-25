@@ -19,7 +19,7 @@ angular
              
           $http.put(url,$scope.Beer).then( function (response){
             bootbox.alert("Beer Updated");
-             $location.path("/beers/#!/beers/");
+             $location.path("#!/beers/");
           },function (response){
               switch (response.status) {
                         case 400:
