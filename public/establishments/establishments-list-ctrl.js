@@ -164,6 +164,9 @@ angular
                         case 422:
                             bootbox.alert("Please make sure you have introduced all fields.");
                             break;
+                        case 404:
+                            bootbox.alert("Establishment not found. Please make sure your have introduced correctly the country or the year.");
+                            break;
                         default:
                             // code
                     }
