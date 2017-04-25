@@ -9,10 +9,10 @@ angular
         var size = 5;
         var limit = "&limit=" + size;
         if ($rootScope.data) {
-                $scope.apikeyfield=$rootScope.data.apikey;
-                apikey = $rootScope.data.apikey;
-                refresh();
-            }
+            $scope.apikeyfield = $rootScope.data.apikey;
+            apikey = $rootScope.data.apikey;
+            refresh();
+        }
 
         console.log("Controller initialized right");
 
@@ -29,7 +29,7 @@ angular
 
 
         function refresh() {
-            
+
             var urlrequest = url + "/beers-stats?" + apikey + yearfrom + yearto + limit + offset;
             console.log(urlrequest);
             $http.get(url + "/beers-stats?" + apikey + yearfrom + yearto).then(function(response) {
@@ -112,6 +112,11 @@ angular
                                     bootbox.alert("Beer remove");
                                     console.log("Beer deleted");
                                     refresh();
+                                    console.log($scope.beers.length);
+                                    if ($scope.beers.length == 0 && $scope.currentPage > 1) {
+                                        $scope.setPage($scope.currentPage - 1);
+
+                                    }
                                 }
 
                             );
@@ -126,11 +131,7 @@ angular
                 $scope.responsedata = response.data;
                 bootbox.alert("Beer Updated");
                 refresh();
-                 console.log($scope.beers.length);
-                                    if($scope.beers.length==0 && $scope.currentPage>1){
-                                        $scope.setPage($scope.currentPage-1);
-                                        
-                                    }
+
 
             }, function(response) {
                 switch (response.status) {
@@ -165,7 +166,7 @@ angular
                                     bootbox.alert("Beers deleted");
                                     console.log("Beers deleted");
                                     refresh();
-                                   
+
                                 }
 
                             );
