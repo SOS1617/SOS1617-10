@@ -12,7 +12,6 @@ angular
         console.log("Controller initialized right");
 
         $scope.currentPage = 1;
-        $scope.apikeyfield="sos1617-jesusguerre";
         $scope.pages = [];
 
         function range(start, end) {
@@ -60,15 +59,31 @@ angular
                 });
         }
         $scope.addBeer = function() {
-            $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
+            if (newBeer.birthyear!= undefined){
+              $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
+            }
             $http
                 .post(url + "/beers-stats?" + apikey, $scope.newBeer)
                 .then(function(response) {
-                    $scope.responsedata = response.data;
+                    
+                    bootbox.alert("Beer Created");
                     refresh();
                     $scope.newBeer = "";
                 }, function(response) {
-                    $scope.responsedata = response.data;
+                    switch (expression) {
+                        case 409:
+                            bootbox.alert("The Beer that you are trying to add, exits.");
+                            break;
+                        case 400:
+                            bootbox.alert("The Beer that you are trying to add, Have bad data. Please insert all the fields");
+                            break;
+                            
+                        case 422:
+                            bootbox.alert("Please make sure that you have entered all the fields");
+                            break;
+                        default:
+                            // code
+                    }
                     $scope.newBeer = "";
                 });
 
