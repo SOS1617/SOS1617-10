@@ -79,6 +79,9 @@ angular
                     refresh();
                 }, function(response) {
                     switch (response.status) {
+                        case 400:
+                            bootbox.alert("Bad Request. Please make sure you have introduced correctly all fields.");
+                            break;
                         case 409:
                             bootbox.alert("Conflict. The establishment added already exists.");
                             break;
