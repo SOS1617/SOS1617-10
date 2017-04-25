@@ -9,6 +9,7 @@ angular
         var size = 5;
         var limit = "&limit=" + size;
         if($rootScope.data){
+            console.log("exite sesion");
             apikey=$rootScope.data.apikey;
         }
 
@@ -184,6 +185,7 @@ angular
                     apikey: apikey
                     
                 };
+                console.log($rootScope.data.apikey);
                 
             }
             refresh();
