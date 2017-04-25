@@ -1,6 +1,6 @@
 angular
 .module("MotorcyclingsManagerApp")
-.controller("ListCtrl",["$scope","$http",function($scope,$http){
+.controller("MotorcyclingsCtrl",["$scope","$http",function($scope,$http){
     console.log("Controller initialized (splited right)");
     var url = "http://sos1617-10.herokuapp.com/api/v1";
     var apikey = "";
@@ -57,7 +57,7 @@ angular
     
     
     $scope.putMotorcycling = function(){
-    $scope.newMotorcycling.year=Number( $scope.newMotorcycling.year);
+        $scope.newMotorcycling.year=Number($scope.newMotorcycling.year);
         $http
             .put(url +"/motorcycling-stats/"+ $scope.newMotorcycling.country + "/" +  $scope.newMotorcycling.year + "?"  + apikey, $scope.newMotorcycling )
             .then(function(response){
