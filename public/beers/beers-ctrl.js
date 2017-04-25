@@ -1,6 +1,6 @@
 angular
     .module("SOS161710")
-    .controller("BeersCtrl", ["$scope", "$http", function($scope, $http) { //inyeccion de dependencia
+    .controller("BeersCtrl", ["$scope", "$http","$rootScope", function($scope, $http,$rootScope) { //inyeccion de dependencia
         var url = "http://sos1617-10.herokuapp.com/api/v2";
         var apikey = "";
         var yearfrom = "";
@@ -8,6 +8,9 @@ angular
         var offset = "";
         var size = 5;
         var limit = "&limit=" + size;
+        if($rootScope.data){
+            apikey=$rootScope.data.apikey;
+        }
 
         console.log("Controller initialized right");
 
@@ -177,6 +180,11 @@ angular
             }
             else {
                 apikey = "apikey=" + $scope.apikeyfield;
+                $rootScope.data ={
+                    apikey: apikey
+                    
+                };
+                
             }
             refresh();
         };
