@@ -33,7 +33,7 @@ angular
             $http
                 .get(urlrequest)
                 .then(function(response) {
-                    
+
                     $scope.beers = response.data;
                     document.getElementById("buttonLoad").className = "btn btn-info";
                     document.getElementById("buttonAddModal").className = "btn btn-primary";
@@ -59,17 +59,16 @@ angular
                 });
         }
         $scope.addBeer = function() {
-            if ($scope.newBeer==undefined){
-                $scope.newBeer={};
+            if ($scope.newBeer == undefined) {
+                $scope.newBeer = {};
             }
-            if (newBeer.birthyear!= undefined){
-              $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
-            }
-            
+            if ($scope.newBeer.birthyear != undefined) {
+                    $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
+                }
             $http
                 .post(url + "/beers-stats?" + apikey, $scope.newBeer)
                 .then(function(response) {
-                    
+
                     bootbox.alert("Beer Created");
                     refresh();
                     $scope.newBeer = "";
@@ -81,7 +80,7 @@ angular
                         case 400:
                             bootbox.alert("The Beer that you are trying to add, Have bad data. Please insert all the fields");
                             break;
-                            
+
                         case 422:
                             bootbox.alert("Please make sure that you have entered all the fields");
                             break;
@@ -164,9 +163,10 @@ angular
         };
         $scope.sendapi = function() {
             if ($scope.apikeyfield == undefined) {
-                apikey= "";
-            }else{
-                 apikey = "apikey=" + $scope.apikeyfield;
+                apikey = "";
+            }
+            else {
+                apikey = "apikey=" + $scope.apikeyfield;
             }
             refresh();
         };
