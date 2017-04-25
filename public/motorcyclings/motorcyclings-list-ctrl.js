@@ -1,6 +1,6 @@
 angular
 .module("MotorcyclingsManagerApp")
-.controller("MotorcyclingsCtrl",["$scope","$http",function($scope,$http){
+.controller("MotorcyclingsCtrl",["$scope","$http","$rootScope",function($scope,$http,$rootScope){
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v1";
     var apikey = "";
@@ -8,6 +8,12 @@ angular
     var yearto = "";
     var limit = "";
     var offset = "";
+    
+    if ($rootScope.data) {
+        $scope.apikeyfield = $rootScope.data.apikey;
+        apikey = $rootScope.data.apikey;
+        refresh();
+    }
     
     function refresh(){
         $http
@@ -67,7 +73,17 @@ angular
     };
     
     $scope.sendapi = function() {
-        apikey = "apikey=" + $scope.apikey;
+        if ($scope.apikeyfield == undefined) {
+            apikey = "";
+        }
+        else {
+            apikey = "apikey=" + $scope.apikeyfield;
+            $rootScope.data = {
+                apikey: apikey
+            };
+            console.log($rootScope.data.apikey);
+
+        }
         refresh();
     };
     
