@@ -1,6 +1,6 @@
 describe('Data is loaded', function () {
 	it('should show a bunch of data', function (){
-		browser.get('http://sos1617-10.herokuapp.com/establishments');
+		browser.get('http://sos1617-10.herokuapp.com/establishments/#!/establishments');
 		element(by.model('Apikey')).sendKeys('nurtrioje');
 		var establishments
 		element(by.buttonText('Access')).click().then(function (){
@@ -12,7 +12,7 @@ describe('Data is loaded', function () {
 
 describe('Data is loaded', function () {
 	it('should show a bunch of data', function (){
-		browser.get('http://sos1617-10.herokuapp.com/beers');
+		browser.get('http://sos1617-10.herokuapp.com/beers/#!/beers');
 		element(by.model('apikeyfield')).sendKeys('jesusguerre');
 		var beers
 		element(by.buttonText('Access')).click().then(function (){

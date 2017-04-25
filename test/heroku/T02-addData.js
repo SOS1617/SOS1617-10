@@ -8,7 +8,7 @@ function writeScreenShot(data, filename) {
 
 describe('Add establishment', function() {
 	it('should add a new establishment', function() {
-		browser.get('http://sos1617-10.herokuapp.com/establishments');
+		browser.get('http://sos1617-10.herokuapp.com/establishments/#!/establishments');
 		element(by.model('Apikey')).sendKeys('nurtrioje');
 
 		element(by.buttonText('Access')).click().then(function() {
@@ -40,7 +40,7 @@ describe('Add establishment', function() {
 });
 describe('Add beer', function() {
 	it('should add a new beers', function() {
-		browser.get('http://sos1617-10.herokuapp.com/beers/#!/');
+		browser.get('http://sos1617-10.herokuapp.com/beers/#!/beers');
 		element(by.model('apikeyfield')).sendKeys('jesusguerre');
 
 		element(by.buttonText('Access')).click().then(function() {
