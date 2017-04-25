@@ -33,6 +33,7 @@ angular
             $http
                 .get(urlrequest)
                 .then(function(response) {
+                    $scope.apikeyfield="sos1617-jesusguerre";
                     $scope.beers = response.data;
                     document.getElementById("buttonLoad").className = "btn btn-info";
                     document.getElementById("buttonAddModal").className = "btn btn-primary";
