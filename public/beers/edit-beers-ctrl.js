@@ -18,11 +18,17 @@ angular
             var url = "/api/v1/beers-stats/"+ country + "/" + Number(birthyear)+ '?apikey=sos1617-jesusguerre';
              
           $http.put(url,$scope.Beer).then( function (response){
-             console.log(url);
-             console.log(response.data);
+            bootbox.alert("Beer Updated");
              $location.path("/");
           },function (response){
-              console.log(response.data);
+              switch (response.status) {
+                        case 400:
+                            bootbox.alert("The Beer that you are trying to add, Have bad data. Please insert all the fields");
+                            break;
+                        default:
+                            bootbox.alert("Please make sure that you have entered all the fields");
+                            break;
+                    }
           });  
         };
        

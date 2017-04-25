@@ -60,12 +60,11 @@ angular
         }
         $scope.addBeer = function() {
             if ($scope.newBeer == undefined) {
-                console.log("entraa");
-                $scope.newBeer ={};
+                $scope.newBeer = {};
             }
             if ($scope.newBeer.birthyear != undefined) {
-                    $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
-                }
+                $scope.newBeer.birthyear = Number($scope.newBeer.birthyear);
+            }
             $http
                 .post(url + "/beers-stats?" + apikey, $scope.newBeer)
                 .then(function(response) {
@@ -85,7 +84,7 @@ angular
                             bootbox.alert("Please make sure that you have entered all the fields");
                             break;
                     }
-                    
+
                 });
 
         };
@@ -105,6 +104,7 @@ angular
                     if (result == true) {
                         $http
                             .delete(url + "/beers-stats/" + country + "/" + birthyear + "?" + apikey).then(function(response) {
+                                    bootbox.alert("Beer remove");
                                     console.log("Beer deleted");
                                     refresh();
                                 }
@@ -122,7 +122,17 @@ angular
                 refresh();
 
             }, function(response) {
+                bootbox.alert("Beer Updated");
                 $scope.responsedata = response.data;
+            }, function(response) {
+                switch (response.status) {
+                    case 400:
+                        bootbox.alert("The Beer that you are trying to add, Have bad data. Please insert all the fields");
+                        break;
+                    default:
+                        bootbox.alert("Please make sure that you have entered all the fields");
+                        break;
+                }
             });
         };
         $scope.deleteBeers = function() {
@@ -141,6 +151,7 @@ angular
                     if (result == true) {
                         $http
                             .delete(url + "/beers-stats/?" + apikey).then(function(response) {
+                                    bootbox.alert("Beers deleted");
                                     console.log("Beers deleted");
                                     refresh();
                                 }
