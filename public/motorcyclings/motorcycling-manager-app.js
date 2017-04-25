@@ -4,7 +4,8 @@ angular.module("MotorcyclingsManagerApp",["ngRoute"]).config(function($routeProv
         .when("/", {
             templateUrl:"motorcyclings-list.html",
             controller:"MotorcyclingsCtrl"
-        }).when("/motorcycling/:country/:year", {
+        })
+        .when("/motorcycling/:country/:year", {
             templateUrl:"motorcyclings-edit.html",
             controller:"MotorcyclingsEditCtrl"
         });
