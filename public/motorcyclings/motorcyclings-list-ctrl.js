@@ -22,7 +22,6 @@ angular
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
-                console.log(response.data.length);
 
             });
     }
