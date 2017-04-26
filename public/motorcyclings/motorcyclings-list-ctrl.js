@@ -6,10 +6,10 @@ angular
     var apikey = "";
     var yearfrom = "";
     var yearto = "";
-    var size = 5;
-    var limit = "&limit=" + size;
+    var limit = "";
     var offset = "";
-
+    
+    
     
     if ($rootScope.data) {
             $scope.apikeyField = $rootScope.data.simpleApikey;
@@ -17,12 +17,11 @@ angular
             refresh();
     }
     
-    
     function refresh(){
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
-
+                $scope.motorcyclings = response.data;
             });
     }
 
@@ -65,27 +64,13 @@ angular
     };
     
     
-    $scope.putMotorcycling = function(country, year){
+    $scope.putMotorcycling = function(){
+        $scope.newMotorcycling.year=Number($scope.newMotorcycling.year);
         $http
-            .put(url +"/motorcycling-stats/"+ country + "/" +  Number(year) + "?"  + apikey, $scope.newMotorcycling )
+            .put(url +"/motorcycling-stats/"+ $scope.newMotorcycling.country + "/" +  $scope.newMotorcycling.year + "?"  + apikey, $scope.newMotorcycling )
             .then(function(response){
                 console.log("Motorcycling Updated");
-                bootbox.alert("Motorcycling Updated");
                 refresh();
-            }, function(response) {
-                    switch (response.status) {
-                        case 400:
-                            bootbox.alert("Bad Request. Please enter all fields correctly.");
-                            break;
-                        case 422:
-                            bootbox.alert("Please make sure you have introduced all fields.");
-                            break;
-                        case 404:
-                            bootbox.alert("Motorcycling not found.");
-                            break;
-                        default:
-                            // code
-                    }
             });
     };
     
@@ -134,6 +119,4 @@ angular
             refresh();
 
         };
-        
-    
 }]);
