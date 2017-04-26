@@ -8,9 +8,9 @@ angular
     function refresh(){
         var year = Number($routeParams.year);
         $http
-            .get(url + "/motorcycling-stats/?" + $routeParams.country + "/" + $routeParams.year + "?" + apikey)
+            .get(url + "/motorcycling-stats/" + $routeParams.country + "/" + $routeParams.year + "?" + apikey)
             .then(function(response){
-                $scope.updatedMotorcycling = response.data[0];
+                $scope.updatedMotorcycling = response.data;
                 delete $scope.updatedMotorcycling["_id"];
             });
     }
