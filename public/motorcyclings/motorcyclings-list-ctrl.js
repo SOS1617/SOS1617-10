@@ -64,13 +64,28 @@ angular
     };
     
     
-    $scope.putMotorcycling = function(){
-        $scope.newMotorcycling.year=Number($scope.newMotorcycling.year);
+    $scope.putMotorcycling = function(country, year){
         $http
-            .put(url +"/motorcycling-stats/"+ $scope.newMotorcycling.country + "/" +  $scope.newMotorcycling.year + "?"  + apikey, $scope.newMotorcycling )
+            .put(url +"/motorcycling-stats/"+ Number(year) + "?"  + apikey, $scope.newMotorcycling )
             .then(function(response){
-                console.log("Motorcycling Updated");
+                $scope.responseData = response.data;
+                console.log("Motorcycling updated");
+                bootbox.alert("Motorcycling updated.");
                 refresh();
+            }, function(response) {
+                    switch (response.status) {
+                        case 400:
+                            bootbox.alert("Bad Request. Please enter all fields correctly.");
+                            break;
+                        case 422:
+                            bootbox.alert("Please make sure you have introduced all fields.");
+                            break;
+                        case 404:
+                            bootbox.alert("Motorcycling not found.");
+                            break;
+                        default:
+                            // code
+                    }
             });
     };
     
