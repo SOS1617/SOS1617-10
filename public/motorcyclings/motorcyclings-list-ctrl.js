@@ -70,7 +70,22 @@ angular
             .put(url +"/motorcycling-stats/"+ country + "/" +  Number(year) + "?"  + apikey, $scope.newMotorcycling )
             .then(function(response){
                 console.log("Motorcycling Updated");
+                bootbox.alert("Motorcycling Updated");
                 refresh();
+            }, function(response) {
+                    switch (response.status) {
+                        case 400:
+                            bootbox.alert("Bad Request. Please enter all fields correctly.");
+                            break;
+                        case 422:
+                            bootbox.alert("Please make sure you have introduced all fields.");
+                            break;
+                        case 404:
+                            bootbox.alert("Motorcycling not found.");
+                            break;
+                        default:
+                            // code
+                    }
             });
     };
     
