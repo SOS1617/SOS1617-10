@@ -21,7 +21,7 @@ angular
             .then(function(response){
                 console.log("Motorcycling Updated");
                 bootbox.alert("Motorcycling Updated");
-                $location.path("/");
+                $location.path("/motorcyclings/");
             }, function(response) {
                     switch (response.status) {
                         case 400:
