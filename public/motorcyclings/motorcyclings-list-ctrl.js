@@ -64,9 +64,9 @@ angular
     };
     
     
-    $scope.updateMotorcycling = function(country, year){
+    $scope.putMotorcycling = function(country, year){
         $http
-            .put(url +"/motorcycling-stats/"+ Number(year) + "?"  + apikey, $scope.newMotorcycling )
+            .put(url +"/motorcycling-stats/"+ country + "/" + Number(year) + "?"  + apikey, $scope.Motorcycling )
             .then(function(response){
                 $scope.responseData = response.data;
                 console.log("Motorcycling updated");
