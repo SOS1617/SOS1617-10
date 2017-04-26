@@ -9,7 +9,8 @@ angular
         $http
             .get(url + "/motorcycling-stats/" + $routeParams.country + "/" + Number($routeParams.year) + "?" + apikey)
             .then(function(response){
-                $scope.updatedMotorcycling = response.data;
+                $scope.updatedMotorcycling = response.data[0];
+                console.log(response.data[0])
                 delete $scope.updatedMotorcycling["_id"];
                 console.log(response.data)
             }, function(err){

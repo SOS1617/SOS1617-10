@@ -22,6 +22,17 @@ angular
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
                 $scope.motorcyclings = response.data;
+            }, function(err) {
+                    if (err.data == "Forbidden") {
+                        $scope.establishments = [];
+                        bootbox.alert("Incorrect apikey.");
+
+                    }
+                    if (err.data == "Unauthorized") {
+                        $scope.establishments = [];
+                        bootbox.alert("You have to introduce an apikey");
+
+                }
             });
     }
 
@@ -84,7 +95,7 @@ angular
                             bootbox.alert("Motorcycling not found.");
                             break;
                         default:
-                            // code
+
                     }
             });
     };

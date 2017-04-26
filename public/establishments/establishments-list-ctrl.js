@@ -41,6 +41,10 @@ angular
                 .get(url + "/establishments?" + apikey + from + to + limit + offset)
                 .then(function(response) { //promesas
                     $scope.establishments = response.data;
+                    if ($scope.establishments.length == 0 && $scope.currentPage > 1) {
+                        $scope.setPage($scope.currentPage - 1);
+
+                    }
                     document.getElementById("Search").className = "btn btn-info";
                     document.getElementById("Load").className = "btn btn-success btn-lg";
                     document.getElementById("Add").className = "btn btn-primary";
