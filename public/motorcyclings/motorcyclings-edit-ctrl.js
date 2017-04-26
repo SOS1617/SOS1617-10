@@ -11,7 +11,7 @@ angular
             .then(function(response){
                 $scope.updatedMotorcycling = response.data;
                 console.log(response.data)
-                delete $scope.updatedEstablishment["_id"];
+                delete $scope.updatedMotorcycling["_id"];
             }, function(err){
                 console.log(err.data);
             });
