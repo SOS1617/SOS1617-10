@@ -6,18 +6,16 @@ angular
     var apikey = "apikey=davbotcab";
     
     function refresh(){
-        var year = Number($routeParams.year);
         $http
-            .get(url + "/motorcycling-stats/" + $routeParams.country + "/" + $routeParams.year + "?" + apikey)
+            .get(url + "/motorcycling-stats/" + $routeParams.country + "/" + Number($routeParams.year) + "?" + apikey)
             .then(function(response){
                 $scope.updatedMotorcycling = response.data;
-                delete $scope.updatedMotorcycling["_id"];
             });
     }
     
-    $scope.updateMotorcycling = function(country, year){
+    $scope.updateMotorcycling = function(){
         $http
-            .put(url +"/motorcycling-stats/"+ country + "/" + Number(year) + "?" + apikey, $scope.updatedMotorcycling)
+            .put(url +"/motorcycling-stats/"+ $routeParams.country + "/" + Number($routeParams.year) + "?" + apikey, $scope.updatedMotorcycling)
             .then(function(response){
                 console.log("Motorcycling Updated");
                 bootbox.alert("Motorcycling Updated");
