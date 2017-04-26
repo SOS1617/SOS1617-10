@@ -11,8 +11,8 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{updatedMotorcycling.country}}</td>
-            <td>{{updatedMotorcycling.year}}</td>
+            <td><input class="form-control" ng-model="updatedMotorcycling.country"/></td>
+            <td><input class="form-control" ng-model="updatedMotorcycling.year"/></td>
             <td><input class="form-control" ng-model="updatedMotorcycling.pilot"/></td>
             <td><input class="form-control" ng-model="updatedMotorcycling.team"/></td>
             <td><button class="button btn-primary" ng-click="updateMotorcycling(updatedMotorcycling.country,updatedMotorcycling.year)">Update</button></td>
