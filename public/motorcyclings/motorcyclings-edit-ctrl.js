@@ -1,5 +1,5 @@
 angular
-.module("MotorcyclingsManagerApp")
+.module("SOS161710")
 .controller("MotorcyclingsEditCtrl",["$scope","$http","$routeParams","$location",function($scope,$http,$routeParams,$location){
     console.log("Edit controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v1";
