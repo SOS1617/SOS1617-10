@@ -10,9 +10,9 @@ angular
     var offset = "";
     
     if ($rootScope.data) {
-        $scope.apikeyfield = $rootScope.data.apikey;
-        apikey = $rootScope.data.apikey;
-        refresh();
+            $scope.apikeyField = $rootScope.data.simpleApikey;
+            apikey = $rootScope.data.apikey;
+            refresh();
     }
     
     function refresh(){
@@ -73,19 +73,21 @@ angular
     };
     
     $scope.sendapi = function() {
-        if ($scope.apikeyfield == undefined) {
+        if ($scope.apikeyField == undefined) {
             apikey = "";
         }
         else {
-            apikey = "apikey=" + $scope.apikeyfield;
+            apikey = "apikey=" + $scope.apikeyField;
             $rootScope.data = {
-                apikey: apikey
+                apikey: apikey,
+                simpleApikey: $scope.apikeyField
             };
             console.log($rootScope.data.apikey);
 
         }
         refresh();
     };
+    
     
     $scope.filter = function(YearFrom, YearTo, Limit, Offset) {
             if (YearFrom) {
