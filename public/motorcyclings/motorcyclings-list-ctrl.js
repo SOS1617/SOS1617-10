@@ -6,8 +6,12 @@ angular
     var apikey = "";
     var yearfrom = "";
     var yearto = "";
+    var size = 5;
     var limit = "";
     var offset = "";
+    
+    $scope.currentPage = 1;
+    $scope.pages = [];
     
     if ($rootScope.data) {
             $scope.apikeyField = $rootScope.data.simpleApikey;
@@ -15,11 +19,23 @@ angular
             refresh();
     }
     
+    function range(start, end) {
+        var res = [];
+        for (var i = start; i <= end; i++) {
+            res.push(i);
+        }
+        return res;
+    }
+    
     function refresh(){
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
-                $scope.motorcyclings = response.data;
+                console.log(response.data.length);
+                console.log(Math.ceil(response.data.length / size));
+                $scope.pages = range(1, Math.ceil(response.data.length / size));
+            
+                console.log($scope.pages);
             });
     }
 
@@ -117,4 +133,23 @@ angular
             refresh();
 
         };
+        
+    
+        $scope.setPage = function(page) {
+            $scope.currentPage = page;
+
+            if (page == 1) $("#previousPage").addClass("disabled");
+            else $("#previousPage").removeClass("disabled");
+
+            if (page == $scope.pages.length) $("#nextPage").addClass("disabled");
+            else $("#nextPage").removeClass("disabled");
+
+            $(".active").removeClass("active");
+            $("#Page" + $scope.currentPage).addClass("active");
+
+            offset = "&offset=" + (($scope.currentPage * size) - size);
+
+            refresh();
+        };
+    
 }]);

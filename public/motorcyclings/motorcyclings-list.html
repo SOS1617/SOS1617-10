@@ -45,3 +45,18 @@
     </tbody>
     </table>
 </div>
+
+<div id="paginate">
+    <label="Navigation Page" ng-hide="pages.length <= 1">
+        <ul class="pagination">
+            <li id="previousPage" ng-disabled="currentPage == 1" ng-click="setPage(currentPage - 1)">
+                <span class="page-link">Previous</span>
+            </li>
+            <li id="Page{{page}}" ng-class="{active: page == currentPage}" ng-repeat="page in pages" ng-click="setPage(page)">
+                <span>{{page}}</span>
+            </li>
+            <li id="nextPage" ng-disabled="currentPage == pages.length" ng-click="setPage(currentPage + 1)">
+                <span class="page-link">Next</span>
+            </li>
+        </ul>
+</div>
