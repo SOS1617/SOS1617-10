@@ -11,14 +11,13 @@ angular
             .get(url + "/motorcycling-stats/?" + $routeParams.country + "/" + $routeParams.year + "?" + apikey)
             .then(function(response){
                 $scope.motorcyclings = response.data;
-                delete $scope.updatedMotorcycling["_id"];
             });
     }
     
     $scope.updateMotorcycling = function(){
         var year = Number($routeParams.year);
         $http
-            .put(url +"/motorcycling-stats/"+ $routeParams.country + "/" + year + "?" + apikey, $scope.updatedMotorcycling)
+            .put(url +"/motorcycling-stats/"+ $routeParams.country + "/" + $routeParams.year + "?" + apikey, $scope.updatedMotorcycling)
             .then(function(response){
                 console.log("Motorcycling Updated");
                 bootbox.alert("Motorcycling Updated");
