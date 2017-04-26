@@ -15,10 +15,9 @@ angular
             });
     }
     
-    $scope.updateMotorcycling = function(){
-        var year = Number($routeParams.year);
+    $scope.updateMotorcycling = function(country, year){
         $http
-            .put(url +"/motorcycling-stats/"+ $routeParams.country + "/" + year + "?" + apikey, $scope.updatedMotorcycling)
+            .put(url +"/motorcycling-stats/"+ country + "/" + Number(year) + "?" + apikey, $scope.updatedMotorcycling)
             .then(function(response){
                 console.log("Motorcycling Updated");
                 bootbox.alert("Motorcycling Updated");
