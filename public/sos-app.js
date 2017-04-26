@@ -16,6 +16,14 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
     }).when("/establishments/updateEstablishment/:country/:year", {
         templateUrl: "/establishments/establishments-edit.html",
         controller: "EstablishmentsEditCtrl"
+        
+    }).when("/motorcyclings/", {
+        templateUrl: "/motorcyclings/motorcyclings-list.html",
+        controller: "MotorcyclingsCtrl"
+
+    }).when("/motorcyclings/updateMotorcycling/:country/:year", {
+        templateUrl: "/motorcyclings/motorcyclings-edit.html",
+        controller: "MotorcyclingsEditCtrl"
 
     });
 });
