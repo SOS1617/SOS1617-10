@@ -35,6 +35,10 @@ var establishments = require('./establishments');
 
 establishments.register_establishments_api(app);
 
+var establishmentsv2 = require('./establishmentsv2');
+
+establishmentsv2.register_establishments_apiv2(app);
+
 
 "------------------------------------motorcycling-stats---------------------------------------------------------------------------------";
 
