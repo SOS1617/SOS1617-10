@@ -3,7 +3,7 @@ angular
 .controller("MotorcyclingsEditCtrl",["$scope","$http","$routeParams","$location",function($scope,$http,$routeParams,$location){
     console.log("Edit controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v1";
-    var apikey = "";
+    var apikey = "apikey=davbotcab";
     
     function refresh(){
         var year = Number($routeParams.year);
