@@ -27,7 +27,7 @@ angular
             });*/
             response = [country,data.filter( (x) => {
                 return x.country==country;
-            })];
+            }).length];
             
             
             return response;
