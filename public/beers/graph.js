@@ -1,6 +1,6 @@
 angular
     .module("SOS161710")
-    .controller("BeersGraphs", ["$http", function() {
+    .controller("BeersGraphs", ["$http", function($http) {
         console.log("Controller initialized");
          var beersbycountry = [];
          var url="http://sos1617-10.herokuapp.com/api/v2/beers-stats";
