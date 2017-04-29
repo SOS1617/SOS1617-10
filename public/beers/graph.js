@@ -18,14 +18,7 @@ angular
             console.log(beersbycountry);
             showGraph();
 
-
-
-
-        });
-
-        $http.get(url + "/Spain?" + apikey).then(function(response) {
-            beersfromspain.push(['Province','Name','Birthyear']);
-            console.log(response.data);
+            beersfromspain.push(['Province', 'Name', 'Birthyear']);
             response.data.forEach( (x) =>{
                 beersfromspain.push([x.province,x.name,x.birthyear]);
             }); 
@@ -34,9 +27,11 @@ angular
           
             console.log(beersfromspain);
              google.charts.setOnLoadCallback(drawMarkersMap);
-            
+
 
         });
+
+        
 
 
         function getFromApi(country, data) {
@@ -44,7 +39,7 @@ angular
             response = [country, data.filter((x) => {
                 return x.country == country;
             }).length];
-                
+
 
             return response;
         }
@@ -75,7 +70,7 @@ angular
         google.charts.load('current', {
             'packages': ['geochart']
         });
-       
+
 
         function drawMarkersMap() {
             var data = google.visualization.arrayToDataTable(beersfromspain);
