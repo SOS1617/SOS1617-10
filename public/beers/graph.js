@@ -24,10 +24,10 @@ angular
         });
 
         $http.get(url + "/Spain?" + apikey).then(function(response) {
-            beersfromspain.push(['City','Name','Birthyear','Country']);
+            beersfromspain.push(['City','Name','Birthyear']);
             console.log(response.data);
             response.data.forEach( (x) =>{
-                beersfromspain.push([x.province,x.name,x.birthyear,x.country]);
+                beersfromspain.push([x.province,x.name,x.birthyear]);
             }); 
             
             
