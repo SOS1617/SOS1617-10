@@ -6,9 +6,9 @@ angular
         var url = "http://sos1617-10.herokuapp.com/api/v2/beers-stats";
         var apikey = "apikey=jesusguerre";
         $http.get(url + "/?" + apikey).then(function(response) {
-            var countries = new Set([response.data.map(function(x) {
+            var countries = new Set(response.data.map(function(x) {
                 return x.country;
-            })]);
+            }));
             console.log(countries);
             for (var country in countries) {
                 console.log(country);
