@@ -12,19 +12,24 @@ angular
             console.log(countries);
             countries.forEach((country) => {
                  console.log(country);
-                beersbycountry.push(getFromApi(country));
-            },showGraph());
+                beersbycountry.push(getFromApi(country,data));
+            });
                 console.log(beersbycountry);
                 showGraph();
 
         });
 
-        function getFromApi(country) {
+        function getFromApi(country,data) {
             var response;
-            $http.get(url + "/" + country + "?" + apikey).then(function(response) {
+           /* $http.get(url + "/" + country + "?" + apikey).then(function(response) {
                 console.log(country,response.data.length);
                 response = [country, response.data.length];
-            });
+            });*/
+            response = [country,data.filter( (x) => {
+                return x.country==country;
+            })];
+            
+            
             return response;
         }
 
