@@ -133,6 +133,22 @@ module.exports.register_beers_apiv2 = function(app) {
                         "country": "United Kingdom",
                         "birthyear": 1845,
                         "province": "London"
+                    },
+                    {
+                        "name": "Estrella Galicia",
+                        "country": "Spain",
+                        "birthyear": 1980,
+                        "province": "La Coruña"
+                    },{
+                        "name": "Estrella Damm",
+                        "country": "Spain",
+                        "birthyear": 1876,
+                        "province": "Barcelona"
+                    },{
+                        "name": "Alhambra",
+                        "country": "Spain",
+                        "birthyear": 1925,
+                        "province": "Granada"
                     }];
                     console.log(beers);
                     dbBeer.insert(beers);
