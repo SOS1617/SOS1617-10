@@ -10,10 +10,10 @@ angular
                 return x.country;
             }));
             console.log(countries);
-            for (var country in countries) {
-                console.log(country);
+            countries.forEach((country) => {
+                 console.log(country);
                 beersbycountry.push(getFromApi(country));
-            }
+            });
             console.log(beersbycountry);
             showGraph();
 
