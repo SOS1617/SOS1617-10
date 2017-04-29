@@ -1,5 +1,5 @@
 angular
-    .module("SOS1617-10")
+    .module("SOS161710")
     .controller("BeersGraphs", ["$http", function() {
         console.log("Controller initialized");
         var chart = c3.generate({
