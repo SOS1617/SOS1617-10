@@ -3,6 +3,7 @@ angular
     .controller("BeersGraphs", ["$http", function($http) {
         console.log("Controller initialized");
         var beersbycountry = [];
+        var beersfromspain = [];
         var url = "http://sos1617-10.herokuapp.com/api/v2/beers-stats";
         var apikey = "apikey=jesusguerre";
         $http.get(url + "/?" + apikey).then(function(response) {
@@ -17,14 +18,29 @@ angular
             console.log(beersbycountry);
             showGraph();
 
+
+
+
         });
+
+        $http.get(url + "/Spain" + "/?" + apikey).then(function(response) {
+            beersfromspain.push(['City','Name','Birthyear','Country']);
+            beersfromspain = [response.data.forEach((x) => {
+                return [x.province,x.name,x.birthyear,x.country];
+            })];
+            
+             google.charts.setOnLoadCallback(drawMarkersMap);
+            
+
+        });
+
 
         function getFromApi(country, data) {
             var response;
             response = [country, data.filter((x) => {
                 return x.country == country;
             }).length];
-
+                
 
             return response;
         }
@@ -49,37 +65,28 @@ angular
                 }
             });
         }
-        
-        
-        
-     google.charts.load('current', {'packages': ['geochart']});
-     google.charts.setOnLoadCallback(drawMarkersMap);
 
-      function drawMarkersMap() {
-      var data = google.visualization.arrayToDataTable([
-        ['City',   'Population', 'Area'],
-        ['Rome',      2761477,    1285.31],
-        ['Milan',     1324110,    181.76],
-        ['Naples',    959574,     117.27],
-        ['Turin',     907563,     130.17],
-        ['Palermo',   655875,     158.9],
-        ['Genoa',     607906,     243.60],
-        ['Bologna',   380181,     140.7],
-        ['Florence',  371282,     102.41],
-        ['Fiumicino', 67370,      213.44],
-        ['Anzio',     52192,      43.43],
-        ['Ciampino',  38262,      11]
-      ]);
 
-      var options = {
-        region: 'IT',
-        displayMode: 'markers',
-        colorAxis: {colors: ['green', 'blue']}
-      };
 
-      var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-    };
-        
+        google.charts.load('current', {
+            'packages': ['geochart']
+        });
+       
+
+        function drawMarkersMap() {
+            var data = google.visualization.arrayToDataTable(beersfromspain);
+
+            var options = {
+                region: 'ES',
+                displayMode: 'markers',
+                colorAxis: {
+                    colors: ['green', 'blue']
+                }
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        };
+
 
     }]);
