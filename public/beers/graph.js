@@ -28,7 +28,7 @@ angular
             beersfromspain = [response.data.forEach((x) => {
                 return [x.province,x.name,x.birthyear,x.country];
             })];
-            
+            console.log(beersfromspain);
              google.charts.setOnLoadCallback(drawMarkersMap);
             
 
