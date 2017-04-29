@@ -1,6 +1,7 @@
 angular
     .module("SOS1617-10")
     .controller("BeersGraphs", ["$http", function() {
+        console.log("Controller initialized");
         var chart = c3.generate({
             bindto: '#chart',
             data: {

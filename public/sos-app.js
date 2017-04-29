@@ -9,7 +9,7 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/beers/EditBeers.html",
         controller: "EditBeersCtrl"
 
-    }).when("/beers/graphs", {
+    }).when("/beers/graphs/", {
         templateUrl: "/beers/graph.html",
         controller: "BeersGraphs"
     }).when("/establishments/", {
