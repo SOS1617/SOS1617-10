@@ -81,7 +81,7 @@ angular
             var data = google.visualization.arrayToDataTable(beersfromspain);
 
             var options = {
-                region: 'Europe',
+                region: '150',
                 displayMode: 'markers',
                 colorAxis: {
                     colors: ['green', 'blue']
