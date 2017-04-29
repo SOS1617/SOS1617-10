@@ -9,6 +9,7 @@ angular
             var countries = new Set([response.data.map(function(x) {
                 return x.country;
             })]);
+            console.log(countries);
             for (var country in countries) {
                 beersbycountry.push(getFromApi(country));
             }
