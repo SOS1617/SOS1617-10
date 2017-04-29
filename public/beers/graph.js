@@ -12,7 +12,7 @@ angular
             console.log(countries);
             countries.forEach((country) => {
                  console.log(country);
-                beersbycountry.push(getFromApi(country,data));
+                beersbycountry.push(getFromApi(country,response.data));
             });
                 console.log(beersbycountry);
                 showGraph();
