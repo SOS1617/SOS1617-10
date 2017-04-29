@@ -24,7 +24,7 @@ angular
         });
 
         $http.get(url + "/Spain?" + apikey).then(function(response) {
-            beersfromspain.push(['City','Name','Birthyear']);
+            beersfromspain.push(['Province','Name','Birthyear']);
             console.log(response.data);
             response.data.forEach( (x) =>{
                 beersfromspain.push([x.province,x.name,x.birthyear]);
@@ -81,7 +81,7 @@ angular
             var data = google.visualization.arrayToDataTable(beersfromspain);
 
             var options = {
-                region: 'ES',
+                region: 'Europe',
                 displayMode: 'markers',
                 colorAxis: {
                     colors: ['green', 'blue']
