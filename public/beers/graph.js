@@ -7,7 +7,7 @@ angular
         var apikey = "apikey=jesusguerre";
         $http.get(url + "/?" + apikey).then(function(response) {
             var countries = new Set([response.data.map(function(x) {
-                return x.country
+                return x.country;
             })]);
             for (var country in countries) {
                 beersbycountry.push(getFromApi(country));
