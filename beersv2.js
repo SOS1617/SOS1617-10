@@ -149,6 +149,11 @@ module.exports.register_beers_apiv2 = function(app) {
                         "country": "Spain",
                         "birthyear": 1925,
                         "province": "Granada"
+                    },{
+                        "name": "Cruzcampo",
+                        "country": "Spain",
+                        "birthyear": 1850,
+                        "province": "Sevilla"
                     }];
                     console.log(beers);
                     dbBeer.insert(beers);
