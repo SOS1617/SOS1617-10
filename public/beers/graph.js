@@ -11,21 +11,21 @@ angular
             }));
             console.log(countries);
             countries.forEach((country) => {
-                 console.log(country);
-                beersbycountry.push(getFromApi(country,response.data));
+                console.log(country);
+                beersbycountry.push(getFromApi(country, response.data));
             });
-                console.log(beersbycountry);
-                showGraph();
+            console.log(beersbycountry);
+            showGraph();
 
         });
 
-        function getFromApi(country,data) {
+        function getFromApi(country, data) {
             var response;
-            response = [country,data.filter( (x) => {
-                return x.country==country;
+            response = [country, data.filter((x) => {
+                return x.country == country;
             }).length];
-            
-            
+
+
             return response;
         }
 
@@ -34,12 +34,18 @@ angular
 
 
                 data: {
-                    columns: 
-                        beersbycountry
+                    columns: beersbycountry
 
                     ,
                     type: 'pie',
 
+                },
+                pie: {
+                    label: {
+                        format: function(value, ratio, id) {
+                            return d3.format('')(value);
+                        }
+                    }
                 }
             });
         }
