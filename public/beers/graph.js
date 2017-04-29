@@ -13,9 +13,9 @@ angular
             countries.forEach((country) => {
                  console.log(country);
                 beersbycountry.push(getFromApi(country));
-            });
-            console.log(beersbycountry);
-            showGraph();
+            },showGraph());
+                console.log(beersbycountry);
+                showGraph();
 
         });
 
