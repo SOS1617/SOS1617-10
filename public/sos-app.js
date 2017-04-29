@@ -9,6 +9,9 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/beers/EditBeers.html",
         controller: "EditBeersCtrl"
 
+    }).when("/beers/graphs", {
+        templateUrl: "/beers/graph.html",
+        controller: "BeersGraphs"
     }).when("/establishments/", {
         templateUrl: "/establishments/establishments-list.html",
         controller: "EstablishmentsCtrl"
@@ -16,7 +19,7 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
     }).when("/establishments/updateEstablishment/:country/:year", {
         templateUrl: "/establishments/establishments-edit.html",
         controller: "EstablishmentsEditCtrl"
-        
+
     }).when("/motorcyclings/", {
         templateUrl: "/motorcyclings/motorcyclings-list.html",
         controller: "MotorcyclingsCtrl"
