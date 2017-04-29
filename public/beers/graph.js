@@ -22,6 +22,7 @@ angular
         function getFromApi(country) {
             var response;
             $http.get(url + "/" + country + "?" + apikey).then(function(response) {
+                console.log(country,response.data.length);
                 response = [country, response.data.length];
             });
             return response;
