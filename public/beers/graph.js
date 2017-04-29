@@ -23,7 +23,7 @@ angular
 
         });
 
-        $http.get(url + "/Spain" + "/?" + apikey).then(function(response) {
+        $http.get(url + "/Spain?" + apikey).then(function(response) {
             beersfromspain.push(['City','Name','Birthyear','Country']);
             console.log(response.data);
             beersfromspain.push(response.data.forEach((x) => {
