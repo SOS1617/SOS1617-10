@@ -21,10 +21,6 @@ angular
 
         function getFromApi(country,data) {
             var response;
-           /* $http.get(url + "/" + country + "?" + apikey).then(function(response) {
-                console.log(country,response.data.length);
-                response = [country, response.data.length];
-            });*/
             response = [country,data.filter( (x) => {
                 return x.country==country;
             }).length];
@@ -38,10 +34,10 @@ angular
 
 
                 data: {
-                    columns: [
+                    columns: 
                         beersbycountry
 
-                    ],
+                    ,
                     type: 'pie',
 
                 }
