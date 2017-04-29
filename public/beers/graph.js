@@ -12,6 +12,7 @@ angular
             for (var country in countries) {
                 beersbycountry.push(getFromApi(country));
             }
+            console.log(beersbycountry);
             showGraph();
 
         });
