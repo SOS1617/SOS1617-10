@@ -22,7 +22,7 @@ angular
             beersformap.push(['Province', 'Name', 'Birthyear']);
             response.data.forEach( (x) =>{
                 beersformap.push([x.province,x.name,x.birthyear]); //geochart
-                beersfortimeline.push({"name":x.name +", data:"+[{x:0,low: Date.UTC(x.birthyear,01,01,0,0,0),high:Date.UTC(x.birthyear,12,31,23,59,59) }]});
+                beersfortimeline.push({"name":x.name , "data":[{x:0,low: Date.UTC(x.birthyear,01,01,0,0,0),high:Date.UTC(x.birthyear,12,31,23,59,59) }]});
             }); 
             
             console.log(beersfortimeline);
