@@ -4,6 +4,7 @@ angular
         console.log("Controller initialized");
         var beersbycountry = [];
         var beersformap = [];
+        var beersfortimeline=[];
         var url = "http://sos1617-10.herokuapp.com/api/v2/beers-stats";
         var apikey = "apikey=jesusguerre";
         $http.get(url + "/?" + apikey).then(function(response) {
@@ -20,8 +21,13 @@ angular
 
             beersformap.push(['Province', 'Name', 'Birthyear']);
             response.data.forEach( (x) =>{
-                beersformap.push([x.province,x.name,x.birthyear]);
+                beersformap.push([x.province,x.name,x.birthyear]); //geochart
+                beersfortimeline.push({"name":x.name +", data:"+[{x:0,low: Date.UTC(x.birthyear,01,01,0,0,0),high:Date.UTC(x.birthyear,12,31,23,59,59) }]});
             }); 
+            
+            console.log(beersfortimeline);
+            
+            
             
             
           
@@ -67,57 +73,7 @@ angular
                     }
                 },
 
-                series: [{
-                    name: 'Producing',
-                    data: [{
-                            x: 0,
-                            low: Date.UTC(2013, 07, 03, 0, 0, 0),
-                            high: Date.UTC(2013, 07, 03, 4, 0, 0)
-                        }, {
-                            x: 0,
-                            low: Date.UTC(2013, 07, 03, 10, 0, 0),
-                            high: Date.UTC(2013, 07, 03, 12, 0, 0)
-                        }, {
-                            x: 0,
-                            low: Date.UTC(2013, 07, 03, 14, 0, 0),
-                            high: Date.UTC(2013, 07, 03, 15, 0, 0)
-                        }
-
-                    ]
-                }, {
-                    name: 'Breakdown',
-                    data: [{
-                        x: 0,
-                        low: Date.UTC(2013, 07, 03, 4, 0, 0),
-                        high: Date.UTC(2013, 07, 03, 10, 0, 0)
-                    }, {
-                        x: 0,
-                        low: Date.UTC(2013, 07, 03, 18, 0, 0),
-                        high: Date.UTC(2013, 07, 03, 24, 0, 0)
-                    }]
-                }, {
-                    name: "Changeover",
-                    data: [{
-                        x: 0,
-                        low: Date.UTC(2013, 07, 04, 1, 0, 0),
-                        high: Date.UTC(2013, 07, 04, 5, 0, 0)
-                    }, {
-                        x: 0,
-                        low: Date.UTC(2013, 07, 02, 10, 0, 0),
-                        high: Date.UTC(2013, 07, 02, 23, 0, 0)
-                    }, ]
-                }, {
-                    name: "TrialRun",
-                    data: [{
-                        x: 0,
-                        low: Date.UTC(2013, 07, 04, 5, 0, 0),
-                        high: Date.UTC(2013, 07, 04, 13, 0, 0)
-                    }, {
-                        x: 0,
-                        low: Date.UTC(2013, 07, 02, 2, 0, 0),
-                        high: Date.UTC(2013, 07, 02, 10, 0, 0)
-                    }]
-                }]
+                series: beersfortimeline
             });
         });
             
