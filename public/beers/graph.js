@@ -63,7 +63,7 @@ angular
                 tooltip: {
                     formatter: function() {
                         return '<b>' + this.x + ' - ' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%e %B %H:%M', this.point.low) +
-                            ' - ' + Highcharts.dateFormat('%B %e %H:%M', this.point.high) + '<br/>';
+                            ' - ' + Highcharts.dateFormat('%B %e', this.point.high) + '<br/>';
                     }
                 },
 
