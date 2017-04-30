@@ -68,8 +68,11 @@ angular
                 },
                 tooltip: {
                     formatter: function() {
-                        return '<b>' + this.x + ' - ' + this.series.name + this.point.birthyear+ '</b><br/>' + Highcharts.dateFormat('%e %B %H:%M', this.point.low) +
-                            ' - ' + Highcharts.dateFormat('%B %e', this.point.high) +'<br/>';
+                        return '<b>' + this.series.name +'</b><br/>' +"<b>Birthyear: </b>"+this.point.birthyear+  +'<br/>'
+                        +"<b>Country: </b>"+this.point.country+  +'<br/>'
+                        +"<b>Province: </b>"+this.point.province+  +'<br/>'
+                        
+                        ;
                     }
                 },
 
