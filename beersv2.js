@@ -107,7 +107,7 @@ module.exports.register_beers_apiv2 = function(app) {
                         "name": "Jupiler",
                         "country": "Belgium",
                         "birthyear": 1966,
-                        "province": "Valona"
+                        "province": "Lieja"
                     },{
                         "name": "Altbier",
                         "country": "Germany",
