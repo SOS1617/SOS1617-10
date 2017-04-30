@@ -68,9 +68,9 @@ angular
                 },
                 tooltip: {
                     formatter: function() {
-                        return '<b>' + this.series.name +'</b><br/>' +"<b>Birthyear: </b>"+this.point.birthyear+  +'<br/>'
-                        +"<b>Country: </b>"+this.point.country+  +'<br/>'
-                        +"<b>Province: </b>"+this.point.province+  +'<br/>'
+                        return '<b>' + this.series.name +'</b><br/>' +"<b>Birthyear: </b>"+this.point.birthyear+ '<br/>'
+                        +"<b>Country: </b>"+this.point.country+'<br/>'
+                        +"<b>Province: </b>"+this.point.province+'<br/>'
                         
                         ;
                     }
