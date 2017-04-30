@@ -22,7 +22,7 @@ angular
             beersformap.push(['Province', 'Name', 'Birthyear']);
             response.data.forEach( (x) =>{
                 beersformap.push([x.province,x.name,x.birthyear]); //geochart
-                beersfortimeline.push({"name":x.name , "data":[{x:0,low: Date.UTC(x.birthyear,01,01,0,0,0),high:Date.UTC(x.birthyear,12,31,23,59,59) }]});
+                beersfortimeline.push({"name":x.name , "data":[{x:0,low: Date.UTC(x.birthyear,01,01,0,0,0),high:Date.UTC(x.birthyear,12,31,23,59,59) }],"country":x.country,"birthyear":x.birthyear,"province":x.province});
             }); 
             
             console.log(beersfortimeline);
@@ -44,13 +44,13 @@ angular
                     inverted: true
                 },
                 title: {
-                    text: 'Equipment Status'
+                    text: 'Timeline'
                 },
                 scrollbar: {
                     enabled: true
                 },
                 xAxis: {
-                    categories: ['Status']
+                    categories: ['Beer']
                 },
                 yAxis: {
                     type: 'datetime',
@@ -68,8 +68,8 @@ angular
                 },
                 tooltip: {
                     formatter: function() {
-                        return '<b>' + this.x + ' - ' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%e %B %H:%M', this.point.low) +
-                            ' - ' + Highcharts.dateFormat('%B %e', this.point.high) + '<br/>';
+                        return '<b>' + this.x + ' - ' + this.series.name + this.series.birthyear+ '</b><br/>' + Highcharts.dateFormat('%e %B %H:%M', this.point.low) +
+                            ' - ' + Highcharts.dateFormat('%B %e', this.point.high) +'<br/>';
                     }
                 },
 
