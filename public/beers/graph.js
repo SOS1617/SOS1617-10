@@ -19,75 +19,18 @@ angular
             showGraph();
 
             beersformap.push(['Province', 'Name', 'Birthyear']);
-            response.data.forEach((x) => {
-                beersformap.push([x.province, x.name, x.birthyear]);
-            });
-
-
-
+            response.data.forEach( (x) =>{
+                beersformap.push([x.province,x.name,x.birthyear]);
+            }); 
+            
+            
+          
             console.log(beersformap);
-            google.charts.setOnLoadCallback(drawMarkersMap);
+             google.charts.setOnLoadCallback(drawMarkersMap);
 
-
-        });
-
-
-
-
-        function getFromApi(country, data) {
-            var response;
-            response = [country, data.filter((x) => {
-                return x.country == country;
-            }).length];
-
-
-            return response;
-        }
-
-        function showGraph() {
-            var chart = c3.generate({
-
-
-                data: {
-                    columns: beersbycountry
-
-                    ,
-                    type: 'pie',
-
-                },
-                pie: {
-                    label: {
-                        format: function(value, ratio, id) {
-                            return d3.format('')(value);
-                        }
-                    }
-                }
-            });
-        }
-
-
-
-        google.charts.load('current', {
-            'packages': ['geochart']
-        });
-
-
-        function drawMarkersMap() {
-            var data = google.visualization.arrayToDataTable(beersformap);
-
-            var options = {
-                region: '150',
-                displayMode: 'markers',
-                colorAxis: {
-                    colors: ['green', 'blue']
-                }
-            };
-
-            var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        };
-
-        $(function() {
+            
+            
+            $(function() {
             $('#timeline').highcharts({
 
                 chart: {
@@ -177,4 +120,66 @@ angular
                 }]
             });
         });
+            
+            
+            
+        });
+
+        
+
+
+        function getFromApi(country, data) {
+            var response;
+            response = [country, data.filter((x) => {
+                return x.country == country;
+            }).length];
+
+
+            return response;
+        }
+
+        function showGraph() {
+            var chart = c3.generate({
+
+
+                data: {
+                    columns: beersbycountry
+
+                    ,
+                    type: 'pie',
+
+                },
+                pie: {
+                    label: {
+                        format: function(value, ratio, id) {
+                            return d3.format('')(value);
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+        google.charts.load('current', {
+            'packages': ['geochart']
+        });
+
+
+        function drawMarkersMap() {
+            var data = google.visualization.arrayToDataTable(beersformap);
+
+            var options = {
+                region: '150',
+                displayMode: 'markers',
+                colorAxis: {
+                    colors: ['green', 'blue']
+                }
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    
+        
     }]);
