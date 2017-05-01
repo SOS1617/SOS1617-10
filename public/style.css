@@ -98,6 +98,9 @@ th {
     float: left;
 }
 #pie {
+    margin-left: 30%;
+    margin-right: 70%;
+    
     text-align: center;
     box-shadow: 0 0 1em black;
     padding:10px;
