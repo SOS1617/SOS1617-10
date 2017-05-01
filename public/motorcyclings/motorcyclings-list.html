@@ -32,7 +32,7 @@
             <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button>
                  
         </tr>
-        <tr ng-repeat = "motorcycling in motorcyclings | startFrom:(currentPage - 1 * pageSize | limit:pageSize">
+        <tr ng-repeat = "motorcycling in motorcyclings | startFrom:(currentPage - 1 * pageSize) | limit:pageSize">
             <td><a href="#!/motorcyclings/updateMotorcycling/{{motorcycling.country}}/{{motorcycling.year}}">{{motorcycling.country}}</td>
             <td>{{motorcycling.year}}</td>
             <td>{{motorcycling.pilot}}</td>
