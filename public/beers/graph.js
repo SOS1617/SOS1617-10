@@ -47,7 +47,7 @@ angular
                     text: 'Timeline'
                 },
                 scrollbar: {
-                    enabled: true
+                    enabled: false
                 },
                 xAxis: {
                     categories: ['Beer']
@@ -132,7 +132,7 @@ angular
                 region: '150',
                 displayMode: 'markers',
                 colorAxis: {
-                    colors: ['green', 'blue']
+                    colors: ['#42e5f4', 'blue']
                 }
             };
 
