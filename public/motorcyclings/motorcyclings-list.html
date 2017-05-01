@@ -43,7 +43,8 @@
     </tbody>
     </table>
 </div>
-        
+
+<!-- PAGINACIÓN -->
 <div id="paginate">
     <nav aria-label="Page navigation">
         <ul ng-if="pages.length" class="pagination">
@@ -60,13 +61,13 @@
                 <a ng-click="setPage(currentPage + 1)">Next</a>
             </li>
             <li ng-class="{disabled:currentPage == totalPages}">
-                <a ng-click="setPage(totalPages)">Last</a>
+                <a ng-click="setPage(pages)">Last</a>
             </li>
         </ul>
     </nav>
 </div>
 
-<!-- PAGINACIÓN -->
+
 
 
 
