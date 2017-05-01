@@ -17,10 +17,22 @@ angular
             refresh();
     }
     
+    $scope.currentPage = 1;
+    $scope.pages = [];
+
+    function range(start, end) {
+        var res = [];
+        for (var i = start; i <= end; i++) {
+            res.push(i);
+        }
+        return res;
+    }
+    
     function refresh(){
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
+                $scope.pages = range(1, Math.ceil(response.data.length / size));
                 $scope.motorcyclings = response.data;
             }, function(err) {
                     if (err.data == "Forbidden") {
@@ -131,10 +143,26 @@ angular
                 yearto = "";
             }
             offset = "";
+            $scope.currentPage = 1;
             refresh();
 
         };
     
+    $scope.setPage = function(page) {
+        $scope.currentPage = page;
 
+        if (page == 1) $("#previousPage").addClass("disabled");
+        else $("#previousPage").removeClass("disabled");
+
+        if (page == $scope.pages.length) $("#nextPage").addClass("disabled");
+        else $("#nextPage").removeClass("disabled");
+
+        $(".active").removeClass("active");
+        $("#Page" + $scope.currentPage).addClass("active");
+
+        offset = "&offset=" + (($scope.currentPage * size) - size);
+
+        refresh();
+    };
     
 }]);
