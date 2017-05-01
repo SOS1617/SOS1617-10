@@ -39,18 +39,7 @@
             <td>{{motorcycling.team}}</td>
             <td><button class="btn btn-danger" ng-click="deleteMotorcycling(motorcycling.country, motorcycling.year)">Delete</button></td>
         </tr>
-         </tr>
-              View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>60</option></select> records at a time.
-               <pre>The selected page no: {{currentPage}}</pre>
-    
-    <button class="btn btn-info" ng-click="setPage(currentPage-1)">Prev</button>
-    <button class="btn btn-info" ng-click="setPage(1)">1</button>
-                <button class="btn btn-info" ng-click="setPage(2)">2</button>
-                <button class="btn btn-info" ng-click="setPage(3)">3</button>
-                <button class="btn btn-info" ng-click="setPage(4)">4</button>
-                <button class="btn btn-info" ng-click="setPage(5)">5</button>
-                <button class="btn btn-info" ng-click="setPage(6)">6</button>
-                <button class="btn btn-info" ng-click="setPage(currentPage+1)">Next</button>
+        
     </tbody>
     </table>
 </div>
