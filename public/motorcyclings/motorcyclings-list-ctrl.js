@@ -71,7 +71,7 @@ angular
     
     $scope.deleteMotorcycling = function(country, year) {
         $http
-            .delete(url + "/motorcycling-stats/" + country + "/" + year + "?"  + apikey)
+            .delete(url + "/motorcycling-stats/" + country + "/" + Number(year) + "?"  + apikey)
             .then(function(response) {
                 console.log("Motorcycling deleted");
                 refresh();
