@@ -108,8 +108,14 @@ th {
 }
 
 #BeersMapDiv {
+    
+    width: 65.885%;
+    height: 78.125%;
+    /*
     width: 900px;
+    
     height: 600px;
+    */
     margin-top: 30px;
     margin-left: 17%;
     /*
