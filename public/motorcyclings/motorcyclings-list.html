@@ -32,7 +32,7 @@
             <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button>
                  
         </tr>
-        <tr ng-repeat = "motorcycling in motorcyclings | startFrom:(currentPage - 1) * pageSize | limit:pageSize">
+        <tr ng-repeat = "motorcycling in motorcyclings">
             <td><a href="#!/motorcyclings/updateMotorcycling/{{motorcycling.country}}/{{motorcycling.year}}">{{motorcycling.country}}</td>
             <td>{{motorcycling.year}}</td>
             <td>{{motorcycling.pilot}}</td>
@@ -43,6 +43,21 @@
     </table>
 </div>
 
-<pagination total-items="motorcyclings.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
+<div id="paginate">
+    <nav aria-label="Page navigation" ng-hide="pages.length <= 1">
+        <ul class="pagination">
+            <li id="previousPage" ng-disabled="currentPage == 1" ng-click="setPage(currentPage - 1)">
+                <span class="page-link">Previous</span>
+            </li>
+            <li id="Page{{page}}" ng-class="{active: page == currentPage}" ng-repeat="page in pages" ng-click="setPage(page)">
+                <span>{{page}}</span>
+            </li>
+            <li id="nextPage" ng-disabled="currentPage == pages.length" ng-click="setPage(currentPage + 1)">
+                <span class="page-link">Next</span>
+            </li>
+        </ul>
+    </nav>
+</div>
+
 
 
