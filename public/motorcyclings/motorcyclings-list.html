@@ -46,25 +46,23 @@
 
 <!-- PAGINACIÓN -->
 <div id="paginate">
-    <nav aria-label="Page navigation">
-        <ul ng-if="pages.length" class="pagination">
-            <li ng-class="{disabled:currentPage == 1}">
-                <a ng-click="setPage(1)">First</a>
-            </li>
-            <li ng-class="{disabled:currentPage == 1}">
-                <a ng-click="setPage(currentPage - 1)">Previous</a>
-            </li>
-            <li ng-repeat="page in pages" ng-class="{active:currentPage == page}">
-                <a ng-click="setPage(page)"><span>{{page}}</span></a>
-            </li>                
-            <li ng-class="{disabled:currentPage == totalPages}">
-                <a ng-click="setPage(currentPage + 1)">Next</a>
-            </li>
-            <li ng-class="{disabled:currentPage == totalPages}">
-                <a ng-click="setPage(currentPage + pages.length-1)">Last</a>
-            </li>
-        </ul>
-    </nav>
+    <ul ng-if="pages.length" class="pagination">
+        <li ng-class="{disabled:currentPage == 1}">
+            <a ng-click="setPage(1)">First</a>
+        </li>
+        <li ng-class="{disabled:currentPage == 1}">
+            <a ng-click="setPage(currentPage - 1)">Previous</a>
+        </li>
+        <li ng-repeat="page in pages" ng-class="{active:currentPage == page}">
+            <a ng-click="setPage(page)"><span>{{page}}</span></a>
+        </li>                
+        <li ng-class="{disabled:currentPage == totalPages}">
+            <a ng-click="setPage(currentPage + 1)">Next</a>
+        </li>
+        <li ng-class="{disabled:currentPage == totalPages}">
+            <a ng-click="setPage(currentPage + pages.length-1)">Last</a>
+        </li>
+    </ul>
 </div>
 
  
