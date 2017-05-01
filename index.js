@@ -42,11 +42,11 @@ establishmentsv2.register_establishments_apiv2(app);
 
 "------------------------------------motorcycling-stats---------------------------------------------------------------------------------";
 
-var motorcyclings = require('./motorcyclings');
+var david = require('./motorcyclings');
 
-motorcyclings.register_motorcyclings_api(app);
+david.register_motorcyclings_api(app);
 
-var motorcyclingsv2 = require('./motorcyclingsv2');
+var davidv2 = require('./motorcyclingsv2');
 
-motorcyclingsv2.register_motorcyclings_apiv2(app);
+davidv2.register_motorcyclings_apiv2(app);
 
