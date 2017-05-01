@@ -47,7 +47,7 @@ angular
                     text: 'Timeline'
                 },
                 scrollbar: {
-                    enabled: true
+                    enabled: false
                 },
                 xAxis: {
                     categories: ['Beer']
