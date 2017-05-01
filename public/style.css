@@ -100,6 +100,7 @@ th {
 #pie {
     text-align: center;
     box-shadow: 0 0 1em black;
+    padding:10px;
 }
 #BeersMap{
     width: 900px; 
