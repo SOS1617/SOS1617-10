@@ -98,7 +98,7 @@ angular
         }
 
         function showGraph() {
-            var Beerspie = c3.generate({
+            var chart = c3.generate({
 
 
                 data: {
