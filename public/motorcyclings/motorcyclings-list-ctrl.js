@@ -6,7 +6,7 @@ angular
     var apikey = "";
     var yearfrom = "";
     var yearto = "";
-    var size = 5;
+    var size = 3;
     var limit = "&limit=" + size;
     var offset = "";
     
