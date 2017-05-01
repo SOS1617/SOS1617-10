@@ -97,8 +97,9 @@ th {
 #menuElement {
     float: left;
 }
-#chart {
+#pie {
     text-align: center;
+    box-shadow: 0 0 1em black;
 }
 #BeersMap{
     width: 900px; 
