@@ -2,11 +2,11 @@ angular
 .module("SOS161710")
 .controller("MotorcyclingsCtrl",["$scope","$http","$rootScope",function($scope,$http,$rootScope){
     console.log("Controller initialized");
-    var url = "http://sos1617-10.herokuapp.com/api/v1";
+    var url = "http://sos1617-10.herokuapp.com/api/v2";
     var apikey = "";
     var yearfrom = "";
     var yearto = "";
-    var size = 3;
+    var size = 5;
     var limit = "&limit=" + size;
     var offset = "";
     
