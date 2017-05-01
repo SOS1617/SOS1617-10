@@ -32,7 +32,7 @@
             <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button>
                  
         </tr>
-        <tr ng-repeat = "motorcycling in motorcyclings">
+        <tr ng-repeat = "motorcycling in motorcyclings | startFrom:(currentPage - 1 * pageSize | limit:pageSize">
             <td><a href="#!/motorcyclings/updateMotorcycling/{{motorcycling.country}}/{{motorcycling.year}}">{{motorcycling.country}}</td>
             <td>{{motorcycling.year}}</td>
             <td>{{motorcycling.pilot}}</td>
@@ -41,23 +41,7 @@
         </tr>
     </tbody>
     </table>
+    <pagination total-items="motorcyclings.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
 </div>
-<div id="pagination">
-<ul ng-if="vm.pager.pages.length" class="pagination">
-                <li ng-class="{disabled:vm.pager.currentPage === 1}">
-                    <a ng-click="vm.setPage(1)">First</a>
-                </li>
-                <li ng-class="{disabled:vm.pager.currentPage === 1}">
-                    <a ng-click="vm.setPage(vm.pager.currentPage - 1)">Previous</a>
-                </li>
-                <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
-                    <a ng-click="vm.setPage(page)">{{page}}</a>
-                </li>                
-                <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-                    <a ng-click="vm.setPage(vm.pager.currentPage + 1)">Next</a>
-                </li>
-                <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-                    <a ng-click="vm.setPage(vm.pager.totalPages)">Last</a>
-                </li>
-            </ul>
-</div>
+
+
