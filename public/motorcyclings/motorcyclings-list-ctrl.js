@@ -6,11 +6,12 @@ angular
     var apikey = "";
     var yearfrom = "";
     var yearto = "";
-    var limit = "";
+    var size = 5;
+    var limit = "&limit=" + size;
     var offset = "";
     
     $scope.currentPage = 1;
-    $scope.pageSize = 5;
+    $scope.pages = [];
     
     
     if ($rootScope.data) {
