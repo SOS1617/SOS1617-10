@@ -128,7 +128,6 @@ angular
         $scope.updateBeer = function(country, birthyear) {
             $scope.Beer.birthyear = Number($scope.Beer.birthyear);
             $http.put(url + "/beers-stats/" + country + "/" + Number(birthyear) + "?" + apikey, $scope.Beer).then(function(response) {
-                $scope.responsedata = response.data;
                 bootbox.alert("Beer Updated");
                 refresh();
 
@@ -240,9 +239,6 @@ angular
             $scope.Offset = null;
             $scope.currentPage = 1;
             refresh();
-        };
-        $scope.clearResponseData = function() {
-            $scope.responsedata = "";
         };
         $scope.load = function() {
             $http.get(url + "/beers-stats/loadInitialData?" + apikey).then(function(response) {
