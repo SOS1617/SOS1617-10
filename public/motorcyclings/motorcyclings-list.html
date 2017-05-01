@@ -55,19 +55,19 @@
                 <a ng-click="setPage(currentPage - 1)">Previous</a>
             </li>
             <li ng-repeat="page in pages" ng-class="{active:currentPage == page}">
-                <a ng-click="setPage(page)">{{page}}</a>
+                <a ng-click="setPage(page)"><span>{{page}}</span></a>
             </li>                
             <li ng-class="{disabled:currentPage == pages.length}">
                 <a ng-click="setPage(currentPage + 1)">Next</a>
             </li>
-            <li ng-class="{disabled:currentPage == pages.length}">
+            <li ng-class="{disabled:currentPage == totalPages}">
                 <a ng-click="setPage(pages.length)">Last</a>
             </li>
         </ul>
     </nav>
 </div>
 
-  
+ 
 
 
 
