@@ -37,7 +37,7 @@ angular
             
             
             $(function() {
-            $('#timeline').highcharts({
+            $('#BeersTimeline').highcharts({
 
                 chart: {
                     type: 'columnrange',
@@ -98,7 +98,7 @@ angular
         }
 
         function showGraph() {
-            var chart = c3.generate({
+            var Beerspie = c3.generate({
 
 
                 data: {
@@ -136,7 +136,7 @@ angular
                 }
             };
 
-            var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+            var chart = new google.visualization.GeoChart(document.getElementById('BeersMap'));
             chart.draw(data, options);
         }
     
