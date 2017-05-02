@@ -59,8 +59,8 @@
         <li ng-class="{disabled:currentPage == totalPages}">
             <a ng-click="setPage(currentPage + 1)">Next</a>
         </li>
-        <li ng-class="{disabled:currentPage == totalPages+1}">
-            <a ng-click="setPage(totalPages)">Last</a>
+        <li ng-class="{disabled:currentPage == totalPages}">
+            <a ng-click="setPage(pages.length - 1)">Last</a>
         </li> 
    </ul>
 </div>
