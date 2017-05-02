@@ -152,17 +152,21 @@ angular
     $scope.setPage = function(pageNumber) {
         $scope.currentPage = pageNumber;
 
-        /*if (page == 1) $("#previousPage").addClass("disabled");
-        else $("#previousPage").removeClass("disabled");
-
-        if (page == $scope.pages.length) $("#nextPage").addClass("disabled");
-        else $("#nextPage").removeClass("disabled");
-
-        $(".active").removeClass("active");
-        $("#Page" + $scope.currentPage).addClass("active");
-
+        if (pageNumber == 1) {
+            $("#previousPage").addClass("disabled");
+        }else{ 
+            $("#previousPage").removeClass("disabled");
+        }
+        
+        if (pageNumber == $scope.pages.length) {
+            $("#nextPage").addClass("disabled");
+        }else{
+            $("#nextPage").removeClass("disabled");
+            $(".active").removeClass("active");
+            $("#Page" + $scope.currentPage).addClass("active");
+        }
         offset = "&offset=" + (($scope.currentPage * size) - size);
-*/
+
         refresh();
     };
     
