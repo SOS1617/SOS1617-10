@@ -162,6 +162,8 @@ angular
             $("#nextPage").addClass("disabled");
         }else{
             $("#nextPage").removeClass("disabled");
+            $(".active").removeClass("active");
+            $("#Page" + $scope.currentPage).addClass("active");
         }
         offset = "&offset=" + (($scope.currentPage * size) - size);
 
