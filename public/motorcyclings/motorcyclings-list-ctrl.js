@@ -149,10 +149,10 @@ angular
 
         };
     
-    $scope.setPage = function(page) {
-        $scope.currentPage = page;
+    $scope.setPage = function(pageNumber) {
+        $scope.currentPage = pageNumber;
 
-        if (page == 1) $("#previousPage").addClass("disabled");
+        /*if (page == 1) $("#previousPage").addClass("disabled");
         else $("#previousPage").removeClass("disabled");
 
         if (page == $scope.pages.length) $("#nextPage").addClass("disabled");
@@ -162,7 +162,7 @@ angular
         $("#Page" + $scope.currentPage).addClass("active");
 
         offset = "&offset=" + (($scope.currentPage * size) - size);
-
+*/
         refresh();
     };
     
