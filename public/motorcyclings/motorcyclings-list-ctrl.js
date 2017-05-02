@@ -163,6 +163,7 @@ angular
         }else{
             $("#nextPage").removeClass("disabled");
         }
+        offset = "&offset=" + (($scope.currentPage * size) - size);
 
         refresh();
     };
