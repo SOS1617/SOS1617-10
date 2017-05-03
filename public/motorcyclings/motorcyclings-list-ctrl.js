@@ -151,7 +151,7 @@ angular
 
         };
     
- /*   $scope.setPage = function(pageNumber) {
+    $scope.setPage = function(pageNumber) {
         $scope.currentPage = pageNumber;
 
         if (pageNumber == 1) {
@@ -170,9 +170,9 @@ angular
         offset = "&offset=" + (($scope.currentPage * size) - size);
 
         refresh();
-    }; */
+    }; 
 
-    $scope.firstPage = function() {
+/*    $scope.firstPage = function() {
         return $scope.currentPage == 0;
     }
     $scope.lastPage = function() {
@@ -187,5 +187,5 @@ angular
     $scope.pageForward = function() {
         $scope.currentPage + 1;
     }
-    
+  */  
 }]);
