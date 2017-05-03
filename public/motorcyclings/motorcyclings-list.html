@@ -48,7 +48,7 @@
 <div id="paginate">
     <ul ng-if="pages.length" class="pagination">
         <li ng-class="{disabled:currentPage == 1}">
-            <a ng-click="setPage(1)">First</a>
+            <a ng-click="firstPage()">First</a>
         </li>
         <li ng-class="{disabled:currentPage == 1}">
             <a ng-click="setPage(currentPage - 1)">Previous</a>

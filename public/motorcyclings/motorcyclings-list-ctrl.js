@@ -167,14 +167,15 @@ angular
             $(".active").removeClass("active");
             $("#Page" + $scope.currentPage).addClass("active");
         }
+        offset = "&offset=" + (($scope.currentPage * size) - size);
 
         refresh();
     }; 
 
-/*    $scope.firstPage = function() {
-        return $scope.currentPage == 0;
+    $scope.firstPage = function() {
+        return $scope.currentPage == 1;
     }
-    $scope.lastPage = function() {
+    /*$scope.lastPage = function() {
         return $scope.currentPage == $scope.lastPageNum;
     }
     $scope.numberOfPages = function(){
