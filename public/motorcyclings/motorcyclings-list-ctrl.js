@@ -173,20 +173,20 @@ angular
     }; */
 
   
-  $scope.firstPage = function() {
-    return $scope.currentPage == 1;
-  }
-  $scope.lastPage = function() {
-    return $scope.currentPage == $scope.lastPageNum;
-  }
-  $scope.numberOfPages = function(){
-    return $scope.pages.length;
-  }
-  $scope.pageBack = function() {
-    $scope.currentPage = $scope.currentPage - 1;
-  }
-  $scope.pageForward = function() {
-    $scope.currentPage = $scope.currentPage + 1;
-  }
+    $scope.firstPage = function() {
+        return $scope.currentPage == 1;
+    }
+    $scope.lastPage = function() {
+        return $scope.currentPage == $scope.lastPageNum;
+    }
+    $scope.numberOfPages = function(){
+        return $scope.pages.length * size;
+    }
+    $scope.pageBack = function() {
+        $scope.currentPage = $scope.currentPage - 1;
+    }
+    $scope.pageForward = function() {
+        $scope.currentPage = $scope.currentPage + 1;
+    }
     
 }]);
