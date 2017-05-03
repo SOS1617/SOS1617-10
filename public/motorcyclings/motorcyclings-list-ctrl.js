@@ -20,6 +20,7 @@ angular
     
     $scope.currentPage = 1;
     $scope.pages = [];
+    $scope.lastPageNum = null;
 
     function range(start, end) {
         var res = [];
@@ -34,6 +35,7 @@ angular
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
                 $scope.pages = range(1, Math.ceil(response.data.length / size));
+                $scope.lastPageNum = Math.ceil(response.data.length / size - 1);
                 $scope.motorcyclings = response.data;
             }, function(err) {
                     if (err.data == "Forbidden") {
@@ -169,24 +171,22 @@ angular
 
         refresh();
     }; */
-  $scope.currentPage = 0;
-  $scope.itemsPerPage = 5;
-  $scope.items = [];
+
   for(var i=0; i<25; i++){
-    $scope.items.push('Product ' + i);
+    $scope.pages.push('Product ' + i);
   }
+  
   $scope.firstPage = function() {
-    return $scope.currentPage == 0;
+    return $scope.currentPage == 1;
   }
   $scope.lastPage = function() {
-    var lastPageNum = Math.ceil($scope.items.length / $scope.itemsPerPage - 1);
-    return $scope.currentPage == lastPageNum;
+    return $scope.currentPage == $scope.lastPageNum;
   }
   $scope.numberOfPages = function(){
-    return Math.ceil($scope.items.length / $scope.itemsPerPage);
+    return $scope.pages;
   }
   $scope.startingItem = function() {
-    return $scope.currentPage * $scope.itemsPerPage;
+    return $scope.currentPage * size;
   }
   $scope.pageBack = function() {
     $scope.currentPage = $scope.currentPage - 1;
