@@ -172,10 +172,10 @@ angular
         refresh();
     }; 
 
-    $scope.firstPage = function() {
+  /*$scope.firstPage = function() {
         return $scope.currentPage == 1;
     }
-    /*$scope.lastPage = function() {
+    $scope.lastPage = function() {
         return $scope.currentPage == $scope.lastPageNum;
     }
     $scope.numberOfPages = function(){
