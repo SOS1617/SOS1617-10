@@ -167,7 +167,6 @@ angular
             $(".active").removeClass("active");
             $("#Page" + $scope.currentPage).addClass("active");
         }
-        offset = "&offset=" + (($scope.currentPage * size) - size);
 
         refresh();
     }; 
