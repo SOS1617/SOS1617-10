@@ -45,7 +45,7 @@
 </div>
 
 <!-- PAGINACIÓN -->
-<div id="paginate">
+<!-- <div id="paginate">
     <ul ng-if="pages.length" class="pagination">
         <li ng-class="{disabled:currentPage == 1}">
             <a ng-click="setPage(1)">First</a>
@@ -60,10 +60,12 @@
             <a ng-click="setPage(currentPage + 1)">Next</a>
         </li>
         <li ng-class="{disabled:currentPage == totalPages}">
-            <a ng-click="setPage(pages.length - 1)">Last</a>
+            <a ng-click="setPage(totalPage)">Last</a>
         </li> 
    </ul>
-</div>
+</div> -->
+
+<uib-pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage"></uib-pagination>
 
  
 
