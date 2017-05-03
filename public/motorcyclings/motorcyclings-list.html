@@ -65,11 +65,11 @@
    </ul>
 </div> -->
 
-<uib-pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage"></uib-pagination>
-
- 
-
-
+<div id="pagination" class="row">
+      <button class="pull-left btn btn-primary btn-sm" ng-disabled="firstPage()" ng-click="pageBack()"><<</button>
+      <span>{{currentPage+1}} de {{numberOfPages()}}</span>
+      <button class="pull-right  btn btn-primary btn-sm" ng-disabled="lastPage()" ng-click="pageForward()">>></button>
+</div>
 
 
 
