@@ -66,9 +66,9 @@
 </div> -->
 
 <div id="pagination" class="row">
-      <button class="btn btn-primary btn-sm" ng-disabled="firstPage()" ng-click="pageBack()"><<</button>
-      <span>{{currentPage+1}} de {{numberOfPages()}}</span>
-      <button class="btn btn-primary btn-sm" ng-disabled="lastPage()" ng-click="pageForward()">>></button>
+      <button class="btn btn-primary"ng-click="pageBack()"><<</button>
+      <span>{{currentPage}} de {{numberOfPages()}}</span>
+      <button class="btn btn-primary" ng-click="pageForward()">>></button>
 </div>
 
 
