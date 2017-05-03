@@ -182,10 +182,10 @@ angular
         return $scope.pages.length * size;
     }
     $scope.pageBack = function() {
-        $scope.currentPage = $scope.currentPage - 1;
+        return $scope.currentPage - 1;
     }
     $scope.pageForward = function() {
-        $scope.currentPage = $scope.currentPage + 1;
+        return $scope.currentPage + 1;
     }
     
 }]);
