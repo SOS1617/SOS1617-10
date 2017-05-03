@@ -45,7 +45,7 @@
 </div>
 
 <!-- PAGINACIÓN -->
-<div id="paginate">
+<!--<div id="paginate">
     <ul ng-if="pages.length" class="pagination">
         <li ng-class="{disabled:currentPage == 1}">
             <a ng-click="firstPage()">First</a>
@@ -53,9 +53,8 @@
         <li ng-class="{disabled:currentPage == 1}">
             <a ng-click="setPage(currentPage - 1)">Previous</a>
         </li>
-           <li ng-repeat="page in pages" ng-class="{active:page == currentPage}">
+        <li ng-repeat="page in pages" ng-class="{active:page == currentPage}">
             <a ng-click="setPage(page)"><span>{{page}}</span></a>
-        </li>
         <li ng-class="{disabled:currentPage == totalPages}">
             <a ng-click="setPage(currentPage + 1)">Next</a>
         </li>
@@ -63,7 +62,7 @@
             <a ng-click="setPage(lastPageNum)">Last</a>
         </li> 
    </ul>
-</div>
+</div> -->
 
 <!-- <div id="pagination" class="row">
       <button class="btn btn-primary"ng-click="pageBack()"><<</button>
@@ -73,3 +72,17 @@
 
 -->
 
+<div class="pagination">
+          <ul>
+            <li ng-class="prevPageDisabled()">
+              <a href ng-click="prevPage()">« Prev</a>
+            </li>
+            <li ng-repeat="n in range()"
+              ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+              <a href="#">{{n+1}}</a>
+            </li>
+            <li ng-class="nextPageDisabled()">
+              <a href ng-click="nextPage()">Next »</a>
+            </li>
+          </ul>
+        </div>
