@@ -172,9 +172,6 @@ angular
         refresh();
     }; */
 
-  for(var i=0; i<25; i++){
-    $scope.pages.push('Product ' + i);
-  }
   
   $scope.firstPage = function() {
     return $scope.currentPage == 1;
@@ -183,10 +180,7 @@ angular
     return $scope.currentPage == $scope.lastPageNum;
   }
   $scope.numberOfPages = function(){
-    return $scope.pages;
-  }
-  $scope.startingItem = function() {
-    return $scope.currentPage * size;
+    return $scope.pages.length;
   }
   $scope.pageBack = function() {
     $scope.currentPage = $scope.currentPage - 1;
