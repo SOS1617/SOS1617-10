@@ -1,11 +1,5 @@
 angular
 .module("SOS161710")
-.filter('offset', function() {
-  return function(input, start) {
-    start = parseInt(start, 10);
-    return input.slice(start);
-  };
-})
 .controller("MotorcyclingsCtrl",["$scope","$http","$rootScope",function($scope,$http,$rootScope){
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2";
@@ -16,9 +10,7 @@ angular
     var limit = "&limit=" + size;
     var offset = "";
     
-    $scope.itemsPerPage = 5;
-    $scope.currentPage = 0;
-    $scope.items = [];
+    
     
     if ($rootScope.data) {
             $scope.apikeyField = $rootScope.data.simpleApikey;
@@ -26,6 +18,9 @@ angular
             refresh();
     }
     
+    $scope.currentPage = 1;
+    $scope.pages = [];
+    $scope.lastPageNum = null;
 
     function range(start, end) {
         var res = [];
@@ -39,7 +34,8 @@ angular
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
-                $scope.items = range(1, Math.ceil(response.data.length / $scope.itemsPerPage));
+                $scope.pages = range(1, Math.ceil(response.data.length / size));
+                $scope.lastPageNum = Math.ceil(response.data.length / size - 1);
                 $scope.motorcyclings = response.data;
             }, function(err) {
                     if (err.data == "Forbidden") {
@@ -155,7 +151,7 @@ angular
 
         };
     
-  /*  $scope.setPage = function(pageNumber) {
+    $scope.setPage = function(pageNumber) {
         $scope.currentPage = pageNumber;
 
         if (pageNumber == 1) {
@@ -174,7 +170,7 @@ angular
         offset = "&offset=" + (($scope.currentPage * size) - size);
 
         refresh();
-    }; */
+    }; 
 
   /*$scope.firstPage = function() {
         return $scope.currentPage == 1;
@@ -192,32 +188,4 @@ angular
         $scope.currentPage + 1;
     }
   */  
-
-  $scope.prevPage = function() {
-    if ($scope.currentPage > 0) {
-      $scope.currentPage--;
-    }
-  };
-
-  $scope.prevPageDisabled = function() {
-    return $scope.currentPage === 0 ? "disabled" : "";
-  };
-
-  $scope.pageCount = function() {
-    return Math.ceil($scope.items.length/$scope.itemsPerPage)-1;
-  };
-
-  $scope.nextPage = function() {
-    if ($scope.currentPage < $scope.pageCount()) {
-      $scope.currentPage++;
-    }
-  };
-
-  $scope.nextPageDisabled = function() {
-    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
-  };
-
-  $scope.setPage = function(n) {
-    $scope.currentPage = n;
-  };
 }]);
