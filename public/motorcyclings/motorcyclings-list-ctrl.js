@@ -1,11 +1,5 @@
 angular
 .module("SOS161710")
-.filter('startFrom', function(){
-  return function(input, start){
-    start = +start;
-    return input.slice(start);
-  }
-})
 .controller("MotorcyclingsCtrl",["$scope","$http","$rootScope",function($scope,$http,$rootScope){
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2";
@@ -178,9 +172,6 @@ angular
         refresh();
     }; */
 
-    $scope.startingItem = function() {
-        return $scope.currentPage * size;
-    }
     $scope.firstPage = function() {
         return $scope.currentPage == 0;
     }

@@ -32,7 +32,7 @@
             <button class="btn btn-danger" ng-click="deleteAllMotorcyclings()">Delete all</button>
                  
         </tr>
-        <tr ng-repeat = "motorcycling in motorcyclings | startFrom: startingItem()">
+        <tr ng-repeat = "motorcycling in motorcyclings">
             <td><a href="#!/motorcyclings/updateMotorcycling/{{motorcycling.country}}/{{motorcycling.year}}">{{motorcycling.country}}</td>
             <td>{{motorcycling.year}}</td>
             <td>{{motorcycling.pilot}}</td>
