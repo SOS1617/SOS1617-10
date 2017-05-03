@@ -12,8 +12,7 @@ angular
     var apikey = "";
     var yearfrom = "";
     var yearto = "";
-    var size = 5;
-    var limit = "&limit=" + size;
+    var limit = "&limit=" + $scope.size;
     var offset = "";
     
     
@@ -25,6 +24,7 @@ angular
     }
     
     $scope.currentPage = 1;
+    $scope.size = 5;
     $scope.pages = [];
     $scope.lastPageNum = null;
 
@@ -40,8 +40,8 @@ angular
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
-                $scope.pages = range(1, Math.ceil(response.data.length / size));
-                $scope.lastPageNum = Math.ceil(response.data.length / size - 1);
+                $scope.pages = range(1, Math.ceil(response.data.length / $scope.size));
+                $scope.lastPageNum = Math.ceil(response.data.length / $scope.size - 1);
                 $scope.motorcyclings = response.data;
             }, function(err) {
                     if (err.data == "Forbidden") {
@@ -179,7 +179,7 @@ angular
     }; */
 
     $scope.startingItem = function() {
-        return $scope.currentPage * size;
+        return $scope.currentPage * $scope.size;
     }
     $scope.firstPage = function() {
         return $scope.currentPage == 0;
@@ -188,7 +188,7 @@ angular
         return $scope.currentPage == $scope.lastPageNum;
     }
     $scope.numberOfPages = function(){
-        return $scope.pages.length * size;
+        return $scope.pages.length * $scope.size;
     }
     $scope.pageBack = function() {
         $scope.currentPage = $scope.currentPage - 1;
