@@ -16,7 +16,9 @@ angular
             
         });
         motorcyclingsCountryGeoChart.push(['Country', 'Championships']);
-        motorcyclingsCountryGeoChart.push(motorcyclingsCountry);
+        motorcyclingsCountry.forEach((x) => {
+            motorcyclingsCountryGeoChart.push(x);
+        });
         console.log(motorcyclingsCountryGeoChart)
         
         
