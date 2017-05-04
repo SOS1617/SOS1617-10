@@ -9,8 +9,8 @@ angular
         var apikey = "apikey=nurtrioje";
         $http.get(url + "/?" + apikey).then(function(response) {
             Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows) {
-                var YEAR = 2007;
-                var continents = ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'];
+                var YEAR = 2014;
+                var countries = ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'];
                 var POP_TO_PX_SIZE = 2e5;
 
                 function unpack(rows, key) {
@@ -19,13 +19,14 @@ angular
                     });
                 }
 
-                var data = continents.map(function(continent) {
+                var data = countries.map(function(country) {
                     var rowsFiltered = rows.filter(function(row) {
-                        return (row.continent === continent) && (+row.year === YEAR);
+                        console.log(rowsFiltered);
+                        return (row.country === country) && (+row.year === YEAR);
                     });
                     return {
                         mode: 'markers',
-                        name: continent,
+                        name: country,
                         x: unpack(rowsFiltered, 'lifeExp'),
                         y: unpack(rowsFiltered, 'gdpPercap'),
                         text: unpack(rowsFiltered, 'country'),
@@ -38,10 +39,10 @@ angular
                 });
                 var layout = {
                     xaxis: {
-                        title: 'Life Expectancy'
+                        title: 'Beds'
                     },
                     yaxis: {
-                        title: 'GDP per Capita',
+                        title: 'Nights',
                         type: 'log'
                     },
                     margin: {
