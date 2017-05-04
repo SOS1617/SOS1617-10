@@ -138,12 +138,6 @@ th {
 }
 
 #EstablishmentsGChart {
-    /*width: 65.885%;
-    height: 78.125%;
-    margin-top: 30px;
-    margin-left: 17%;
-    text-align: center;
-    padding: 10px;*/
     width: 65.885%;
     height: 78.125%;
     margin-top: 30px;
@@ -157,29 +151,23 @@ th {
 #EstablishmentsPlotly {
     /*width: 1000px;
     height: 300px;
-    text-align: center;
     margin-top: 10px;
     margin-left: 5%;*/
     margin-top: 10px;
-    margin-left: 30%;
-    margin-right: 30%;
     text-align: center;
     box-shadow: 0 0 1em black;
     padding: 10px;
 }
 
 #EstablishmentsHighchart {
-   /*min-width: 310px; 
+   min-width: 310px; 
     max-width: 600px; 
-    height: 400px;
-    text-align: center;
-    margin-top: 30px;
+   /* margin-top: 30px;
     margin-left: 17%;*/
-    width: 99%;
     height: 400px;
     margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 10px;
     text-align: center;
     box-shadow: 0 0 1em black;
