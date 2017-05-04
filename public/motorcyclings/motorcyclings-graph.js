@@ -27,7 +27,7 @@ angular
     });    
             
         
-    Highcharts.chart('container', {
+    Highcharts.chart('myGraph3d', {
     chart: {
         type: 'pie',
         options3d: {
