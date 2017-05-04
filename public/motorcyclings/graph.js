@@ -46,12 +46,12 @@ angular
         name: 'Delivered amount',
         data: motorcyclingsCountry
         
-    }]
-});    
+        }]
+    });    
         
     google.charts.load('current', {'packages':['geochart']});
 
-    function drawRegionsMap() {
+    function drawMarkersMap() {
 
         var data = google.visualization.arrayToDataTable(
           motorcyclingsCountryGeoChart
@@ -64,12 +64,7 @@ angular
         chart.draw(data, options);
       }    
         
-        
-        
-        
-        
-        
-    });    
+});    
     
     function getFromCountry(country, data) {
         var response;
