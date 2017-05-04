@@ -106,9 +106,10 @@ angular
             });
             google.charts.setOnLoadCallback(drawMarkersMap);
 
-            var establishmentsData = ['Country', 'Beds', 'Nights'];
+            var establishmentsData = [];
+            establishmentsData.push(['Country', 'Beds', 'Nights']);
             response.data.forEach((x) => {
-                establishmentsData.push(x.country, x.beds, x.nights);
+                establishmentsData.push([x.country, x.beds, x.nights]);
             });
 
             function drawMarkersMap() {
@@ -122,7 +123,7 @@ angular
                     }
                 };
 
-                var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+                var chart = new google.visualization.GeoChart(document.getElementById('Gchart'));
                 chart.draw(data, options);
             }
         });
