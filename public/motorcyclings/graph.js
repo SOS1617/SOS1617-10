@@ -68,72 +68,25 @@ angular
 });    
 
     
-    var names = ['centripetal', 'chordal', 'uniform', 'disabled'];
-    var groups = new vis.DataSet();
-    groups.add({
-        id: 0,
-        content: names[0],
-        options: {
-            drawPoints: false,
-            interpolation: {
-                parametrization: 'centripetal'
-            }
-        }});
 
-    groups.add({
-        id: 1,
-        content: names[1],
-        options: {
-            drawPoints: false,
-            interpolation: {
-                parametrization: 'chordal'
-            }
-        }});
+  var container = document.getElementById('visualization');
 
-    groups.add({
-        id: 2,
-        content: names[2],
-        options: {
-            drawPoints: false,
-            interpolation: {
-                parametrization: 'uniform'
-            }
-        }
-    });
+  // Create a DataSet (allows two way data-binding)
+  var items = new vis.DataSet([
+    {id: 1, content: 'item 1', start: '2014-04-20'},
+    {id: 2, content: 'item 2', start: '2014-04-14'},
+    {id: 3, content: 'item 3', start: '2014-04-18'},
+    {id: 4, content: 'item 4', start: '2014-04-16', end: '2014-04-19'},
+    {id: 5, content: 'item 5', start: '2014-04-25'},
+    {id: 6, content: 'item 6', start: '2014-04-27', type: 'point'}
+  ]);
 
-    groups.add({
-        id: 3,
-        content: names[3],
-        options: {
-            drawPoints: { style: 'circle' },
-            interpolation: false
-        }});
+  // Configuration for the Timeline
+  var options = {};
 
-    var container = document.getElementById('visualization');
-    var dataset = new vis.DataSet();
-    for (var i = 0; i < names.length; i++) {
-        dataset.add( [
-            {x: '2014-06-12', y: 0 , group: i},
-            {x: '2014-06-13', y: 40, group: i},
-            {x: '2014-06-14', y: 10, group: i},
-            {x: '2014-06-15', y: 15, group: i},
-            {x: '2014-06-15', y: 30, group: i},
-            {x: '2014-06-17', y: 10, group: i},
-            {x: '2014-06-18', y: 15, group: i},
-            {x: '2014-06-19', y: 52, group: i},
-            {x: '2014-06-20', y: 10, group: i},
-            {x: '2014-06-21', y: 20, group: i}
-        ]);
-    }
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, items, options);
 
-    var options = {
-        drawPoints: false,
-        dataAxis: {visible: false},
-        legend: true,
-        start: '2014-06-11',
-        end: '2014-06-22'
-    };
-    var graph2d = new vis.Graph2d(container, dataset, groups, options);
 
 
     
