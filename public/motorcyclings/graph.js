@@ -33,7 +33,7 @@ angular
     },
     plotOptions: {
         pie: {
-            innerSize: 100,
+            innerSize: 300,
             depth: 45
         }
     },
