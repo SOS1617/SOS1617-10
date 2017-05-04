@@ -119,7 +119,7 @@ angular
                     region: '150',
                     displayMode: 'markers',
                     colorAxis: {
-                        colors: ['green', 'blue']
+                        colors: ['pink', 'blue']
                     }
                 };
 
@@ -179,9 +179,9 @@ angular
                     useHTML: true,
                     headerFormat: '<table>',
                     pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-                        '<tr><th>Establishments:</th><td>{point.x}</td></tr>' +
-                        '<tr><th>Beds:</th><td>{point.y}</td></tr>' +
-                        '<tr><th>Nights spent:</th><td>{point.z}</td></tr>',
+                        '<tr><th>Beds:</th><td>{point.x}</td></tr>' +
+                        '<tr><th>Nights spent:</th><td>{point.y}</td></tr>' +
+                        '<tr><th>Establishments:</th><td>{point.z}</td></tr>',
                     footerFormat: '</table>',
                     followPointer: true
                 },
