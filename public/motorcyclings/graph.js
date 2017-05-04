@@ -1,28 +1,21 @@
 angular
 .module("SOS161710")
-.controller("MotorcyclingsGraphs", ["$http","$scope", function($http,$scope){
+.controller("MotorcyclingsGraphs", ["$http", function($http){
     console.log("Controller initialized");
-    $scope.url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
-    $scope.apikey = "apikey=davbotcab";
-    $scope.data = {};
-    $scope.country = [];
-    $scope.pilot = [];
-    $scope.team = [];
-    $scope.year = [];
+    var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
+    var apikey = "apikey=davbotcab";
+    var country = [];
+    var pilot = [];
+    var team = [];
         
-    $http.get($scope.url + "/?" + $scope.apikey).then(function(response){
-        
-
-        $scope.data = response.data;
+    $http.get(url + "/?" + apikey).then(function(response){
+        response.data.forEach((x) => {
+            country.push(x.country);
+            pilot.push(x.pilot);
+            team.push(x.team);
+            });
             
-        for(var i=0; i<response.data.length; i++){
-            $scope.country.push($scope.data[i].country);
-            $scope.pilot.push($scope.data[i].pilot);
-            $scope.team.push($scope.data[i].team);
-            $scope.year.push(Number($scope.data[i].year));
-            
-            console.log($scope.data[i].country);
-        }
+    
     });    
             
         
@@ -49,15 +42,7 @@ angular
     series: [{
         name: 'Delivered amount',
         data: [
-            ['Bananas', 8],
-            ['Kiwi', 3],
-            ['Mixed nuts', 1],
-            ['Oranges', 6],
-            ['Apples', 8],
-            ['Pears', 4],
-            ['Clementines', 4],
-            ['Reddish (bag)', 1],
-            ['Grapes (bunch)', 1]
+            [country, pilot]
         ]
     }]
 });
