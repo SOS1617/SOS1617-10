@@ -119,7 +119,7 @@ angular
                     region: '150',
                     displayMode: 'markers',
                     colorAxis: {
-                        colors: ['#F7819F', '#B40431']
+                        colors: ['#58ACFA', '#B40431']
                     }
                 };
 
