@@ -5,6 +5,7 @@ angular
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
     var motorcyclingsCountry = [];
+    var motorcyclingsCountryGeoChart = [];
     var pilot = [];
     var team = [];
     var year = [];
@@ -15,7 +16,11 @@ angular
         }));
         countries.forEach((country) => {
             motorcyclingsCountry.push(getFromCountry(country, response.data));
+            
         });
+        motorcyclingsCountryGeoChart.push(['Country', 'Championships']);
+        motorcyclingsCountryGeoChart.push(motorcyclingsCountry[0])
+        
         
         Highcharts.chart('myGraph3d', {
     chart: {
@@ -43,6 +48,26 @@ angular
         
     }]
 });    
+        
+    google.charts.load('current', {'packages':['geochart']});
+
+    function drawRegionsMap() {
+
+        var data = google.visualization.arrayToDataTable(
+          motorcyclingsCountryGeoChart
+        );
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }    
+        
+        
+        
+        
+        
         
     });    
     
