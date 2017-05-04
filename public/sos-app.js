@@ -33,9 +33,9 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/motorcyclings/motorcyclings-edit.html",
         controller: "MotorcyclingsEditCtrl"
         
-    }).when("/motorcyclings/motorcyclings-graph/", {
-        templateUrl: "/motorcyclings/motorcyclings-graph.html",
-        controller: "MotorcyclingsGraph"
+    }).when("/motorcyclings/graphs/", {
+        templateUrl: "/motorcyclings/graph.html",
+        controller: "MotorcyclingsGraphs"
     });
 });
 console.log("App initialized");

@@ -1,6 +1,6 @@
 angular
 .module("SOS161710")
-.controller("MotorcyclingsGraph", ["$http","$scope", function($http,$scope){
+.controller("MotorcyclingsGraphs", ["$http","$scope", function($http,$scope){
     console.log("Controller initialized");
     $scope.url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     $scope.apikey = "apikey=davbotcab";
@@ -50,7 +50,15 @@ angular
     series: [{
         name: 'Delivered amount',
         data: [
-            [$scope.country, $scope.year]
+            ['Bananas', 8],
+            ['Kiwi', 3],
+            ['Mixed nuts', 1],
+            ['Oranges', 6],
+            ['Apples', 8],
+            ['Pears', 4],
+            ['Clementines', 4],
+            ['Reddish (bag)', 1],
+            ['Grapes (bunch)', 1]
         ]
     }]
 });
