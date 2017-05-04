@@ -146,6 +146,10 @@ angular
             averageBeds = averageBeds/response.data.length;
             averageNights = averageNights/response.data.length;
             
+            console.log(establishmentsSeries);
+            console.log(averageBeds);
+            console.log(averageNights);
+            
             Highcharts.chart('establishmentsHighchart', {
 
                 chart: {
