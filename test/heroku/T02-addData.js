@@ -99,9 +99,9 @@ describe('Add motorcycling', function() {
 				browser.driver.sleep(2000);
 
 				element(by.model('newMotorcycling.country')).sendKeys("Spain");
-				element(by.model('newMotorcycling.year')).sendKeys(2012);
+				element(by.model('newMotorcycling.year')).sendKeys(2017);
 				element(by.model('newMotorcycling.pilot')).sendKeys("Jorge Lorenzo");
-				element(by.model('newMotorcycling.team')).sendKeys("Yamaha");
+				element(by.model('newMotorcycling.team')).sendKeys("Ducatti");
 
 
 
