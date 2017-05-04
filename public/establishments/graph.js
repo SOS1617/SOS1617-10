@@ -128,26 +128,34 @@ angular
             }
 
             //************************* HIGHCHARTS *************************//
-            
+
             var establishmentsSeries = [];
             response.data.forEach((e) => {
-                establishmentsSeries.push({x: e.beds, y: e.nights, z: e.number, name: e.country, country: e.country});
+                establishmentsSeries.push({
+                    x: e.beds,
+                    y: e.nights,
+                    z: e.number,
+                    name: e.country,
+                    country: e.country
+                });
             });
-            
+
             var averageBeds;
             var averageNights;
-            
+
             response.data.forEach((d) => {
                 averageBeds += d.beds;
                 averageNights += d.nights;
+                console.log(averageBeds);
+                console.log(averageNights);
             });
-            averageBeds = averageBeds/response.data.length;
-            averageNights = averageNights/response.data.length;
-            
+            averageBeds = averageBeds / response.data.length;
+            averageNights = averageNights / response.data.length;
+
             console.log(establishmentsSeries);
             console.log(averageBeds);
             console.log(averageNights);
-            
+
             Highcharts.chart('establishmentsHighchart', {
 
                 chart: {
@@ -236,8 +244,8 @@ angular
 
 
                 series: [{
-        data: [establishmentsSeries]
-    }]
+                    data: [establishmentsSeries]
+                }]
 
             });
         });
