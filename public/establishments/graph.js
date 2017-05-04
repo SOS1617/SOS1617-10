@@ -5,14 +5,16 @@ angular
         var url = "http://sos1617-10.herokuapp.com/api/v2/establishments";
         var apikey = "apikey=nurtrioje";
         $http.get(url + "/?" + apikey).then(function(response) {
-            
+
+            //*** PLOTLY ***//
+
             var country = [];
 
             var beds = [];
 
             var nights = [];
-            
-            response.data.forEach((x)=>{
+
+            response.data.forEach((x) => {
                 country.push(x.country);
                 beds.push(x.beds);
                 nights.push(x.nights);
@@ -94,6 +96,34 @@ angular
                 hovermode: 'closest'
             };
 
-            Plotly.newPlot('myDiv', data, layout);
+            Plotly.newPlot('plotlyDiv', data, layout);
+
+
+            //*** GOOGLE CHARTS ***//
+
+            google.charts.load('current', {
+                'packages': ['geochart']
+            });
+            google.charts.setOnLoadCallback(drawMarkersMap);
+
+            var establishmentsData = ['Country', 'Beds', 'Nights'];
+            response.data.forEach((x) => {
+                establishmentsData.push(x.country, x.beds, x.nights);
+            });
+
+            function drawMarkersMap() {
+                var data = google.visualization.arrayToDataTable(establishmentsData);
+
+                var options = {
+                    region: '150',
+                    displayMode: 'markers',
+                    colorAxis: {
+                        colors: ['green', 'blue']
+                    }
+                };
+
+                var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
         });
     }]);
