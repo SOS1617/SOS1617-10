@@ -16,7 +16,8 @@ angular
             
         });
         motorcyclingsCountryGeoChart.push(['Country', 'Championships']);
-        motorcyclingsCountryGeoChart.push(motorcyclingsCountry);
+        motorcyclingsCountryGeoChart.push(motorcyclingsCountry[0]);
+        console.log(motorcyclingsCountryGeoChart)
         
         
         Highcharts.chart('myGraph3d', {
