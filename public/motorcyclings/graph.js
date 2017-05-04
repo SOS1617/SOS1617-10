@@ -65,6 +65,7 @@ angular
       }    
         
 });    
+
     
     function getFromCountry(country, data) {
         var response;
@@ -73,9 +74,4 @@ angular
         }).length];
         return response;
     }
-            
-        
-    
-
-
 }]);
