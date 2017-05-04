@@ -129,7 +129,7 @@ angular
 
             //************************* HIGHCHARTS *************************//
 
-            Highcharts.chart('container', {
+            Highcharts.chart('establishmentsHighchart', {
 
                 chart: {
                     type: 'bubble',
