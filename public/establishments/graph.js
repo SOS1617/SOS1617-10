@@ -107,9 +107,9 @@ angular
             google.charts.setOnLoadCallback(drawMarkersMap);
 
             var establishmentsData = [];
-            establishmentsData.push(['Country', 'Establishments', 'Beds', 'Nights']);
+            establishmentsData.push(['Country', 'Beds', 'Nights']);
             response.data.forEach((x) => {
-                establishmentsData.push([x.country, x.number, x.beds, x.nights]);
+                establishmentsData.push([x.country, x.beds, x.nights]);
             });
 
             function drawMarkersMap() {
@@ -129,7 +129,7 @@ angular
 
             //************************* HIGHCHARTS *************************//
 
-            Highcharts.chart('container', {
+            Highcharts.chart('establishmentsHighchart', {
 
                 chart: {
                     type: 'bubble',

@@ -153,3 +153,12 @@ th {
     margin-top: 10px;
     margin-left: 5%;
 }
+
+#EstablishmentsHighchart {
+    min-width: 310px; 
+    max-width: 600px; 
+    height: 400px;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 17%;
+}
