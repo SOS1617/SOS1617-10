@@ -27,7 +27,10 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
     }).when("/motorcyclings/updateMotorcycling/:country/:year", {
         templateUrl: "/motorcyclings/motorcyclings-edit.html",
         controller: "MotorcyclingsEditCtrl"
-
+        
+    }).when("/motorcyclings/motorcyclings-graph/", {
+        templateUrl: "/motorcyclings/motorcyclings-graph.html",
+        controller: "MotorcyclingsGraph"
     });
 });
 console.log("App initialized");
