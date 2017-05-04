@@ -144,8 +144,8 @@ angular
             var averageNights;
 
             response.data.forEach((d) => {
-                averageBeds += d.beds;
-                averageNights += d.nights;
+                averageBeds = averageBeds + d.beds;
+                averageNights = averageNights + d.nights;
                 console.log(averageBeds);
                 console.log(averageNights);
             });
