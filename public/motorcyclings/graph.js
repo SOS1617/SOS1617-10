@@ -28,8 +28,8 @@ angular
                 content:x.pilot,
                 start:x.year+"-01-01",
                 end:x.year+"-12-31"
-                
             });
+            cont++;
         });
         
         
