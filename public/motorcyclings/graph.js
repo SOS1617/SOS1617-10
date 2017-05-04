@@ -50,6 +50,7 @@ angular
     });    
         
     google.charts.load('current', {'packages':['geochart']});
+    google.charts.setOnLoadCallback(drawRegionsMap);
 
     function drawRegionsMap() {
 
