@@ -142,23 +142,34 @@ th {
     height: 78.125%;
     margin-top: 30px;
     margin-left: 17%;
+    margin-right: 26.5%;
     text-align: center;
+    box-shadow: 0 0 1em black;
     padding: 10px;
 }
 
 #EstablishmentsPlotly {
-    width: 1000px;
+    /*width: 1000px;
     height: 300px;
-    text-align: center;
     margin-top: 10px;
-    margin-left: 5%;
+    margin-left: 5%;*/
+    margin-top: 10px;
+    text-align: center;
+    box-shadow: 0 0 1em black;
+    padding: 10px;
 }
 
 #EstablishmentsHighchart {
-    min-width: 310px; 
+   min-width: 310px; 
     max-width: 600px; 
-    height: 400px;
-    text-align: center;
+   /* margin-top: 30px;
+    margin-left: 17%;*/
+    height: 600px;
     margin-top: 30px;
-    margin-left: 17%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    box-shadow: 0 0 1em black;
+    padding: 10px;
 }
