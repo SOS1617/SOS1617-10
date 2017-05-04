@@ -129,14 +129,15 @@ angular
 
             //************************* HIGHCHARTS *************************//
 
-            var establishmentsSeries = {};
+            var establishmentsSeries = [];
             response.data.forEach((e) => {
-                establishmentsSeries.add({
+                var dic = {
                     x: e.beds,
                     y: e.nights,
                     z: e.number,
                     name: e.country,
-                    country: e.country});
+                    country: e.country};
+                establishmentsSeries.push(dic);
             });
 
             Highcharts.chart('establishmentsHighchart', {
@@ -196,7 +197,7 @@ angular
 
 
                 series: [{
-                    data: [establishmentsSeries]
+                    data: establishmentsSeries
                 }]
 
             });
