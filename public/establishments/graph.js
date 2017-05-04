@@ -131,7 +131,7 @@ angular
 
             var establishmentsSeries = {};
             response.data.forEach((e) => {
-                establishmentsSeries.push({
+                establishmentsSeries.add({
                     x: e.beds,
                     y: e.nights,
                     z: e.number,
