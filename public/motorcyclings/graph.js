@@ -6,9 +6,6 @@ angular
     var apikey = "apikey=davbotcab";
     var motorcyclingsCountry = [];
     var motorcyclingsCountryGeoChart = [];
-    var pilot = [];
-    var team = [];
-    var year = [];
         
     $http.get(url + "/?" + apikey).then(function(response){
         var countries = new Set(response.data.map(function(x){
@@ -51,7 +48,7 @@ angular
         
     google.charts.load('current', {'packages':['geochart']});
 
-    function drawMarkersMap() {
+    function drawRegionsMap() {
 
         var data = google.visualization.arrayToDataTable(
           motorcyclingsCountryGeoChart
