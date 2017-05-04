@@ -80,3 +80,46 @@ describe('Add beer', function() {
 
 
 });
+
+describe('Add motorcycling', function() {
+	it('should add a new motorcyclings', function() {
+		browser.get('http://sos1617-10.herokuapp.com/#!/motorcyclings/');
+		element(by.model('apikeyField')).sendKeys('davbotcab');
+
+		element(by.buttonText('Access')).click().then(function() {
+
+
+			element.all(by.repeater('motorcycling in motorcyclings')).then(function(initialMotorcyclings) {
+
+
+				browser.driver.sleep(2000);
+
+				element(by.buttonText('Add')).click()
+				
+				browser.driver.sleep(2000);
+
+				element(by.model('newMotorcycling.country')).sendKeys("Spain");
+				element(by.model('newMotorcycling.year')).sendKeys(2012);
+				element(by.model('newMotorcycling.pilot')).sendKeys("Jorge Lorenzo");
+				element(by.model('newMotorcycling.team')).sendKeys("Yamaha");
+
+
+
+				element(by.buttonText('Add Motorcycling')).click().then(function() {
+					browser.driver.sleep(2000);
+
+					element.all(by.repeater('motorcycling in motorcyclings')).then(function(motorcyclings) {
+						expect(motorcyclings.length).toEqual(initialMotorcyclings.length + 1);
+					});
+
+				});
+
+			});
+		});
+
+	});
+
+
+
+});
+

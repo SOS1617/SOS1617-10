@@ -21,3 +21,15 @@ describe('Data is loaded', function () {
 		});
 	});
 });
+
+describe('Data is loaded', function () {
+	it('should show a bunch of data', function (){
+		browser.get('http://sos1617-10.herokuapp.com/#!/motorcyclings');
+		element(by.model('apikeyField')).sendKeys('davbotcab');
+		var motorcyclings
+		element(by.buttonText('Access')).click().then(function (){
+			motorcyclings = element.all(by.repeater('motorcycling in motorcyclings'));
+		expect(motorcyclings.count()).toBeGreaterThan(3);
+		});
+	});
+});
