@@ -5,7 +5,6 @@ angular
     $scope.url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     $scope.apikey = "apikey=davbotcab";
     $scope.data = {};
-    var dataCache = {};
     $scope.country = [];
     $scope.pilot = [];
     $scope.team = [];
@@ -13,8 +12,8 @@ angular
         
     $http.get($scope.url + "/?" + $scope.apikey).then(function(response){
         
-        dataCache = response.data;
-        $scope.data = dataCache;
+
+        $scope.data = response.data;
             
         for(var i=0; i<response.data.length; i++){
             $scope.country.push($scope.data[i].country);
