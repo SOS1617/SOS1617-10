@@ -1,29 +1,32 @@
 angular
 .module("SOS161710")
-.controller("MotorcyclingsGraphs", ["$http","$scope", function($http,$scope){
+.controller("MotorcyclingsGraphs", ["$http", function($http){
     console.log("Controller initialized");
-    $scope.url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
-    $scope.apikey = "apikey=davbotcab";
-    $scope.data = {};
-    $scope.country = [];
-    $scope.pilot = [];
-    $scope.team = [];
-    $scope.year = [];
+    var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
+    var apikey = "apikey=davbotcab";
+    var motorcyclingsCountry = [];
+    var pilot = [];
+    var team = [];
+    var year = [];
         
-    $http.get($scope.url + "/?" + $scope.apikey).then(function(response){
+    $http.get(url + "/?" + apikey).then(function(response){
+        var countries = new Set(response.data.map(function(x){
+            return x.country;
+        }));
+        countries.forEach((country) => {
+            motorcyclingsCountry.push(getFromCountry(country, response.data));
+        });
+            
         
-
-        $scope.data = response.data;
-            
-        for(var i=0; i<response.data.length; i++){
-            $scope.country.push($scope.data[i].country);
-            $scope.pilot.push($scope.data[i].pilot);
-            $scope.team.push($scope.data[i].team);
-            $scope.year.push(Number($scope.data[i].year));
-            
-            console.log($scope.data[i].country);
-        }
     });    
+    
+    function getFromCountry(country, data) {
+        var response;
+        response = [country, data.filter((x) => {
+            return x.country == country;
+        }).length];
+        return response;
+    }
             
         
     Highcharts.chart('myGraph3d', {
@@ -42,15 +45,14 @@ angular
     },
     plotOptions: {
         pie: {
-            innerSize: 300,
-            depth: 75
+            innerSize: 100,
+            depth: 45
         }
     },
     series: [{
         name: 'Delivered amount',
-        data: [
-            [$scope.country, $scope.pilot],
-        ]
+        data: motorcyclingsCountry
+        
     }]
 });
 
