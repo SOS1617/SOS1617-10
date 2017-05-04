@@ -16,20 +16,8 @@ angular
         countries.forEach((country) => {
             motorcyclingsCountry.push(getFromCountry(country, response.data));
         });
-            
         
-    });    
-    
-    function getFromCountry(country, data) {
-        var response;
-        response = [country, data.filter((x) => {
-            return x.country == country;
-        }).length];
-        return response;
-    }
-            
-        
-    Highcharts.chart('myGraph3d', {
+        Highcharts.chart('myGraph3d', {
     chart: {
         type: 'pie',
         options3d: {
@@ -54,7 +42,20 @@ angular
         data: motorcyclingsCountry
         
     }]
-});
+});    
+        
+    });    
+    
+    function getFromCountry(country, data) {
+        var response;
+        response = [country, data.filter((x) => {
+            return x.country == country;
+        }).length];
+        return response;
+    }
+            
+        
+    
 
 
 }]);
