@@ -111,7 +111,6 @@ angular
             response.data.forEach((x) => {
                 establishmentsData.push([x.country, x.beds, x.nights]);
             });
-            console.log(establishmentsData);
 
             function drawMarkersMap() {
                 var data = google.visualization.arrayToDataTable(establishmentsData);
