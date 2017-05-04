@@ -87,8 +87,8 @@ angular
                     yanchor: 'middle',
                     xanchor: 'right'
                 },
-                width: 600,
-                height: 600,
+                width: 1200,
+                height: 650,
                 paper_bgcolor: 'rgb(254, 247, 234)',
                 plot_bgcolor: 'rgb(254, 247, 234)',
                 hovermode: 'closest'
