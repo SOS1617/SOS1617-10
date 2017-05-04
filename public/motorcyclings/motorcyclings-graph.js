@@ -1,21 +1,31 @@
 angular
 .module("SOS161710")
-.controller("MotorcyclingsGraph", ["$http", function($http){
+.controller("MotorcyclingsGraph", ["$http","$scope", function($http,$scope){
     console.log("Controller initialized");
-    var motorByCountry = [];
-    var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
-    var apikey = "apikey=davbotcab";
-    
-    $http
-        .get(url + "/?" + apikey)
-        .then(function(response) {
-            var countries = new Set(response.data.map(function(x){
-                return x.country;
-            }));
-            console.log(countries);
-        });
+    $scope.url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
+    $scope.apikey = "apikey=davbotcab";
+    $scope.data = {};
+    var dataCache = {};
+    $scope.country = [];
+    $scope.pilot = [];
+    $scope.team = [];
+    $scope.year = [];
         
+    $http.get($scope.url + "/?" + $scope.apikey).then(function(response){
         
+        dataCache = response.data;
+        $scope.data = dataCache;
+            
+        for(var i=0; i<response.data.length; i++){
+            $scope.country.push($scope.data[i].country);
+            $scope.pilot.push($scope.data[i].pilot);
+            $scope.team.push($scope.data[i].team);
+            $scope.year.push(Number($scope.data[i].year));
+            
+            console.log($scope.data[i].country);
+        }
+    });    
+            
         
     Highcharts.chart('container', {
     chart: {
@@ -26,7 +36,7 @@ angular
         }
     },
     title: {
-        text: 'Contents of Highsoft\'s weekly fruit delivery'
+        text: 'Number of Pilots Champions by Country'
     },
     subtitle: {
         text: '3D donut in Highcharts'
@@ -40,15 +50,7 @@ angular
     series: [{
         name: 'Delivered amount',
         data: [
-            ['Bananas', 8],
-            ['Kiwi', 3],
-            ['Mixed nuts', 1],
-            ['Oranges', 6],
-            ['Apples', 8],
-            ['Pears', 4],
-            ['Clementines', 4],
-            ['Reddish (bag)', 1],
-            ['Grapes (bunch)', 1]
+            [$scope.country, $scope.year]
         ]
     }]
 });
