@@ -139,22 +139,6 @@ angular
                     country: e.country});
             });
 
-            var averageBeds;
-            var averageNights;
-
-            response.data.forEach((d) => {
-                averageBeds = averageBeds + d.beds;
-                averageNights = averageNights + d.nights;
-                console.log(averageBeds);
-                console.log(averageNights);
-            });
-            averageBeds = averageBeds / response.data.length;
-            averageNights = averageNights / response.data.length;
-
-            console.log(establishmentsSeries);
-            console.log(averageBeds);
-            console.log(averageNights);
-
             Highcharts.chart('establishmentsHighchart', {
 
                 chart: {
@@ -179,22 +163,7 @@ angular
                     gridLineWidth: 1,
                     title: {
                         text: 'Number of beds'
-                    },
-                    plotLines: [{
-                        color: 'black',
-                        dashStyle: 'dot',
-                        width: 2,
-                        value: averageBeds,
-                        label: {
-                            rotation: 0,
-                            y: 15,
-                            style: {
-                                fontStyle: 'italic'
-                            },
-                            text: 'Average number of beds'
-                        },
-                        zIndex: 3
-                    }]
+                    }
                 },
 
                 yAxis: {
@@ -202,23 +171,7 @@ angular
                     endOnTick: false,
                     title: {
                         text: 'Number of nights spent'
-                    },
-                    maxPadding: 0.2,
-                    plotLines: [{
-                        color: 'black',
-                        dashStyle: 'dot',
-                        width: 2,
-                        value: averageNights,
-                        label: {
-                            align: 'right',
-                            style: {
-                                fontStyle: 'italic'
-                            },
-                            text: 'Average number of nights spent',
-                            x: -10
-                        },
-                        zIndex: 3
-                    }]
+                    }
                 },
 
                 tooltip: {
