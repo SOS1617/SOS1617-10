@@ -10,7 +10,7 @@ angular
         $http.get(url + "/?" + apikey).then(function(response) {
             TESTER = document.getElementById('tester');
             Plotly.plot(TESTER, [{
-                x: [1, 2, 3, 4, 5],
+                x: ['a', 'b', 'c', 'd', 'e'],
                 y: [1, 2, 4, 8, 16]
             }], {
                 margin: {
