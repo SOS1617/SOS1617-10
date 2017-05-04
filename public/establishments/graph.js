@@ -129,15 +129,14 @@ angular
 
             //************************* HIGHCHARTS *************************//
 
-            var establishmentsSeries = [];
+            var establishmentsSeries = {};
             response.data.forEach((e) => {
                 establishmentsSeries.push({
                     x: e.beds,
                     y: e.nights,
                     z: e.number,
                     name: e.country,
-                    country: e.country
-                });
+                    country: e.country});
             });
 
             var averageBeds;
