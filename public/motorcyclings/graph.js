@@ -42,22 +42,14 @@ angular
     },
     plotOptions: {
         pie: {
-            innerSize: 100,
-            depth: 45
+            innerSize: 300,
+            depth: 75
         }
     },
     series: [{
         name: 'Delivered amount',
         data: [
-            ['Bananas', 8],
-            ['Kiwi', 3],
-            ['Mixed nuts', 1],
-            ['Oranges', 6],
-            ['Apples', 8],
-            ['Pears', 4],
-            ['Clementines', 4],
-            ['Reddish (bag)', 1],
-            ['Grapes (bunch)', 1]
+            [$scope.country, $scope.pilot],
         ]
     }]
 });
