@@ -1,144 +1,57 @@
 angular
-    .module("SOS161710")
-    .controller("BeersGraphs", ["$http", function($http) {
-        console.log("Controller initialized");
-        var beersbycountry = [];
-        var beersformap = [];
-        var beersfortimeline=[];
-        var url = "http://sos1617-10.herokuapp.com/api/v2/beers-stats";
-        var apikey = "apikey=jesusguerre";
-        $http.get(url + "/?" + apikey).then(function(response) {
-            var countries = new Set(response.data.map(function(x) {
+.module("SOS161710")
+.controller("MotorcyclingsGraph", ["$http", function($http){
+    console.log("Controller initialized");
+    var motorByCountry = [];
+    var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
+    var apikey = "apikey=davbotcab";
+    
+    $http
+        .get(url + "/?" + apikey)
+        .then(function(response) {
+            var countries = new Set(response.data.map(function(x){
                 return x.country;
             }));
             console.log(countries);
-            countries.forEach((country) => {
-                console.log(country);
-                beersbycountry.push(getFromApi(country, response.data));
-            });
-            console.log(beersbycountry);
-            showGraph();
-
-            beersformap.push(['Province', 'Name', 'Birthyear']);
-            response.data.forEach( (x) =>{
-                beersformap.push([x.province,x.name,x.birthyear]); //geochart
-                beersfortimeline.push({"name":x.name , "data":[{x:0,low: Date.UTC(x.birthyear,00,01,0,0,0),high:Date.UTC(x.birthyear,11,31,23,59,59),country:x.country,birthyear:x.birthyear,province:x.province }]});
-            }); 
-            
-            console.log(beersfortimeline);
-            
-            
-            
-            
-          
-            console.log(beersformap);
-             google.charts.setOnLoadCallback(drawMarkersMap);
-
-            
-            
-            $(function() {
-            $('#BeersTimeline').highcharts({
-
-                chart: {
-                    type: 'columnrange',
-                    inverted: true
-                },
-                title: {
-                    text: 'Timeline'
-                },
-                scrollbar: {
-                    enabled: false
-                },
-                xAxis: {
-                    categories: ['Beer']
-                },
-                yAxis: {
-                    type: 'datetime',
-                    title: {
-                        text: 'Timespan'
-                    }
-                },
-                plotOptions: {
-                    columnrange: {
-                        grouping: false
-                    }
-                },
-                legend: {
-                    enabled: true
-                },
-                tooltip: {
-                    formatter: function() {
-                        return '<b>' + this.series.name +'</b><br/>' +"<b>Birthyear: </b>"+this.point.birthyear+ '<br/>'
-                        +"<b>Country: </b>"+this.point.country+'<br/>'
-                        +"<b>Province: </b>"+this.point.province+'<br/>'
-                        
-                        ;
-                    }
-                },
-
-                series: beersfortimeline
-            });
         });
-            
-            
-            
-        });
-
         
-
-
-        function getFromApi(country, data) {
-            var response;
-            response = [country, data.filter((x) => {
-                return x.country == country;
-            }).length];
-
-
-            return response;
-        }
-
-        function showGraph() {
-            var chart = c3.generate({
-
-
-                data: {
-                    columns: beersbycountry
-
-                    ,
-                    type: 'pie',
-
-                },
-                pie: {
-                    label: {
-                        format: function(value, ratio, id) {
-                            return d3.format('')(value);
-                        }
-                    }
-                }
-            });
-        }
-
-
-
-        google.charts.load('current', {
-            'packages': ['geochart']
-        });
-
-
-        function drawMarkersMap() {
-            var data = google.visualization.arrayToDataTable(beersformap);
-
-            var options = {
-                region: '150',
-                displayMode: 'markers',
-                colorAxis: {
-                    colors: ['#42e5f4', 'blue']
-                }
-            };
-
-            var chart = new google.visualization.GeoChart(document.getElementById('BeersMap'));
-            chart.draw(data, options);
-        }
-    
         
-    }]);
+        
+    Highcharts.chart('container', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
+        }
+    },
+    title: {
+        text: 'Contents of Highsoft\'s weekly fruit delivery'
+    },
+    subtitle: {
+        text: '3D donut in Highcharts'
+    },
+    plotOptions: {
+        pie: {
+            innerSize: 100,
+            depth: 45
+        }
+    },
+    series: [{
+        name: 'Delivered amount',
+        data: [
+            ['Bananas', 8],
+            ['Kiwi', 3],
+            ['Mixed nuts', 1],
+            ['Oranges', 6],
+            ['Apples', 8],
+            ['Pears', 4],
+            ['Clementines', 4],
+            ['Reddish (bag)', 1],
+            ['Grapes (bunch)', 1]
+        ]
+    }]
+});
+
+
+}]);
