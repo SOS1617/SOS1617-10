@@ -2,9 +2,6 @@ angular
     .module("SOS161710")
     .controller("EstablishmentsGraphs", ["$http", function($http) {
         console.log("Controller initialized");
-        var beersbycountry = [];
-        var beersformap = [];
-        var beersfortimeline = [];
         var url = "http://sos1617-10.herokuapp.com/api/v2/establishments";
         var apikey = "apikey=nurtrioje";
         $http.get(url + "/?" + apikey).then(function(response) {
@@ -26,7 +23,7 @@ angular
                 x: beds,
                 y: country,
                 mode: 'markers',
-                name: 'Percent of estimated voting age population',
+                name: 'Number of beds',
                 marker: {
                     color: 'rgba(156, 165, 196, 0.95)',
                     line: {
@@ -42,7 +39,7 @@ angular
                 x: nights,
                 y: country,
                 mode: 'markers',
-                name: 'Percent of estimated registered voters',
+                name: 'Number of nights spent',
                 marker: {
                     color: 'rgba(204, 204, 204, 0.95)',
                     line: {
@@ -57,7 +54,7 @@ angular
             var data = [trace1, trace2];
 
             var layout = {
-                title: 'Votes cast for ten lowest voting age population in OECD countries',
+                title: 'Relation between number of beds and number of nights spent in European countries',
                 xaxis: {
                     showgrid: false,
                     showline: true,
