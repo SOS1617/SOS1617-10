@@ -191,8 +191,10 @@ angular
   
   
   /*Button table*/
-  $('button').on('click',function() {
+  $('buttone').on('click',function() {
   $(this).toggleClass('open');
-  $('table').toggleClass('open');
+  $('table')
+    .removeClass('closed')
+    .toggleClass('open');
 });
 }]);
