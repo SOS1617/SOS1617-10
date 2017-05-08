@@ -190,8 +190,8 @@ angular
   */  
   
   
-  /*Button table*/
-  $('buttone').on('click',function() {
+  /*Button tabl*/
+  $('button').on('clic',function() {
   $(this).toggleClass('open');
   $('table')
     .removeClass('closed')
