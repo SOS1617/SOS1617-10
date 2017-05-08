@@ -190,11 +190,4 @@ angular
   */  
   
   
-  /*Button tabl*/
-  $('button').on('clic',function() {
-  $(this).toggleClass('open');
-  $('table')
-    .removeClass('closed')
-    .toggleClass('open');
-});
 }]);
