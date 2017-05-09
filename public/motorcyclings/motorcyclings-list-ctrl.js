@@ -60,6 +60,10 @@ angular
     };
         
     $scope.addMotorcycling = function(){
+        if ($scope.newMotorcycling) {
+                $scope.newMotorcycling.year = Number($scope.newMotorcycling.year);
+        }
+        
         $http
             .post(url + "/motorcycling-stats?"  + apikey, $scope.newMotorcycling)
             .then(function(response){
@@ -87,7 +91,7 @@ angular
     
     $scope.deleteMotorcycling = function(country, year) {
         $http
-            .delete(url + "/motorcycling-stats/" + country + "/" + Number(year) + "?"  + apikey)
+            .delete(url + "/motorcycling-stats/" + country + "/" + year + "?"  + apikey)
             .then(function(response) {
                 console.log("Motorcycling deleted");
                 bootbox.alert("Motorcycling deleted.");
