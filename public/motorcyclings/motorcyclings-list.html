@@ -94,21 +94,20 @@ td {
 
 
 
-<div id="motorcycling-list" class="wrapper">
+<div id="motorcycling-list">
     <h2>Motorcycling</h2>
-    <div id="apikey">
+    <div id="apikey" class="wrapper">
         <input id="apikeyField" type="text" name="" ng-model="apikeyField" placeholder="davbotcab"/>
         <label for="apikeyField"></label>
     </div>
         <button class="btn btn-success" ng-click="sendapi()">Access</button>
     
-    <div id="filter">
-        <input id="yearfrom" type="text" name="" ng-model="yearfrom" placeholder="yearfrom"/>
+    <div id="filter" class="wrapper">
+        <input id="yearfrom" type="text" name="" ng-model="yearfrom"/>
         <label for="yearfrom"></label>
-        <input id="yearto" type="text" name="" ng-model="yearto" placeholder="yearto"/>
-        <label for="yearto"></label>
     </div>
     <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
+    
     <div id="loadInitialData">
         <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
     </div>
