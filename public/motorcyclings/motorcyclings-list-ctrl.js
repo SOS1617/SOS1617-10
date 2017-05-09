@@ -6,11 +6,11 @@ angular
     var apikey = "";
     var yearfrom = "";
     var yearto = "";
-    var limit = 5;
+    var size = 5;
+    var limit = "&limit=" + size;
     var offset = "";
-    var totalPages = 0
     
-    $scope.currentPage = 1;
+    
     
     if ($rootScope.data) {
             $scope.apikeyField = $rootScope.data.simpleApikey;
@@ -18,16 +18,22 @@ angular
             refresh();
     }
     
-    
+    $scope.currentPage = 1;
+    $scope.pages = [];
 
+    function range(start, end) {
+        var res = [];
+        for (var i = start; i <= end; i++) {
+            res.push(i);
+        }
+        return res;
+    }
     
     function refresh(){
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
-                totalPages = Math.ceil(response.data.length/limit)
-		        //create array number pags ie 0,1,2,3
-		        $scope.init = Array.apply(null, Array(Math.ceil(response.data.length/limit))).map(function (_, i) {return i;});
+                $scope.pages = range(1, Math.ceil(response.data.length / size));
                 $scope.motorcyclings = response.data;
             }, function(err) {
                     if (err.data == "Forbidden") {
@@ -160,69 +166,8 @@ angular
             refresh();
 
         };
-        
-        
-        
-        
-        
-        
-    $scope.setPage = function(numberPage){
-	    if($scope.currentPage>numberPage || $scope.currentPage<numberPage){
-	    	offset = (numberPage*limit);
-	    	$scope.currentPage = numberPage;
-
-	    }else{
-	    	offset=offset;
-	    	$scope.currentPage = numberPage;
-	    }
-	}; 
-	
-	$scope.prevPage = function(){
-			
-		//if not the first
-		if (($scope.currentPage-1)>=0) {
-
-			//Current decreases in 1
-			$scope.currentPage = $scope.currentPage-1; 
-				offset=($scope.currentPage*limit);
-
-			/*	 var request = $http.get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
-
-				 	request.success(function(data) {
-			        $scope.olympicsgames = data; });
-			        
-				 	$scope.currentPage = $scope.currentPage;
-				 }
-*/
-
-		}
-
-		$scope.nextPage = function(){
-
-			//if not the last
-			
-			if (($scope.currentPage+1)<=(totalPages-1))
-
-				//Current increases in 1
-
-				$scope.currentPage = $scope.currentPage+1; 
-				offset = ($scope.currentPage*limit);
-		}
-
-
-		//Control class materialize
-		$scope.nextPageDisabled = function() {
-    	return $scope.currentPage === totalPages-1 ? "disabled" : "";
-  		};
-
-
-  		$scope.prevPageDisabled = function() {
-    	return $scope.currentPage === 0 ? "disabled" : "";
-  		};
-
-
     
-/*    $scope.setPage = function(pageNumber) {
+    $scope.setPage = function(pageNumber) {
         $scope.currentPage = pageNumber;
 
         if (pageNumber == 1) {
@@ -242,7 +187,7 @@ angular
 
         refresh();
     }; 
-*/
+
   /*$scope.firstPage = function() {
         return $scope.currentPage == 1;
     }
