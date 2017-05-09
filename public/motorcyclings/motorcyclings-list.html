@@ -1,173 +1,131 @@
 <style>
     
-.box {
-   position: relative;
-   top: 0;
-   opacity: 1;
-   float: left;
-   padding: 60px 50px 40px 50px;
-   width: 100%;
-   background: #fff;
-   border-radius: 10px;
-   transform: scale(1);
-   -webkit-transform: scale(1);
-   -ms-transform: scale(1);
-   z-index: 5;
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,800);
+* {
+  box-sizing: border-box;
 }
 
-.box.back {
-   transform: scale(.95);
-   -webkit-transform: scale(.95);
-   -ms-transform: scale(.95);
-   top: -20px;
-   opacity: .8;
-   z-index: -1;
+html,
+body {
+  overflow-x: hidden;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  color: #fff;
+  background: #efefef;
 }
 
-.box:before {
-   content: "";
-   width: 100%;
-   height: 30px;
-   border-radius: 10px;
-   position: absolute;
-   top: -10px;
-   background: rgba(255, 255, 255, .6);
-   left: 0;
-   transform: scale(.95);
-   -webkit-transform: scale(.95);
-   -ms-transform: scale(.95);
-   z-index: -1;
+.row {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 30px;
+  background: #032429;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.row:before {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0;
+  left: -5000px;
+  height: 100%;
+  width: 15000px;
+  z-index: -1;
+  background: inherit;
+}
+.row:first-child {
+  padding: 40px 30px;
+}
+.row:nth-child(2), .row:nth-child(8), .row:nth-child(10) {
+  background: #134A46;
+}
+.row:nth-child(3), .row:nth-child(7) {
+  background: #377D6A;
+}
+.row:nth-child(4), .row:nth-child(6) {
+  background: #7AB893;
+}
+.row:nth-child(5) {
+  background: #B2E3AF;
+}
+.row span {
+  position: relative;
+  display: inline-block;
+  margin: 30px 10px;
 }
 
-.overbox .title {
-   color: #fff;
+.balloon {
+  display: inline-block;
+  width: 215px;
+  padding: 10px 0 10px 15px;
+  font-family: "Open Sans", sans;
+  font-weight: 400;
+  color: #377D6A;
+  background: #efefef;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
+  text-indent: 60px;
+  transition: all .3s ease-in-out;
+}
+.balloon::-webkit-input-placeholder {
+  color: #efefef;
+  text-indent: 0;
+  font-weight: 300;
+}
+.balloon + label {
+  display: inline-block;
+  position: absolute;
+  top: 8px;
+  left: 0;
+  bottom: 8px;
+  padding: 5px 15px;
+  color: #032429;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(19, 74, 70, 0);
+  transition: all .3s ease-in-out;
+  border-radius: 3px;
+  background: rgba(122, 184, 147, 0);
+}
+.balloon + label:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  top: 100%;
+  left: 50%;
+  margin-left: -3px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 3px solid rgba(122, 184, 147, 0);
+  transition: all .3s ease-in-out;
 }
 
-.overbox .title:before {
-   background: #fff;
+.balloon:focus,
+.balloon:active {
+  color: #377D6A;
+  text-indent: 0;
+  background: #fff;
+}
+.balloon:focus::-webkit-input-placeholder,
+.balloon:active::-webkit-input-placeholder {
+  color: #aaa;
+}
+.balloon:focus + label,
+.balloon:active + label {
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+  background: #7ab893;
+  transform: translateY(-40px);
+}
+.balloon:focus + label:after,
+.balloon:active + label:after {
+  border-top: 4px solid #7ab893;
 }
 
-.title {
-   width: 100%;
-   float: left;
-   line-height: 46px;
-   font-size: 34px;
-   font-weight: 700;
-   letter-spacing: 2px;
-   color: #ED2553;
-   position: relative;
-}
-
-.title:before {
-   content: "";
-   width: 5px;
-   height: 100%;
-   position: absolute;
-   top: 0;
-   left: -50px;
-   background: #ED2553;
-}
-
-.input,
-.input label,
-.input input,
-.input .spin,
-.button,
-.button button .button.login button i.fa,
-.material-button .shape:before,
-.material-button .shape:after,
-.button.login button {
-   transition: 300ms cubic-bezier(.4, 0, .2, 1);
-   -webkit-transition: 300ms cubic-bezier(.4, 0, .2, 1);
-   -ms-transition: 300ms cubic-bezier(.4, 0, .2, 1);
-}
-
-.material-button,
-.alt-2,
-.material-button .shape,
-.alt-2 .shape,
-.box {
-   transition: 400ms cubic-bezier(.4, 0, .2, 1);
-   -webkit-transition: 400ms cubic-bezier(.4, 0, .2, 1);
-   -ms-transition: 400ms cubic-bezier(.4, 0, .2, 1);
-}
-
-.input,
-.input label,
-.input input,
-.input .spin,
-.button,
-.button button {
-   width: 100%;
-   float: left;
-}
-
-.input,
-.button {
-   margin-top: 30px;
-   height: 70px;
-}
-
-.input,
-.input input,
-.button,
-.button button {
-   position: relative;
-}
-
-.input input {
-   height: 60px;
-   top: 10px;
-   border: none;
-   background: transparent;
-}
-
-.input input,
-.input label,
-.button button {
-   font-family: 'Roboto', sans-serif;
-   font-size: 24px;
-   color: rgba(0, 0, 0, 0.8);
-   font-weight: 300;
-}
-
-.input:before,
-.input .spin {
-   width: 100%;
-   height: 1px;
-   position: absolute;
-   bottom: 0;
-   left: 0;
-}
-
-.input:before {
-   content: "";
-   background: rgba(0, 0, 0, 0.1);
-   z-index: 3;
-}
-
-.input .spin {
-   background: #ED2553;
-   z-index: 4;
-   width: 0;
-}
-
-.overbox .input .spin {
-   background: rgba(255, 255, 255, 1);
-}
-
-.overbox .input:before {
-   background: rgba(255, 255, 255, 0.5);
-}
-
-.input label {
-   position: absolute;
-   top: 10px;
-   left: 0;
-   z-index: 2;
-   cursor: pointer;
-   line-height: 60px;
-}
 
 
 .container {
@@ -205,17 +163,17 @@ td {
 </style>
 
 
+<html>
+    <body>
 
 <div id="motorcycling-list">
     <h2>Motorcycling</h2>
-    <div id="apikey">
-        <input type="text" name="" ng-model="apikeyField" placeholder="davbotcab"/>
-        <button class="btn btn-success" ng-click="sendapi()">Access</button>
-    </div>
-    <div id="filter">
-        <input type="text" name="" ng-model="yearfrom"/>
-        <input type="text" name="" ng-model="yearto"/>
-        <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
+    <div class="row">
+        
+        <input class="balloon" id="apikeyField" type="text" name="" ng-model="apikeyField" placeholder="davbotcab" /><label for="apikeyField">Apikey</label><button class="btn btn-success" ng-click="sendapi()">Access</button></span>
+        <input class="balloon" id="yearfrom" type="text" name="" ng-model="yearfrom" placeholder="2012?" /><label for="yearfrom">Apikey</label></span>
+        <input class="balloon" id="yearto" type="text" name="" ng-model="yearto" placeholder="2012?" /><label for="yearto">Apikey</label><button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button></span>
+
     </div>
     <div id="loadInitialData">
         <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
@@ -277,14 +235,6 @@ td {
 </div>
 
 -->
-
-<div class="wrapper">
-  <label>
-    <input type="text" required="required"/>
-    <span>Username</span>
-  </label>
-  <label>
-    <input type="password" required="required"/>
-    <span>Password</span>
-  </label>
-</div>
+  </body>
+</html>
+  
