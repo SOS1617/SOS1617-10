@@ -106,8 +106,11 @@ td {
         <input id="yearfrom" type="text" name="" ng-model="yearfrom"/>
         <label for="yearfrom"></label>
     </div>
+    <div id="filter" class="wrapper">
+        <input id="yearto" type="text" name="" ng-model="yearto"/>
+        <label for="yearto"></label>
+    </div>
     <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
-    
     <div id="loadInitialData">
         <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
     </div>
