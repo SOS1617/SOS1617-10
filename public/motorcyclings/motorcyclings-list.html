@@ -21,7 +21,7 @@
               <th><h1>Team</h1></th>
               <th><h1>Actions</h1></th>
             </tr>
-        </thead>
+          </thead>
     <tbody>
         <tr>
             <td><input class="form-control" ng-model="newMotorcycling.country"/></td>
@@ -49,19 +49,23 @@
 
 <!-- PAGINACIÓN -->
 <div id="paginate">
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <li id="previousPage" ng-disabled="currentPage == 1" ng-click="setPage(currentPage - 1)">
-                <span class="page-link">Previous</span>
-            </li>
-            <li id="Page{{page}}" ng-class="{active: page == currentPage}" ng-repeat="page in pages" ng-click="setPage(page)">
-                <span>{{page}}</span>
-            </li>
-            <li id="nextPage" ng-disabled="currentPage == pages.length" ng-click="setPage(currentPage + 1)">
-                <span class="page-link">Next</span>
-            </li>
-        </ul>
-    </nav>
+    <ul ng-if="pages.length" class="pagination">
+        <li ng-class="{disabled:currentPage == 1}">
+            <a ng-click="setPage(1)">First</a>
+        </li>
+        <li ng-class="{disabled:currentPage == 1}">
+            <a ng-click="setPage(currentPage - 1)">Previous</a>
+        </li>
+        <li ng-repeat="page in pages" ng-class="{active:page == currentPage}">
+            <a ng-click="setPage(page)"><span>{{page}}</span></a>
+        </li>                
+        <li ng-class="{disabled:currentPage == totalPages}">
+            <a ng-click="setPage(currentPage + 1)">Next</a>
+        </li>
+        <li ng-class="{disabled:currentPage == totalPages}">
+            <a ng-click="setPage(totalPage)">Last</a>
+        </li> 
+   </ul>
 </div>
 
 <!-- <div id="pagination" class="row">
