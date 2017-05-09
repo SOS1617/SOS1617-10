@@ -189,7 +189,7 @@ angular
         }
         offset = "&offset=" + (($scope.currentPage * size) - size);
 
-        refresh();
+        refresh(); 
     }; 
 
   /*$scope.firstPage = function() {
@@ -210,4 +210,4 @@ angular
   */  
   
   
-}]);
+}]);    
