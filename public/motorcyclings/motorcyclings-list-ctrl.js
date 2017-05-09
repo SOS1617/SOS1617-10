@@ -106,7 +106,7 @@ angular
     };
     
     
-    $scope.putMotorcycling = function(country, year){
+    $scope.putMotorcycling = function(country, year){ 
         $http
             .put(url +"/motorcycling-stats/"+ country + "/" + Number(year) + "?"  + apikey, $scope.Motorcycling )
             .then(function(response){

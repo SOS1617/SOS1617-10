@@ -54,7 +54,7 @@ angular
         }
     },
     series: [{
-        name: 'Delivered amount',
+        name: 'Number championship:',
         data: motorcyclingsCountry
         
         }]
@@ -93,12 +93,6 @@ angular
     
         
 });    
-
-    
-
-
-
-
 
     
     function getFromCountry(country, data) {
