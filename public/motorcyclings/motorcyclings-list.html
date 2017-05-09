@@ -240,7 +240,16 @@ div.material-table table td:last-child {
 }
 </style>
 
-
+<div class="row">
+  <div id="admin" class="col s12">
+    <div class="card material-table">
+      <div class="table-header">
+        <span class="table-title">Material Datatable</span>
+        <div class="actions">
+          <a href="#add_users" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
+          <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+        </div>
+      </div>
 
 <div id="motorcycling-list">
     <h2>Motorcycling</h2>
@@ -256,7 +265,7 @@ div.material-table table td:last-child {
     <div id="loadInitialData">
         <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
     </div>
-    <table class="container">
+    <table id="datatable">
         <thead>
             <tr>
               <th><h1>Country</h1></th>
