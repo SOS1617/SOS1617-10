@@ -167,22 +167,26 @@ angular
 
         };
     
-            $scope.setPage = function(page) {
-            $scope.currentPage = page;
+    $scope.setPage = function(pageNumber) {
+        $scope.currentPage = pageNumber;
 
-            if (page == 1) $("#previousPage").addClass("disabled");
-            else $("#previousPage").removeClass("disabled");
-
-            if (page == $scope.pages.length) $("#nextPage").addClass("disabled");
-            else $("#nextPage").removeClass("disabled");
-
+        if (pageNumber == 1) {
+            $("#previousPage").addClass("disabled");
+        }else{ 
+            $("#previousPage").removeClass("disabled");
+        }
+        
+        if (pageNumber == $scope.pages.length) {
+            $("#nextPage").addClass("disabled");
+        }else{
+            $("#nextPage").removeClass("disabled");
             $(".active").removeClass("active");
             $("#Page" + $scope.currentPage).addClass("active");
+        }
+        offset = "&offset=" + (($scope.currentPage * size) - size);
 
-            offset = "&offset=" + (($scope.currentPage * size) - size);
-
-            refresh();
-        };
+        refresh();
+    }; 
 
   /*$scope.firstPage = function() {
         return $scope.currentPage == 1;
