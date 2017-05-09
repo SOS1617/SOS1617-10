@@ -11,6 +11,45 @@ body {
   position: absolute;
 }
 
+input {
+  width: 100%;
+  background: none;
+  padding: 10px;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 100;
+}
+
+label {
+  /*---
+  Places the label under the input
+  ---*/
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+label:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.8);
+  transition: 0.4s;
+}
+
+input:focus ~ label:after {
+  width: 100%;
+}
+
+
 .container {
   background-color: white;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -51,11 +90,14 @@ td {
     <h2>Motorcycling</h2>
     <div id="apikey">
         <input type="text" name="" ng-model="apikeyField" placeholder="davbotcab"/>
+        <label for="davbotcab"></label>
         <button class="btn btn-success" ng-click="sendapi()">Access</button>
     </div>
     <div id="filter">
         <input type="text" name="" ng-model="yearfrom"/>
+        <label for="yearfrom"></label>
         <input type="text" name="" ng-model="yearto"/>
+        <label for="yearto"></label>
         <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
     </div>
     <div id="loadInitialData">
