@@ -1,3 +1,43 @@
+<style>
+.demo-ribbon {
+  width: 100%;
+  height: 40vh;
+  background-color: #3F51B5;
+  flex-shrink: 0;
+}
+
+.demo-main {
+  margin-top: -35vh;
+  flex-shrink: 0;
+}
+
+.demo-header .mdl-layout__header-row {
+  padding-left: 40px;
+}
+
+.demo-container {
+  max-width: 1600px;
+  width: calc(100% - 16px);
+  margin: 0 auto;
+}
+
+.demo-content {
+  border-radius: 2px;
+  padding: 80px 56px;
+  margin-bottom: 80px;
+}
+
+.demo-layout.is-small-screen .demo-content {
+  padding: 40px 28px;
+}
+
+.demo-content h3 {
+  margin-top: 48px;
+}
+</style>
+
+
+
 <div id="motorcycling-list">
     <h2>Motorcycling</h2>
     <div id="apikey">
@@ -69,4 +109,56 @@
 </div>
 
 -->
+
+
+<div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+    <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+      <div class="mdl-layout__header-row"><span class="mdl-layout-title">Material Design Lite</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="search"><i class="material-icons">search</i></label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" id="search" type="text"/>
+            <label class="mdl-textfield__label" for="search">Enter your query...</label>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="demo-ribbon"></div>
+    <main class="demo-main mdl-layout__content">
+      <div class="demo-container mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <div class="demo-crumbs mdl-color-text--grey-500">Contacts &gt; New Contact</div>
+          <form action="#" ng-init="obj={phones: [{}]}">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+              <input class="mdl-textfield__input" id="sample3" type="text" ng-model="obj.name"/>
+              <label class="mdl-textfield__label" for="sample3">Name</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+              <input class="mdl-textfield__input" id="company" type="text" ng-model="obj.company"/>
+              <label class="mdl-textfield__label" for="company">Company</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo" ng-repeat="phone in obj.phones">
+              <input class="mdl-textfield__input" id="sample-{{phone.$id}}" type="text" ng-model="phone.number"/>
+              <label class="mdl-textfield__label" for="sample-{{phone.$id}}">Phone number</label>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" ng-click="addPhone(obj, $event)"><i class="material-icons">add</i></button>
+            <pre>{{obj|json}}</pre>
+            <pre>MDL doesnt bind new elements automagically</pre>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer class="demo-footer mdl-mini-footer">
+      <div class="mdl-mini-footer--left-section">
+        <ul class="mdl-mini-footer--link-list">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Privacy and Terms</a></li>
+          <li><a href="#">User Agreement</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</div>
 
