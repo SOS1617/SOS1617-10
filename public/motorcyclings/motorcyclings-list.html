@@ -1,99 +1,65 @@
 <style>
     
-html {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'arial', sans-serif;
-  background: #eeeeee;
+    * {
+  font-family: "Roboto", sans-serif;
 }
-.wrapper {
-  max-width: 560px;
-  margin: 100px auto;
-}
-label {
-  position: relative;
-}
-label > input {
-  position: relative;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #9e9e9e;
-  border-radius: 0;
-  outline: none;
-  height: 45px;
+
+body {
   width: 100%;
-  font-size: 16px;
-  margin: 0 0 30px 0;
-  padding: 0;
-  padding-left: 45px;
-  box-shadow: none;
-  box-sizing: content-box;
-  transition: all .4s;
-}
-label > input:valid + span {
-  transform: translateY(-25px) scale(0.8);
-  transform-origin: 0;
-}
-label > input:valid {
-  border-bottom: 1px solid #3F51B5;
-  box-shadow: 0 1px 0 0 #3F51B5;
-}
-label > span {
-  color: #9e9e9e;
+  height: 100%;
+  background: #ecf0f1;
   position: absolute;
-  top: 0;
-  left: 45px;
-  font-size: 16px;
-  cursor: text;
-  transition: .2s ease-out;
 }
-label > i {
-  color: #9e9e9e;
-  position: absolute;
-  top: 3px;
-  left: 10px;
-  font-size: 15px !important;
-  cursor: text;
-  transition: .2s ease-out;
+
+
+
+.container {
+  background-color: white;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-label > input:focus + span {
-  transform: translateY(-25px) scale(0.8);
-  transform-origin: 0;
-  color: #3F51B5;
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
-label > input:focus {
-  border-bottom: 1px solid #3F51B5;
-  box-shadow: 0 1px 0 0 #3F51B5;
+
+table, th, td {
+    border-collapse: collapse;
+    text-align: left;
+}
+th, td {
+    padding: 15px;
+}
+
+th {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+td {
+  border:none;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 
 </style>
 
 
-<html>
+
 <div id="motorcycling-list">
     <h2>Motorcycling</h2>
-    
-    <div class="wrapper">
-      <label>
-        <input id="apikeyField" type="text" name="" ng-model="apikeyField" placeholder="davbotcab"/>
-        <span>Apikey</span>
-      </label>
-      <button class="btn btn-success" ng-click="sendapi()">Access</button>
-      <label>
-        <input id="yearfrom" type="text" name="" ng-model="yearfrom"/>
-        <span>YearFrom</span>
-      </label>
-      <label>
-        <input id="yearto" type="text" name="" ng-model="yearto"/>
-        <span>YearTo</span>
-      </label>
-      <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
+    <div id="apikey">
+        <input type="text" name="" ng-model="apikeyField" placeholder="davbotcab"/>
+        <button class="btn btn-success" ng-click="sendapi()">Access</button>
     </div>
-
-        
+    <div id="filter">
+        <input type="text" name="" ng-model="yearfrom"/>
+        <input type="text" name="" ng-model="yearto"/>
+        <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
+    </div>
     <div id="loadInitialData">
         <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
     </div>
@@ -155,4 +121,3 @@ label > input:focus {
 
 -->
 
-</style>
