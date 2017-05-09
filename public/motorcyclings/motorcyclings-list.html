@@ -103,12 +103,12 @@ td {
         <button class="btn btn-success" ng-click="sendapi()">Access</button>
     
     <div id="filter" class="wrapper">
-        <input id="yearfrom" type="text" name="" ng-model="yearfrom"/>
+        <input id="yearfrom" type="text" name="" ng-model="yearfrom" placeholder="yearfrom"/>
         <label for="yearfrom"></label>
-        <input id="yearto" type="text" name="" ng-model="yearto"/>
+        <input id="yearto" type="text" name="" ng-model="yearto" placeholder="yearto"/>
         <label for="yearto"></label>
-        <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
     </div>
+    <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
     <div id="loadInitialData">
         <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
     </div>
