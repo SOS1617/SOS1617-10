@@ -20,7 +20,6 @@ angular
     
     $scope.currentPage = 1;
     $scope.pages = [];
-    $scope.lastPageNum = null;
 
     function range(start, end) {
         var res = [];
@@ -35,7 +34,6 @@ angular
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
                 $scope.pages = range(1, Math.ceil(response.data.length / size));
-                $scope.lastPageNum = Math.ceil(response.data.length / size - 1);
                 $scope.motorcyclings = response.data;
             }, function(err) {
                     if (err.data == "Forbidden") {
@@ -66,7 +64,23 @@ angular
             .post(url + "/motorcycling-stats?"  + apikey, $scope.newMotorcycling)
             .then(function(response){
                 console.log("Motorcycling added");
+                bootbox.alert("Motorcycling added");
                 refresh();
+            }, function(response) {
+                    switch (response.status) {
+                        case 400:
+                            bootbox.alert("Please make sure you enter all fields");
+                            break;
+                        case 409:
+                            bootbox.alert("Motorcycling added already exists.");
+                            break;
+                        case 422:
+                            bootbox.alert("Please make sure you enter all fields");
+                            break;
+                        default:
+                            // code
+                    }
+                
         });
     
     };
@@ -76,6 +90,7 @@ angular
             .delete(url + "/motorcycling-stats/" + country + "/" + Number(year) + "?"  + apikey)
             .then(function(response) {
                 console.log("Motorcycling deleted");
+                bootbox.alert("Motorcycling deleted.");
                 refresh();
              });
     };
@@ -85,6 +100,7 @@ angular
             .delete(url + "/motorcycling-stats?"  + apikey)
             .then(function(response) {
                 console.log("All motorcyclings deleted");
+                bootbox.alert("All motorcyclings deleted.");
                 refresh();
             });
     };
@@ -101,10 +117,10 @@ angular
             }, function(response) {
                     switch (response.status) {
                         case 400:
-                            bootbox.alert("Bad Request. Please enter all fields correctly.");
+                            bootbox.alert("Please make sure you enter all fields");
                             break;
                         case 422:
-                            bootbox.alert("Please make sure you have introduced all fields.");
+                            bootbox.alert("Please make sure you enter all fields");
                             break;
                         case 404:
                             bootbox.alert("Motorcycling not found.");
@@ -151,26 +167,22 @@ angular
 
         };
     
-    $scope.setPage = function(pageNumber) {
-        $scope.currentPage = pageNumber;
+            $scope.setPage = function(page) {
+            $scope.currentPage = page;
 
-        if (pageNumber == 1) {
-            $("#previousPage").addClass("disabled");
-        }else{ 
-            $("#previousPage").removeClass("disabled");
-        }
-        
-        if (pageNumber == $scope.pages.length) {
-            $("#nextPage").addClass("disabled");
-        }else{
-            $("#nextPage").removeClass("disabled");
+            if (page == 1) $("#previousPage").addClass("disabled");
+            else $("#previousPage").removeClass("disabled");
+
+            if (page == $scope.pages.length) $("#nextPage").addClass("disabled");
+            else $("#nextPage").removeClass("disabled");
+
             $(".active").removeClass("active");
             $("#Page" + $scope.currentPage).addClass("active");
-        }
-        offset = "&offset=" + (($scope.currentPage * size) - size);
 
-        refresh();
-    }; 
+            offset = "&offset=" + (($scope.currentPage * size) - size);
+
+            refresh();
+        };
 
   /*$scope.firstPage = function() {
         return $scope.currentPage == 1;
