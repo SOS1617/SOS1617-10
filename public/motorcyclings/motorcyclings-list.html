@@ -1,80 +1,72 @@
 <style>
     
-    * {
-  font-family: "Roboto", sans-serif;
+html {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'arial', sans-serif;
+  background: #eeeeee;
 }
-
-body {
-  width: 100%;
-  height: 100%;
-  background: #ecf0f1;
-  position: absolute;
-}
-
-#motorcycling-list {
-    background: rgba(73, 155, 234, 1);
-    background: -moz-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(32, 124, 229, 1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73, 155, 234, 1)), color-stop(100%, rgba(32, 124, 229, 1)));
-    background: -webkit-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(32, 124, 229, 1) 100%);
-    background: -o-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(32, 124, 229, 1) 100%);
-    background: -ms-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(32, 124, 229, 1) 100%);
-    background: linear-gradient(to bottom, rgba(73, 155, 234, 1) 0%, rgba(32, 124, 229, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=0);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#99cfff', endColorstr='#207ce5', GradientType=0);
-    line-height: 2em;
-    color: #f5f5f0;
-    margin-bottom: 30px;
-    text-align: center;
-    margin-top: 0;
-    box-shadow: 0px 3px 4px grey;
-}
-
 .wrapper {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
+  max-width: 560px;
+  margin: 100px auto;
 }
-
-input {
-  width: 100%;
-  background: none;
-  padding: 10px;
-  border: none;
-  outline: none;
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: 100;
-}
-
 label {
-  /*---
-  Places the label under the input
-  ---*/
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: rgba(0, 0, 0, 0.4);
+  position: relative;
 }
-
-label:after {
-  content: '';
+label > input {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 45px;
+  width: 100%;
+  font-size: 16px;
+  margin: 0 0 30px 0;
+  padding: 0;
+  padding-left: 45px;
+  box-shadow: none;
+  box-sizing: content-box;
+  transition: all .4s;
+}
+label > input:valid + span {
+  transform: translateY(-25px) scale(0.8);
+  transform-origin: 0;
+}
+label > input:valid {
+  border-bottom: 1px solid #3F51B5;
+  box-shadow: 0 1px 0 0 #3F51B5;
+}
+label > span {
+  color: #9e9e9e;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: rgba(0, 0, 0, 0.8);
-  transition: 0.4s;
+  left: 45px;
+  font-size: 16px;
+  cursor: text;
+  transition: .2s ease-out;
 }
-
-input:focus ~ label:after {
-  width: 100%;
+label > i {
+  color: #9e9e9e;
+  position: absolute;
+  top: 3px;
+  left: 10px;
+  font-size: 15px !important;
+  cursor: text;
+  transition: .2s ease-out;
 }
-
+label > input:focus + span {
+  transform: translateY(-25px) scale(0.8);
+  transform-origin: 0;
+  color: #3F51B5;
+}
+label > input:focus {
+  border-bottom: 1px solid #3F51B5;
+  box-shadow: 0 1px 0 0 #3F51B5;
+}
 
 .container {
   background-color: white;
@@ -111,24 +103,28 @@ td {
 </style>
 
 
-
+<html>
 <div id="motorcycling-list">
     <h2>Motorcycling</h2>
-    <div id="apikey" class="wrapper">
-        <input id="apikeyField" type="text" name="" ng-model="apikeyField" placeholder="davbotcab"/>
-        <label for="apikeyField"></label>
-    </div>
-        <button class="btn btn-success" ng-click="sendapi()">Access</button>
     
-    <div id="filter" class="wrapper">
+    <div class="wrapper">
+      <label>
+        <input id="apikeyField" type="text" name="" ng-model="apikeyField" placeholder="davbotcab"/>
+        <span>Apikey</span>
+      </label>
+      <button class="btn btn-success" ng-click="sendapi()">Access</button>
+      <label>
         <input id="yearfrom" type="text" name="" ng-model="yearfrom"/>
-        <label for="yearfrom"></label>
-    </div>
-    <div id="filter" class="wrapper">
+        <span>YearFrom</span>
+      </label>
+      <label>
         <input id="yearto" type="text" name="" ng-model="yearto"/>
-        <label for="yearto"></label>
+        <span>YearTo</span>
+      </label>
+      <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
     </div>
-    <button class="btn btn-success" ng-click="filter(yearfrom,yearto,limit,offset)">Buscar</button>
+
+        
     <div id="loadInitialData">
         <button class="btn btn-success" ng-click="loadInitialData()">Load Initial Data</button>
     </div>
@@ -190,3 +186,4 @@ td {
 
 -->
 
+</style>
