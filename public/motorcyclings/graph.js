@@ -69,7 +69,9 @@ angular
           motorcyclingsCountryGeoChart
         );
 
-        var options = {};
+        var options = {
+            region:'150'
+        };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
