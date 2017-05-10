@@ -36,6 +36,8 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
     }).when("/motorcyclings/graphs/", {
         templateUrl: "/motorcyclings/graph.html",
         controller: "MotorcyclingsGraphs"
+    }).when("/analytics",{
+         templateUrl : "analytics.html"
     });
 });
 console.log("App initialized");
