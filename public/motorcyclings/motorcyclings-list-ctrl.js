@@ -45,7 +45,7 @@ angular
                         $scope.establishments = [];
                         bootbox.alert("You have to introduce an apikey");
 
-                }
+                }  
             });
     }
 
