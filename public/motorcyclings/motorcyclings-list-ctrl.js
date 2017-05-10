@@ -31,7 +31,7 @@ angular
     
     function refresh(){
          $http
-            .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
+            .get(url + "/motorcycling-stats/?" + apikey)
             .then(function(response){
                  $scope.pages = range(1, Math.ceil(response.data.length / size));
                  console.log("Datos totales:"+response.data.length);
