@@ -36,6 +36,7 @@ angular
                  $scope.pages = range(1, Math.ceil(response.data.length / size));
                  console.log("Datos totales:"+response.data.length);
                 console.log("Datos por pagina:"+size);
+            });
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
