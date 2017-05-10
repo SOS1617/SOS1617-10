@@ -29,7 +29,7 @@ describe('Data is loaded', function () {
 		var motorcyclings
 		element(by.buttonText('Access')).click().then(function (){
 			motorcyclings = element.all(by.repeater('motorcycling in motorcyclings'));
-		expect(motorcyclings.count()).toBeGreaterThan(3);
+		expect(motorcyclings.count()).toBeGreaterThan(0);
 		});
 	});
 });
