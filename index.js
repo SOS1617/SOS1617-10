@@ -2,14 +2,17 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var helmet = require("helmet");
 var path = require('path');
+var cors = require("cors");
 
 var port = (process.env.PORT || 10000);
 var BASE_API_PATH = "/api/v1";
 
 var app = express();
 
+
 app.use(bodyParser.json()); //use default json enconding/decoding
 app.use(helmet()); //improve security
+app.use(cors());
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
