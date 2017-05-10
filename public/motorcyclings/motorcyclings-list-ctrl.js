@@ -30,14 +30,17 @@ angular
     }
     
     function refresh(){
+         $http
+            .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
+            .then(function(response){
+                 $scope.pages = range(1, Math.ceil(response.data.length / size));
+                 console.log("Datos totales:"+response.data.length);
+                console.log("Datos por pagina:"+size);
         $http
             .get(url + "/motorcycling-stats/?" + apikey + yearfrom + yearto + limit + offset)
             .then(function(response){
-                $scope.pages = range(1, Math.ceil(response.data.length / size));
-                console.log("Datos totales:"+response.data);
-                console.log("Datos por pagina:"+size);
                 $scope.motorcyclings = response.data;
-                console.log("Muestra rango:"+$scope.pages);
+                console.log("Muestra datos:"+JSON.stringify(response.data));
             }, function(err) {
                     if (err.data == "Forbidden") {
                         $scope.establishments = [];
