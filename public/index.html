@@ -24,23 +24,44 @@
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link href="/bower_components/c3/c3.css" rel="stylesheet" type="text/css">
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNQd9rzPvuo5IVMMtmOSQ6Op7cU7zCCeY&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNQd9rzPvuo5IVMMtmOSQ6Op7cU7zCCeY&callback=initMap">
     </script>
     <script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript" src="/bower_components/highcharts/highstock.js"></script>
     <script type="text/javascript" src="/bower_components/highcharts/highcharts-more.js"></script>
-<!--    <script type="text/javascript" src="/bower_components/highcharts/highcharts.js"></script>-->
-    <script type="text/javascript" src="/bower_components/highcharts/highcharts-3d.js"></script> 
+    <!--    <script type="text/javascript" src="/bower_components/highcharts/highcharts.js"></script>-->
+    <script type="text/javascript" src="/bower_components/highcharts/highcharts-3d.js"></script>
     <script type="text/javascript" src="/bower_components/highcharts/modules/exporting.js"></script>
-    <script type="text/javascript" src="/bower_components/vis/dist/vis.min.js"></script> 
+    <script type="text/javascript" src="/bower_components/vis/dist/vis.min.js"></script>
     <link href="/bower_components/vis/dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/bower_components/cheet.js/cheet.js"></script>
+    <script type="text/javascript" src="easter-egg.js"></script>
 </head>
 
 <body>
     <div ng-view>
 
     </div>
+
+   <div id="easterEgg" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Easter Egg</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img src="easteregg.png"></img>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 </body>
 
 </html>
