@@ -23,6 +23,8 @@ angular
                 });
             });
         });
+        
+        console.log(salaries);
 
         $http.get(url + "/?" + apikey).then(function(response) {
             establishmentsData = response.data;
@@ -36,6 +38,7 @@ angular
                     }
                 });
             });
+            console.log(establishments);
 
             Highcharts.chart('api1-establishments', {
                 chart: {
