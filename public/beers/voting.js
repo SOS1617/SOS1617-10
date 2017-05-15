@@ -25,12 +25,17 @@ angular
             var data = response.data;
 
             provinces.forEach((prov) => {
+                var exist = false;
                 data.forEach((x) => {
                     if (x.province == prov) {
                        var podemos = Number(x.podemos);
                        voting.push(podemos);
+                       exist = true;
                     }
                 });
+                if (exist == false) {
+                    voting.push(0);
+                }
             });
             
         console.log(beers);
