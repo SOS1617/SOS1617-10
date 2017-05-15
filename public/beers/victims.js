@@ -28,7 +28,11 @@ angular
              
          });
          
-        
+        var longitud = Math.min(beers.length,victims.length);
+        var data=[];
+        for ( var i=0;i<longitud ; i++){
+            data.push([beers[i],victims[i]]);
+        }
         
                 
         
@@ -68,7 +72,7 @@ angular
         },
         series: [{
             colsize: 24 * 36e5, // one day
-            data: beers
+            data: data
         }]
     });
 });
