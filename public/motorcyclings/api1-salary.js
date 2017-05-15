@@ -4,51 +4,104 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    
-    
-    $http.get(url + "/?" + apikey).then(function(response) {
-    
-        var country = [];
-        var smiyear = [];
-        var smiyearvariation = [];
-
+    var motorcyclingsCountry = [];
+    var motorcyclingsCountryGeoChart = [];
+    var motorcyclingsVis = [];
+        
+    $http.get("https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP").then(function(response){
+        var countries = new Set(response.data.map(function(x){
+            return x.country;
+        }));
+        countries.forEach((country) => {
+            motorcyclingsCountry.push(getFromCountry(country, response.data));
+            
+        });
+        motorcyclingsCountryGeoChart.push(['Country', 'Championships']);
+        motorcyclingsCountry.forEach((x) => {
+            motorcyclingsCountryGeoChart.push(x);
+        });
+        
+        var cont = 0;
         response.data.forEach((x) => {
-            country.push(x.country);
-            smiyear.push(x.smiyear);
-            smiyearvariation.push(x.smiyearvariation);
+            motorcyclingsVis.push({
+                id:cont,
+                content:x.pilot,
+                start:x.year+"-01-01",
+                end:x.year+"-12-31"
             });
-        
-        
-        
-        
-        
-        google.charts.load('current', {
-            'packages': ['geochart']
+            cont++;
         });
-        google.charts.setOnLoadCallback(drawMarkersMap);
-
-        var salariesData = [];
-        salariesData.push(['Country', 'Smiyear']);
-        response.data.forEach((x) => {
-            salariesData.push([x.country, x.smiyear]);
-        });
-
-        function drawMarkersMap() {
-            var data = google.visualization.arrayToDataTable(salariesData);
-                var options = {
-                region: '150',
-                displayMode: 'markers',
-                colorAxis: {
-                    colors: ['#58ACFA', '#B40431']
-                }
-            };
-
-            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-            chart.draw(data, options);
+        
+        
+        Highcharts.chart('myGraph3d', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
         }
+    },
+    title: {
+        text: 'Number of Pilots Champions by Country'
+    },
+    subtitle: {
+        text: '3D donut in Highcharts'
+    },
+    plotOptions: {
+        pie: {
+            innerSize: 30,
+            depth: 45
+        }
+    },
+    series: [{
+        name: 'Number championship:',
+        data: motorcyclingsCountry
+        
+        }]
+    });    
+        
+    google.charts.load('current', {'packages':['geochart']});
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+
+        var data = google.visualization.arrayToDataTable(
+          motorcyclingsCountryGeoChart
+        );
+
+        var options = {
+            region:'150'
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }    
+      
+      
+    var container = document.getElementById('visualization');
+
+    // Create a DataSet (allows two way data-binding)
+    var items = new vis.DataSet(
+        motorcyclingsVis
+        );
+
+  // Configuration for the Timeline
+  var options = {};
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, items, options); 
      
     
         
 });    
 
+    
+    function getFromCountry(country, data) {
+        var response;
+        response = [country, data.filter((x) => {
+            return x.country == country;
+        }).length];
+        return response;
+    }
 }]);
