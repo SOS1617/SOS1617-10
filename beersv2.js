@@ -42,6 +42,10 @@ module.exports.register_beers_apiv2 = function(app) {
         return valid;
 
     }
+    app.get("/footballproxy", (req, res) => {
+        var url = 'http://sos1617-11-.herokuapp.com/api/v1/lfppichichitrophy?apikey=adrdavand';
+        req.pipe(request(url)).pipe(res);
+    });
 
 
     // GET a collection
