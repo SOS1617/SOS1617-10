@@ -26,6 +26,7 @@ angular
                     victims.push(Number(x.numberVictims));
                 });
                 var longitud = Math.min(beers.length, victims.length);
+                console.log(longitud);
                 for (var i = 0; i < longitud; i++) {
                     datatoshow.push([beers[i][0],beers[i][1], victims[i]]);
                 }
