@@ -5,9 +5,9 @@ var allowedKeys = {
     40: 'down',
     65: 'a',
     66: 'b',
-    114: 'r',
-    101: 'e',
-    107: 'k'
+    69: 'e',
+    75: 'k',
+    82: 'r'
 };
 
 // the 'official' Konami Code sequence
@@ -38,10 +38,11 @@ document.addEventListener('keydown', function(e) {
     }
     else
         konamiCodePosition = 0;
-        
+
     // compare the key with the required key
     if (key == breakKey) {
-
+        console.log("entra");
+        console.log(e.keyCode);
         // move to the next key in the konami code sequence
         breakCodePosition++;
 
