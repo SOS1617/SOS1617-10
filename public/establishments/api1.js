@@ -6,7 +6,7 @@ angular
         var apikey = "apikey=nurtrioje";
         $http.get(url + "/?" + apikey).then(function(response) {
 
-            Highcharts.chart('container', {
+            Highcharts.chart('api1-establishments', {
                 chart: {
                     type: 'area',
                     spacingBottom: 30
