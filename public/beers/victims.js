@@ -10,7 +10,7 @@ angular
             var data = response.data;
             var cont = 1;
             var indice=0;
-            data.sort(function (a,b) {a.birthyear-b.birthyear});
+            data.sort(function (a,b) {parseInt(a.birthyear)-parseInt(b.birthyear)});
             console.log(data);
             for (var i = yearfrom;i<2017;i++){
                if (i == data[indice].birthyear){
@@ -28,7 +28,7 @@ angular
             var data = response.data;
             var indice=0
 
-            data.sort(function (a,b) {Number(a.year)-Number(b.year)});
+            data.sort(function (a,b) {parseInt(a.year)-parseInt(b.year)});
             console.log(data);
             for (var i = yearfrom;i<2017;i++){
                if (i == data[indice].year){
@@ -76,7 +76,7 @@ angular
                 },
                 plotOptions: {
                     area: {
-                        pointStart: 1940,
+                        pointStart: yearfrom,
                         marker: {
                             enabled: false,
                             symbol: 'circle',
