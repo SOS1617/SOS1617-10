@@ -10,7 +10,7 @@ angular
              
              
              data.forEach( (x) => {
-                beers.push(Date.UTC(x.birthyear));
+                beers.push(Date.UTC(x.birthyear,11,31));
              });
              
              
