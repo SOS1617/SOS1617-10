@@ -16,14 +16,19 @@ angular
             console.log(salariesData);
 
             countries.forEach((country) => {
+                var exist = false;
                 salariesData.forEach((d) => {
-                    if (d.country.toLowerCase() == country.toLowerCase()) {
+                    if (d.country.toLowerCase() == country.toLowerCase() && exist == false) {
                         salaries.push(Number(d.averageSalary));
+                        exist = true;
                     }
                 });
+                if (exist == false) {
+                    salaries.push(null);
+                }
             });
         });
-        
+
         console.log(salaries);
 
         $http.get(url + "/?" + apikey).then(function(response) {
@@ -31,11 +36,16 @@ angular
             console.log(establishmentsData);
 
             countries.forEach((country) => {
+                var exist = false;
                 establishmentsData.forEach((d) => {
-                    if (d.country.toLowerCase() == country.toLowerCase()) {
+                    if (d.country.toLowerCase() == country.toLowerCase() && exist == false) {
                         establishments.push(d.number);
+                        exist = true;
                     }
                 });
+                if (exist == false) {
+                    salaries.push(null);
+                }
             });
             console.log(establishments);
 
