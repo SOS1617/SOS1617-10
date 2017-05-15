@@ -28,9 +28,9 @@ angular
         google.charts.setOnLoadCallback(drawMarkersMap);
 
         var salariesData = [];
-        salariesData.push(['Country', 'Smiyear', 'Smiyearvariation']);
+        salariesData.push(['Country', 'Smiyear']);
         response.data.forEach((x) => {
-            salariesData.push([x.country, x.smiyear, x.smiyearvariation]);
+            salariesData.push([x.country, x.smiyear]);
         });
 
         function drawMarkersMap() {
