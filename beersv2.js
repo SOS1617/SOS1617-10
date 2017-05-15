@@ -1,6 +1,6 @@
 var BASE_API_PATH = "/api/v2";
 
-var request= require("request");
+
 
 
 var MongoClientBeer = require('mongodb').MongoClient;
@@ -11,6 +11,7 @@ var dbBeer;
 
 var apikey = "jesusguerre";
 
+var request= require("request");
 
 
 module.exports.register_beers_apiv2 = function(app) {
