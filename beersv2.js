@@ -47,7 +47,7 @@ module.exports.register_beers_apiv2 = function(app) {
 
     }
     app.get(BASE_API_PATH + "/footballproxy", (req, res) => {
-        var url = 'http://sos1617-07.herokuapp.com/api/v1/investEducationStats/?apikey=sos07';
+        var url = 'http://sos1617-11-.herokuapp.com/api/v1/lfppichichitrophy?apikey=adrdavand';
         req.pipe(request(url)).pipe(res);
     });
 
