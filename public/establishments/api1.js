@@ -48,8 +48,9 @@ angular
 
             });
             console.log(establishments);
-
-            Highcharts.chart('api1-establishments', {
+        });
+        
+        Highcharts.chart('api1-establishments', {
                 chart: {
                     type: 'area',
                     spacingBottom: 30
@@ -112,5 +113,5 @@ angular
 
 
             });
-        });
+        
     }]);
