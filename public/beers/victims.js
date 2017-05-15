@@ -11,7 +11,7 @@ angular
                 var cont = 1;
 
                 data.forEach((x) => {
-                    beers.push(Date.UTC(x.birthyear, 11, 31),cont);
+                    beers.push([Date.UTC(x.birthyear, 11, 31),cont]);
                     cont++;
                 });
 
