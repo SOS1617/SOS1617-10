@@ -4,6 +4,10 @@
     transform: rotate(7deg);
 }
 
+#bodyHome {
+    background-image: url("http://todaymiddleware.mims.com/resource/image/354BDF37-F178-4D6F-9907-A42E012B2E49/Original/shutterstock_159193151.jpg");
+}
+
 #titleBeer {
     background: rgba(73, 155, 234, 1);
     background: -moz-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(32, 124, 229, 1) 100%);
