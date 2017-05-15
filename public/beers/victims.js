@@ -57,11 +57,10 @@ angular
                     type: 'area'
                 },
                 title: {
-                    text: 'US and USSR nuclear stockpiles'
+                    text: 'Beers and gender victims'
                 },
                 subtitle: {
-                    text: 'Source: <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">' +
-                        'thebulletin.metapress.com</a>'
+                    text: 'Source: sos'
                 },
                 xAxis: {
                     allowDecimals: false,
@@ -73,7 +72,7 @@ angular
                 },
                 yAxis: {
                     title: {
-                        text: 'Nuclear weapon states'
+                        text: 'Difference'
                     },
                     labels: {
                         formatter: function() {
@@ -82,7 +81,7 @@ angular
                     }
                 },
                 tooltip: {
-                    pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                    pointFormat: '{series.name} has <b>{point.y:,.0f}</b><br/>data in {point.x}'
                 },
                 plotOptions: {
                     area: {
@@ -100,10 +99,10 @@ angular
                     }
                 },
                 series: [{
-                    name: 'USA',
+                    name: 'Beers',
                     data: beers
                 }, {
-                    name: 'USSR/Russia',
+                    name: 'Victims',
                     data: victims
                 }]
             });
