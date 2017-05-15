@@ -28,7 +28,7 @@ angular
                 
                 salariesData.forEach((d)=>{
                     if(d.country == country) {
-                        salaries.push(d.averageSalary)
+                        salaries.push(Number(d.averageSalary))
                     }
                 });
             });
@@ -63,7 +63,7 @@ angular
                 },
                 yAxis: {
                     title: {
-                        text: 'Y-Axis'
+                        text: 'Number of Establishments - Average Salary'
                     },
                     labels: {
                         formatter: function() {
