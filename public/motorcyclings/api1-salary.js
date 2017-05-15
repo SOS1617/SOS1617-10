@@ -36,7 +36,7 @@ angular
                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
         },
         xAxis: {
-            type: country
+            categories: country
         },
         yAxis: {
             title: {
