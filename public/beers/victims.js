@@ -46,7 +46,7 @@ angular
         return d;
     }
     
-    console.log(generateData());
+    console.log(data);
 
     $('#container').highcharts({
         chart: {
