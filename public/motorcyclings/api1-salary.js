@@ -9,16 +9,16 @@ angular
     var country = [];
     var smiyear = [];
     var smiyearvariation = [];
+    var smiYearCountryGeoChart = [];
         
     $http.get("https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP").then(function(response){
         
         salaryData = response.data;
-        salaryDataSMI = salaryData;
                 
         for(var i=0; i<response.data.length; i++){
-            country.push(salaryDataSMI[i].country);
-            smiyear.push(Number(salaryDataSMI[i]["smi-year"]));
-            smiyearvariation.push(Number(salaryDataSMI[i]["smi-year-variation"]));
+            country.push(salaryData[i].country);
+            smiyear.push(Number(salaryData[i]["smi-year"]));
+            smiyearvariation.push(Number(salaryData[i]["smi-year-variation"]));
         }
         
         
@@ -77,29 +77,7 @@ angular
             data: smiyear
         }]
     });
-    
-    
-    google.charts.load('current', {'packages': ['geochart']});
-     google.charts.setOnLoadCallback(drawMarkersMap);
 
-      function drawMarkersMap() {
-      var data = google.visualization.arrayToDataTable([
-        ['Country',   'SMI Year', 'SMI Year Variation'],
-        [country,      smiyear,    smiyearvariation]
-      ]);
-
-      var options = {
-        region: 'IT',
-        displayMode: 'markers',
-        colorAxis: {colors: ['green', 'blue']}
-      };
-
-      var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-    };
-    
-    
-    
     
 });
 
