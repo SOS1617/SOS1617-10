@@ -13,7 +13,7 @@ angular
             data.sort(function (a,b) {return a.birthyear-b.birthyear});
             console.log(data);
             for (var i = yearfrom;i<2017;i++){
-               if (i == data[indice].birthyear){
+               if (i == data[indice].birthyear && indice<data.length){
                    beers.push(cont);
                    cont++;
                    indice++;
@@ -31,7 +31,7 @@ angular
             data.sort(function (a,b) {return Number(a.year)-Number(b.year)});
             console.log(data);
             for (var i = yearfrom;i<2017;i++){
-               if (i == data[indice].year){
+               if (i == data[indice].year && indice<data.length){
                     victims.push(Number(data[indice].numberVictims));
                    
                    indice++;
