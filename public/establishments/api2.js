@@ -4,32 +4,32 @@ angular
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v2/establishments";
         var apikey = "apikey=nurtrioje";
+        
+        var countries = ["Spain", "Germany", "France", "Greece"];
+        
+        $http.get("http://sos1617-10.herokuapp.com/api/v2/salariesproxy").then(function(response){
+            
+        });
+        
         $http.get(url + "/?" + apikey).then(function(response) {
             Highcharts.chart('api2-establishments', {
 
                 title: {
-                    text: 'Solar Employment Growth by Sector, 2010-2016'
+                    text: 'Investments in Education (G03) - Establishments Integration'
                 },
-
-                subtitle: {
-                    text: 'Source: thesolarfoundation.com'
+                xAxis: {
+                    categories: countries
                 },
 
                 yAxis: {
                     title: {
-                        text: 'Number of Employees'
+                        text: 'Nights spent on Establishments - Investments on Education'
                     }
                 },
                 legend: {
                     layout: 'vertical',
                     align: 'right',
                     verticalAlign: 'middle'
-                },
-
-                plotOptions: {
-                    series: {
-                        pointStart: 2010
-                    }
                 },
 
                 series: [{
