@@ -60,4 +60,6 @@ function activateCheats() {
 
 function activateBreakCheats() {
     document.getElementById("bodyHome").id = "breakBody";
+    var audio = new Audio('Glass Breaking-SoundBible.com-1765179538.wav');
+    audio.play();
 }
