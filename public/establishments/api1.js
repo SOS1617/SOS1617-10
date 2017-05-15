@@ -32,6 +32,9 @@ angular
                     }
                 });
             });
+            
+            console.log(establishmentsData);
+            console.log(salariesData);
 
             Highcharts.chart('api1-establishments', {
                 chart: {
