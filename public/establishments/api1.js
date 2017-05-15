@@ -45,8 +45,9 @@ angular
                 if (exist == false) {
                     salaries.push(null);
                 }
-                console.log(establishments);
+
             });
+            console.log(establishments);
 
             Highcharts.chart('api1-establishments', {
                 chart: {

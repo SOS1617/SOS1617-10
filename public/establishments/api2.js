@@ -45,10 +45,10 @@ angular
                 if(exist == false){
                     establishments.push(null);
                 }
-                console.log(establishments);
+                
             });
             
-            
+            console.log(establishments);
             
             Highcharts.chart('api2-establishments', {
 
