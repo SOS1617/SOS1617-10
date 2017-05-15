@@ -76,8 +76,8 @@ module.exports.register_establishments_apiv2 = function(app) {
     }
     
     // PROXY
-    app.get(BASE_API_PATH + "/educationproxy", (req, res) => {
-        var url = 'http://sos1617-07.herokuapp.com/api/v1/investEducationStats/?apikey=sos07';
+    app.get(BASE_API_PATH + "/salariesproxy", (req, res) => {
+        var url = 'http://sos1617-07.herokuapp.com/api/v1/salaries/?apikey=sos07';
         req.pipe(request(url)).pipe(res);
     });
 
