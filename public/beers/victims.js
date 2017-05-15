@@ -15,10 +15,12 @@ angular
             });
             console.log(data);
             for (var i = yearfrom; i < 2017; i++) {
-                if (i == data[indice].birthyear && indice < data.length) {
-                    beers.push(cont);
-                    cont++;
-                    indice++;
+                if (indice < data.length) {
+                    if (i == data[indice].birthyear) {
+                        beers.push(cont);
+                        cont++;
+                        indice++;
+                    }
                 }
                 else {
                     beers.push(null);
