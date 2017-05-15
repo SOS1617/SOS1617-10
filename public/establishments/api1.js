@@ -11,26 +11,6 @@ angular
         var establishmentsData;
         var salariesData;
 
-        $http.get("http://sos1617-10.herokuapp.com/api/v2/salariesproxy").then(function(response) {
-            salariesData = response.data;
-
-            countries.forEach((country) => {
-                var exist = false;
-                salariesData.forEach((d) => {
-                    if (d.country.toLowerCase() == country.toLowerCase() && exist == false) {
-                        salaries.push(Number(d.averageSalary));
-                        exist = true;
-                    }
-                });
-                if (exist == false) {
-                    salaries.push(null);
-                }
-            });
-            console.log(salaries);
-        });
-
-
-
         $http.get(url + "/?" + apikey).then(function(response) {
             establishmentsData = response.data;
 
@@ -49,8 +29,25 @@ angular
             });
             console.log(establishments);
         });
-        
-        Highcharts.chart('api1-establishments', {
+
+        $http.get("http://sos1617-10.herokuapp.com/api/v2/salariesproxy").then(function(response) {
+            salariesData = response.data;
+
+            countries.forEach((country) => {
+                var exist = false;
+                salariesData.forEach((d) => {
+                    if (d.country.toLowerCase() == country.toLowerCase() && exist == false) {
+                        salaries.push(Number(d.averageSalary));
+                        exist = true;
+                    }
+                });
+                if (exist == false) {
+                    salaries.push(null);
+                }
+            });
+            console.log(salaries);
+            
+            Highcharts.chart('api1-establishments', {
                 chart: {
                     type: 'area',
                     spacingBottom: 30
@@ -109,9 +106,7 @@ angular
                     name: 'Salaries',
                     data: salaries
                 }]
-
-
-
             });
-        
+        });
+
     }]);
