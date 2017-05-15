@@ -37,6 +37,8 @@ angular
                    victims.push(null);
                }
             }
+            console.log(beers);
+            console.log(victims);
 
             Highcharts.chart('container', {
                 chart: {
