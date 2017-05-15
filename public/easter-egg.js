@@ -4,14 +4,19 @@ var allowedKeys = {
     39: 'right',
     40: 'down',
     65: 'a',
-    66: 'b'
+    66: 'b',
+    114: 'r',
+    101: 'e',
+    107: 'k'
 };
 
 // the 'official' Konami Code sequence
 var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
+var breakCode = ['b', 'r', 'e', 'a', 'k'];
 
 // a variable to remember the 'position' the user has reached so far.
 var konamiCodePosition = 0;
+var breakCodePosition = 0;
 
 // add keydown event listener
 document.addEventListener('keydown', function(e) {
@@ -19,6 +24,7 @@ document.addEventListener('keydown', function(e) {
     var key = allowedKeys[e.keyCode];
     // get the value of the required key from the konami code
     var requiredKey = konamiCode[konamiCodePosition];
+    var breakKey = breakCode[breakCodePosition];
 
     // compare the key with the required key
     if (key == requiredKey) {
@@ -32,12 +38,26 @@ document.addEventListener('keydown', function(e) {
     }
     else
         konamiCodePosition = 0;
+        
+    // compare the key with the required key
+    if (key == breakKey) {
+
+        // move to the next key in the konami code sequence
+        breakCodePosition++;
+
+        // if the last key is reached, activate cheats
+        if (breakCodePosition == breakCode.length)
+            activateBreakCheats();
+    }
+    else
+        breakCodePosition = 0;
 });
 
 function activateCheats() {
     jQuery.noConflict();
     $('#easterEgg').modal('show');
+}
 
-
-
+function activateBreakCheats() {
+    document.getElementById("bodyHome").className = "breakBody";
 }
