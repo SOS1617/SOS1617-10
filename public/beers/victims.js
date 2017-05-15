@@ -5,6 +5,7 @@ angular
         var beers = [];
         var victims= [];
         var yearfrom = 1900
+        var data=[];
          $http.get("http://sos1617-10.herokuapp.com/api/v2/beers-stats/?from="+yearfrom+"&apikey=jesusguerre").then(function(response) {
              var data = response.data;
              
@@ -23,16 +24,17 @@ angular
              data.forEach( (x) => {
                 victims.push(Number(x.numberVictims));
              });
-             
+             var longitud = Math.min(beers.length,victims.length);
+             for ( var i=0;i<longitud ; i++){
+            data.push([beers[i],victims[i]]);
+        }
              
              
          });
          
-        var longitud = Math.min(beers.length,victims.length);
-        var data=[];
-        for ( var i=0;i<longitud ; i++){
-            data.push([beers[i],victims[i]]);
-        }
+        
+        
+        
         
                 
         
