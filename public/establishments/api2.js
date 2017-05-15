@@ -28,6 +28,7 @@ angular
             });
             
         });
+        console.log(investments);
         
         $http.get(url + "/?" + apikey).then(function(response) {
             establishmentsData = response.data;
