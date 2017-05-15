@@ -9,6 +9,19 @@ angular
     var varied = [];
     var averageWage = [];
         
+    var motorcyclingsCountry = [];
+    
+    $http.get(url + "/?" + apikey).then(function(response){
+        var countries = new Set(response.data.map(function(x){
+            return x.country;
+        }));
+        countries.forEach((country) => {
+            motorcyclingsCountry.push(getFromCountry(country, response.data));
+            
+        });
+    });
+    
+        
     $http.get("https://sos1617-08.herokuapp.com/api/v1/wages/?apikey=hf5HF86KvZ").then(function(response){
         
         wagesData = response.data;
@@ -69,15 +82,26 @@ angular
             }
         },
 
-        series: [{
-            type: 'area',
-            name: 'Varied',
-            data: varied
-        }]
+        series:[{   type: 'area',
+                    name: 'Motorcyclings',
+                    data: motorcyclingsCountry
+                }, {
+                    type: 'area',
+                    name: 'Wages',
+                    data: varied
+         }]
     });
 
     
 });
+
+function getFromCountry(country, data) {
+        var response;
+        response = [country, data.filter((x) => {
+            return x.country == country;
+        }).length];
+        return response;
+    }
 
     
 }]);
