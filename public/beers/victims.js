@@ -46,7 +46,7 @@ angular
         return d;
     }
     console.log(beers);
-    console.log(Victims);
+    console.log(victims);
     console.log(data);
 
     $('#container').highcharts({
