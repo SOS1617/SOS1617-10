@@ -51,6 +51,15 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
     }).when("/motorcyclings/graphs/", {
         templateUrl: "/motorcyclings/graph.html",
         controller: "MotorcyclingsGraphs"
+        
+    }).when("/motorcyclings/graphs/api1-salary", {
+        templateUrl: "/motorcyclings/api1-salary.html",
+        controller: "IntegrationAPI1MotorcyclingsGraph"
+
+    }).when("/motorcyclings/graphs/api2-wages", {
+        templateUrl: "/motorcyclings/api2-wages.html",
+        controller: "IntegrationAPI2MotorcyclingsGraph"
+        
     }).when("/analytics",{
          templateUrl : "analytics.html"
     });
