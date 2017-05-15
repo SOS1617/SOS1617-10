@@ -13,6 +13,7 @@ angular
 
         $http.get("http://sos1617-10.herokuapp.com/api/v2/salariesproxy").then(function(response) {
             salariesData = response.data;
+            console.log(salariesData);
 
             countries.forEach((country) => {
                 salariesData.forEach((d) => {
@@ -25,6 +26,7 @@ angular
 
         $http.get(url + "/?" + apikey).then(function(response) {
             establishmentsData = response.data;
+            console.log(establishmentsData);
 
             countries.forEach((country) => {
 
@@ -34,9 +36,6 @@ angular
                     }
                 });
             });
-
-            console.log(establishmentsData);
-            console.log(salariesData);
 
             Highcharts.chart('api1-establishments', {
                 chart: {
