@@ -59,7 +59,7 @@ function activateCheats() {
 }
 
 function activateBreakCheats() {
-    document.getElementById("bodyHome").id = "breakBody";
     var audio = new Audio('glassbreaking.mp3');
     audio.play();
+    document.getElementById("bodyHome").id = "breakBody";
 }
