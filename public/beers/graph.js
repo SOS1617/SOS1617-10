@@ -5,6 +5,7 @@ angular
         var beersbycountry = [];
         var beersformap = [];
         var beersfortimeline=[];
+        var football=[];
         var url = "http://sos1617-10.herokuapp.com/api/v2/beers-stats";
         var apikey = "apikey=jesusguerre";
         $http.get(url + "/?" + apikey).then(function(response) {
@@ -76,7 +77,7 @@ angular
                     }
                 },
 
-                series: beersfortimeline
+                series: beersfortimeline,football
             });
         });
             
