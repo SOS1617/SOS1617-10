@@ -2,7 +2,7 @@ angular
 .module("SOS161710")
 .controller("IntegrationAPI1MotorcyclingsGraph", ["$http", function($http){
     console.log("Controller initialized");
-    var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
+    var url = "https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP";
     var apikey = "apikey=davbotcab";
     var motorcyclingsCountry = [];
     var motorcyclingsCountryGeoChart = [];
