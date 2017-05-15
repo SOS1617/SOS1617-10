@@ -26,9 +26,10 @@ angular
                     investments.push(null);
                 }
             });
+             console.log(investments);
             
         });
-        console.log(investments);
+       
         
         $http.get(url + "/?" + apikey).then(function(response) {
             establishmentsData = response.data;
@@ -44,7 +45,10 @@ angular
                 if(exist == false){
                     establishments.push(null);
                 }
+                console.log(establishments);
             });
+            
+            
             
             Highcharts.chart('api2-establishments', {
 
