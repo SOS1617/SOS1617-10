@@ -8,7 +8,7 @@ angular
     var motorcyclingsCountryGeoChart = [];
     var motorcyclingsVis = [];
         
-    $http.get(url + "/?" + apikey).then(function(response){
+    $http.get(url).then(function(response){
         var countries = new Set(response.data.map(function(x){
             return x.country;
         }));
