@@ -31,7 +31,7 @@ jesus.register_beers_api(app);
 
 var jesusv2 = require('./beersv2');
 
-jesusv2.register_beers_apiv2(app);
+jesusv2.register_beers_apiv2(app,request);
 
 
 "------------------------------------establishment-------------------------------------------------";

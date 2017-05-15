@@ -11,7 +11,7 @@ var apikey = "jesusguerre";
 
 
 
-module.exports.register_beers_apiv2 = function(app) {
+module.exports.register_beers_apiv2 = function(app,request) {
 
     MongoClientBeer.connect(mdbURLBeer, {
         native_parser: true
