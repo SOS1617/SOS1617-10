@@ -50,7 +50,7 @@ angular
                     enabled: false
                 },
                 xAxis: {
-                    categories: ['Beer']
+                    categories: ['Beer','Football']
                 },
                 yAxis: {
                     type: 'datetime',
