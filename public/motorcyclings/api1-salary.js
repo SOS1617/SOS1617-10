@@ -24,34 +24,62 @@ angular
         
         
         
-        Highcharts.chart('myGraph3d', {
-    chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45
-        }
-    },
-    title: {
-        text: 'Number of Pilots Champions by Country'
-    },
-    subtitle: {
-        text: '3D donut in Highcharts'
-    },
-    plotOptions: {
-        pie: {
-            innerSize: 30,
-            depth: 45
-        }
-    },
-    series: [{
-        name: 'smiyear',
-        data: smiyear
-        
+    Highcharts.chart('container', {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'SMI over time'
+        },
+        subtitle: {
+            text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+        },
+        xAxis: {
+            type: country
+        },
+        yAxis: {
+            title: {
+                text: 'Exchange rate'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: 'SMI Year',
+            data: smiyear
         }]
-    });    
-        
-});    
+    });
+});
 
     
 }]);
