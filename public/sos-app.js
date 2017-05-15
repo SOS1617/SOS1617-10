@@ -25,6 +25,14 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/establishments/graph.html",
         controller: "EstablishmentsGraphs"
 
+    }).when("/establishments/graphs/api1", {
+        templateUrl: "/establishments/api1.html",
+        controller: "IntegrationAPI1EstablishmentsGraph"
+
+    }).when("/establishments/graphs/api2", {
+        templateUrl: "/establishments/api2.html",
+        controller: "IntegrationAPI2EstablishmentsGraph"
+
     }).when("/motorcyclings/", {
         templateUrl: "/motorcyclings/motorcyclings-list.html",
         controller: "MotorcyclingsCtrl"
