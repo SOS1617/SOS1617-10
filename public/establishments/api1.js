@@ -4,35 +4,37 @@ angular
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v2/establishments";
         var apikey = "apikey=nurtrioje";
-        
+
         var countries = ['Germany', 'France', 'Spain'];
         var establishments = [];
         var salaries = [];
-        var establishmentsData = [];
-        var salariesData = [];
-        
-        $http.get("http://sos1617-10.herokuapp.com/api/v2/salariesproxy").then(function(response){
+        var establishmentsData;
+        var salariesData;
+
+        $http.get("http://sos1617-10.herokuapp.com/api/v2/salariesproxy").then(function(response) {
             salariesData = response.data;
-        });
-        
-        $http.get(url + "/?" + apikey).then(function(response) {
-            establishmentsData = response.data;
-            
+
             countries.forEach((country) => {
-                
-                establishmentsData.forEach((d) => {
-                    if(d.country == country) {
-                        establishments.push(d.number);
-                    }
-                });
-                
-                salariesData.forEach((d)=>{
-                    if(d.country == country) {
-                        salaries.push(Number(d.averageSalary))
+                salariesData.forEach((d) => {
+                    if (d.country == country) {
+                        salaries.push(Number(d.averageSalary));
                     }
                 });
             });
-            
+        });
+
+        $http.get(url + "/?" + apikey).then(function(response) {
+            establishmentsData = response.data;
+
+            countries.forEach((country) => {
+
+                establishmentsData.forEach((d) => {
+                    if (d.country == country) {
+                        establishments.push(d.number);
+                    }
+                });
+            });
+
             console.log(establishmentsData);
             console.log(salariesData);
 
@@ -95,9 +97,9 @@ angular
                     name: 'Salaries',
                     data: salaries
                 }]
-                
-                
-                
+
+
+
             });
         });
     }]);
