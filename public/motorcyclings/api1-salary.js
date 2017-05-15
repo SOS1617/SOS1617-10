@@ -4,33 +4,24 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var motorcyclingsCountry = [];
-    var motorcyclingsCountryGeoChart = [];
-    var motorcyclingsVis = [];
+    var salaryData = {};
+    var salaryDataSMI = {};
+    var country = [];
+    var smiyear = [];
+    var smiyearvariation = [];
         
     $http.get("https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP").then(function(response){
-        var countries = new Set(response.data.map(function(x){
-            return x.country;
-        }));
-        countries.forEach((country) => {
-            motorcyclingsCountry.push(getFromCountry(country, response.data));
-            
-        });
-        motorcyclingsCountryGeoChart.push(['Country', 'Championships']);
-        motorcyclingsCountry.forEach((x) => {
-            motorcyclingsCountryGeoChart.push(x);
-        });
         
-        var cont = 0;
-        response.data.forEach((x) => {
-            motorcyclingsVis.push({
-                id:cont,
-                content:x.pilot,
-                start:x.year+"-01-01",
-                end:x.year+"-12-31"
-            });
-            cont++;
-        });
+        salaryData = response.data;
+        salaryDataSMI = salaryData;
+                
+        for(var i=0; i<response.data.length; i++){
+            country.push(salaryDataSMI[i].country);
+            smiyear.push(Number(salaryDataSMI[i]["smi-year"]));
+            smiyearvariation.push(Number(salaryDataSMI[i]["smi-year-variation"]));
+        }
+        
+        
         
         
         Highcharts.chart('myGraph3d', {
@@ -54,54 +45,13 @@ angular
         }
     },
     series: [{
-        name: 'Number championship:',
-        data: motorcyclingsCountry
+        name: 'smiyear',
+        data: smiyear
         
         }]
     });    
         
-    google.charts.load('current', {'packages':['geochart']});
-    google.charts.setOnLoadCallback(drawRegionsMap);
-
-    function drawRegionsMap() {
-
-        var data = google.visualization.arrayToDataTable(
-          motorcyclingsCountryGeoChart
-        );
-
-        var options = {
-            region:'150'
-        };
-
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-        chart.draw(data, options);
-      }    
-      
-      
-    var container = document.getElementById('visualization');
-
-    // Create a DataSet (allows two way data-binding)
-    var items = new vis.DataSet(
-        motorcyclingsVis
-        );
-
-  // Configuration for the Timeline
-  var options = {};
-
-  // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options); 
-     
-    
-        
 });    
 
     
-    function getFromCountry(country, data) {
-        var response;
-        response = [country, data.filter((x) => {
-            return x.smi-year == country;
-        }).length];
-        return response;
-    }
 }]);
