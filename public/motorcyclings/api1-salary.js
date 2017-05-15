@@ -8,6 +8,18 @@ angular
     var country = [];
     var smiyear = [];
     var smiyearvariation = [];
+    
+    var motorcyclingsCountry = [];
+    
+    $http.get(url + "/?" + apikey).then(function(response){
+        var countries = new Set(response.data.map(function(x){
+            return x.country;
+        }));
+        countries.forEach((country) => {
+            motorcyclingsCountry.push(getFromCountry(country, response.data));
+            
+    });
+    });
         
     $http.get("https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP").then(function(response){
         
@@ -70,14 +82,23 @@ angular
         },
 
         series: [{
-            type: 'area',
-            name: 'SMI Year',
-            data: smiyear
-        }]
+                    name: 'Motorcyclings',
+                    data: motorcyclingsCountry
+                }, {
+                    name: 'SMI',
+                    data: smiyear
+         }]
     });
 
     
 });
 
-    
+function getFromCountry(country, data) {
+        var response;
+        response = [country, data.filter((x) => {
+            return x.country == country;
+        }).length];
+        return response;
+    }
 }]);
+    
