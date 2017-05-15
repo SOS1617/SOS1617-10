@@ -27,7 +27,7 @@ angular
             provinces.forEach((prov) => {
                 data.forEach((x) => {
                     if (x.province == prov) {
-                       voting.push(x.podemos);
+                       voting.push(Number(x.podemos));
                     }
                 });
             });
@@ -42,10 +42,10 @@ angular
                     type: 'line'
                 },
                 title: {
-                    text: 'Monthly Average Temperature'
+                    text: 'Beers and Voting podemos by province'
                 },
                 subtitle: {
-                    text: 'Source: WorldClimate.com'
+                    text: 'Source: sos'
                 },
                 xAxis: {
                     categories: provinces
