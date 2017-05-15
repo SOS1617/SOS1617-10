@@ -8,6 +8,8 @@ var db;
 
 var apikey = "nurtrioje";
 
+var request= require("request");
+
 module.exports.register_establishments_apiv2 = function(app) {
 
     MongoClient.connect(mdbURL, {
@@ -40,8 +42,8 @@ module.exports.register_establishments_apiv2 = function(app) {
     function paginate(offset, limit, array, response) {
         var res = [];
         var cont = 0;
-//        var offsetLocal = parseInt(offset);
-//        var limitLocal = parseInt(limit);
+        //        var offsetLocal = parseInt(offset);
+        //        var limitLocal = parseInt(limit);
 
         if (offset == undefined)
             offset = 0;
@@ -72,6 +74,12 @@ module.exports.register_establishments_apiv2 = function(app) {
             else return data;
         }
     }
+    
+    // PROXY
+    app.get(BASE_API_PATH + "/educationproxy", (req, res) => {
+        var url = 'http://sos1617-07.herokuapp.com/api/v1/investEducationStats/?apikey=sos07';
+        req.pipe(request(url)).pipe(res);
+    });
 
     //loadInitialData
     app.get(BASE_API_PATH + "/establishments/loadInitialData", function(request, response) {
@@ -152,12 +160,12 @@ module.exports.register_establishments_apiv2 = function(app) {
                 }
                 else {
                     var pagination = paginate(offset, limit, establishments.filter(search(from, to)), response);
-//                    if (pagination.length != 0) {
-                        console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
-                        response.send(pagination);
-//                    }
-//                    else
-//                        response.sendStatus(404);
+                    //                    if (pagination.length != 0) {
+                    console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
+                    response.send(pagination);
+                    //                    }
+                    //                    else
+                    //                        response.sendStatus(404);
                 }
             });
 
@@ -192,12 +200,12 @@ module.exports.register_establishments_apiv2 = function(app) {
                     else {
                         if (filteredEstablishments.length > 0) {
                             var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-//                            if (pagination.length != 0) {
-                                console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
-                                response.send(pagination);
-//                            }
-//                            else
-//                                response.sendStatus(404);
+                            //                            if (pagination.length != 0) {
+                            console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
+                            response.send(pagination);
+                            //                            }
+                            //                            else
+                            //                                response.sendStatus(404);
                         }
                         else {
                             console.log("WARNING: There are not establishments");
@@ -244,12 +252,12 @@ module.exports.register_establishments_apiv2 = function(app) {
                         else {
                             if (filteredEstablishments.length > 0) {
                                 var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-//                                if (pagination.length != 0) {
-                                    console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
-                                    response.send(pagination);
-//                                }
-//                                else
-//                                    response.sendStatus(404);
+                                //                                if (pagination.length != 0) {
+                                console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
+                                response.send(pagination);
+                                //                                }
+                                //                                else
+                                //                                    response.sendStatus(404);
                             }
                             else {
                                 console.log("WARNING: There are not establishments");
@@ -270,12 +278,12 @@ module.exports.register_establishments_apiv2 = function(app) {
                         else {
                             if (filteredEstablishments.length > 0) {
                                 var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-//                                if (pagination.length != 0) {
-                                    console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
-                                    response.send(pagination);
-//                                }
-//                                else
-//                                    response.sendStatus(404);
+                                //                                if (pagination.length != 0) {
+                                console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
+                                response.send(pagination);
+                                //                                }
+                                //                                else
+                                //                                    response.sendStatus(404);
                             }
                             else {
                                 console.log("WARNING: There are not establishments");
