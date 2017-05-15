@@ -22,8 +22,6 @@ angular
         }
         
         
-        
-        
     Highcharts.chart('container', {
         chart: {
             zoomType: 'x'
@@ -79,6 +77,30 @@ angular
             data: smiyear
         }]
     });
+    
+    
+    google.charts.load('current', {'packages': ['geochart']});
+     google.charts.setOnLoadCallback(drawMarkersMap);
+
+      function drawMarkersMap() {
+      var data = google.visualization.arrayToDataTable([
+        ['Country',   'SMI Year', 'SMI Year Variation'],
+        [country,      smiyear,    smiyearvariation]
+      ]);
+
+      var options = {
+        region: 'IT',
+        displayMode: 'markers',
+        colorAxis: {colors: ['green', 'blue']}
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    };
+    
+    
+    
+    
 });
 
     
