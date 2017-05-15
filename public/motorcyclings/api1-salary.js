@@ -48,9 +48,6 @@ angular
         name: 'smiyear',
         data: smiyear
         
-        },{
-            name: 'country',
-            data: country
         }]
     });    
         
