@@ -5,14 +5,23 @@ angular
         var beers = [];
         var victims= [];
         var yearfrom = 1900
-         /*$http.get("http://sos1617-10.herokuapp.com/api/v2/beers-stats/?from="+yearfrom+"&apikey=jesusguerre").then(function(response) {
+         $http.get("http://sos1617-10.herokuapp.com/api/v2/beers-stats/?from="+yearfrom+"&apikey=jesusguerre").then(function(response) {
              var data = response.data;
-             
-             var year = Math.max(data.map( (x) => {return x.birthyear}));
              
              
              data.foreach( (x) => {
-                beers.push(x.birthyear/year);
+                beers.push(Date.UTC(x.birthyear));
+             });
+             
+             
+             
+         });
+         $http.get("http://sos1617-10.herokuapp.com/api/v2/victimsproxy").then(function(response) {
+             var data = response.data;
+             
+             
+             data.foreach( (x) => {
+                victims.push(Number(x.numberVictims));
              });
              
              
@@ -20,7 +29,10 @@ angular
          });
          
         
-        */
+        
+                
+        
+        
         $(function () {
     function generateData() {
         var d = [];
@@ -56,7 +68,7 @@ angular
         },
         series: [{
             colsize: 24 * 36e5, // one day
-            data: generateData()
+            data: beers
         }]
     });
 });
