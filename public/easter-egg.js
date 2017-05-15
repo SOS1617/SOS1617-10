@@ -41,7 +41,6 @@ document.addEventListener('keydown', function(e) {
 
     // compare the key with the required key
     if (key == breakKey) {
-        console.log("entra");
         console.log(e.keyCode);
         // move to the next key in the konami code sequence
         breakCodePosition++;
@@ -60,7 +59,8 @@ function activateCheats() {
 }
 
 function activateBreakCheats() {
-    window.alert("entra");
+    var audio = new Audio('glassbreaking.mp3');
+    audio.play();
     document.getElementById("bodyHome").id = "breakBody";
     document.getElementById("glass-hidden").id = "glass-display";
 }
