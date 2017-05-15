@@ -9,7 +9,12 @@ var dbBeer;
 
 var apikey = "jesusguerre";
 
+
+
 module.exports.register_beers_apiv2 = function(app) {
+    var cors = require("cors");
+
+    app.use(cors);
 
     MongoClientBeer.connect(mdbURLBeer, {
         native_parser: true
@@ -103,53 +108,52 @@ module.exports.register_beers_apiv2 = function(app) {
                         "country": "Belgium",
                         "birthyear": 1862,
                         "province": "Hainaut"
-                    },{
+                    }, {
                         "name": "Jupiler",
                         "country": "Belgium",
                         "birthyear": 1966,
                         "province": "Lieja"
-                    },{
+                    }, {
                         "name": "Altbier",
                         "country": "Germany",
                         "birthyear": 1800,
                         "province": "Düsseldorf"
-                    },{
+                    }, {
                         "name": "Grolsch",
                         "country": "Nerthelands",
                         "birthyear": 1615,
                         "province": "Enschede"
-                    },{
+                    }, {
                         "name": "Birra Moretti",
                         "country": "Italy",
                         "birthyear": 1859,
                         "province": "Udine"
-                    },{
+                    }, {
                         "name": "Sagres",
                         "country": "Portugal",
                         "birthyear": 1940,
                         "province": "Lisboa"
-                    },{
+                    }, {
                         "name": "Fuller's",
                         "country": "United Kingdom",
                         "birthyear": 1845,
                         "province": "London"
-                    },
-                    {
+                    }, {
                         "name": "Estrella Galicia",
                         "country": "Spain",
                         "birthyear": 1980,
                         "province": "La Coruña"
-                    },{
+                    }, {
                         "name": "Estrella Damm",
                         "country": "Spain",
                         "birthyear": 1876,
                         "province": "Barcelona"
-                    },{
+                    }, {
                         "name": "Alhambra",
                         "country": "Spain",
                         "birthyear": 1925,
                         "province": "Granada"
-                    },{
+                    }, {
                         "name": "Cruzcampo",
                         "country": "Spain",
                         "birthyear": 1850,
@@ -230,7 +234,7 @@ module.exports.register_beers_apiv2 = function(app) {
                 }
             });
 
-            
+
         }
     });
     //GET a single resource with 2 params
