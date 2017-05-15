@@ -12,9 +12,6 @@ var apikey = "jesusguerre";
 
 
 module.exports.register_beers_apiv2 = function(app) {
-    var cors = require("cors");
-
-    app.use(cors);
 
     MongoClientBeer.connect(mdbURLBeer, {
         native_parser: true
