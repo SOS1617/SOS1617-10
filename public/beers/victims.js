@@ -46,7 +46,7 @@ angular
 
                 }
                 else {
-                    victims.push(anterior);
+                    victims.push(Number(anterior));
                 }
             }
             console.log(beers);
