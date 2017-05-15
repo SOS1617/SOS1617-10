@@ -100,7 +100,7 @@ angular
     function getFromCountry(country, data) {
         var response;
         response = [country, data.filter((x) => {
-            return x.country == country;
+            return x.smi-year == country;
         }).length];
         return response;
     }
