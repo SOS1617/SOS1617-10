@@ -13,6 +13,13 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/beers/graph.html",
         controller: "BeersGraphs"
         
+    }).when("/beers/graphs/victims",{
+        templateUrl : "/beers/victims.html",
+        controller: "Victims"
+        
+    }).when("/beers/graphs/voting",{
+        templateUrl : "/beers/voting.html",
+        controller: "Voting"
     }).when("/establishments/", {
         templateUrl: "/establishments/establishments-list.html",
         controller: "EstablishmentsCtrl"
