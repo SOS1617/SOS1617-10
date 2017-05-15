@@ -1,64 +1,101 @@
 angular
     .module("SOS161710")
     .controller("Victims", ["$http", function($http) {
-            console.log("Controller initialized!");
-            var beers = [];
-            var victims = [];
-            var yearfrom = 1900
-            var datatoshow = [];
-            $http.get("http://sos1617-10.herokuapp.com/api/v2/beers-stats/?from=" + yearfrom + "&apikey=jesusguerre").then(function(response) {
-                var data = response.data;
-                var cont = 1;
+        console.log("Controller initialized!");
+        var beers = [];
+        var victims = [];
+        var yearfrom = 1900
+        var datatoshow = [];
+        $http.get("http://sos1617-10.herokuapp.com/api/v2/beers-stats/?from=" + yearfrom + "&apikey=jesusguerre").then(function(response) {
+            var data = response.data;
+            var cont = 1;
+            var indice=0;
+            data.sort(function (a,b) {a.birthyear-b.birthyear});
+            for (var i = yearfrom;i<2017;i++){
+               if (i == data[indice].birthyear){
+                   beers.push(cont);
+                   cont++;
+                   indice++;
+               }else {
+                   beers.push(null);
+               }
+            }
 
-                data.forEach((x) => {
-                    beers.push([Date.UTC(x.birthyear, 11, 31),cont]);
-                    cont++;
-                });
 
+        });
+        $http.get("http://sos1617-10.herokuapp.com/api/v2/victimsproxy").then(function(response) {
+            var data = response.data;
+            var indice=0
 
+            data.sort(function (a,b) {Number(a.year)-Number(b.year)});
+            for (var i = yearfrom;i<2017;i++){
+               if (i == data[indice].year){
+                    victims.push(Number(data[indice].numberVictims));
+                   
+                   indice++;
+               }else {
+                   victims.push(null);
+               }
+            }
 
-            });
-            $http.get("http://sos1617-10.herokuapp.com/api/v2/victimsproxy").then(function(response) {
-                var data = response.data;
-
-
-                data.forEach((x) => {
-                    victims.push(Number(x.numberVictims));
-                });
-                var longitud = Math.min(beers.length, victims.length);
-                console.log(longitud);
-                for (var i = 0; i < longitud; i++) {
-                    datatoshow.push([beers[i][0],victims[i],beers[i][1]]);
-                }
-                console.log(datatoshow);
-
-                Highcharts.stockChart('container', {
-
-                    chart: {
-                        type: 'arearange'
-                    },
-
-                    rangeSelector: {
-                        selected: 2
-                    },
-
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'area'
+                },
+                title: {
+                    text: 'US and USSR nuclear stockpiles'
+                },
+                subtitle: {
+                    text: 'Source: <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">' +
+                        'thebulletin.metapress.com</a>'
+                },
+                xAxis: {
+                    allowDecimals: false,
+                    labels: {
+                        formatter: function() {
+                            return this.value; // clean, unformatted number for year
+                        }
+                    }
+                },
+                yAxis: {
                     title: {
-                        text: 'Temperature variation by day'
+                        text: 'Nuclear weapon states'
                     },
-
-                    tooltip: {
-                        valueSuffix: '°C'
-                    },
-
-                    series: [{
-                        name: 'Temperatures',
-                        data: datatoshow
-                    }]
-
-                });
+                    labels: {
+                        formatter: function() {
+                            return this.value / 1000 + 'k';
+                        }
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                },
+                plotOptions: {
+                    area: {
+                        pointStart: 1940,
+                        marker: {
+                            enabled: false,
+                            symbol: 'circle',
+                            radius: 2,
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'USA',
+                    data: beers
+                }, {
+                    name: 'USSR/Russia',
+                    data: victims
+                }]
             });
+        });
 
-        
+
 
 
 
