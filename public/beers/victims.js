@@ -28,7 +28,7 @@ angular
             for (var i = 0; i < longitud; i++) {
                 data.push([beers[i], victims[i]]);
             }
-
+            console.log(data);
              $('#container').highcharts({
                 chart: {
                     type: 'heatmap'
