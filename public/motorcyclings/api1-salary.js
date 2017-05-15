@@ -43,7 +43,7 @@ angular
                 }
             };
 
-            var chart = new google.visualization.GeoChart(document.getElementById('Gchart'));
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
             chart.draw(data, options);
         }
      
