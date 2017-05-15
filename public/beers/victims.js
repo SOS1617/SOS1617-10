@@ -5,7 +5,7 @@ angular
         var beers = [];
         var victims = [];
         var yearfrom = 1900
-        var data = [];
+        var datatoshow = [];
         $http.get("http://sos1617-10.herokuapp.com/api/v2/beers-stats/?from=" + yearfrom + "&apikey=jesusguerre").then(function(response) {
             var data = response.data;
 
@@ -26,7 +26,7 @@ angular
             });
             var longitud = Math.min(beers.length, victims.length);
             for (var i = 0; i < longitud; i++) {
-                data.push([beers[i], victims[i]]);
+                datatoshow.push([beers[i], victims[i]]);
             }
             console.log(data);
              $('#container').highcharts({
@@ -53,7 +53,7 @@ angular
                 },
                 series: [{
                     colsize: 24 * 36e5, // one day
-                    data: data
+                    data: datatoshow
                 }]
             });
         });
