@@ -4,7 +4,34 @@ angular
         console.log("Controller initialized");
         var url = "http://sos1617-10.herokuapp.com/api/v2/establishments";
         var apikey = "apikey=nurtrioje";
+        
+        var countries = ['Germany', 'France', 'Spain'];
+        var establishments = [];
+        var salaries = [];
+        var establishmentsData = [];
+        var salariesData = [];
+        
+        $http.get("http://sos1617-10.herokuapp.com/api/v2/salariesproxy").then(function(response){
+            salariesData = response.data;
+        });
+        
         $http.get(url + "/?" + apikey).then(function(response) {
+            establishmentsData = response.data;
+            
+            countries.forEach((country) => {
+                
+                establishmentsData.forEach((d) => {
+                    if(d.country == country) {
+                        establishments.push(d.number);
+                    }
+                });
+                
+                salariesData.forEach((d)=>{
+                    if(d.country == country) {
+                        salaries.push(d.averageSalary)
+                    }
+                });
+            });
 
             Highcharts.chart('api1-establishments', {
                 chart: {
@@ -12,7 +39,7 @@ angular
                     spacingBottom: 30
                 },
                 title: {
-                    text: 'Fruit consumption *'
+                    text: 'Salaries (G07) - Establishments Integration'
                 },
                 subtitle: {
                     text: '* Jane\'s banana consumption is unknown',
@@ -32,7 +59,7 @@ angular
                     backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
                 },
                 xAxis: {
-                    categories: ['Apples', 'Pears', 'Oranges', 'Bananas', 'Grapes', 'Plums', 'Strawberries', 'Raspberries']
+                    categories: countries
                 },
                 yAxis: {
                     title: {
@@ -59,11 +86,11 @@ angular
                     enabled: false
                 },
                 series: [{
-                    name: 'John',
-                    data: [0, 1, 4, 4, 5, 2, 3, 7]
+                    name: 'Establishments',
+                    data: establishments
                 }, {
-                    name: 'Jane',
-                    data: [1, 0, 3, null, 3, 1, 2, 1]
+                    name: 'Salaries',
+                    data: salaries
                 }]
                 
                 
