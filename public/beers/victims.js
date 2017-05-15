@@ -9,7 +9,7 @@ angular
              var data = response.data;
              
              
-             data.foreach( (x) => {
+             data.forEach( (x) => {
                 beers.push(Date.UTC(x.birthyear));
              });
              
@@ -20,7 +20,7 @@ angular
              var data = response.data;
              
              
-             data.foreach( (x) => {
+             data.forEach( (x) => {
                 victims.push(Number(x.numberVictims));
              });
              
