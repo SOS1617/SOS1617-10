@@ -13,8 +13,7 @@ angular
 
         $http.get("http://sos1617-10.herokuapp.com/api/v2/salariesproxy").then(function(response) {
             salariesData = response.data;
-            console.log(salariesData);
-
+            
             countries.forEach((country) => {
                 var exist = false;
                 salariesData.forEach((d) => {
@@ -29,11 +28,9 @@ angular
             });
         });
 
-        console.log(salaries);
 
         $http.get(url + "/?" + apikey).then(function(response) {
             establishmentsData = response.data;
-            console.log(establishmentsData);
 
             countries.forEach((country) => {
                 var exist = false;
@@ -47,7 +44,6 @@ angular
                     salaries.push(null);
                 }
             });
-            console.log(establishments);
 
             Highcharts.chart('api1-establishments', {
                 chart: {
@@ -58,7 +54,7 @@ angular
                     text: 'Salaries (G07) - Establishments Integration'
                 },
                 subtitle: {
-                    text: '* Jane\'s banana consumption is unknown',
+                    text: "* Germany's salary is unknown",
                     floating: true,
                     align: 'right',
                     verticalAlign: 'bottom',
