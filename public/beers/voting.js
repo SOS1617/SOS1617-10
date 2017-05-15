@@ -4,7 +4,7 @@ angular
         console.log("Controller initialized!");
         var beers = [];
         var voting = [];
-        var provinces = ["Sevilla", "Galicia", "Barcelona"];
+        var provinces = ["Sevilla", "La Coruña", "Barcelona"];
         $http.get("http://sos1617-10.herokuapp.com/api/v2/beers-stats/?apikey=jesusguerre").then(function(response) {
             var data = response.data;
 
@@ -27,7 +27,8 @@ angular
             provinces.forEach((prov) => {
                 data.forEach((x) => {
                     if (x.province == prov) {
-                       voting.push(x.podemos);
+                       var podemos = Number(x.podemos);
+                       voting.push(podemos);
                     }
                 });
             });
@@ -42,10 +43,10 @@ angular
                     type: 'line'
                 },
                 title: {
-                    text: 'Monthly Average Temperature'
+                    text: 'Beers and Voting podemos by province'
                 },
                 subtitle: {
-                    text: 'Source: WorldClimate.com'
+                    text: 'Source: sos'
                 },
                 xAxis: {
                     categories: provinces
