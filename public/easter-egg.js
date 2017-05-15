@@ -62,4 +62,5 @@ function activateCheats() {
 function activateBreakCheats() {
     window.alert("entra");
     document.getElementById("bodyHome").id = "breakBody";
+    document.getElementById("glass-hidden").id = "glass-display";
 }
