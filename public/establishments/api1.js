@@ -17,7 +17,7 @@ angular
 
             countries.forEach((country) => {
                 salariesData.forEach((d) => {
-                    if (d.country == country) {
+                    if (d.country.toLowerCase() == country.toLowerCase()) {
                         salaries.push(Number(d.averageSalary));
                     }
                 });
@@ -31,9 +31,8 @@ angular
             console.log(establishmentsData);
 
             countries.forEach((country) => {
-
                 establishmentsData.forEach((d) => {
-                    if (d.country == country) {
+                    if (d.country.toLowerCase() == country.toLowerCase()) {
                         establishments.push(d.number);
                     }
                 });
