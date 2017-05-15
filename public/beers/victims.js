@@ -56,7 +56,7 @@ angular
             type: 'datetime'
         },
         yAxis: {
-            categories: ['a', 'b', 'c']
+            categories: ['a', 'b']
         },
         colorAxis: {
             min: 0,
