@@ -23,7 +23,7 @@ angular
                 }
 
                 else {
-                    beers.push(null);
+                    beers.push(cont);
                 }
             }
 
@@ -32,7 +32,7 @@ angular
         $http.get("http://sos1617-10.herokuapp.com/api/v2/victimsproxy").then(function(response) {
             var data = response.data;
             var indice = 0;
-
+            var anterior=0;
             data.sort(function(a, b) {
                 return Number(a.year) - Number(b.year);
             });
@@ -41,12 +41,12 @@ angular
 
                 if (indice < data.length && i == data[indice].year) {
                     victims.push(Number(data[indice].numberVictims));
-
+                    anterior=data[indice].numberVictims;
                     indice++;
 
                 }
                 else {
-                    victims.push(null);
+                    victims.push(anterior);
                 }
             }
             console.log(beers);
