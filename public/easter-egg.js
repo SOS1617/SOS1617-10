@@ -61,5 +61,5 @@ function activateCheats() {
 
 function activateBreakCheats() {
     window.alert("entra");
-    document.getElementById("bodyHome").className = "breakBody";
+    document.getElementById("bodyHome").id = "breakBody";
 }
