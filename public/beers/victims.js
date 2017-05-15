@@ -15,13 +15,13 @@ angular
             });
             console.log(data);
             for (var i = yearfrom; i < 2017; i++) {
-                if (indice < data.length) {
-                    if (i == data[indice].birthyear) {
-                        beers.push(cont);
-                        cont++;
-                        indice++;
-                    }
+
+                if (indice < data.length && i == data[indice].birthyear) {
+                    beers.push(cont);
+                    cont++;
+                    indice++;
                 }
+
                 else {
                     beers.push(null);
                 }
@@ -38,12 +38,12 @@ angular
             });
             console.log(data);
             for (var i = yearfrom; i < 2017; i++) {
-                if (indice < data.length) {
-                    if (i == data[indice].year) {
-                        victims.push(Number(data[indice].numberVictims));
 
-                        indice++;
-                    }
+                if (indice < data.length && i == data[indice].year) {
+                    victims.push(Number(data[indice].numberVictims));
+
+                    indice++;
+
                 }
                 else {
                     victims.push(null);
