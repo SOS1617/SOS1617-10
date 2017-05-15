@@ -3,7 +3,6 @@ var bodyParser = require("body-parser");
 var helmet = require("helmet");
 var path = require('path');
 var cors = require("cors");
-var request= require("request");
 //var cors = require("cors");
 
 var port = (process.env.PORT || 10000);
@@ -31,7 +30,7 @@ jesus.register_beers_api(app);
 
 var jesusv2 = require('./beersv2');
 
-jesusv2.register_beers_apiv2(app,request);
+jesusv2.register_beers_apiv2(app);
 
 
 "------------------------------------establishment-------------------------------------------------";

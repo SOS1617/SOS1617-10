@@ -1,5 +1,7 @@
 var BASE_API_PATH = "/api/v2";
 
+var request= require("request");
+
 
 var MongoClientBeer = require('mongodb').MongoClient;
 
@@ -11,7 +13,8 @@ var apikey = "jesusguerre";
 
 
 
-module.exports.register_beers_apiv2 = function(app,request) {
+module.exports.register_beers_apiv2 = function(app) {
+    
 
     MongoClientBeer.connect(mdbURLBeer, {
         native_parser: true
