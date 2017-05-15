@@ -4,104 +4,80 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var motorcyclingsCountry = [];
-    var motorcyclingsCountryGeoChart = [];
-    var motorcyclingsVis = [];
+    var wagesData = {};
+    var province = [];
+    var varied = [];
+    var averageWage = [];
         
-    $http.get(url + "/?" + apikey).then(function(response){
-        var countries = new Set(response.data.map(function(x){
-            return x.country;
-        }));
-        countries.forEach((country) => {
-            motorcyclingsCountry.push(getFromCountry(country, response.data));
-            
-        });
-        motorcyclingsCountryGeoChart.push(['Country', 'Championships']);
-        motorcyclingsCountry.forEach((x) => {
-            motorcyclingsCountryGeoChart.push(x);
-        });
+    $http.get("https://sos1617-08.herokuapp.com/api/v1/wages/?apikey=hf5HF86KvZ").then(function(response){
         
-        var cont = 0;
-        response.data.forEach((x) => {
-            motorcyclingsVis.push({
-                id:cont,
-                content:x.pilot,
-                start:x.year+"-01-01",
-                end:x.year+"-12-31"
-            });
-            cont++;
-        });
-        
-        
-        Highcharts.chart('myGraph3d', {
-    chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45
+        wagesData = response.data;
+                
+        for(var i=0; i<response.data.length; i++){
+            province.push(wagesData[i].province);
+            varied.push(Number(wagesData[i]["varied"]));
+            averageWage.push(Number(wagesData[i]["averageWage"]));
         }
-    },
-    title: {
-        text: 'Number of Pilots Champions by Country'
-    },
-    subtitle: {
-        text: '3D donut in Highcharts'
-    },
-    plotOptions: {
-        pie: {
-            innerSize: 30,
-            depth: 45
-        }
-    },
-    series: [{
-        name: 'Number championship:',
-        data: motorcyclingsCountry
         
+        
+    Highcharts.chart('container', {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Wages Over Time'
+        },
+        subtitle: {
+            text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+        },
+        xAxis: {
+            categories: province
+        },
+        yAxis: {
+            title: {
+                text: 'Exchange rate'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: 'Varied',
+            data: varied
         }]
-    });    
-        
-    google.charts.load('current', {'packages':['geochart']});
-    google.charts.setOnLoadCallback(drawRegionsMap);
-
-    function drawRegionsMap() {
-
-        var data = google.visualization.arrayToDataTable(
-          motorcyclingsCountryGeoChart
-        );
-
-        var options = {
-            region:'150'
-        };
-
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-        chart.draw(data, options);
-      }    
-      
-      
-    var container = document.getElementById('visualization');
-
-    // Create a DataSet (allows two way data-binding)
-    var items = new vis.DataSet(
-        motorcyclingsVis
-        );
-
-  // Configuration for the Timeline
-  var options = {};
-
-  // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options); 
-     
-    
-        
-});    
+    });
 
     
-    function getFromCountry(country, data) {
-        var response;
-        response = [country, data.filter((x) => {
-            return x.country == country;
-        }).length];
-        return response;
-    }
+});
+
+    
 }]);

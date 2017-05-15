@@ -5,11 +5,9 @@ angular
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
     var salaryData = {};
-    var salaryDataSMI = {};
     var country = [];
     var smiyear = [];
     var smiyearvariation = [];
-    var smiYearCountryGeoChart = [];
         
     $http.get("https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP").then(function(response){
         
