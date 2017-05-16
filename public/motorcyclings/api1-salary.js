@@ -30,7 +30,19 @@ angular
             smiyear.push(Number(salaryData[i]["smi-year"]));
             smiyearvariation.push(Number(salaryData[i]["smi-year-variation"]));
         }
-        
+
+            country.forEach((coun) => {
+                var exist = false;
+                salaryData.forEach((dat) => {
+                    if (dat.coun.toLowerCase() == coun.toLowerCase() && exist == false) {
+                        smiyear;
+                        exist = true;
+                    }
+                });
+                if (exist == false) {
+                    smiyear.push(null);
+                }
+            });
         
     Highcharts.chart('container', {
         chart: {
