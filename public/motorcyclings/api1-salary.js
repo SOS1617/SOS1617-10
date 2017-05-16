@@ -21,7 +21,7 @@ angular
     });
     });
         
-    $http.get("https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP").then(function(response){
+    $http.get("http://sos1617-10.herokuapp.com/api/v2/salaryproxy").then(function(response){
         
         salaryData = response.data;
                 

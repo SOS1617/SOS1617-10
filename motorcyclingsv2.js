@@ -112,6 +112,29 @@ module.exports.register_motorcyclings_apiv2 = function(app) {
         }
     });
     
+    //Proxy
+     app.get(BASE_API_PATH + "/salaryproxy", (req, res) => {
+        var http = require('http');
+        
+        var option = {
+            host: 'sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP'
+        };
+        
+        callback = function(response){
+            var str = '';
+            
+            response.on('data', function(chunk){
+                str += chunk;
+            });
+            
+            response.on('end',function(){
+                res.send(str);
+            });
+        }
+        
+        http.request(options, callback).end();
+    });
+    
     
 //loadInitialData
 app.get(BASE_API_PATH + "/motorcycling-stats/loadInitialData", function(request, response) {
