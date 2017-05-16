@@ -29,7 +29,7 @@ angular
                 var exist = false;
                 salaryData.forEach((x) => {
                     if (x.country == coun) {
-                       smiyear.push(Number(salaryData[i]["smi-year"]));
+                       smiyear.push(Number(salaryData["smi-year"]));
                        exist = true;
                     }
                 });
