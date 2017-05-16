@@ -9,6 +9,7 @@ var allowedKeys = {
     75: 'k',
     82: 'r'
 };
+var audio = new Audio('glassbreaking.mp3');
 
 // the 'official' Konami Code sequence
 var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
@@ -59,7 +60,7 @@ function activateCheats() {
 }
 
 function activateBreakCheats() {
-    var audio = new Audio('glassbreaking.mp3');
+    
     audio.play();
     document.getElementById("bodyHome").id = "breakBody";
     document.getElementById("glass-hidden").id = "glass-display";
