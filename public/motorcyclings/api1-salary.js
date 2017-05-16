@@ -21,7 +21,6 @@ angular
     });
         
     $http.get("http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats/salaryproxy").then(function(response){
-        var indice = 0;
         
         salaryData = response.data;
         
