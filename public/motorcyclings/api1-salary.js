@@ -22,14 +22,16 @@ angular
         
     $http.get("http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats/salaryproxy").then(function(response){
         var indice = 0;
+        
         salaryData = response.data;
         
                 
         for(var i=0; i<country.length; i++){
-            if(indice < salaryData.length && country[i] == salaryData[indice].country) {
+            if(country[i] == salaryData[indice].country) {
                 smiyear.push(Number(salaryData[indice]["smi-year"]));
+                indice++;
             }
-            indice++;
+            
         }
         
         
