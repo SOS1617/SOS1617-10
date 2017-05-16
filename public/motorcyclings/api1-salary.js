@@ -21,7 +21,7 @@ angular
     });
     });
         
-    $http.get("http://sos1617-10.herokuapp.com/api/v2/salaryproxy").then(function(response){
+    $http.get("http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats/salaryproxy").then(function(response){
         
         salaryData = response.data;
                 
