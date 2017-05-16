@@ -5,9 +5,8 @@ angular
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
     var salaryData = {};
-    var country = ["United Kingdom", "Italy", "Spain"];
+    var countries = ["United Kingdom", "Italy", "Spain"];
     var smiyear = [];
-    var smiyearvariation = [];
     
     var motorcyclingsCountry = [];
     
@@ -26,23 +25,21 @@ angular
         salaryData = response.data;
                 
         for(var i=0; i<response.data.length; i++){
-            country.push(salaryData[i].country);
             smiyear.push(Number(salaryData[i]["smi-year"]));
-            smiyearvariation.push(Number(salaryData[i]["smi-year-variation"]));
         }
 
-            country.forEach((coun) => {
-                var exist = false;
-                salaryData.forEach((dat) => {
-                    if (dat.coun.toLowerCase() == coun.toLowerCase() && exist == false) {
-                        smiyear;
-                        exist = true;
-                    }
-                });
-                if (exist == false) {
-                    smiyear.push(null);
+        countries.forEach((country) => {
+            var exist = false;
+            salaryData.forEach((d) => {
+                if (d.country.toLowerCase() == country.toLowerCase() && exist == false) {
+                    smiyear;
+                    exist = true;
                 }
             });
+            if (exist == false) {
+                smiyear.push(null);
+            }
+        });
         
     Highcharts.chart('container', {
         chart: {
