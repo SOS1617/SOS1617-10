@@ -117,7 +117,8 @@ module.exports.register_motorcyclings_apiv2 = function(app) {
         var http = require('http');
         
         var option = {
-            host: 'sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP'
+            host: 'sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP',
+            path: '/'
         };
         
         callback = function(response){
