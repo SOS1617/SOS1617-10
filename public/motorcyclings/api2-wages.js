@@ -5,7 +5,7 @@ angular
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
     var wagesData = {};
-    var province = [];
+    var country = [];
     var varied = [];
     var averageWage = [];
         
@@ -27,7 +27,7 @@ angular
         wagesData = response.data;
                 
         for(var i=0; i<response.data.length; i++){
-            province.push(wagesData[i].province);
+            country.push(wagesData[i].country);
             varied.push(Number(wagesData[i]["varied"]));
             averageWage.push(Number(wagesData[i]["averageWage"]));
         }
@@ -45,7 +45,7 @@ angular
                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
         },
         xAxis: {
-            categories: province
+            categories: country
         },
         yAxis: {
             title: {
