@@ -4,11 +4,12 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var salaryData;
-    var countries = ["United Kingdom", "Italy", "Spain"];
+    var salaryData = {};
+    var country = [];
     var smiyear = [];
-    var motorcyclingsCountry = [];
+    var smiyearvariation = [];
     
+    var motorcyclingsCountry = [];
     
     $http.get(url + "/?" + apikey).then(function(response){
         var countries = new Set(response.data.map(function(x){
@@ -19,28 +20,18 @@ angular
             
     });
     });
-     
         
     $http.get("https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP").then(function(response){
         
         salaryData = response.data;
                 
         for(var i=0; i<response.data.length; i++){
+            country.push(salaryData[i].country);
             smiyear.push(Number(salaryData[i]["smi-year"]));
+            smiyearvariation.push(Number(salaryData[i]["smi-year-variation"]));
         }
-
-        countries.forEach((coun) => {
-            var exist = false;
-            salaryData.forEach((d) => {
-                if (d.country == coun) {
-                    smiyear;
-                    exist = true;
-                }
-            });
-            if (exist == false) {
-                smiyear.push(null);
-            }
-        });
+        
+        
         
     Highcharts.chart('container', {
         chart: {
@@ -54,7 +45,7 @@ angular
                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
         },
         xAxis: {
-            categories: countries
+            categories: country
         },
         yAxis: {
             title: {
