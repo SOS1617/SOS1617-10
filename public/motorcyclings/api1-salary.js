@@ -27,11 +27,11 @@ angular
         
                 
         for(var i=0; i<country.length; i++){
-            if(country[i] == salaryData[indice].country) {
-                smiyear.push(Number(salaryData[indice]["smi-year"]));
-                indice++;
+            for(var indice=0; i<salaryData.length; indice++){
+                if(country[i] == salaryData[indice].country) {
+                    smiyear.push(Number(salaryData[indice]["smi-year"]));
+                }
             }
-            
         }
         
         
