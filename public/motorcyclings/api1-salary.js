@@ -25,10 +25,13 @@ angular
         salaryData = response.data;
                 
         for(var i=0; i<country.length; i++){
-            if(country[i] == salaryData.country)
+            if(country[i] == salaryData.country) {
                 indice = i;
                 smiyear.push(Number(salaryData[indice]["smi-year"]));
+            }
+                
         }
+        
         
         
         
