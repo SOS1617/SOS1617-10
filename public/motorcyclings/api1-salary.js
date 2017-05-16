@@ -5,7 +5,7 @@ angular
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
     var salaryData = {};
-    var country = ["United Kingdom", "Spain", "Italy"];
+    var country = [];
     var smiyear = [];
     
     var motorcyclingsCountry = [];
@@ -25,8 +25,8 @@ angular
         salaryData = response.data;
                 
         for(var i=0; i<response.data.length; i++){
-            if(country[i] == salaryData[i].country);
-                smiyear.push(Number(salaryData[i]["smi-year"]));
+            country.push(salaryData[i].country);
+            smiyear.push(Number(salaryData[i]["smi-year"]));
         }
         
         
