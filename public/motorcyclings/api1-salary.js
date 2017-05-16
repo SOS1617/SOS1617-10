@@ -4,11 +4,11 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var salaryData = {};
+    var salaryData;
     var countries = ["United Kingdom", "Italy", "Spain"];
     var smiyear = [];
-    
     var motorcyclingsCountry = [];
+    
     
     $http.get(url + "/?" + apikey).then(function(response){
         var countries = new Set(response.data.map(function(x){
@@ -19,6 +19,7 @@ angular
             
     });
     });
+     
         
     $http.get("https://sos1617-02.herokuapp.com/api/v1/smi-stats?apikey=rXD8D2b1vP").then(function(response){
         
@@ -28,10 +29,10 @@ angular
             smiyear.push(Number(salaryData[i]["smi-year"]));
         }
 
-        countries.forEach((country) => {
+        countries.forEach((coun) => {
             var exist = false;
             salaryData.forEach((d) => {
-                if (d.country.toLowerCase() == country.toLowerCase() && exist == false) {
+                if (d.country == coun) {
                     smiyear;
                     exist = true;
                 }
