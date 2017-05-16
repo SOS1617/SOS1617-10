@@ -5,7 +5,7 @@ angular
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
     var salaryData = {};
-    var country = [];
+    var country = ["United Kingdom", "Spain", "Italy"];
     var smiyear = [];
     
     var motorcyclingsCountry = [];
@@ -21,13 +21,15 @@ angular
     });
         
     $http.get("http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats/salaryproxy").then(function(response){
-        
+        var indice = 0;
         salaryData = response.data;
                 
-        for(var i=0; i<response.data.length; i++){
-            country.push(salaryData[i].country);
-            smiyear.push(Number(salaryData[i]["smi-year"]));
+        for(var i=0; i<country.length; i++){
+            if(country[i] == salaryData.country)
+                indice = i;
+                smiyear.push(Number(salaryData[indice]["smi-year"]));
         }
+        
         
         
         
