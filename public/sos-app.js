@@ -62,6 +62,9 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         
     }).when("/analytics",{
          templateUrl : "analytics.html"
+         
+    }).when("/governance",{
+        templateUrl: "governance.html"
     });
 });
 console.log("App initialized");
