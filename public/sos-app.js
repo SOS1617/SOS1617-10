@@ -65,6 +65,12 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
          
     }).when("/governance",{
         templateUrl: "governance.html"
+        
+    }).when("/integrations",{
+        templateUrl: "integrations.html"
+        
+    }).when("/about",{
+        templateUrl: "about.html"
     });
 });
 console.log("App initialized");
