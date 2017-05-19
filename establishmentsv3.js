@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var mdbURL = "mongodb://test:test@ds133450.mlab.com:33450/sos1617-10-sandbox";
 
-var BASE_API_PATH = "/api/v3";
+var BASE_API_PATH = "/api/v2";
 
 var db;
 
@@ -10,7 +10,7 @@ var apikey = "nurtrioje";
 
 var request= require("request");
 
-module.exports.register_establishments_apiv3 = function(app) {
+module.exports.register_establishments_apiv2 = function(app) {
 
     MongoClient.connect(mdbURL, {
         native_parser: true
@@ -83,7 +83,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //loadInitialData
     app.get(BASE_API_PATH + "/establishments/loadInitialData", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             db.find({}).toArray(function(err, establishments) {
                 console.log('INFO: Initialiting DB...');
@@ -146,7 +146,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     // GET a collection
     app.get(BASE_API_PATH + "/establishments", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             var offset = request.query.offset;
             var limit = request.query.limit;
@@ -175,7 +175,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     // GET a single resource with two params
     app.get(BASE_API_PATH + "/establishments/:country/:year", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             var offset = request.query.offset;
             var limit = request.query.limit;
@@ -219,7 +219,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //GET a single resource with one param
     app.get(BASE_API_PATH + "/establishments/:parameter", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             var offset = request.query.offset;
             var limit = request.query.limit;
@@ -298,7 +298,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //POST over a collection
     app.post(BASE_API_PATH + "/establishments", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             var newEstablishment = request.body;
             if (!newEstablishment) {
@@ -339,7 +339,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //POST over a single resource
     app.post(BASE_API_PATH + "/establishments/:country/:year", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             var country = request.params.country;
             var year = request.params.year;
@@ -350,7 +350,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //PUT over a collection
     app.put(BASE_API_PATH + "/establishments", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             console.log("WARNING: New PUT request to /establishments, sending 405...");
             response.sendStatus(405); // method not allowed
@@ -361,7 +361,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //PUT over a single resource
     app.put(BASE_API_PATH + "/establishments/:country/:year", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             var updatedEstablishment = request.body;
             var country = request.params.country;
@@ -413,7 +413,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //DELETE over a collection
     app.delete(BASE_API_PATH + "/establishments", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             console.log("INFO: New DELETE request to /establishments");
             db.remove({}, {
@@ -441,7 +441,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //DELETE over a single resource
     app.delete(BASE_API_PATH + "/establishments/:country/:year", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
             var country = request.params.country;
             var year = Number(request.params.year);

@@ -46,6 +46,9 @@ var establishmentsv2 = require('./establishmentsv2');
 
 establishmentsv2.register_establishments_apiv2(app);
 
+var establishmentsv3 = require('./establishmentsv3');
+
+establishmentsv3.register_establishments_apiv3(app);
 
 "------------------------------------motorcycling-stats---------------------------------------------------------------------------------";
 
