@@ -71,6 +71,9 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         
     }).when("/about",{
         templateUrl: "about.html"
+    }).when("/beers/graphs/games/",{
+        templateUrl : "/beers/game.html",
+        controller : "Games"
     });
 });
 console.log("App initialized");

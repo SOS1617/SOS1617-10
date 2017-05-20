@@ -11,11 +11,13 @@ var dbBeer;
 
 var apikey = "jesusguerre";
 
-var request= require("request");
+var request = require("request");
+
+var unirest = require("unirest");
 
 
 module.exports.register_beers_apiv2 = function(app) {
-    
+
 
     MongoClientBeer.connect(mdbURLBeer, {
         native_parser: true
@@ -50,7 +52,17 @@ module.exports.register_beers_apiv2 = function(app) {
         var url = 'http://sos1617-08.herokuapp.com/api/v1/victims?apikey=hf5HF86KvZ';
         req.pipe(request(url)).pipe(res);
     });
+    app.get(BASE_API_PATH + "/games", function(request, response) {
+        unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/pulses/?fields=*")
+            .header("X-Mashape-Key", "ZIt8Tf3FLJmshO217uQ12xiGI88Xp1N3OmRjsnj2upfP1Bc2V2")
+            .header("Accept", "application/json")
+            .end(function(result) {
+                response.send(result.body);
+            });
 
+
+
+    });
 
     // GET a collection
     app.get(BASE_API_PATH + "/beers-stats", function(request, response) {
