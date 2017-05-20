@@ -40,6 +40,10 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/establishments/api2.html",
         controller: "IntegrationAPI2EstablishmentsGraph"
 
+    }).when("/establishments/graphs/foursquare", {
+        templateUrl: "/establishments/foursquare.html",
+        controller: "Foursquare"
+
     }).when("/motorcyclings/", {
         templateUrl: "/motorcyclings/motorcyclings-list.html",
         controller: "MotorcyclingsCtrl"
@@ -71,6 +75,7 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         
     }).when("/about",{
         templateUrl: "about.html"
+        
     }).when("/beers/graphs/games/",{
         templateUrl : "/beers/game.html",
         controller : "Games"
