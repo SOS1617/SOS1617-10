@@ -33,7 +33,7 @@ angular
                     var data = google.visualization.arrayToDataTable(foursquareData);
 
                     var options = {
-                        title: 'Foursquare locations'
+                        title: 'Foursquare locations integrated with Establishments'
                     };
 
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
