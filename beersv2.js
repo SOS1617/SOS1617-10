@@ -53,7 +53,7 @@ module.exports.register_beers_apiv2 = function(app) {
         req.pipe(request(url)).pipe(res);
     });
     app.get(BASE_API_PATH + "/games", function(request, response) {
-        unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/pulses/?fields=*")
+        unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/release_dates/?fields=*")
             .header("X-Mashape-Key", "ZIt8Tf3FLJmshO217uQ12xiGI88Xp1N3OmRjsnj2upfP1Bc2V2")
             .header("Accept", "application/json")
             .end(function(result) {
