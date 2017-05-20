@@ -12,7 +12,7 @@ angular
         $http.get("http://sos1617-10.herokuapp.com/api/v2/games?apikey=jesusguerre").then(function(response) {
             var aux = response.data;
             aux.forEach((x) => {
-                data.push([x.game, new Date(x.y, 0, 1), new Date(x.y, 11, 31)]);
+                data.push([String(x.game), new Date(x.y, 0, 1), new Date(x.y, 11, 31)]);
             });
             data.sort(function(a, b) {
                 return a[1] - b[1];
