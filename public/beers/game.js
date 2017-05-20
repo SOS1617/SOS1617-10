@@ -14,7 +14,9 @@ angular
             aux.forEach((x) => {
                 data.push([x.title, new Date(x.y, 0, 1), new Date(x.y, 11, 31)]);
             });
-
+            data.sort(function(a, b) {
+                return a[1] - b[1];
+            });
             google.charts.load('current', {
                 'packages': ['timeline']
             });
