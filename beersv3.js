@@ -53,7 +53,7 @@ module.exports.register_beers_apiv3 = function(app) {
 
 
     // GET a collection
-    app.get(BASE_API_PATH + "/beers-stats", function(request, response) {
+    app.get(BASE_API_PATH + "/beersStats", function(request, response) {
         var limit = Number(request.query.limit);
         var offset = Number(request.query.offset);
         var yearfrom = request.query.from;
@@ -94,7 +94,7 @@ module.exports.register_beers_apiv3 = function(app) {
     });
     //GET loadInitialData
 
-    app.get(BASE_API_PATH + "/beers-stats/loadInitialData", function(request, response) {
+    app.get(BASE_API_PATH + "/beersStats/loadInitialData", function(request, response) {
         var keyprovided = apikey;
         if (CheckKey(keyprovided, response)) {
             dbBeer.find({}).toArray(function(err, beers) {
@@ -176,7 +176,7 @@ module.exports.register_beers_apiv3 = function(app) {
         }
     });
     // GET a single resource
-    app.get(BASE_API_PATH + "/beers-stats/:parameter", function(request, response) {
+    app.get(BASE_API_PATH + "/beersStats/:parameter", function(request, response) {
         var parameter = request.params.parameter;
         var birthyear;
         var country;
@@ -243,7 +243,7 @@ module.exports.register_beers_apiv3 = function(app) {
         }
     });
     //GET a single resource with 2 params
-    app.get(BASE_API_PATH + "/beers-stats/:country/:birthyear", function(request, response) {
+    app.get(BASE_API_PATH + "/beersStats/:country/:birthyear", function(request, response) {
         var keyprovided = apikey;
         if (CheckKey(keyprovided, response)) {
             var birthyear = parseInt(request.params.birthyear);
@@ -287,7 +287,7 @@ module.exports.register_beers_apiv3 = function(app) {
 
 
     //POST over a collection
-    app.post(BASE_API_PATH + "/beers-stats", function(request, response) {
+    app.post(BASE_API_PATH + "/beersStats", function(request, response) {
         var newBeer = request.body;
         var keyprovided = apikey;
         if (CheckKey(keyprovided, response)) {
@@ -329,7 +329,7 @@ module.exports.register_beers_apiv3 = function(app) {
 
 
     //POST over a single resource
-    app.post(BASE_API_PATH + "/beers-stats/:country/:birthyear", function(request, response) {
+    app.post(BASE_API_PATH + "/beersStats/:country/:birthyear", function(request, response) {
         var keyprovided = apikey;
         if (CheckKey(keyprovided, response)) {
             var country = request.params.country;
@@ -341,7 +341,7 @@ module.exports.register_beers_apiv3 = function(app) {
 
 
     //PUT over a collection
-    app.put(BASE_API_PATH + "/beers-stats", function(request, response) {
+    app.put(BASE_API_PATH + "/beersStats", function(request, response) {
         var keyprovided = apikey;
         if (CheckKey(keyprovided, response)) {
             console.log("WARNING: New PUT request to /beers, sending 405...");
@@ -351,7 +351,7 @@ module.exports.register_beers_apiv3 = function(app) {
 
 
     //PUT over a single resource
-    app.put(BASE_API_PATH + "/beers-stats/:country/:birthyear", function(request, response) {
+    app.put(BASE_API_PATH + "/beersStats/:country/:birthyear", function(request, response) {
         var updatedBeer = request.body;
         var country = request.params.country;
         var birthyear = parseInt(request.params.birthyear);
@@ -407,7 +407,7 @@ module.exports.register_beers_apiv3 = function(app) {
 
 
     //DELETE over a collection
-    app.delete(BASE_API_PATH + "/beers-stats", function(request, response) {
+    app.delete(BASE_API_PATH + "/beersStats", function(request, response) {
         var keyprovided = apikey;
         if (CheckKey(keyprovided, response)) {
             console.log("INFO: New DELETE request to /beers-stats");
@@ -435,7 +435,7 @@ module.exports.register_beers_apiv3 = function(app) {
 
 
     //DELETE over a single resource
-    app.delete(BASE_API_PATH + "/beers-stats/:country/:birthyear", function(request, response) {
+    app.delete(BASE_API_PATH + "/beersStats/:country/:birthyear", function(request, response) {
         var country = request.params.country;
         var birthyear = parseInt(request.params.birthyear);
         var keyprovided = apikey;
