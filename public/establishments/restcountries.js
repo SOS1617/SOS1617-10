@@ -5,7 +5,7 @@ angular
         var restcountriesData = [];
         restcountriesData.push(['Location', 'Region', 'Population', 'Area'],
             ['Global', null, 0, 0], 
-            ['America', 'Global', 0, 0],
+            ['Americas', 'Global', 0, 0],
             ['Europe', 'Global', 0, 0], 
             ['Asia', 'Global', 0, 0],
             ['Oceania', 'Global', 0, 0],
