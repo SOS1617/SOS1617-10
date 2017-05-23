@@ -9,7 +9,8 @@ angular
             ['Europe', 'Global', 0, 0], 
             ['Asia', 'Global', 0, 0],
             ['Oceania', 'Global', 0, 0],
-            ['Africa', 'Global', 0, 0]);
+            ['Africa', 'Global', 0, 0],
+            ['Polar', 'Global', 0, 0]);
 
         $http.get("http://sos1617-10.herokuapp.com/api/v2/restcountries").then(function(response) {
 
