@@ -3,7 +3,7 @@ angular
     .controller("RestCountries", ["$http", function($http) {
 
         var restcountriesData = [];
-        restcountriesData.push(['Location', 'Region', 'Area', 'Population'],
+        restcountriesData.push(['Location', 'Region', 'Population', 'Area'],
             ['Global', null, 0, 0], 
             ['Americas', 'Global', 0, 0],
             ['Europe', 'Global', 0, 0], 
@@ -19,7 +19,7 @@ angular
                 if(!d.region){
                     restcountriesData.push([d.name, "Global", 0, 0]);
                 } else {
-                    restcountriesData.push([d.name, d.region, Number(d.area), Number(d.population)]);
+                    restcountriesData.push([d.name, d.region, Number(d.population), Number(d.area)]);
                 }
                 
             });
@@ -35,9 +35,9 @@ angular
                 tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
 
                 tree.draw(data, {
-                    minColor: '#f00',
+                    minColor: '#0d0',
                     midColor: '#ddd',
-                    maxColor: '#0d0',
+                    maxColor: '#f00',
                     headerHeight: 15,
                     fontColor: 'black',
                     showScale: true
