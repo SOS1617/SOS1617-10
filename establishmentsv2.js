@@ -83,7 +83,7 @@ module.exports.register_establishments_apiv2 = function(app) {
         req.pipe(request(url)).pipe(res);
     });
 
-    app.get(BASE_API_PATH + "/restcountries", (req, res) => {
+    app.get(BASE_API_PATH + "/restcountries", (result) => {
         unirest.get("https://restcountries-v1.p.mashape.com/all")
             .header("X-Mashape-Key", "ZnH7znsTzmmsh4MEw7mMggJzpjbAp1xzVMWjsn6ltYcEZEomEO")
             .header("Accept", "application/json")
