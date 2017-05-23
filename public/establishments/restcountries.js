@@ -18,7 +18,7 @@ angular
             aux.forEach((d) => {
                 restcountriesData.push([d.name, d.region, Number(d.population), Number(d.area)]);
             });
-
+            console.log(restcountriesData);
             google.charts.load('current', {
                 'packages': ['treemap']
             });
