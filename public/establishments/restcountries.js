@@ -3,7 +3,7 @@ angular
     .controller("RestCountries", ["$http", function($http) {
 
         var restcountriesData = [];
-        restcountriesData.push(['Location', 'Region', 'Population', 'Area'],
+        restcountriesData.push(['Location', 'Region', 'Area', 'Population'],
             ['Global', null, 0, 0], 
             ['Americas', 'Global', 0, 0],
             ['Europe', 'Global', 0, 0], 
@@ -17,9 +17,9 @@ angular
             var aux = response.data;
             aux.forEach((d) => {
                 if(!d.region){
-                    restcountriesData.push([d.name, "Global", Number(d.population), Number(d.area)]);
+                    restcountriesData.push([d.name, "Global", 0, 0]);
                 } else {
-                    restcountriesData.push([d.name, d.region, Number(d.population), Number(d.area)]);
+                    restcountriesData.push([d.name, d.region, Number(d.area), Number(d.population)]);
                 }
                 
             });
