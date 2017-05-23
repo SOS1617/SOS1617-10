@@ -8,7 +8,9 @@ var db;
 
 var apikey = "nurtrioje";
 
-var request= require("request");
+var request = require("request");
+
+var unirest = require('unirest');
 
 module.exports.register_establishments_apiv2 = function(app) {
 
@@ -74,12 +76,21 @@ module.exports.register_establishments_apiv2 = function(app) {
             else return data;
         }
     }
-    
+
     // PROXY
     app.get(BASE_API_PATH + "/salariesproxy", (req, res) => {
         var url = 'http://sos1617-07.herokuapp.com/api/v1/salaries/?apikey=sos07';
         req.pipe(request(url)).pipe(res);
     });
+
+    app.get(BASE_API_PATH + "/restcountries", (req, res) => {
+        unirest.get("https://restcountries-v1.p.mashape.com/all")
+            .header("X-Mashape-Key", "ZnH7znsTzmmsh4MEw7mMggJzpjbAp1xzVMWjsn6ltYcEZEomEO")
+            .header("Accept", "application/json")
+            .end(function(result) {
+                console.log(result.status, result.headers, result.body);
+            });
+    })
 
     //loadInitialData
     app.get(BASE_API_PATH + "/establishments/loadInitialData", function(request, response) {
