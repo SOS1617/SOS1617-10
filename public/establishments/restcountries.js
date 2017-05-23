@@ -18,8 +18,10 @@ angular
             aux.forEach((d) => {
                 if(!d.region){
                     restcountriesData.push([d.name, "Global", Number(d.population), Number(d.area)]);
+                } else {
+                    restcountriesData.push([d.name, d.region, Number(d.population), Number(d.area)]);
                 }
-                restcountriesData.push([d.name, d.region, Number(d.population), Number(d.area)]);
+                
             });
             console.log(restcountriesData);
             google.charts.load('current', {
