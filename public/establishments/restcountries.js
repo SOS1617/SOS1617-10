@@ -1,17 +1,23 @@
 angular
     .module("SOS161710")
     .controller("RestCountries", ["$http", function($http) {
-        
+
         var restcountriesData = [];
-        restcountriesData.push(['Location', 'Region', 'Population', 'Area']);
+        restcountriesData.push(['Location', 'Region', 'Population', 'Area'],
+            ['Global', null, 0, 0], 
+            ['America', 'Global', 0, 0],
+            ['Europe', 'Global', 0, 0], 
+            ['Asia', 'Global', 0, 0],
+            ['Australia', 'Global', 0, 0],
+            ['Africa', 'Global', 0, 0]);
 
         $http.get("http://sos1617-10.herokuapp.com/api/v2/restcountries").then(function(response) {
-            
+
             var aux = response.data;
             aux.forEach((d) => {
-               restcountriesData.push([d.name, d.region, d.population, d.area]);
+                restcountriesData.push([d.name, d.region, d.population, d.area]);
             });
-            
+
             google.charts.load('current', {
                 'packages': ['treemap']
             });
