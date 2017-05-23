@@ -44,6 +44,10 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/establishments/foursquare.html",
         controller: "Foursquare"
 
+    }).when("/establishments/graphs/restcountries", {
+        templateUrl: "/establishments/restcountries.html",
+        controller: "RestCountries"
+
     }).when("/motorcyclings/", {
         templateUrl: "/motorcyclings/motorcyclings-list.html",
         controller: "MotorcyclingsCtrl"
