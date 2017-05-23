@@ -88,7 +88,7 @@ module.exports.register_establishments_apiv2 = function(app) {
             .header("X-Mashape-Key", "ZnH7znsTzmmsh4MEw7mMggJzpjbAp1xzVMWjsn6ltYcEZEomEO")
             .header("Accept", "application/json")
             .end(function(result) {
-                res.send(result.status,result.headers,result.body);
+                res.send(result.body);
             });
     })
 
