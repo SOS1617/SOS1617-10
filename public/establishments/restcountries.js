@@ -16,7 +16,7 @@ angular
 
             var aux = response.data;
             aux.forEach((d) => {
-                restcountriesData.push([d.name, d.region, d.population, d.area]);
+                restcountriesData.push([d.name, d.region, Number(d.population), Number(d.area)]);
             });
 
             google.charts.load('current', {
