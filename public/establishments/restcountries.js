@@ -3,13 +3,13 @@ angular
     .controller("RestCountries", ["$http", function($http) {
         
         var restcountriesData = [];
-        restcountriesData.push(['Location', 'Subregion', 'Population', 'Area']);
+        restcountriesData.push(['Location', 'Region', 'Population', 'Area']);
 
         $http.get("http://sos1617-10.herokuapp.com/api/v2/restcountries").then(function(response) {
             
             var aux = response.data;
             aux.forEach((d) => {
-               restcountriesData.push([d.name, d.subregion, d.population, d.area]);
+               restcountriesData.push([d.name, d.region, d.population, d.area]);
             });
             
             google.charts.load('current', {
