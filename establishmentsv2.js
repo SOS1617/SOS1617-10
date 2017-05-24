@@ -27,18 +27,19 @@ module.exports.register_establishments_apiv2 = function(app) {
     });
 
     function checkApikey(key, response) {
+        var ret = true;
         if (key === undefined) {
             response.sendStatus(401);
-            return false;
+            ret = false;
         }
         else if (key !== apikey) {
             response.sendStatus(403);
-            return false;
+            ret = false;
         }
         else {
             console.log("INFO: Correct apikey");
-            return true;
         }
+        return ret;
     }
 
     function search(from, to) {
@@ -159,9 +160,9 @@ module.exports.register_establishments_apiv2 = function(app) {
         }];
         if (checkApikey(key, response)) {
             console.log("INFO: New GET request to /establishments");
-            db.find({
+            db.find(
                 mongoquery
-            }).limit(limit).skip(offset).toArray(function(err, establishments) {
+            ).limit(limit).skip(offset).toArray(function(err, establishments) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
@@ -273,9 +274,9 @@ module.exports.register_establishments_apiv2 = function(app) {
         }];
         if (checkApikey(key, response)) {
             console.log("INFO: New GET request to /establishments/" + country + year);
-            db.find({
+            db.find(
                 mongoquery
-            }).limit(limit).skip(offset).toArray(function(err, filteredEstablishments) {
+            ).limit(limit).skip(offset).toArray(function(err, filteredEstablishments) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
