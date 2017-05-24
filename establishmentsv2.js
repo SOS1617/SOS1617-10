@@ -147,6 +147,9 @@ module.exports.register_establishments_apiv2 = function(app) {
             if (to == undefined) {
                 to = Number.POSITIVE_INFINITY;
             }
+            if (offset == undefined){
+                offset = 0;
+            }
             mongoquery.$and = [{
                 "year": {
                     "$gte": Number(from)
@@ -170,7 +173,6 @@ module.exports.register_establishments_apiv2 = function(app) {
                     response.send(establishmentsSend);
                 }
             });
-
         }
     });
 
@@ -190,6 +192,9 @@ module.exports.register_establishments_apiv2 = function(app) {
             }
             if (to == undefined) {
                 to = Number.POSITIVE_INFINITY;
+            }
+            if (offset == undefined){
+                offset = 0;
             }
             if (!country || !year) {
                 console.log("WARNING: New GET request to /establishments/ without country or year, sending 400...");
@@ -238,6 +243,9 @@ module.exports.register_establishments_apiv2 = function(app) {
             }
             if (to == undefined) {
                 to = Number.POSITIVE_INFINITY;
+            }
+            if (offset == undefined){
+                offset = 0;
             }
             if (parameter == undefined) {
                 console.log("WARNING: New GET request to /establishments/ without country or year, sending 400...");
