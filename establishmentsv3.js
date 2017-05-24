@@ -25,18 +25,19 @@ module.exports.register_establishments_apiv3 = function(app) {
     });
 
     function checkApikey(key, response) {
+        var ret = true;
         if (key === undefined) {
             response.sendStatus(401);
-            return false;
+            ret = false;
         }
         else if (key !== apikey) {
             response.sendStatus(403);
-            return false;
+            ret = false;
         }
         else {
             console.log("INFO: Correct apikey");
-            return true;
         }
+        return ret;
     }
 
     function paginate(offset, limit, array, response) {
