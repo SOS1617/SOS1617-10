@@ -42,18 +42,6 @@ module.exports.register_establishments_apiv2 = function(app) {
         return ret;
     }
 
-    function search(from, to) {
-        return (data) => {
-            if (from != undefined && to != undefined)
-                return data.year >= from && data.year <= to;
-            else if (from != undefined && to == undefined)
-                return data.year >= from;
-            else if (from == undefined && to != undefined)
-                return data.year <= to;
-            else return data;
-        };
-    }
-
     // PROXY
     app.get(BASE_API_PATH + "/salariesproxy", (req, res) => {
         var url = 'http://sos1617-07.herokuapp.com/api/v1/salaries/?apikey=sos07';
@@ -67,7 +55,7 @@ module.exports.register_establishments_apiv2 = function(app) {
             .end(function(result) {
                 res.send(result.body);
             });
-    })
+    });
 
     //loadInitialData
     app.get(BASE_API_PATH + "/establishments/loadInitialData", function(request, response) {
@@ -396,7 +384,7 @@ module.exports.register_establishments_apiv2 = function(app) {
                                 db.update({
                                     "country": country,
                                     "year": year
-                                }, updatedEstablishment)
+                                }, updatedEstablishment);
                                 console.log("INFO: Modifying establishment with country " + country + " with data " + JSON.stringify(updatedEstablishment, 2, null));
                                 response.send(updatedEstablishment); // return the updated establishment
                             }

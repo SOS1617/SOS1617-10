@@ -8,7 +8,9 @@ var db;
 
 var apikey = "nurtrioje";
 
-var request= require("request");
+var request = require("request");
+
+var unirest = require('unirest');
 
 module.exports.register_establishments_apiv3 = function(app) {
 
@@ -40,46 +42,19 @@ module.exports.register_establishments_apiv3 = function(app) {
         return ret;
     }
 
-    function paginate(offset, limit, array, response) {
-        var res = [];
-        var cont = 0;
-        //        var offsetLocal = parseInt(offset);
-        //        var limitLocal = parseInt(limit);
-
-        if (offset == undefined)
-            offset = 0;
-        if (limit == undefined)
-            limit = array.length;
-        if (offset > array.length) {
-            console.log("ERROR: Offset is greater than the array size");
-            response.sendStatus(400);
-            return;
-        }
-        else
-            for (var i = offset; i < array.length; i++)
-                if (limit > cont) {
-                    res.push(array[i]);
-                    cont++;
-                }
-        return res;
-    }
-
-    function search(from, to) {
-        return (data) => {
-            if (from != undefined && to != undefined)
-                return data.year >= from && data.year <= to;
-            else if (from != undefined && to == undefined)
-                return data.year >= from;
-            else if (from == undefined && to != undefined)
-                return data.year <= to;
-            else return data;
-        };
-    }
-    
     // PROXY
     app.get(BASE_API_PATH + "/salariesproxy", (req, res) => {
         var url = 'http://sos1617-07.herokuapp.com/api/v1/salaries/?apikey=sos07';
         req.pipe(request(url)).pipe(res);
+    });
+    
+    app.get(BASE_API_PATH + "/restcountries", (req, res) => {
+        unirest.get("https://restcountries-v1.p.mashape.com/all")
+            .header("X-Mashape-Key", "ZnH7znsTzmmsh4MEw7mMggJzpjbAp1xzVMWjsn6ltYcEZEomEO")
+            .header("Accept", "application/json")
+            .end(function(result) {
+                res.send(result.body);
+            });
     });
 
     //loadInitialData
@@ -147,43 +122,68 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     // GET a collection
     app.get(BASE_API_PATH + "/establishments", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
+        var offset = Number(request.query.offset);
+        var limit = Number(request.query.limit);
+        var from = request.query.from;
+        var to = request.query.to;
+        var mongoquery = {};
+        if (from == undefined) {
+            from = 0;
+        }
+        if (to == undefined) {
+            to = Number.POSITIVE_INFINITY;
+        }
+        if (offset == undefined) {
+            offset = 0;
+        }
+        mongoquery.$and = [{
+            "year": {
+                "$gte": Number(from)
+            }
+        }, {
+            "year": {
+                "$lte": Number(to)
+            }
+        }];
         if (checkApikey(key, response)) {
-            var offset = request.query.offset;
-            var limit = request.query.limit;
-            var from = request.query.from;
-            var to = request.query.to;
             console.log("INFO: New GET request to /establishments");
-            db.find({}).toArray(function(err, establishments) {
+            db.find(
+                mongoquery
+            ).limit(limit).skip(offset).toArray(function(err, establishments) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
                 }
                 else {
-                    var pagination = paginate(offset, limit, establishments.filter(search(from, to)), response);
-                    //                    if (pagination.length != 0) {
-                    console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
-                    response.send(pagination);
-                    //                    }
-                    //                    else
-                    //                        response.sendStatus(404);
+                    var establishmentsSend = establishments;
+                    console.log("INFO: Sending establishments: " + JSON.stringify(establishmentsSend, 2, null));
+                    response.send(establishmentsSend);
                 }
             });
-
         }
     });
 
 
     // GET a single resource with two params
     app.get(BASE_API_PATH + "/establishments/:country/:year", function(request, response) {
-        var key = apikey;
+        var key = request.query.apikey;
         if (checkApikey(key, response)) {
-            var offset = request.query.offset;
-            var limit = request.query.limit;
+            var offset = Number(request.query.offset);
+            var limit = Number(request.query.limit);
             var from = request.query.from;
             var to = request.query.to;
             var country = request.params.country;
             var year = Number(request.params.year);
+            if (from == undefined) {
+                from = 0;
+            }
+            if (to == undefined) {
+                to = Number.POSITIVE_INFINITY;
+            }
+            if (offset == undefined) {
+                offset = 0;
+            }
             if (!country || !year) {
                 console.log("WARNING: New GET request to /establishments/ without country or year, sending 400...");
                 response.sendStatus(400); // bad request
@@ -193,20 +193,16 @@ module.exports.register_establishments_apiv3 = function(app) {
                 db.find({
                     "country": country,
                     "year": year
-                }).toArray(function(err, filteredEstablishments) {
+                }).limit(limit).skip(offset).toArray(function(err, filteredEstablishments) {
                     if (err) {
                         console.error('WARNING: Error getting data from DB');
                         response.sendStatus(500); // internal server error
                     }
                     else {
                         if (filteredEstablishments.length > 0) {
-                            var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-                            //                            if (pagination.length != 0) {
-                            console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
-                            response.send(pagination);
-                            //                            }
-                            //                            else
-                            //                                response.sendStatus(404);
+                            var establishmentsSend = filteredEstablishments;
+                            console.log("INFO: Sending establishments: " + JSON.stringify(establishmentsSend, 2, null));
+                            response.send(establishmentsSend);
                         }
                         else {
                             console.log("WARNING: There are not establishments");
@@ -220,80 +216,71 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //GET a single resource with one param
     app.get(BASE_API_PATH + "/establishments/:parameter", function(request, response) {
-        var key = apikey;
-        if (checkApikey(key, response)) {
-            var offset = request.query.offset;
-            var limit = request.query.limit;
-            var from = request.query.from;
-            var to = request.query.to;
-            var parameter = request.params.parameter;
-            var country;
-            var year;
-            if (isNaN(parameter)) {
-                country = parameter;
-            }
-            else {
-                year = parseInt(parameter);
-            }
+        var key = request.query.apikey;
+        var offset = request.query.offset;
+        var limit = request.query.limit;
+        var from = request.query.from;
+        var to = request.query.to;
+        var parameter = request.params.parameter;
+        var country;
+        var year;
+        var mongoquery = {};
+        if (from == undefined) {
+            from = 0;
+        }
+        if (to == undefined) {
+            to = Number.POSITIVE_INFINITY;
+        }
+        if (offset == undefined) {
+            offset = 0;
+        }
+        if (parameter == undefined) {
+            console.log("WARNING: New GET request to /establishments/ without country or year, sending 400...");
+            response.sendStatus(400); // bad request
+        }
+        if (isNaN(parameter)) {
+            mongoquery = {
+                "country": parameter
+            };
+            country = parameter;
+        }
+        else {
+            mongoquery = {
+                "year": Number(parameter)
+            };
+            year = Number(parameter);
+        }
 
-            if (!country && !year) {
-                console.log("WARNING: New GET request to /establishments/ without country or year, sending 400...");
-                response.sendStatus(400); // bad request
+        mongoquery.$and = [{
+            "year": {
+                "$gte": Number(from)
             }
-            else {
-                if (!year) {
-                    console.log("INFO: New GET request to /establishments/" + country);
-                    db.find({
-                        "country": country
-                    }).toArray(function(err, filteredEstablishments) {
-                        if (err) {
-                            console.error('WARNING: Error getting data from DB');
-                            response.sendStatus(500); // internal server error
-                        }
-                        else {
-                            if (filteredEstablishments.length > 0) {
-                                var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-                                //                                if (pagination.length != 0) {
-                                console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
-                                response.send(pagination);
-                                //                                }
-                                //                                else
-                                //                                    response.sendStatus(404);
-                            }
-                            else {
-                                console.log("WARNING: There are not establishments");
-                                response.sendStatus(404); // not found
-                            }
-                        }
-                    });
+        }, {
+            "year": {
+                "$lte": Number(to)
+            }
+        }];
+        if (checkApikey(key, response)) {
+            console.log("INFO: New GET request to /establishments/" + country + year);
+            db.find(
+                mongoquery
+            ).limit(limit).skip(offset).toArray(function(err, filteredEstablishments) {
+                if (err) {
+                    console.error('WARNING: Error getting data from DB');
+                    response.sendStatus(500); // internal server error
                 }
                 else {
-                    console.log("INFO: New GET request to /establishments/" + year);
-                    db.find({
-                        "year": year
-                    }).toArray(function(err, filteredEstablishments) {
-                        if (err) {
-                            console.error('WARNING: Error getting data from DB');
-                            response.sendStatus(500); // internal server error
-                        }
-                        else {
-                            if (filteredEstablishments.length > 0) {
-                                var pagination = paginate(offset, limit, filteredEstablishments.filter(search(from, to)), response);
-                                //                                if (pagination.length != 0) {
-                                console.log("INFO: Sending establishments: " + JSON.stringify(pagination, 2, null));
-                                response.send(pagination);
-                                //                                }
-                                //                                else
-                                //                                    response.sendStatus(404);
-                            }
-                            else {
-                                console.log("WARNING: There are not establishments");
-                                response.sendStatus(404); // not found
-                            }
-                        }
-                    });
+                    if (filteredEstablishments.length > 0) {
+                        var establishmentsSend = filteredEstablishments;
+                        console.log("INFO: Sending establishments: " + JSON.stringify(establishmentsSend, 2, null));
+                        response.send(establishmentsSend);
+                    }
+                    else {
+                        console.log("WARNING: There are not establishments");
+                        response.sendStatus(404); // not found
+                    }
                 }
-            }
+            });
         }
     });
 
@@ -397,7 +384,7 @@ module.exports.register_establishments_apiv3 = function(app) {
                                 db.update({
                                     "country": country,
                                     "year": year
-                                }, updatedEstablishment)
+                                }, updatedEstablishment);
                                 console.log("INFO: Modifying establishment with country " + country + " with data " + JSON.stringify(updatedEstablishment, 2, null));
                                 response.send(updatedEstablishment); // return the updated establishment
                             }
