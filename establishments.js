@@ -71,7 +71,7 @@ module.exports.register_establishments_api = function(app) {
             else if (from == undefined && to != undefined)
                 return data.year <= to;
             else return data;
-        }
+        };
     }
 
     //loadInitialData
