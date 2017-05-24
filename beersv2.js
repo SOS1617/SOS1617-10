@@ -302,18 +302,26 @@ module.exports.register_beers_apiv2 = function(app) {
     app.post(BASE_API_PATH + "/beers-stats", function(request, response) {
         var newBeer = request.body;
         var keyprovided = request.query.apikey;
+        
+        console.log("A");
+        
         if (CheckKey(keyprovided, response)) {
             if (!newBeer) {
                 console.log("WARNING: New POST request to /beers-stats/ without name, sending 400...");
                 response.sendStatus(400); // bad request
             }
             else {
+                
+                console.log("B")
+                
                 console.log("INFO: New POST request to /beers-stats with body: " + JSON.stringify(newBeer, 2, null));
                 if (!newBeer.country || !newBeer.birthyear || !newBeer.province || !newBeer.name) {
                     console.log("WARNING: The beer " + JSON.stringify(newBeer, 2, null) + " is not well-formed, sending 422...");
                     response.sendStatus(422); // unprocessable entity
                 }
                 else {
+                    console.log("C")
+                    
                     dbBeer.find({
                         "country": newBeer.country,
                         "birthyear": newBeer.birthyear
@@ -322,12 +330,15 @@ module.exports.register_beers_apiv2 = function(app) {
                             console.error('WARNING: Error getting data from DB');
                             response.sendStatus(500); // internal server error
                         }
+                            
                         else {
+                            console.log("D");
                             if (BeersBeforeInsertion.length > 0) {
                                 console.log("WARNING: The Beer " + JSON.stringify(newBeer, 2, null) + " already extis, sending 409...");
                                 response.sendStatus(409); // conflict
                             }
                             else {
+                                console.log("E")
                                 console.log("INFO: Adding Beer " + JSON.stringify(newBeer, 2, null));
                                 dbBeer.insert(newBeer);
                                 response.sendStatus(201); // created
@@ -337,6 +348,8 @@ module.exports.register_beers_apiv2 = function(app) {
                 }
             }
         }
+        
+        console.log("F");
     });
 
 
