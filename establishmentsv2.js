@@ -135,30 +135,30 @@ module.exports.register_establishments_apiv2 = function(app) {
     // GET a collection
     app.get(BASE_API_PATH + "/establishments", function(request, response) {
         var key = request.query.apikey;
+        var offset = Number(request.query.offset);
+        var limit = Number(request.query.limit);
+        var from = request.query.from;
+        var to = request.query.to;
+        var mongoquery = {};
+        if (from == undefined) {
+            from = 0;
+        }
+        if (to == undefined) {
+            to = Number.POSITIVE_INFINITY;
+        }
+        if (offset == undefined) {
+            offset = 0;
+        }
+        mongoquery.$and = [{
+            "year": {
+                "$gte": Number(from)
+            }
+        }, {
+            "year": {
+                "$lte": Number(to)
+            }
+        }];
         if (checkApikey(key, response)) {
-            var offset = Number(request.query.offset);
-            var limit = Number(request.query.limit);
-            var from = request.query.from;
-            var to = request.query.to;
-            var mongoquery = {};
-            if (from == undefined) {
-                from = 0;
-            }
-            if (to == undefined) {
-                to = Number.POSITIVE_INFINITY;
-            }
-            if (offset == undefined){
-                offset = 0;
-            }
-            mongoquery.$and = [{
-                "year": {
-                    "$gte": Number(from)
-                }
-            }, {
-                "year": {
-                    "$lte": Number(to)
-                }
-            }];
             console.log("INFO: New GET request to /establishments");
             db.find({
                 mongoquery
@@ -193,7 +193,7 @@ module.exports.register_establishments_apiv2 = function(app) {
             if (to == undefined) {
                 to = Number.POSITIVE_INFINITY;
             }
-            if (offset == undefined){
+            if (offset == undefined) {
                 offset = 0;
             }
             if (!country || !year) {
@@ -229,50 +229,50 @@ module.exports.register_establishments_apiv2 = function(app) {
     //GET a single resource with one param
     app.get(BASE_API_PATH + "/establishments/:parameter", function(request, response) {
         var key = request.query.apikey;
-        if (checkApikey(key, response)) {
-            var offset = request.query.offset;
-            var limit = request.query.limit;
-            var from = request.query.from;
-            var to = request.query.to;
-            var parameter = request.params.parameter;
-            var country;
-            var year;
-            var mongoquery = {};
-            if (from == undefined) {
-                from = 0;
-            }
-            if (to == undefined) {
-                to = Number.POSITIVE_INFINITY;
-            }
-            if (offset == undefined){
-                offset = 0;
-            }
-            if (parameter == undefined) {
-                console.log("WARNING: New GET request to /establishments/ without country or year, sending 400...");
-                response.sendStatus(400); // bad request
-            }
-            if (isNaN(parameter)) {
-                mongoquery = {
-                    "country": parameter
-                };
-                country = parameter;
-            }
-            else {
-                mongoquery = {
-                    "year": Number(parameter)
-                };
-                year = Number(parameter);
-            }
+        var offset = request.query.offset;
+        var limit = request.query.limit;
+        var from = request.query.from;
+        var to = request.query.to;
+        var parameter = request.params.parameter;
+        var country;
+        var year;
+        var mongoquery = {};
+        if (from == undefined) {
+            from = 0;
+        }
+        if (to == undefined) {
+            to = Number.POSITIVE_INFINITY;
+        }
+        if (offset == undefined) {
+            offset = 0;
+        }
+        if (parameter == undefined) {
+            console.log("WARNING: New GET request to /establishments/ without country or year, sending 400...");
+            response.sendStatus(400); // bad request
+        }
+        if (isNaN(parameter)) {
+            mongoquery = {
+                "country": parameter
+            };
+            country = parameter;
+        }
+        else {
+            mongoquery = {
+                "year": Number(parameter)
+            };
+            year = Number(parameter);
+        }
 
-            mongoquery.$and = [{
-                "year": {
-                    "$gte": Number(from)
-                }
-            }, {
-                "year": {
-                    "$lte": Number(to)
-                }
-            }];
+        mongoquery.$and = [{
+            "year": {
+                "$gte": Number(from)
+            }
+        }, {
+            "year": {
+                "$lte": Number(to)
+            }
+        }];
+        if (checkApikey(key, response)) {
             console.log("INFO: New GET request to /establishments/" + country + year);
             db.find({
                 mongoquery
