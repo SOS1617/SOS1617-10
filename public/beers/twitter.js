@@ -10,7 +10,7 @@ angular
             var beers = response.data;
 
             beers.forEach((x) => {
-                $http.get("/api/v2/twitsearch" + x.name.toLocaleLowerCase()).then(function(response) {
+                $http.get("/api/v2/twitsearch/" + x.name.toLocaleLowerCase()).then(function(response) {
                     var tweets = [];
                     var tweetsize = response.data.statuses.length;
                     var pplus = 0;
