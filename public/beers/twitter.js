@@ -26,7 +26,7 @@ angular
                     });
                     console.log(tweets);
                     tweets.forEach((x) => {
-                        var result;
+                        var result='';
                         $http.post("/api/v2/sentimentAnalisis", x).then(function(response) {
                             response.on('data', function(chunk) {
                                 result += chunk;
