@@ -1,31 +1,42 @@
 angular
     .module("SOS161710")
     .controller("TwitterInt", ["$http", function($http) {
-        google.charts.load('current', {
-            'packages': ['bar']
-        });
-        google.charts.setOnLoadCallback(drawStuff);
+         google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
-        function drawStuff() {
-            var data = google.visualization.arrayToDataTable([
-        ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
-         'Western', 'Literature', { role: 'annotation' } ],
-        ['2010', 10, 24, 20, 32, 18, 5, ''],
-        ['2020', 16, 22, 23, 30, 16, 9, ''],
-        ['2030', 28, 19, 29, 30, 12, 13, '']
-      ]);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses', 'Profit'],
+          ['2014', 1000, 400, 200],
+          ['2015', 1170, 460, 250],
+          ['2016', 660, 1120, 300],
+          ['2017', 1030, 540, 350]
+        ]);
 
-      var options = {
-        width: 600,
-        height: 400,
-        legend: { position: 'top', maxLines: 3 },
-        bar: { groupWidth: '75%' },
-        isStacked: true,
-      };
-
-            var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-            // Convert the Classic options to Material options.
-            chart.draw(data, google.charts.Bar.convertOptions(options));
+        var options = {
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+          bars: 'vertical',
+          vAxis: {format: 'decimal'},
+          height: 400,
+          colors: ['#1b9e77', '#d95f02', '#7570b3']
         };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+
+        var btns = document.getElementById('btn-group');
+
+        btns.onclick = function (e) {
+
+          if (e.target.tagName === 'BUTTON') {
+            options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+          }
+        }
+      }
 
     }]);
