@@ -29,9 +29,8 @@ angular
                                 var result;
                                 $http.post("/api/v2/sentimentAnalisis", x).then(function(response) {
 
-                                    var chunks = '';
                                     response.on('data', function(d) {
-                                        chunks += d;
+                                        result += d;
                                     });
                                     res.on('end', function() {
                                         if (urls.length) {
@@ -43,7 +42,7 @@ angular
                                     });
 
                                     });
-                                    switch (response.tag) {
+                                    switch (result.tag) {
                                         case 'P+':
                                             pplus++;
                                             break;
@@ -59,7 +58,7 @@ angular
                                         default:
                                             nplus++;
                                     }
-                                    if (response.irony == "IRONIC") {
+                                    if (result.irony == "IRONIC") {
                                         ironic++;
                                     }
 
