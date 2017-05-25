@@ -15,10 +15,24 @@ var request = require("request");
 
 var unirest = require("unirest");
 
+var twitterAPI = require('node-twitter-api');
+
 
 module.exports.register_beers_apiv2 = function(app) {
 
-
+    var twitter = new twitterAPI({
+        consumerKey: 'HEcL1q9PNbY7ZV6mH6eowpih9',
+        consumerSecret: 'eLwZVvCTdjCgksQzP2YWgCcLawjwmmrFmDTm6NsXhJqi7cEhLI',
+        callback: 'http://sos1617-10.herokuapp.com/'
+    });
+    twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results) {
+        if (error) {
+            console.log("Error getting OAuth request token : " + error);
+        }
+        else {
+            //store token and tokenSecret somewhere, you'll need them later; redirect user 
+        }
+    });
     MongoClientBeer.connect(mdbURLBeer, {
         native_parser: true
     }, function(err, database) {
@@ -302,18 +316,18 @@ module.exports.register_beers_apiv2 = function(app) {
     app.post(BASE_API_PATH + "/beers-stats", function(request, response) {
         var newBeer = request.body;
         var keyprovided = request.query.apikey;
-        
+
         console.log("A");
-        
+
         if (CheckKey(keyprovided, response)) {
             if (!newBeer) {
                 console.log("WARNING: New POST request to /beers-stats/ without name, sending 400...");
                 response.sendStatus(400); // bad request
             }
             else {
-                
+
                 console.log("B")
-                
+
                 console.log("INFO: New POST request to /beers-stats with body: " + JSON.stringify(newBeer, 2, null));
                 if (!newBeer.country || !newBeer.birthyear || !newBeer.province || !newBeer.name) {
                     console.log("WARNING: The beer " + JSON.stringify(newBeer, 2, null) + " is not well-formed, sending 422...");
@@ -321,7 +335,7 @@ module.exports.register_beers_apiv2 = function(app) {
                 }
                 else {
                     console.log("C")
-                    
+
                     dbBeer.find({
                         "country": newBeer.country,
                         "birthyear": newBeer.birthyear
@@ -330,7 +344,7 @@ module.exports.register_beers_apiv2 = function(app) {
                             console.error('WARNING: Error getting data from DB');
                             response.sendStatus(500); // internal server error
                         }
-                            
+
                         else {
                             console.log("D");
                             if (BeersBeforeInsertion.length > 0) {
@@ -348,7 +362,7 @@ module.exports.register_beers_apiv2 = function(app) {
                 }
             }
         }
-        
+
         console.log("F");
     });
 
