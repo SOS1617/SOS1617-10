@@ -111,8 +111,8 @@ module.exports.register_beers_apiv2 = function(app) {
             q: req.params.search+ ' since:2011-07-11',
             count: 20
         }, function(err, data, response) {
-            console.log(data)
-        })
+            res.send(data);
+        });
         res.sendStatus(200);
 
     });
