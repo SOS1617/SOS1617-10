@@ -20,7 +20,19 @@ var unirest = require("unirest");
 
 module.exports.register_beers_apiv2 = function(app) {
 
-    
+
+    var Twit = require('twit')
+
+    var T = new Twit({
+        consumer_key: 'HEcL1q9PNbY7ZV6mH6eowpih9',
+        consumer_secret: 'eLwZVvCTdjCgksQzP2YWgCcLawjwmmrFmDTm6NsXhJqi7cEhLI',
+        app_only_auth: true,
+        timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
+    })
+
+
+
+
     MongoClientBeer.connect(mdbURLBeer, {
         native_parser: true
     }, function(err, database) {
@@ -50,6 +62,60 @@ module.exports.register_beers_apiv2 = function(app) {
         return valid;
 
     }
+
+    app.post(BASE_API_PATH + "/sentimentAnalisis", (request, response) => {
+        var data = request.body;
+        console.log(data.message);
+        var qs = require("querystring");
+        var http = require("http");
+
+        var options = {
+            "method": "POST",
+            "hostname": "api.meaningcloud.com",
+            "port": null,
+            "path": "/sentiment-2.1",
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+            }
+        };
+
+        var req = http.request(options, function(res) {
+            var chunks = [];
+
+            res.on("data", function(chunk) {
+                chunks.push(chunk);
+            });
+
+            res.on("end", function() {
+                var body = Buffer.concat(chunks);
+                var dataJson = JSON.parse(body.toString());
+                var datatosend = {
+                    "tag": dataJson.score_tag,
+                    "irony": dataJson.irony
+                };
+                response.send(datatosend);
+            });
+        });
+
+        req.write(qs.stringify({
+            key: '2735171b5b06d9470c162bb2d7720e1a',
+            lang: 'es',
+            txt: data.message
+        }));
+        req.end();
+    });
+
+
+    app.get(BASE_API_PATH + "/twitsearch/:search", (req, res) => {
+        T.get('search/tweets', {
+            q: request.params.search + 'since:2011-07-11',
+            count: 100
+        }, function(err, data, response) {
+            console.log(data)
+        })
+
+    });
+
     app.get(BASE_API_PATH + "/victimsproxy", (req, res) => {
         var url = 'http://sos1617-08.herokuapp.com/api/v1/victims?apikey=hf5HF86KvZ';
         req.pipe(request(url)).pipe(res);
