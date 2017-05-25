@@ -37,6 +37,7 @@ angular
 
 
                         });
+                        console.log(result);
                         switch (result.tag) {
                             case 'P+':
                                 pplus++;
