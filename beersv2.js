@@ -100,7 +100,7 @@ module.exports.register_beers_apiv2 = function(app) {
         req.write(qs.stringify({
             key: '2735171b5b06d9470c162bb2d7720e1a',
             lang: 'es',
-            txt: data.data
+            txt: data.message
         }));
         req.end();
     });
