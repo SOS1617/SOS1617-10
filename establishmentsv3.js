@@ -122,7 +122,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     // GET a collection
     app.get(BASE_API_PATH + "/establishments", function(request, response) {
-        var key = request.query.apikey;
+        var key = apikey;
         var offset = Number(request.query.offset);
         var limit = Number(request.query.limit);
         var from = request.query.from;
@@ -167,7 +167,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     // GET a single resource with two params
     app.get(BASE_API_PATH + "/establishments/:country/:year", function(request, response) {
-        var key = request.query.apikey;
+        var key = apikey;
         if (checkApikey(key, response)) {
             var offset = Number(request.query.offset);
             var limit = Number(request.query.limit);
@@ -216,7 +216,7 @@ module.exports.register_establishments_apiv3 = function(app) {
 
     //GET a single resource with one param
     app.get(BASE_API_PATH + "/establishments/:parameter", function(request, response) {
-        var key = request.query.apikey;
+        var key = apikey;
         var offset = request.query.offset;
         var limit = request.query.limit;
         var from = request.query.from;
