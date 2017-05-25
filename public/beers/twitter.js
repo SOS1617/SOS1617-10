@@ -9,7 +9,7 @@ angular
 
 
 
-
+        function drawStuff() {
         var data = google.visualization.arrayToDataTable([
             ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
                 'Western', 'Literature', {
@@ -33,7 +33,7 @@ angular
             },
             isStacked: true,
         };
-        
+        }
         var chart = new google.charts.Bar(document.getElementById('top_x_div'));
         chart.draw(data, google.charts.Bar.convertOptions(options));
 
