@@ -113,7 +113,6 @@ module.exports.register_beers_apiv2 = function(app) {
         }, function(err, data, response) {
             res.send(data);
         });
-        res.sendStatus(200);
 
     });
 
