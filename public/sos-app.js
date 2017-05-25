@@ -83,6 +83,9 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
     }).when("/beers/graphs/games/",{
         templateUrl : "/beers/game.html",
         controller : "Games"
+    }).when("/beers/graphs/twitter/",{
+        templateUrl: "/beers/twitter.html",
+        controller: "TwitterInt"
     });
 });
 console.log("App initialized");
