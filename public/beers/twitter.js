@@ -20,7 +20,7 @@ angular
                     var nplus = 0;
                     var ironic = 0;
                     response.data.statuses.forEach((x) => {
-                        tweets.push({"message":x.text});
+                        tweets.push(JSON.parse("message:"+x.text));
                     });
                     console.log(tweets);
                     tweets.forEach((x) => {
