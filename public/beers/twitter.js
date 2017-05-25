@@ -26,37 +26,30 @@ angular
                     });
                     console.log(tweets);
                     tweets.forEach((x) => {
-                        var result='';
                         $http.post("/api/v2/sentimentAnalisis", x).then(function(response) {
-                            response.on('data', function(chunk) {
-                                result += chunk;
-                            });
-                            response.on('end', function() {
-                                console.log('BODY: ' + result);
-                            });
+                            switch (response.tag) {
+                                case 'P+':
+                                    pplus++;
+                                    break;
+                                case 'P':
+                                    p++;
+                                    break;
+                                case 'NONE':
+                                    none++;
+                                    break;
+                                case 'N':
+                                    n++;
+                                    break;
+                                default:
+                                    nplus++;
+                            }
+                            if (response.irony == "IRONIC") {
+                                ironic++;
+                            }
 
 
                         });
-                        console.log(result);
-                        switch (result.tag) {
-                            case 'P+':
-                                pplus++;
-                                break;
-                            case 'P':
-                                p++;
-                                break;
-                            case 'NONE':
-                                none++;
-                                break;
-                            case 'N':
-                                n++;
-                                break;
-                            default:
-                                nplus++;
-                        }
-                        if (result.irony == "IRONIC") {
-                            ironic++;
-                        }
+
 
 
                     });
@@ -100,7 +93,7 @@ angular
                         options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
                         chart.draw(data, google.charts.Bar.convertOptions(options));
                     }
-                }
+                };
             }
 
 
