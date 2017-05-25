@@ -109,7 +109,7 @@ module.exports.register_beers_apiv2 = function(app) {
     app.get(BASE_API_PATH + "/twitsearch/:search", (req, res) => {
         T.get('search/tweets', {
             q: req.params.search+ ' since:2011-07-11',
-            count: 100
+            count: 20
         }, function(err, data, response) {
             console.log(data)
         })
