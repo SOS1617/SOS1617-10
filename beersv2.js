@@ -15,24 +15,12 @@ var request = require("request");
 
 var unirest = require("unirest");
 
-var twitterAPI = require('node-twitter-api');
+
 
 
 module.exports.register_beers_apiv2 = function(app) {
 
-    var twitter = new twitterAPI({
-        consumerKey: 'HEcL1q9PNbY7ZV6mH6eowpih9',
-        consumerSecret: 'eLwZVvCTdjCgksQzP2YWgCcLawjwmmrFmDTm6NsXhJqi7cEhLI',
-        callback: 'http://sos1617-10.herokuapp.com/'
-    });
-    twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results) {
-        if (error) {
-            console.log("Error getting OAuth request token : " + error);
-        }
-        else {
-            //store token and tokenSecret somewhere, you'll need them later; redirect user 
-        }
-    });
+    
     MongoClientBeer.connect(mdbURLBeer, {
         native_parser: true
     }, function(err, database) {
