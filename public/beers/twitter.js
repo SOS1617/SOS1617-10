@@ -46,7 +46,7 @@ angular
                             if (response.irony == "IRONIC") {
                                 ironic++;
                             }
-
+                            console.log(response.data);
 
                         });
 
