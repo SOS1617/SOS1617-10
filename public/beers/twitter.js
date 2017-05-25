@@ -25,7 +25,6 @@ angular
                     console.log(tweets);
                     tweets.forEach((x) => {
                         $http.post("/api/v2/sentimentAnalisis", x).then(function(response) {
-                            console.log(response.data);
                             switch (response.tag) {
                                 case 'P+':
                                     pplus++;
@@ -49,10 +48,11 @@ angular
                             console.log(response.tag);
                             
                         });
+                        datatograph.push([x,tweetsize,pplus,p,none,n,nplus,ironic]);
                         
                     });
                     
-                    datatograph.push([x,tweetsize,pplus,p,none,n,nplus,ironic]);
+                    
 
 
                 });
