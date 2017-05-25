@@ -20,8 +20,9 @@ angular
                     var nplus = 0;
                     var ironic = 0;
                     response.data.statuses.forEach((x) => {
-                        tweets.push({message:x.text});
+                        tweets.push({"message":x.text});
                     });
+                    console.log(tweets);
                     tweets.forEach((x) => {
                         $http.post("/api/v2/sentimentAnalisis", x).then(function(response) {
                             switch (response.tag) {
