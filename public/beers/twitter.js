@@ -25,6 +25,7 @@ angular
                     console.log(tweets);
                     tweets.forEach((x) => {
                         $http.post("/api/v2/sentimentAnalisis", x).then(function(response) {
+                            console.log(response.data);
                             switch (response.tag) {
                                 case 'P+':
                                     pplus++;
