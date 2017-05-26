@@ -27,15 +27,17 @@ angular
             $http.get("/api/v2/establishments/?apikey=nurtrioje").then(function(response) {
                 var establishments = response.data;
                 countries.forEach((x) => {
+                    var exist = false;
                     establishments.forEach((y) => {
                         if (y.country.toLowerCase() == x.toLowerCase()) {
-                            establishmentsbycountry.push(y.number);
-                            
-                        }
-                        else {
-                            establishmentsbycountry.push(0.);
+                            establishmentsbycountry.push(y.number/10000);
+                            exist = true;
                         }
                     });
+                    if (exist == false) {
+                        establishmentsbycountry.push(0);
+                    }
+                    console.log(establishmentsbycountry);
                 });
 
                 $http.get("/api/v2/motorcycling-stats/?apikey=davbotcab").then(function(response) {
@@ -90,9 +92,9 @@ angular
                 var data = google.visualization.arrayToDataTable(dataToGraph);
 
                 var options = {
-                    title: 'The decline of \'The 39 Steps\'',
+                    title: 'Integration of Beers, Establishments and Motorcycling in European countries',
                     vAxis: {
-                        title: 'Accumulated Rating'
+                        title: 'Number of beer brands, establishments by 10000 and motorcyclings champions per country'
                     },
                     isStacked: true
                 };
