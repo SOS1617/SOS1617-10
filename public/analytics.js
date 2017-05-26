@@ -11,13 +11,13 @@ angular
             var beers=response.data;
             
             countries.forEach( (x)=>{
-                var cont=0;
+                var cont=0.0;
                 beers.forEach( (y)=>{
                     if (y.country==x){
                         cont++;
                     }
                 });
-                beersbycountry.push(String(cont));
+                beersbycountry.push(cont);
                 
             });
             
@@ -26,7 +26,8 @@ angular
         
         
         for(var index=0;index<countries.length;index++){
-            dataToGraph.push([countries[index],beersbycountry[index],0,0]);
+            console.log()
+            dataToGraph.push([countries[index],beersbycountry[index],0.,0.]);
         }
         
         
