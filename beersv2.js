@@ -1,11 +1,5 @@
 var BASE_API_PATH = "/api/v2";
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 9820e57978317bf2aa5d1d38b41f3ea725309a60
-
 var MongoClientBeer = require('mongodb').MongoClient;
 
 var mdbURLBeer = "mongodb://jesus:sosdatabase@ds137370.mlab.com:37370/beers-stats";
