@@ -2,13 +2,13 @@ var MongoClient = require('mongodb').MongoClient;
 
 var mdbURL = "mongodb://david:sosdavid@ds133290.mlab.com:33290/sos1617-10";
 
-var BASE_API_PATH = "/api/v2";
+var BASE_API_PATH = "/api/v3";
 
 var dbMotorcycling;
 
 var apikey = "davbotcab";
 
-module.exports.register_motorcyclings_apiv2 = function(app) {
+module.exports.register_motorcyclings_apiv3 = function(app) {
 
     MongoClient.connect(mdbURL, {
         native_parser: true
@@ -143,7 +143,7 @@ module.exports.register_motorcyclings_apiv2 = function(app) {
     
 //loadInitialData
 app.get(BASE_API_PATH + "/motorcycling-stats/loadInitialData", function(request, response) {
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         dbMotorcycling.find({}).toArray(function(err, motorcycling) {
             console.log('INFO: Initialiting DB...');
@@ -276,7 +276,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:parameter", function(request, resp
     var year;
     var limit = request.query.limit;
     var offset = request.query.offset;
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         if(isNaN(parameter)){
             country=parameter;
@@ -344,7 +344,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:parameter", function(request, resp
 
 //GET a single resource with 2 params
 app.get(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         var country = request.params.country;
         var year = parseInt(request.params.year);
@@ -385,7 +385,7 @@ app.get(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, 
 //POST over a collection
 app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
     var newMotorcycling = request.body;
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         if (!newMotorcycling) {
             console.log("WARNING: New POST request to /motorcycling/ without motorcycling, sending 400...");
@@ -428,7 +428,7 @@ app.post(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 
 //POST over a single resource
 app.post(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         var country = request.params.country;
         var year = parseInt(request.params.year);
@@ -440,7 +440,7 @@ app.post(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request,
 
 //PUT over a collection
 app.put(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         console.log("WARNING: New PUT request to /motorcycling-stats, sending 405...");
         response.sendStatus(405); // method not allowed
@@ -453,7 +453,7 @@ app.put(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, 
     var updatedMotorcycling = request.body;
     var country = request.params.country;
     var year = parseInt(request.params.year);
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         if (!updatedMotorcycling) {
             console.log("WARNING: New PUT request to /motorcycling-stats/ without motorcycling, sending 400...");
@@ -500,7 +500,7 @@ app.put(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, 
 
 //DELETE over a collection
 app.delete(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         console.log("INFO: New DELETE request to /motorcycling-stats");
         dbMotorcycling.remove({}, {
@@ -530,7 +530,7 @@ app.delete(BASE_API_PATH + "/motorcycling-stats", function(request, response) {
 app.delete(BASE_API_PATH + "/motorcycling-stats/:country/:year", function(request, response) {
     var country = request.params.country;
     var year = Number(request.params.year);
-    var keyprovided = request.query.apikey;
+    var keyprovided = apikey;
     if(CheckKey(keyprovided, response)) {
         if (!country || !year) {
             console.log("WARNING: New DELETE request to /motorcycling-stats/:country/:year without country or year, sending 400...");
