@@ -4,6 +4,7 @@ angular
         console.log("Group Analytics initialized");
         var beersbycountry = [];
         var dataToGraph = [];
+        var establishmentsbycountry=[];
         dataToGraph.push(["Country", "beers", "establishments", "motorcyclings"]);
         var countries = ["Spain", "France", "Germany", "Italy"];
 
@@ -20,9 +21,22 @@ angular
                 beersbycountry.push(cont);
 
             });
-            for (var index = 0; index < countries.length; index++) {
-                console.log()
-                dataToGraph.push([countries[index], beersbycountry[index], 0., 0.]);
+            
+        });
+        $http.get("/api/v2/establishments/?apikey=nurtrioje").then(function(response){
+           var establishments=response.data;
+           countries.forEach( (x)=>{
+               establishments.forEach( (y)=>{
+                   if(y.country==x){
+                       establishmentsbycountry.push(y.number);
+                   }else{
+                       establishmentsbycountry.push(0.);
+                   }
+               });
+           });
+           
+           for (var index = 0; index < countries.length; index++) {
+                dataToGraph.push([countries[index], beersbycountry[index], establishmentsbycountry[index], 0.]);
             }
 
 
