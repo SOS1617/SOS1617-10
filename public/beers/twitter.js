@@ -37,7 +37,7 @@ angular
                     var ironic = 0;
                     
                     tweets.forEach((y) => {
-                        sleep(600);
+                        sleep(700);
                         
                         console.log("ejecuta");
                         $http.post("/api/v2/sentimentAnalisis", y).then(function(response) {

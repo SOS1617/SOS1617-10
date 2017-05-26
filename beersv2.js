@@ -66,7 +66,7 @@ module.exports.register_beers_apiv2 = function(app) {
     }
 
     app.post(BASE_API_PATH + "/sentimentAnalisis", (request, response) => {
-        sleep.msleep(1500);
+        sleep.msleep(1700);
         
         var data = request.body;
         var qs = require("querystring");

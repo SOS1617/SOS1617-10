@@ -29,6 +29,7 @@
     "node-twitter-api": "^1.8.0",
     "path": "^0.12.7",
     "request": "^2.81.0",
+    "sleep": "^5.1.1",
     "twit": "^2.2.5",
     "unirest": "^0.5.1"
   }
