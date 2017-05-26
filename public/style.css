@@ -239,6 +239,12 @@ th {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+#twitbar{
+    width: 40%;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
 
 
 /*----------------Motorcycling----------------/

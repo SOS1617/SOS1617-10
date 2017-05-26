@@ -5,9 +5,11 @@ angular
         var datatograph = [];
         datatograph.push(['Name', 'Number of Tweets', 'Positive+', 'Positive', 'None', 'Negative', 'Negative+', 'Ironic']);
         var tweetsToShow = [];
+        
         $http.get("/api/v2/beers-stats/Spain/?apikey=jesusguerre").then(function(response) {
             var beers = response.data;
             var beerCont = 0;
+           
             beers.forEach((x) => {
                 $http.get("/api/v2/twitsearch/" + x.name.toLocaleLowerCase()).then(function(response) {
                     var tweets = [];
@@ -26,6 +28,7 @@ angular
                         tweetsToShow.push(tweets[index]);
                     }
                     $scope.tweetsToShow = tweetsToShow;
+                    
                     console.log(tweets);
                     var tweetsize = response.data.statuses.length;
                     var cont = 0;
@@ -35,7 +38,7 @@ angular
                     var n = 0;
                     var nplus = 0;
                     var ironic = 0;
-
+                    
                     
                     tweets.forEach((y) => {
                        sleep(150);
@@ -72,7 +75,8 @@ angular
                                 ironic++;
                                 cont++;
                             }
-
+                            
+                            
 
 
 
