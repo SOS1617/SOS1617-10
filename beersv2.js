@@ -15,6 +15,8 @@ var request = require("request");
 
 var unirest = require("unirest");
 
+var sleep= require("sleep");
+
 
 
 
@@ -64,6 +66,8 @@ module.exports.register_beers_apiv2 = function(app) {
     }
 
     app.post(BASE_API_PATH + "/sentimentAnalisis", (request, response) => {
+        sleep.msleep(1500);
+        
         var data = request.body;
         var qs = require("querystring");
         var http = require("http");
