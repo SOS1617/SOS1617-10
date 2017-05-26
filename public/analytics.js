@@ -6,7 +6,6 @@ angular
         var dataToGraph=[];
         dataToGraph.push(["Country","beers","establishments","motorcyclings"]);
         var countries= ["Spain","France","Germany","Italy"];
-        var bee=[4,5,3,2]
 
         $http.get("/api/v2/beers-stats/?apikey=jesusguerre").then(function(response) {
             var beers=response.data;
@@ -18,7 +17,7 @@ angular
                         cont++;
                     }
                 });
-                beersbycountry.push(cont);
+                beersbycountry.push(String(cont));
                 
             });
             
