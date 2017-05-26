@@ -92,14 +92,14 @@ module.exports.register_beers_apiv2 = function(app) {
                     "tag": dataJson.score_tag,
                     "irony": dataJson.irony
                 };
-                response.send(datatosend);
+                response.send(dataJson);
             });
         });
 
         req.write(qs.stringify({
             key: '2735171b5b06d9470c162bb2d7720e1a',
             lang: 'es',
-            txt: data.message
+            txt: data.message,
         }));
         req.end();
     });

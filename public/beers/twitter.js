@@ -1,31 +1,31 @@
 angular
     .module("SOS161710")
-    .controller("TwitterInt", ["$http","$scope", function($http,$scope) {
+    .controller("TwitterInt", ["$http", "$scope", "$interval", function($http, $scope, $interval) {
 
         var datatograph = [];
         datatograph.push(['Name', 'Number of Tweets', 'Positive+', 'Positive', 'None', 'Negative', 'Negative+', 'Ironic']);
-        var tweetsToShow=[];
+        var tweetsToShow = [];
         $http.get("/api/v2/beers-stats/Spain/?apikey=jesusguerre").then(function(response) {
             var beers = response.data;
             var beerCont = 0;
             beers.forEach((x) => {
                 $http.get("/api/v2/twitsearch/" + x.name.toLocaleLowerCase()).then(function(response) {
                     var tweets = [];
-                    
+
                     response.data.statuses.forEach((z) => {
                         tweets.push({
                             "message": z.text,
                             "image": z.user.profile_image_url,
                             "user": z.user.name
-                            
+
                         });
                     });
-                    
-                    var tweetsSize=5;
-                    for (var index=0;index<tweetsSize;index++){
+
+                    var tweetsSize = 5;
+                    for (var index = 0; index < tweetsSize; index++) {
                         tweetsToShow.push(tweets[index]);
                     }
-                    $scope.tweetsToShow=tweetsToShow;
+                    $scope.tweetsToShow = tweetsToShow;
                     console.log(tweets);
                     var tweetsize = response.data.statuses.length;
                     var cont = 0;
@@ -35,15 +35,18 @@ angular
                     var n = 0;
                     var nplus = 0;
                     var ironic = 0;
+                    
                     tweets.forEach((y) => {
-                        //console.log(y.message);
 
+                        
+                        console.log("ejecuta");
                         $http.post("/api/v2/sentimentAnalisis", y).then(function(response) {
-                           
-                            console.log(response.data.tag);
+
+
+                            console.log(response.data);
                             //console.log(response.data);
                             console.log("--");
-                            switch (response.data.tag) {
+                            switch (response.data.score_tag) {
                                 case 'P+':
                                     pplus++;
                                     cont++;
@@ -68,11 +71,11 @@ angular
                                 ironic++;
                                 cont++;
                             }
-                            
-                                
-                           
-                            
-                            if (cont >= tweetsize ) {
+
+
+
+
+                            if (cont >= tweetsize) {
                                 console.log(tweetsize);
                                 console.log(datatograph);
                                 datatograph.push([x.name, tweetsize, pplus, p, none, n, nplus, ironic]);
@@ -82,9 +85,8 @@ angular
                                 show();
                             }
 
+
                         });
-
-
 
                     });
 
@@ -133,7 +135,7 @@ angular
 
             }
 
-            
+
 
 
 
@@ -141,7 +143,14 @@ angular
 
 
 
-
+        function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds) {
+                    break;
+                }
+            }
+        }
 
 
 
