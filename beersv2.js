@@ -1,7 +1,5 @@
 var BASE_API_PATH = "/api/v2";
 
-jajajaja 
-
 
 var MongoClientBeer = require('mongodb').MongoClient;
 
