@@ -4,6 +4,8 @@ angular
         console.log("Group Analytics initialized");
         var beersbycountry = [];
         var dataToGraph = [];
+        var establishmentsbycountry = [];
+        var motorcyclingstograph = [];
         dataToGraph.push(["Country", "beers", "establishments", "motorcyclings"]);
         var countries = ["Spain", "France", "Germany", "Italy"];
 
@@ -20,13 +22,55 @@ angular
                 beersbycountry.push(cont);
 
             });
-            for (var index = 0; index < countries.length; index++) {
-                console.log()
-                dataToGraph.push([countries[index], beersbycountry[index], 0., 0.]);
-            }
 
 
-            show();
+            $http.get("/api/v2/establishments/?apikey=nurtrioje").then(function(response) {
+                var establishments = response.data;
+                countries.forEach((x) => {
+                    establishments.forEach((y) => {
+                        if (y.country.toLowerCase() == x.toLowerCase()) {
+                            establishmentsbycountry.push(y.number);
+                            
+                        }
+                        else {
+                            establishmentsbycountry.push(0.);
+                        }
+                    });
+                });
+
+                $http.get("/api/v2/motorcycling-stats/?apikey=davbotcab").then(function(response) {
+                    var motorcyclings = response.data;
+
+                    countries.forEach((x) => {
+                        var cont = 0.0;
+                        motorcyclings.forEach((y) => {
+                            if (y.country == x) {
+                                cont++;
+                            }
+                        });
+                        motorcyclingstograph.push(cont);
+
+
+
+                    });
+                    for (var index = 0; index < countries.length; index++) {
+
+                        dataToGraph.push([countries[index], beersbycountry[index], establishmentsbycountry[index], motorcyclingstograph[index]]);
+                        console.log(dataToGraph);
+
+                    }
+
+
+                    show();
+
+                });
+
+
+
+
+            });
+
+
         });
 
 
