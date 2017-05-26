@@ -69,7 +69,8 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         controller: "IntegrationAPI2MotorcyclingsGraph"
         
     }).when("/analytics",{
-         templateUrl : "analytics.html"
+         templateUrl : "analytics.html",
+         controller: "GroupAnalytics"
          
     }).when("/governance",{
         templateUrl: "governance.html"
