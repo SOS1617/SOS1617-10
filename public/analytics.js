@@ -30,7 +30,7 @@ angular
                     establishments.forEach((y) => {
                         if (y.country.toLowerCase() == x.toLowerCase()) {
                             establishmentsbycountry.push(y.number);
-                            break;
+                            
                         }
                         else {
                             establishmentsbycountry.push(0.);
