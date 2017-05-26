@@ -65,7 +65,6 @@ module.exports.register_beers_apiv2 = function(app) {
 
     app.post(BASE_API_PATH + "/sentimentAnalisis", (request, response) => {
         var data = request.body;
-        console.log(data.message);
         var qs = require("querystring");
         var http = require("http");
 
@@ -107,8 +106,12 @@ module.exports.register_beers_apiv2 = function(app) {
 
 
     app.get(BASE_API_PATH + "/twitsearch/:search", (req, res) => {
+        var now=new Date();
+        now.setMinutes(now.getMinutes()-30);
+        console.log(now);
+        console.log(now.getFullYear()+'-'+(("0" + (now.getMonth() + 1)).slice(-2))+'-'+("0" + now.getDate()).slice(-2));
         T.get('search/tweets', {
-            q: req.params.search+ ' since:2011-07-11',
+            q: req.params.search+ ' since:'+now.getFullYear()+'-'+(("0" + (now.getMonth() + 1)).slice(-2))+'-'+("0" + now.getDate()).slice(-2),
             count: 20
         }, function(err, data, response) {
             res.send(data);

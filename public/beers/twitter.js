@@ -1,22 +1,31 @@
 angular
     .module("SOS161710")
-    .controller("TwitterInt", ["$http", function($http) {
+    .controller("TwitterInt", ["$http","$scope", function($http,$scope) {
 
         var datatograph = [];
         datatograph.push(['Name', 'Number of Tweets', 'Positive+', 'Positive', 'None', 'Negative', 'Negative+', 'Ironic']);
-
-
+        var tweetsToShow=[];
         $http.get("/api/v2/beers-stats/Spain/?apikey=jesusguerre").then(function(response) {
             var beers = response.data;
             var beerCont = 0;
             beers.forEach((x) => {
                 $http.get("/api/v2/twitsearch/" + x.name.toLocaleLowerCase()).then(function(response) {
                     var tweets = [];
+                    
                     response.data.statuses.forEach((z) => {
                         tweets.push({
-                            "message": z.text
+                            "message": z.text,
+                            "image": z.user.profile_image_url,
+                            "user": z.user.name
+                            
                         });
                     });
+                    
+                    var tweetsSize=5;
+                    for (var index=0;index<tweetsSize;index++){
+                        tweetsToShow.push(tweets[index]);
+                    }
+                    $scope.tweetsToShow=tweetsToShow;
                     console.log(tweets);
                     var tweetsize = response.data.statuses.length;
                     var cont = 0;
@@ -27,10 +36,13 @@ angular
                     var nplus = 0;
                     var ironic = 0;
                     tweets.forEach((y) => {
-
+                        //console.log(y.message);
 
                         $http.post("/api/v2/sentimentAnalisis", y).then(function(response) {
+                           
                             console.log(response.data.tag);
+                            //console.log(response.data);
+                            console.log("--");
                             switch (response.data.tag) {
                                 case 'P+':
                                     pplus++;
@@ -121,7 +133,7 @@ angular
 
             }
 
-
+            
 
 
 

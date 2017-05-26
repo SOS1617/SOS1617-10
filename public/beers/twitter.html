@@ -6,3 +6,22 @@
     <button class="button button-blue" id="decimal">Decimal</button>
     <button class="button button-blue" id="short">Short</button>
 </div>
+<table class="table">
+    <tr>
+        <th>
+            Image
+        </th>
+        <th>
+            Username
+        </th>
+        <th>
+            Tweet
+        </th>
+    </tr>
+    <tr ng-repeat="tweet in tweetsToShow">
+        <td><img src="{{tweet.image}}" height="50"></img></td>
+        <td>{{tweet.user}}</td>
+        <td>{{tweet.message}}</td>
+    </tr>
+</table>
+
