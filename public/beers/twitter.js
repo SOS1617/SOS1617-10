@@ -35,9 +35,10 @@ angular
                     var n = 0;
                     var nplus = 0;
                     var ironic = 0;
+
                     
                     tweets.forEach((y) => {
-                        sleep(700);
+                       sleep(150);
                         
                         console.log("ejecuta");
                         $http.post("/api/v2/sentimentAnalisis", y).then(function(response) {
@@ -82,6 +83,7 @@ angular
                                 beerCont++;
                             }
                             if (beerCont >= beers.length) {
+                                document.getElementById("tweetLoader").className="loader-hidden";
                                 show();
                             }
 
@@ -89,11 +91,12 @@ angular
                         });
 
                     });
-
+                    
 
 
 
                 });
+
             });
 
             function show() {
