@@ -60,3 +60,7 @@ var davidv2 = require('./motorcyclingsv2');
 
 davidv2.register_motorcyclings_apiv2(app);
 
+var davidv3 = require('./motorcyclingsv3');
+
+davidv3.register_motorcyclings_apiv3(app);
+
