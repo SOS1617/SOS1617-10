@@ -38,10 +38,10 @@ angular
                     var n = 0;
                     var nplus = 0;
                     var ironic = 0;
-                    
+                   
                     
                     tweets.forEach((y) => {
-                       sleep(150);
+                       sleep(180);
                         
                         console.log("ejecuta");
                         $http.post("/api/v2/sentimentAnalisis", y).then(function(response) {
@@ -90,7 +90,6 @@ angular
                                 document.getElementById("tweetLoader").className="loader-hidden";
                                 show();
                             }
-
 
                         });
 

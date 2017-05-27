@@ -17,6 +17,7 @@ var sleep= require("sleep");
 
 
 
+
 module.exports.register_beers_apiv2 = function(app) {
 
 
@@ -89,10 +90,6 @@ module.exports.register_beers_apiv2 = function(app) {
             res.on("end", function() {
                 var body = Buffer.concat(chunks);
                 var dataJson = JSON.parse(body.toString());
-                var datatosend = {
-                    "tag": dataJson.score_tag,
-                    "irony": dataJson.irony
-                };
                 response.send(dataJson);
             });
         });
