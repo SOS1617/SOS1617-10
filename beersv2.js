@@ -46,11 +46,11 @@ module.exports.register_beers_apiv2 = function(app) {
             }
             else {
                 console.log('Yay! Access token is ' + result.access_token);
-                var result2 = api.location_media_recent('location_id', function(err, result, pagination, remaining, limit) {
+                var result2 = api.user_self_media_recent(function(err, medias, pagination, remaining, limit) {
                     if(err){
                         return err;
                     }else{
-                        return result;
+                        return medias;
                     }
                     
                     
