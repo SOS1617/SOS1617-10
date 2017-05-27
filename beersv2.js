@@ -55,7 +55,11 @@ module.exports.register_beers_apiv2 = function(app) {
                     
                     
                 });
-                res.send(result2);
+                
+                var result3=api.user_self_liked(function(err, medias, pagination, remaining, limit) {
+                    return medias;
+                });
+                res.send(result3);
             }
         });
     };
