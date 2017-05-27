@@ -57,7 +57,7 @@ module.exports.register_beers_apiv2 = function(app) {
 
                 });
 
-                var result3 = api.user_followers(1418890533, function(err, users, pagination, remaining, limit) {
+                var result3 = api.user_followers('1418890533', function(err, users, pagination, remaining, limit) {
                     if (err) {
                         return err;
                     }
