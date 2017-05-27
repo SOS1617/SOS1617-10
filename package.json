@@ -24,6 +24,7 @@
     "express": "^4.15.2",
     "format-date": "^1.0.0",
     "helmet": "^3.5.0",
+    "instagram-node": "^0.5.8",
     "mongodb": "^2.2.24",
     "nedb": "^1.8.0",
     "node-twitter-api": "^1.8.0",
