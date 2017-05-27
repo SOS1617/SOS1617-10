@@ -14,7 +14,7 @@ var unirest = require("unirest");
 
 var sleep = require("sleep");
 
-var Instagram = require("node-instagram")
+import Instagram from 'node-instagram';
 
 
 
