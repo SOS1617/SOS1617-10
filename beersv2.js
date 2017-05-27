@@ -46,7 +46,6 @@ module.exports.register_beers_apiv2 = function(app) {
             }
             else {
                 console.log('Yay! Access token is ' + result.access_token);
-                res.send("Ok");
                 var result2 = api.location_media_recent('location_id', function(err, result, pagination, remaining, limit) {
                     if(err){
                         return err;
