@@ -14,8 +14,7 @@ var unirest = require("unirest");
 
 var sleep = require("sleep");
 
-var api = require('instagram-node').instagram();
-
+var Instagram = require("node-instagram")
 
 
 
@@ -23,62 +22,17 @@ var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
 
-    api.use({
-        client_id: "4f44c2312b964ce0975cb29735ba25b0",
-        client_secret: "146c0736edf1402d85fcf6e9db427086"
+    const instagram = new Instagram({
+        clientId: ' 4f44c2312b964ce0975cb29735ba25b0',
+        accessToken: '146c0736edf1402d85fcf6e9db427086',
     });
 
-    var redirect_uri = 'http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged';
-
-    exports.authorize_user = function(req, res) {
-        res.redirect(api.get_authorization_url(redirect_uri, {
-            scope: ['likes'],
-            state: 'a state'
-        }));
-    };
-
-    exports.handleauth = function(req, res) {
-        api.authorize_user(req.query.code, redirect_uri, function(err, result) {
-            if (err) {
-                console.log(err.body);
-                res.send(err);
-
-            }
-            else {
-                console.log('Yay! Access token is ' + result.access_token);
-                var result2 = api.user_self_media_recent(function(err, medias, pagination, remaining, limit) {
-                    if (err) {
-                        return err;
-                    }
-                    else {
-                        return medias;
-                    }
-
-
-                });
-
-                var result3 = api.user_followers("4f44c2312b964ce0975cb29735ba25b0", function(err, users, pagination, remaining, limit) {
-                    if (err) {
-                        return err;
-                    }
-                    else {
-                        return users;
-                    }
-                    
-                });
-                
-                //1029343754
-
-                console.log(result3);
-                res.send(result3);
-            }
+    app.get(BASE_API_PATH + "inst", (req, res) => {
+        instagram.get('users/self', (err, data) => {
+            res.send(data);
         });
-    };
 
-    // This is where you would initially send users to authorize 
-    app.get('/authorize_user', exports.authorize_user);
-    // This is your redirect URI 
-    app.get('/handleauth', exports.handleauth);
+    });
 
 
     var T = new Twit({
