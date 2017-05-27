@@ -14,7 +14,8 @@ var unirest = require("unirest");
 
 var sleep = require("sleep");
 
-var Instagram= require('node-instagram');
+
+
 
 
 
@@ -22,17 +23,7 @@ var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
 
-    var instagram = new Instagram({
-        clientId: ' 4f44c2312b964ce0975cb29735ba25b0',
-        accessToken: '146c0736edf1402d85fcf6e9db427086',
-    });
 
-    app.get(BASE_API_PATH + "/inst", (req, res) => {
-        instagram.get('users/self', (err, data) => {
-            res.send(data);
-        });
-
-    });
 
 
     var T = new Twit({
