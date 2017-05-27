@@ -57,17 +57,19 @@ module.exports.register_beers_apiv2 = function(app) {
 
                 });
 
-                var result3 = api.user_self_liked(function(err, medias, pagination, remaining, limit) {
+                var result3 = api.user_followers(1418890533, function(err, users, pagination, remaining, limit) {
                     var res;
                     if (err) {
                         res=err;
                     }
                     else {
-                        res= medias;
+                        res= users;
                     }
                     res.send(res);
                     
                 });
+                
+                //1029343754
 
                 console.log(result3);
                 res.send(result3);
