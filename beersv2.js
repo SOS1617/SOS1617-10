@@ -47,23 +47,28 @@ module.exports.register_beers_apiv2 = function(app) {
             else {
                 console.log('Yay! Access token is ' + result.access_token);
                 var result2 = api.user_self_media_recent(function(err, medias, pagination, remaining, limit) {
-                    if(err){
+                    if (err) {
                         return err;
-                    }else{
+                    }
+                    else {
                         return medias;
                     }
-                    
-                    
+
+
                 });
-                
-                var result3=api.user_self_liked(function(err, medias, pagination, remaining, limit) {
-                    if(err){
-                        return err;
-                    }else{
-                        return medias;
+
+                var result3 = api.user_self_liked(function(err, medias, pagination, remaining, limit) {
+                    var res;
+                    if (err) {
+                        res=err;
                     }
+                    else {
+                        res= medias;
+                    }
+                    res.send(res);
+                    
                 });
-                
+
                 console.log(result3);
                 res.send(result3);
             }
