@@ -42,13 +42,21 @@ module.exports.register_beers_apiv2 = function(app) {
             if (err) {
                 console.log(err.body);
                 res.send(err);
-                
+
             }
             else {
                 console.log('Yay! Access token is ' + result.access_token);
                 res.send("Ok");
-                var result2 = api.location_media_recent('location_id', function(err, result, pagination, remaining, limit) {return result;});
-                console.log(result2);
+                var result2 = api.location_media_recent('location_id', function(err, result, pagination, remaining, limit) {
+                    if(err){
+                        return err;
+                    }else{
+                        return result;
+                    }
+                    
+                    
+                });
+                res.send(result2);
             }
         });
     };
