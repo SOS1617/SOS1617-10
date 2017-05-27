@@ -12,16 +12,50 @@ var request = require("request");
 
 var unirest = require("unirest");
 
-var sleep= require("sleep");
+var sleep = require("sleep");
+
+var api = require('instagram-node').instagram();
 
 
 
 
+var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
 
+    api.use({
+        client_id: "4f44c2312b964ce0975cb29735ba25b0",
+        client_secret: "146c0736edf1402d85fcf6e9db427086"
+    });
 
-    var Twit = require('twit')
+    var redirect_uri = 'http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged';
+
+    exports.authorize_user = function(req, res) {
+        res.redirect(api.get_authorization_url(redirect_uri, {
+            scope: ['likes'],
+            state: 'a state'
+        }));
+    };
+
+    exports.handleauth = function(req, res) {
+        api.authorize_user(req.query.code, redirect_uri, function(err, result) {
+            if (err) {
+                console.log(err.body);
+                res.send(err);
+                
+            }
+            else {
+                console.log('Yay! Access token is ' + result.access_token);
+                res.send('You made it!!');
+            }
+        });
+    };
+
+    // This is where you would initially send users to authorize 
+    app.get('/authorize_user', exports.authorize_user);
+    // This is your redirect URI 
+    app.get('/handleauth', exports.handleauth);
+
 
     var T = new Twit({
         consumer_key: 'HEcL1q9PNbY7ZV6mH6eowpih9',
@@ -65,7 +99,7 @@ module.exports.register_beers_apiv2 = function(app) {
 
     app.post(BASE_API_PATH + "/sentimentAnalisis", (request, response) => {
         sleep.msleep(1500);
-        
+
         var data = request.body;
         var qs = require("querystring");
         var http = require("http");
@@ -104,10 +138,10 @@ module.exports.register_beers_apiv2 = function(app) {
 
 
     app.get(BASE_API_PATH + "/twitsearch/:search", (req, res) => {
-        var now=new Date();
-        console.log("0" + (now.getDate()-1));
+        var now = new Date();
+        console.log("0" + (now.getDate() - 1));
         T.get('search/tweets', {
-            q: req.params.search+ ' since:'+now.getFullYear()+'-'+(("0" + (now.getMonth() + 1)).slice(-2))+'-'+("0" + (now.getDate()-1)).slice(-2),
+            q: req.params.search + ' since:' + now.getFullYear() + '-' + (("0" + (now.getMonth() + 1)).slice(-2)) + '-' + ("0" + (now.getDate() - 1)).slice(-2),
             count: 5
         }, function(err, data, response) {
             res.send(data);
