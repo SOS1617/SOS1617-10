@@ -27,6 +27,7 @@
     "instagram-node": "^0.5.8",
     "mongodb": "^2.2.24",
     "nedb": "^1.8.0",
+    "node-instagram": "^1.5.0",
     "node-twitter-api": "^1.8.0",
     "path": "^0.12.7",
     "request": "^2.81.0",
