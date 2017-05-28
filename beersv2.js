@@ -26,7 +26,7 @@ var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
 
-   
+
 
 
     var redirect_uri = "http://sos1617-10.herokuapp.com/handleauth";
@@ -54,7 +54,10 @@ module.exports.register_beers_apiv2 = function(app) {
                     access_token: result.access_token
                 });
 
-                res.sendStatus(200);
+                res.writeHead(301, {
+                    Location: 'http://sos1617-10.herokuapp.com/#!/beers/graphs/instagram'
+                });
+                res.end();
             }
         });
     };
