@@ -8,15 +8,15 @@ angular
 
         };
         
-        var likes=[];
-        var selflikes=[];
+        var likes=new Array();
+        var selflikes=new Array();
         $http.get("/usermedia").then(function(response){
             var likesnumber=0;
             var selflikesnumber=0;
             response.data.forEach( (x)=>{
-               likes+=x.likes.count;
+               likesnumber+=x.likes.count;
                if( x.user_has_liked==true){
-                   selflikes++;
+                   selflikesnumber++;
                }
             });
             likes.push(likesnumber);
