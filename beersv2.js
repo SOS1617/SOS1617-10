@@ -72,7 +72,7 @@ module.exports.register_beers_apiv2 = function(app) {
 
     });
     app.get("/userfollowers/:id", (req, res) => {
-        var id=req.params.id;
+        var id=String(req.params.id);
         api.user_follows(id, function(err, users, pagination, remaining, limit) {
            if(err){
                res.send(err.body);
