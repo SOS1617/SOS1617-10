@@ -28,7 +28,7 @@ module.exports.register_beers_apiv2 = function(app) {
         client_secret: "146c0736edf1402d85fcf6e9db427086"
     });
 
-    var redirect_uri = 'http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged';
+    var redirect_uri = "http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged";
 
     exports.authorize_user = function(req, res) {
         res.redirect(api.get_authorization_url(redirect_uri, {
