@@ -60,7 +60,10 @@ module.exports.register_beers_apiv2 = function(app) {
     }
     app.get("/log",(req,res)=>{
         console.log(url);
-        res.redirect(url);
+        res.redirect(url,{
+             scope: ['likes'],
+             state: 'a state'
+         });
     });
 
 
