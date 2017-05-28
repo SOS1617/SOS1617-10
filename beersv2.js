@@ -54,7 +54,7 @@ module.exports.register_beers_apiv2 = function(app) {
                     access_token: result.access_token
                 });
 
-                res.send("ok");
+                res.sendStatus(200);
             }
         });
     };
