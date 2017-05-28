@@ -46,7 +46,14 @@ module.exports.register_beers_apiv2 = function(app) {
             else {
                 console.log('Yay! Access token is ' + result.access_token);
                 api.use({access_token: result.access_token});
-                var result2= api.user_self_feed( function(err, medias, pagination, remaining, limit) {
+                
+                res.send("ok");
+            }
+        });
+    };
+    
+    app.get("/user", (req,res)=>{
+         var result2= api.user_self_feed( function(err, medias, pagination, remaining, limit) {
                     if(err){
                         return err;
                     }else{
@@ -54,11 +61,9 @@ module.exports.register_beers_apiv2 = function(app) {
                     }
                 });
                 console.log(result2);
-                
-                res.send("ok");
-            }
-        });
-    };
+        res.send(result2);
+        
+    });
 
     // This is where you would initially send users to authorize 
     app.get('/authorize_user', exports.authorize_user);
