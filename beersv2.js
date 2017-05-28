@@ -45,6 +45,7 @@ module.exports.register_beers_apiv2 = function(app) {
             }
             else {
                 console.log('Yay! Access token is ' + result.access_token);
+                api.use({access_token: result.access_token});
                 var result= api.user_self_feed( function(err, medias, pagination, remaining, limit) {
                     return medias;
                 });
