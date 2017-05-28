@@ -37,7 +37,7 @@ module.exports.register_beers_apiv2 = function(app) {
             client_secret: "146c0736edf1402d85fcf6e9db427086"
         });
         res.redirect(api.get_authorization_url(redirect_uri, {
-            scope: ['likes'],
+            scope: ['likes','follower_list'],
             state: 'a state'
         }));
     };
