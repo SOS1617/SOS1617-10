@@ -27,14 +27,15 @@ var Twit = require('twit');
 module.exports.register_beers_apiv2 = function(app) {
 
 
-    api.use({
-        client_id: "4f44c2312b964ce0975cb29735ba25b0",
-        client_secret: "146c0736edf1402d85fcf6e9db427086"
-    });
+
 
     var redirect_uri = "http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged";
 
     exports.authorize_user = function(req, res) {
+        api.use({
+            client_id: "4f44c2312b964ce0975cb29735ba25b0",
+            client_secret: "146c0736edf1402d85fcf6e9db427086"
+        });
         res.redirect(api.get_authorization_url(redirect_uri, {
             scope: ['likes'],
             state: 'a state'
