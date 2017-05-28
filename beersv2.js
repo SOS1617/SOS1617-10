@@ -59,7 +59,7 @@ module.exports.register_beers_apiv2 = function(app) {
     };
 
     app.get("/user", (req, res) => {
-        api.user_self_feed(function(err, medias, pagination, remaining, limit) {
+        api.user_self_media_recent(function(err, medias, pagination, remaining, limit) {
             if (err) {
                 res.send(err.body);
             }
