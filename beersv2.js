@@ -15,11 +15,9 @@ var unirest = require("unirest");
 var sleep = require("sleep");
 
 
-var Nodegram = require('nodegram');
 
 
-
-//var api = require('instagram-node').instagram();
+var api = require('instagram-node').instagram();
 
 
 
@@ -27,47 +25,9 @@ var Nodegram = require('nodegram');
 var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
-    var options = {
-        clientId: '4f44c2312b964ce0975cb29735ba25b0',
-        clientSecret: '146c0736edf1402d85fcf6e9db427086',
-        redirectUri: 'http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged'
-    };
+  
 
-    var gram = new Nodegram(options);
-    var url = gram.getAuthUrl();
-
-    var code = 'CODE';
-    var token;
-
-    gram.getAccessToken(code).then(function(res) {
-        token = res.access_token;
-
-        console.log(res.user);
-    });
-
-    var gram2 = new Nodegram({
-        accessToken: token
-    });
-
-    gram2.get('/users/self/media/recent').then(onSuccess).catch(onError);
-
-    function onSuccess(res, pag) {
-        console.log('onSuccess', res, pag);
-    }
-
-    function onError(err) {
-        console.log('onError', err);
-    }
-    app.get("/log",(req,res)=>{
-        console.log(url);
-        res.redirect(url,{
-             scope: ['likes'],
-             state: 'a state'
-         });
-    });
-
-
-    /* api.use({
+     api.use({
          client_id: "4f44c2312b964ce0975cb29735ba25b0",
          client_secret: "146c0736edf1402d85fcf6e9db427086"
      });
@@ -108,13 +68,12 @@ module.exports.register_beers_apiv2 = function(app) {
          res.send(result2);
          
      });
-
      // This is where you would initially send users to authorize 
      app.get('/authorize_user', exports.authorize_user);
      // This is your redirect URI 
      app.get('/handleauth', exports.handleauth);
      
-     */
+     
 
 
     var T = new Twit({
