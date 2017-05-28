@@ -59,7 +59,7 @@ module.exports.register_beers_apiv2 = function(app) {
         });
     };
 
-    app.get("/user", (req, res) => {
+    app.get("/usermedia", (req, res) => {
         api.user_self_media_recent(function(err, medias, pagination, remaining, limit) {
             if (err) {
                 res.send(err.body);
@@ -67,6 +67,19 @@ module.exports.register_beers_apiv2 = function(app) {
             else {
                 res.send(medias);
             }
+        });
+
+
+    });
+    app.get("/userfollowers/:id", (req, res) => {
+        var id=Number(request.params.id);
+        api.user_follows(id, function(err, users, pagination, remaining, limit) {
+           if(err){
+               res.send(err.body);
+           }else{
+               res.send(users);
+           }
+            
         });
 
 
