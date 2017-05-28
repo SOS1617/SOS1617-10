@@ -1,13 +1,15 @@
 angular
     .module("SOS161710")
     .controller("InstaGraph", ["$http", "$scope", function($http, $scope) {
-        var likes=[];
-        var selflikes=[];
+        
 
         $scope.login = function() {
             window.location.replace("http://sos1617-10.herokuapp.com/authorize_user");
 
         };
+        
+        var likes=[];
+        var selflikes=[];
         $http.get("/usermedia").then(function(response){
             var likesnumber=0;
             var selflikesnumber=0;
