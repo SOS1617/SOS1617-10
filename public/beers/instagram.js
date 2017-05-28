@@ -9,16 +9,16 @@ angular
 
         };
         $http.get("/usermedia").then(function(response){
-            var likes=0;
-            var selflikes=0;
+            var likesnumber=0;
+            var selflikesnumber=0;
             response.data.forEach( (x)=>{
                likes+=x.likes.count;
                if( x.user_has_liked==true){
                    selflikes++;
                }
             });
-            likes.push(likes);
-            selflikes.push(selflikes);
+            likes.push(likesnumber);
+            selflikes.push(selflikesnumber);
             Plotly.newPlot('myDiv', data, layout);
         });
 
