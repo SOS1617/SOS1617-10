@@ -92,7 +92,7 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         controller: "D3Beers"
     }).when("beers/graph/Instagram",{
         templateUrl:"/beers/instagram.html",
-        controller:"InstaGraph"
+        controller: "InstaGraph"
     });
 });
 console.log("App initialized");
