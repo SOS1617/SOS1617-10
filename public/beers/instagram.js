@@ -2,11 +2,9 @@ angular
     .module("SOS161710")
     .controller("InstaGraph",["$http","$scope", function($http,$scope){
         
-        $http.get("/authorize_user").then(function(response){
-            console.log("Logged");    
-            
-        
-        });
+        $scope.login= function (){
+          window.location.replace("http://sos1617-10.herokuapp.com/authorize_login");  
+        };
         
         
     }]);
