@@ -5,12 +5,12 @@
 <div id="myDiv"></div>
 
 <table class="table table-hover">
-    <th>
-        <td>Photo</td>
-        <td>Likes</td>
-        <td>Self Like?</td>
-        <td>Comments</td>
-    </th>
+    <tr>
+        <th>Photo</th>
+        <th>Likes</th>
+        <th>Self Like?</th>
+        <th>Comments</th>
+    </tr>
     <tr ng-repeat="photo in photototable">
         <td><img height="50px" src="{{photo.image}}"></img></td>
         <td>{{photo.likes}}</td>
