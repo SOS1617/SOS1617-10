@@ -8,11 +8,13 @@ angular
 
         };
         
-        var likes=new Array();
-        var selflikes=new Array();
+        var likes=[];
+        var selflikes=[];
+        var photos=[];
         $http.get("/usermedia").then(function(response){
             var likesnumber=0;
             var selflikesnumber=0;
+            photos.push(response.data.length);
             response.data.forEach( (x)=>{
                likesnumber+=x.likes.count;
                if( x.user_has_liked==true){
@@ -39,8 +41,14 @@ angular
             name: 'ownlikes',
             type: 'bar'
         };
+        var trace3 = {
+            x: ['your_account'],
+            y: photos,
+            name: '#Photos',
+            type: 'bar'
+        };
 
-        var data = [trace1, trace2];
+        var data = [trace1, trace2,trace3];
 
         var layout = {
             barmode: 'stack'
