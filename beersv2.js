@@ -26,10 +26,10 @@ var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
 
+   
 
 
-
-    var redirect_uri = "http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged";
+    var redirect_uri = "http://sos1617-10.herokuapp.com/handleauth";
 
     exports.authorize_user = function(req, res) {
         api.use({
@@ -37,7 +37,7 @@ module.exports.register_beers_apiv2 = function(app) {
             client_secret: "146c0736edf1402d85fcf6e9db427086"
         });
         res.redirect(api.get_authorization_url(redirect_uri, {
-            scope: ['likes','follower_list'],
+            scope: ['likes', 'follower_list'],
             state: 'a state'
         }));
     };
@@ -72,16 +72,17 @@ module.exports.register_beers_apiv2 = function(app) {
 
     });
     app.get("/userfollowers/:id", (req, res) => {
-        var id=String(req.params.id);
+        var id = String(req.params.id);
         api.user_follows(id, function(err, users, pagination, remaining, limit) {
-           if(err){
-               console.log(err);
-               res.send(err.body);
-           }else{
-               console.log(users);
-               res.send(users);
-           }
-            
+            if (err) {
+                console.log(err);
+                res.send(err.body);
+            }
+            else {
+                console.log(users);
+                res.send(users);
+            }
+
         });
 
 
