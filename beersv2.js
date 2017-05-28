@@ -53,8 +53,9 @@ module.exports.register_beers_apiv2 = function(app) {
                         return medias;
                     }
                 });
+                console.log(result2);
                 
-                res.send(result2);
+                res.send("ok");
             }
         });
     };
