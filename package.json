@@ -29,6 +29,7 @@
     "mongodb": "^2.2.24",
     "nedb": "^1.8.0",
     "node-twitter-api": "^1.8.0",
+    "nodegram": "^0.2.3",
     "path": "^0.12.7",
     "request": "^2.81.0",
     "sleep": "^5.1.1",

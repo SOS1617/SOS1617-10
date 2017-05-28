@@ -14,7 +14,12 @@ var unirest = require("unirest");
 
 var sleep = require("sleep");
 
-var api = require('instagram-node').instagram();
+
+var Nodegram = require('nodegram');
+
+
+
+//var api = require('instagram-node').instagram();
 
 
 
@@ -22,53 +27,90 @@ var api = require('instagram-node').instagram();
 var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
-
-    api.use({
-        client_id: "4f44c2312b964ce0975cb29735ba25b0",
-        client_secret: "146c0736edf1402d85fcf6e9db427086"
-    });
-
-    var redirect_uri = "http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged";
-
-    exports.authorize_user = function(req, res) {
-        res.redirect(api.get_authorization_url(redirect_uri, {
-            scope: ['likes'],
-            state: 'a state'
-        }));
+    var options = {
+        clientId: '4f44c2312b964ce0975cb29735ba25b0',
+        clientSecret: '146c0736edf1402d85fcf6e9db427086',
+        redirectUri: 'http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged'
     };
 
-    exports.handleauth = function(req, res) {
-        api.authorize_user(req.query.code, redirect_uri, function(err, result) {
-            if (err) {
-                console.log(err.body);
-                res.send("Didn't work");
-            }
-            else {
-                console.log('Yay! Access token is ' + result.access_token);
-                api.use({access_token: result.access_token});
-                
-                res.send("ok");
-            }
-        });
-    };
-    
-    app.get("/user", (req,res)=>{
-         var result2= api.user_self_feed( function(err, medias, pagination, remaining, limit) {
-                    if(err){
-                        return err;
-                    }else{
-                        return medias;
-                    }
-                });
-                console.log(result2);
-        res.send(result2);
-        
+    var gram = new Nodegram(options);
+    var url = gram.getAuthUrl();
+
+    var code = 'CODE';
+    var token;
+
+    gram.getAccessToken(code).then(function(res) {
+        token = res.access_token;
+
+        console.log(res.user);
     });
 
-    // This is where you would initially send users to authorize 
-    app.get('/authorize_user', exports.authorize_user);
-    // This is your redirect URI 
-    app.get('/handleauth', exports.handleauth);
+    var gram2 = new Nodegram({
+        accessToken: token
+    });
+
+    gram2.get('/users/self/media/recent').then(onSuccess).catch(onError);
+
+    function onSuccess(res, pag) {
+        console.log('onSuccess', res, pag);
+    }
+
+    function onError(err) {
+        console.log('onError', err);
+    }
+    app.get("/log",(req,res)=>{
+        res.redirect(url);
+    });
+
+
+    /* api.use({
+         client_id: "4f44c2312b964ce0975cb29735ba25b0",
+         client_secret: "146c0736edf1402d85fcf6e9db427086"
+     });
+
+     var redirect_uri = "http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged";
+
+     exports.authorize_user = function(req, res) {
+         res.redirect(api.get_authorization_url(redirect_uri, {
+             scope: ['likes'],
+             state: 'a state'
+         }));
+     };
+
+     exports.handleauth = function(req, res) {
+         api.authorize_user(req.query.code, redirect_uri, function(err, result) {
+             if (err) {
+                 console.log(err.body);
+                 res.send("Didn't work");
+             }
+             else {
+                 console.log('Yay! Access token is ' + result.access_token);
+                 api.use({access_token: result.access_token});
+                 
+                 res.send("ok");
+             }
+         });
+     };
+     
+     app.get("/user", (req,res)=>{
+          var result2= api.user_self_feed( function(err, medias, pagination, remaining, limit) {
+                     if(err){
+                         return err;
+                     }else{
+                         return medias;
+                     }
+                 });
+                 console.log(result2);
+         res.send(result2);
+         
+     });
+
+     // This is where you would initially send users to authorize 
+     app.get('/authorize_user', exports.authorize_user);
+     // This is your redirect URI 
+     app.get('/handleauth', exports.handleauth);
+     
+     */
 
 
     var T = new Twit({
