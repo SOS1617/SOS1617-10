@@ -75,8 +75,10 @@ module.exports.register_beers_apiv2 = function(app) {
         var id=String(req.params.id);
         api.user_follows(id, function(err, users, pagination, remaining, limit) {
            if(err){
+               console.log(err);
                res.send(err.body);
            }else{
+               console.log(users);
                res.send(users);
            }
             
