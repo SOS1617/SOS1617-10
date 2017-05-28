@@ -1,27 +1,40 @@
 angular
     .module("SOS161710")
     .controller("InstaGraph", ["$http", "$scope", function($http, $scope) {
-
+        var likes=[];
+        var selflikes=[];
 
         $scope.login = function() {
             window.location.replace("http://sos1617-10.herokuapp.com/authorize_user");
 
         };
-       
+        $http.get("/usermedia").then(function(response){
+            var likes=0;
+            var selflikes=0;
+            response.data.forEach( (x)=>{
+               likes+=x.likes.count;
+               if( x.user_has_liked==true){
+                   selflikes++;
+               }
+            });
+            likes.push(likes);
+            selflikes.push(selflikes);
+            Plotly.newPlot('myDiv', data, layout);
+        });
 
 
 
         var trace1 = {
-            x: ['giraffes', 'orangutans', 'monkeys'],
-            y: [20, 14, 23],
-            name: 'SF Zoo',
+            x: ['your_account'],
+            y: likes,
+            name: 'likes',
             type: 'bar'
         };
 
         var trace2 = {
-            x: ['giraffes', 'orangutans', 'monkeys'],
-            y: [12, 18, 29],
-            name: 'LA Zoo',
+            x: ['your_account'],
+            y: selflikes,
+            name: 'ownlikes',
             type: 'bar'
         };
 
@@ -31,7 +44,7 @@ angular
             barmode: 'stack'
         };
 
-        Plotly.newPlot('myDiv', data, layout);
+        
 
 
     }]);
