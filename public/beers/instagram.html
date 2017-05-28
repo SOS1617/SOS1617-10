@@ -1,5 +1,20 @@
 <h1>Insta</h1>
 
-<button ng-click="login()">Login</button>
+<button class="btn btn-primary" ng-click="login()">Login</button>
 
 <div id="myDiv"></div>
+
+<table class="table">
+    <th>
+        <td>Photo</td>
+        <td>Likes</td>
+        <td>Self Like?</td>
+        <td>Comments</td>
+    </th>
+    <tr ng-repeat="photo in photototable">
+        <td><img src="{{photo.image}}"></img></td>
+        <td>{{photo.likes}}</td>
+        <td>{{photo.self_liked}}</td>
+        <td>{{photo.comments}}</td>
+    </tr>
+</table>

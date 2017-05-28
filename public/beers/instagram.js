@@ -11,11 +11,14 @@ angular
         var likes=[];
         var selflikes=[];
         var photos=[];
+        var photototable=[];
         $http.get("/usermedia").then(function(response){
             var likesnumber=0;
             var selflikesnumber=0;
             photos.push(response.data.length);
+            
             response.data.forEach( (x)=>{
+                photototable.push({image:x.images.thumbnail.url,likes:x.likes.count,self_liked:x.user_has_liked,comments:x.comments.count})
                likesnumber+=x.likes.count;
                if( x.user_has_liked==true){
                    selflikesnumber++;
@@ -23,6 +26,7 @@ angular
             });
             likes.push(likesnumber);
             selflikes.push(selflikesnumber);
+            $scope.photototable=photototable;
             Plotly.newPlot('myDiv', data, layout);
         });
 
