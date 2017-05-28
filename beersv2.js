@@ -59,6 +59,7 @@ module.exports.register_beers_apiv2 = function(app) {
         console.log('onError', err);
     }
     app.get("/log",(req,res)=>{
+        console.log(url);
         res.redirect(url);
     });
 
