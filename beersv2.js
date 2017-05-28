@@ -14,7 +14,7 @@ var unirest = require("unirest");
 
 var sleep = require("sleep");
 
-
+var api = require('instagram-node').instagram();
 
 
 
@@ -23,7 +23,37 @@ var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
 
+    api.use({
+        client_id: "4f44c2312b964ce0975cb29735ba25b0",
+        client_secret: "146c0736edf1402d85fcf6e9db427086"
+    });
 
+    var redirect_uri = 'http://sos1617-10.herokuapp.com/insta';
+
+    exports.authorize_user = function(req, res) {
+        res.redirect(api.get_authorization_url(redirect_uri, {
+            scope: ['likes'],
+            state: 'a state'
+        }));
+    };
+
+    exports.handleauth = function(req, res) {
+        api.authorize_user(req.query.code, redirect_uri, function(err, result) {
+            if (err) {
+                console.log(err.body);
+                res.send("Didn't work");
+            }
+            else {
+                console.log('Yay! Access token is ' + result.access_token);
+                res.send('You made it!!');
+            }
+        });
+    };
+
+    // This is where you would initially send users to authorize 
+    app.get('/authorize_user', exports.authorize_user);
+    // This is your redirect URI 
+    app.get('/handleauth', exports.handleauth);
 
 
     var T = new Twit({
