@@ -45,7 +45,11 @@ module.exports.register_beers_apiv2 = function(app) {
             }
             else {
                 console.log('Yay! Access token is ' + result.access_token);
-                res.send('You made it!!');
+                var result= api.user_self_feed( function(err, medias, pagination, remaining, limit) {
+                    return medias;
+                });
+                
+                res.send(result);
             }
         });
     };
