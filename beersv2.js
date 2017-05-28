@@ -25,57 +25,57 @@ var api = require('instagram-node').instagram();
 var Twit = require('twit');
 
 module.exports.register_beers_apiv2 = function(app) {
-  
 
-     api.use({
-         client_id: "4f44c2312b964ce0975cb29735ba25b0",
-         client_secret: "146c0736edf1402d85fcf6e9db427086"
-     });
 
-     var redirect_uri = "http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged";
+    api.use({
+        client_id: "4f44c2312b964ce0975cb29735ba25b0",
+        client_secret: "146c0736edf1402d85fcf6e9db427086"
+    });
 
-     exports.authorize_user = function(req, res) {
-         res.redirect(api.get_authorization_url(redirect_uri, {
-             scope: ['likes'],
-             state: 'a state'
-         }));
-     };
+    var redirect_uri = "http://sos1617-10.herokuapp.com/#!/beers/graphs/instagramLogged";
 
-     exports.handleauth = function(req, res) {
-         api.authorize_user(req.query.code, redirect_uri, function(err, result) {
-             if (err) {
-                 console.log(err.body);
-                 res.send("Didn't work");
-             }
-             else {
-                 console.log('Yay! Access token is ' + result.access_token);
-                 api.use({access_token: result.access_token});
-                 
-                 res.send("ok");
-             }
-         });
-     };
-     
-     app.get("/user", (req,res)=>{
-          var result2= api.user_self_feed( function(err, medias, pagination, remaining, limit) {
-                     if(err){
-                         console.log(err);
-                         return err;
-                     }else{
-                         console.log(medias);
-                         return medias;
-                     }
-                 });
-                 console.log(result2);
-         res.send(result2);
-         
-     });
-     // This is where you would initially send users to authorize 
-     app.get('/authorize_user', exports.authorize_user);
-     // This is your redirect URI 
-     app.get('/handleauth', exports.handleauth);
-     
-     
+    exports.authorize_user = function(req, res) {
+        res.redirect(api.get_authorization_url(redirect_uri, {
+            scope: ['likes'],
+            state: 'a state'
+        }));
+    };
+
+    exports.handleauth = function(req, res) {
+        api.authorize_user(req.query.code, redirect_uri, function(err, result) {
+            if (err) {
+                console.log(err.body);
+                res.send("Didn't work");
+            }
+            else {
+                console.log('Yay! Access token is ' + result.access_token);
+                api.use({
+                    access_token: result.access_token
+                });
+
+                res.send("ok");
+            }
+        });
+    };
+
+    app.get("/user", (req, res) => {
+        api.user_self_feed(function(err, medias, pagination, remaining, limit) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.send(medias);
+            }
+        });
+
+
+    });
+    // This is where you would initially send users to authorize 
+    app.get('/authorize_user', exports.authorize_user);
+    // This is your redirect URI 
+    app.get('/handleauth', exports.handleauth);
+
+
 
 
     var T = new Twit({
