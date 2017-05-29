@@ -26,23 +26,23 @@ angular
                     lastfmData.push([aux[i].name, aux[i].playcount]);
                 }
 
-            var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: lastfmData
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
+             google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+
+                    var data = google.visualization.arrayToDataTable(lastfmData);
+
+                    var options = {
+                        title: 'Lastfm integrated with Motorcyclings'
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                    chart.draw(data, options);
                 }
-            }]
-        }
-    }
-});
             });
     
     
