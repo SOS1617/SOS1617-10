@@ -27,7 +27,7 @@ angular
                 
         for(var i=0; i<lastfmData.length; i++){
             name.push(lastfmData[i].name);
-            playcount.push(Number(playcount[i]["playcount"]));
+            playcount.push(Number(lastfmData[i].playcount));
         }
         
         
