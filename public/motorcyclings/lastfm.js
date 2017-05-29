@@ -8,14 +8,11 @@ angular
     lastfmData.push(['Name', 'Number']);
     
     $http.get(url + "/?" + apikey).then(function(response){
-        var countries = new Set(response.data.map(function(x){
-            return x.country;
-        }));
-        countries.forEach((country) => {
-            lastfmData.push(getFromCountry(country, response.data));
-            
-        });
-    });
+              var aux = response.data;
+                aux.forEach((x) => {
+                    lastfmData.push([x.pilot, x.year]);
+                });
+            });
     
         
     $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json").then(function(response){
@@ -48,13 +45,7 @@ angular
     
 });
 
-function getFromCountry(country, data) {
-        var response;
-        response = [country, data.filter((x) => {
-            return x.country == country;
-        }).length];
-        return response;
-    }
+
 
     
 }]);
