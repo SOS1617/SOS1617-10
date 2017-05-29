@@ -4,18 +4,17 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var lastfmData = {};
     var name = [];
     var playcount = [];
-    var countrii = [];
-        
+    var lastfmData = [];
+    lastfmData.push(['Name', 'Number']);
     
     $http.get(url + "/?" + apikey).then(function(response){
         var countries = new Set(response.data.map(function(x){
             return x.country;
         }));
         countries.forEach((country) => {
-            countrii.push(getFromCountry(country, response.data));
+            lastfmData.push(getFromCountry(country, response.data));
             
         });
     });
@@ -26,23 +25,23 @@ angular
         var aux = response.data.artists.artist;
                 
         for(var i=0; i<lastfmData.length; i++){
-            lastfmData.push([aux[i].name, aux[i].playcount]);
+            lastfmData.push([aux[i].name, aux[i].location.distance]);
         }
         
         
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(lastfmData);
-
-        var options = {
-          title: 'My Daily Activities',
-          pieHole: 0.4,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-      }
+            google.charts.load("current", {packages:["corechart"]});
+            google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable(lastfmData);
+    
+            var options = {
+              title: 'My Daily Activities',
+              pieHole: 0.4,
+            };
+    
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+          }
 
     
 });
