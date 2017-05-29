@@ -31,7 +31,7 @@ angular
 
                 function drawChart() {
 
-                    var data = google.visualization.arrayToDataTable(foursquareData);
+                    var data = google.visualization.arrayToDataTable(lastfmData);
 
                     var options = {
                         title: 'Foursquare locations integrated with Establishments'
