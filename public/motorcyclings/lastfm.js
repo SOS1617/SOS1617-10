@@ -13,7 +13,7 @@ angular
                 return x.pilot;
             }));
             pilots.forEach((country) => {
-                lastfmData.push(getFromPilot(pilot, response.data));
+                lastfmData.push(pilot, getFromPilot(pilot, response.data));
             
         });
     });
