@@ -72,6 +72,10 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/motorcyclings/lastfm.html",
         controller: "Lastfm"
         
+    }).when("/motorcyclings/graphs/poblation", {
+        templateUrl: "/motorcyclings/poblation.html",
+        controller: "Poblation"
+        
     }).when("/analytics",{
          templateUrl : "analytics.html",
          controller: "GroupAnalytics"
