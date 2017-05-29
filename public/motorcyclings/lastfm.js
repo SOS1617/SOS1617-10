@@ -4,8 +4,6 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var name = [];
-    var playcount = [];
     var lastfmData = [];
     lastfmData.push(['Name', 'Number']);
     
@@ -25,7 +23,7 @@ angular
         var aux = response.data.artists.artist;
                 
         for(var i=0; i<lastfmData.length; i++){
-            lastfmData.push([aux[i].name, aux[i].location.distance]);
+            lastfmData.push([aux[i].name, aux[i].playcount]);
         }
         
         
