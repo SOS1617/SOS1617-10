@@ -1,12 +1,12 @@
 angular
 .module("SOS161710")
-.controller("Lastfm", ["$http", function($http){
+.controller("Bitcoins", ["$http", function($http){
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var lastfmData = {};
+    var bitcoinsData = {};
     var name = [];
-    var playcount = [];
+    var rate_float = [];
         
     var motorcyclingsCountry = [];
     
@@ -21,13 +21,13 @@ angular
     });
     
         
-    $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json").then(function(response){
+    $http.get("http://api.coindesk.com/v1/bpi/currentprice.json").then(function(response){
         
-        lastfmData = response.data.artists.artist;
+        bitcoinsData = response.data.bpi;
                 
-        for(var i=0; i<lastfmData.length; i++){
-            name.push(lastfmData[i].name);
-            playcount.push(Number(lastfmData[i].playcount));
+        for(var i=0; i<bitcoinsData.length; i++){
+            name.push(bitcoinsData[i].code);
+            rate_float.push(Number(bitcoinsData[i].rate_float));
         }
         
         
@@ -85,8 +85,8 @@ angular
                     data: motorcyclingsCountry
                 }, {
                     type: 'area',
-                    name: 'playcount',
-                    data: playcount
+                    name: 'rate_float',
+                    data: rate_float
          }]
     });
 
