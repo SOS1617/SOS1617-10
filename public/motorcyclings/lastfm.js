@@ -20,7 +20,7 @@ angular
         $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json")
             .then(function(response) {
 
-                var aux = response.data.response.artist;
+                var aux = response.data.response.artists;
 
                 for (var i = 0; i < aux.length; i++) {
                     lastfmData.push([aux[i].name, aux[i].playcount]);
