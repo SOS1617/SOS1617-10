@@ -15,15 +15,15 @@ angular
                 countries.forEach((country) => {
                     motorcyclingsCountry.push(getFromCountry(country, response.data));
                 });
-        });
+            });
 
-        $http.get("ttps://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=44LIW13ZHFP05IZ4HWYSZUHAAWNK4JCSP30G3Y5PUV3LG5RH&client_secret=KQNCVSFKQRPQOELEN1VUCEMN5UFYV5A0XCSLSLFFVNV5ZD1O&v=20170520")
+        $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json")
             .then(function(response) {
 
-                var aux = response.data.response.venues;
+                var aux = response.data.artists.artist;
 
                 for (var i = 0; i < aux.length; i++) {
-                    lastfmData.push([aux[i].name, aux[i].distance]);
+                    lastfmData.push([aux[i].name, aux[i].playcount]);
                 }
 
                 google.charts.load('current', {
