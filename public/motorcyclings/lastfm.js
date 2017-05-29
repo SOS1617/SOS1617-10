@@ -6,14 +6,17 @@ angular
     var apikey = "apikey=davbotcab";
     var lastfmData = [];
     lastfmData.push(['Name', 'Number']);
-    var countrii = [];
+    var pilot = ["Valentino Rossi", "Jorge Lorenzo"];
     
     $http.get(url + "/?" + apikey).then(function(response){
-              var aux = response.data;
-                aux.forEach((x) => {
-                    lastfmData.push([x.pilot, 2017-x.year]);
-                });
-            });
+            var pilots = new Set(response.data.map(function(x){
+                return x.pilot;
+            }));
+            pilots.forEach((country) => {
+                lastfmData.push(getFromPilot(pilot, response.data));
+            
+        });
+    });
     
         
     $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json").then(function(response){
@@ -42,6 +45,14 @@ angular
     
 });
 
+
+function getFromPilot(pilot, data) {
+        var response;
+        response = [pilot, data.filter((x) => {
+            return x.pilot == pilot;
+        }).length];
+        return response;
+    }
 
 
     
