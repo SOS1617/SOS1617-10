@@ -26,29 +26,24 @@ angular
                     lastfmData.push([aux[i].name, aux[i].playcount]);
                 }
 
-            google.charts.load("current", {packages:["corechart"]});
+            google.charts.load('current', {'packages':['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
-                function drawChart() {
-                  var data = google.visualization.arrayToDataTable(lastfmData);
             
-                  var view = new google.visualization.DataView(data);
-                  view.setColumns([0, 1,
-                                   { calc: "stringify",
-                                     sourceColumn: 1,
-                                     type: "string",
-                                     role: "annotation" },
-                                   2]);
+                function drawChart() {
+            
+                  var data = new google.visualization.DataTable();
+                  data.addColumn('string', 'Pizza');
+                  data.addColumn('number', 'Populartiy');
+                  data.addRows(lastfmData);
             
                   var options = {
-                    title: "Density of Precious Metals, in g/cm^3",
-                    width: 600,
-                    height: 400,
-                    bar: {groupWidth: "95%"},
-                    legend: { position: "none" },
+                    title: 'Popularity of Types of Pizza',
+                    sliceVisibilityThreshold: .2
                   };
-                  var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-                  chart.draw(view, options);
-              }
+            
+                  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                  chart.draw(data, options);
+                }
             });
     
     
