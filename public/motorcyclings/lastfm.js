@@ -8,9 +8,9 @@ angular
     lastfmData.push(['Name', 'Number']);
     
     $http.get(url + "/?" + apikey).then(function(response){
-              var aux = response.data;
+                          var aux = response.data;
                 aux.forEach((x) => {
-                    lastfmData.push([x.pilot, 2017-x.year]);
+                    lastfmData.push([x.pilot, x.year]);
                 });
             });
     
