@@ -22,7 +22,7 @@ angular
         
         var aux = response.data.artists.artist;
                 
-        for(var i=0; i<lastfmData.length; i++){
+        for(var i=0; i<aux.length; i++){
             lastfmData.push([aux[i].name, aux[i].playcount]);
         }
         
