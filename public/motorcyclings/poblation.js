@@ -1,33 +1,33 @@
 angular
 .module("SOS161710")
-.controller("Lastfm", ["$http", function($http){
+.controller("Poblation", ["$http", function($http){
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var lastfmData = [];
-    lastfmData.push(['Name', 'Number']);
+    var poblationData = [];
+    poblationData.push(['Name', 'Number']);
     
     $http.get(url + "/?" + apikey).then(function(response){
               var res = response.data;
                 res.forEach((x) => {
-                    lastfmData.push([x.pilot, 2017-x.year]);
+                    poblationData.push([x.pilot, x.year]);
                 });
             });
     
         
-    $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json").then(function(response){
+    $http.get("http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo").then(function(response){
         
-        var res = response.data.artists.artist;
+        var res = response.data.geonames;
                 
         for(var i=0; i<res.length; i++){
-            lastfmData.push([res[i].name, res[i].playcount]);
+            poblationData.push([res[i].name, res[i].population]);
         }
         
         
               google.charts.load("current", {packages:["corechart"]});
               google.charts.setOnLoadCallback(drawChart);
               function drawChart() {
-                var data = google.visualization.arrayToDataTable(lastfmData);
+                var data = google.visualization.arrayToDataTable(poblationData);
         
                 var options = {
                   title: 'My Daily Activities',
@@ -41,13 +41,7 @@ angular
     
 });
 
-    function getFromCountry(country, data) {
-        var response;
-        response = [country, data.filter((x) => {
-            return x.country == country;
-        }).length];
-        return response;
-    }
+
 
 
     
