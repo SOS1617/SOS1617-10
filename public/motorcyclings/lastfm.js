@@ -8,8 +8,8 @@ angular
     lastfmData.push(['Name', 'Number']);
     
     $http.get(url + "/?" + apikey).then(function(response){
-              var aux = response.data;
-                aux.forEach((x) => {
+              var res = response.data;
+                res.forEach((x) => {
                     lastfmData.push([x.pilot, 2017-x.year]);
                 });
             });
@@ -17,30 +17,27 @@ angular
         
     $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json").then(function(response){
         
-        var aux = response.data.artists.artist;
+        var res = response.data.artists.artist;
                 
         for(var i=0; i<aux.length; i++){
-            lastfmData.push([aux[i].name, aux[i].playcount]);
+            lastfmData.push([res[i].name, res[i].playcount]);
         }
         
         
-                              google.charts.load('current', {
-                    'packages': ['corechart']
-                });
-                google.charts.setOnLoadCallback(drawChart);
+              google.charts.load("current", {packages:["corechart"]});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable(lastfmData);
+        
+                var options = {
+                  title: 'My Daily Activities',
+                  pieHole: 0.4,
+                };
+        
+                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                chart.draw(data, options);
+              }
 
-                function drawChart() {
-
-                    var data = google.visualization.arrayToDataTable(lastfmData);
-
-                    var options = {
-                        title: 'Foursquare locations integrated with Establishments'
-                    };
-
-                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-                    chart.draw(data, options);
-                }
     
 });
 
