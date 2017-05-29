@@ -26,19 +26,22 @@ angular
                     lastfmData.push([aux[i].name, aux[i].playcount]);
                 }
 
-              google.charts.load('current', {'packages':['corechart']});
-              google.charts.setOnLoadCallback(drawChart);
-        
-              function drawChart() {
-                var data = google.visualization.arrayToDataTable(lastfmData);
-        
+                  google.charts.load('current', {'packages':['corechart']});
+                  google.charts.setOnLoadCallback(drawVisualization);
+            
+                  function drawVisualization() {
+                    // Some raw data (not necessarily accurate)
+                    var data = google.visualization.arrayToDataTable(lastfmData);
+            
                 var options = {
-                  title: 'LastFM ft. Motorcyclings Spanish',
-                  hAxis: {title: 'Number',  titleTextStyle: {color: '#333'}},
-                  vAxis: {minValue: 0}
+                  title : 'LastFM ft. Motorcyclings',
+                  vAxis: {title: 'Number'},
+                  hAxis: {title: 'Name'},
+                  seriesType: 'bars',
+                  series: {5: {type: 'line'}}
                 };
-        
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
               }
             });
