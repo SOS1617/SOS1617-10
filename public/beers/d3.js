@@ -9,13 +9,13 @@ angular
             function segColor(c) {
                 return {
                     beers: "#807dba",
-                    establishment: "#e08214"
+                    motorcyclings: "#e08214"
                 }[c];
             }
 
             // compute total for each state.
             fData.forEach(function(d) {
-                d.total = d.datas.beers + d.datas.establishment;
+                d.total = d.datas.beers + d.datas.motorcyclings;
             });
 
             // function to handle histogram.
@@ -263,7 +263,7 @@ angular
             }
 
             // calculate total frequency by segment for all state.
-            var tF = ['beers', 'establishment'].map(function(d) {
+            var tF = ['beers', 'motorcyclings'].map(function(d) {
                 return {
                     type: d,
                     datas: d3.sum(fData.map(function(t) {
@@ -281,25 +281,26 @@ angular
                 pC = pieChart(tF), // create the pie-chart.
                 leg = legend(tF); // create the legend.
         }
-        var countries = ["Belgium", "Spain", "France"];
+        var countries = ["United Kingdom", "Spain", "Italy"];
         var datatograph = [];
 
         countries.forEach((x) => {
             $http.get("/api/v2/beers-stats/"+x+"?apikey=jesusguerre").then(function(response) {
                 var beersdata = response.data;
-                $http.get("/api/v2/establishments/"+x.toLowerCase()+"?apikey=nurtrioje").then(function(response) {
-                    var establishmentdata = response.data;
+                $http.get("api/v2/motorcycling-stats/"+x+"?apikey=davbotcab").then(function(response) {
+                    var motorcyclingsdata = response.data;
+                    datatograph.push({Country:x,datas:{beers:beersdata.length,motorcyclings:motorcyclingsdata.length}});
                     
 
 
 
                 });
 
-
+                
 
             });
 
-
+            dashboard('#dashboard', datatograph);
 
         });
 
@@ -308,61 +309,61 @@ angular
             Country: 'AL',
             datas: {
                 beers: 4786,
-                establishment: 1319
+                motorcyclings: 1319
             }
         }, {
             Country: 'AZ',
             datas: {
                 beers: 1101,
-                establishment: 412
+                motorcyclings: 412
             }
         }, {
             Country: 'CT',
             datas: {
                 beers: 932,
-                establishment: 2149
+                motorcyclings: 2149
             }
         }, {
             Country: 'DE',
             datas: {
                 beers: 832,
-                establishment: 1152
+                motorcyclings: 1152
             }
         }, {
             Country: 'FL',
             datas: {
                 beers: 4481,
-                establishment: 3304
+                motorcyclings: 3304
             }
         }, {
             Country: 'GA',
             datas: {
                 beers: 1619,
-                establishment: 167
+                motorcyclings: 167
             }
         }, {
             Country: 'IA',
             datas: {
                 beers: 1819,
-                establishment: 247
+                motorcyclings: 247
             }
         }, {
             Country: 'IL',
             datas: {
                 beers: 4498,
-                establishment: 3852
+                motorcyclings: 3852
             }
         }, {
             Country: 'IN',
             datas: {
                 beers: 797,
-                establishment: 1849
+                motorcyclings: 1849
             }
         }, {
             Country: 'KS',
             datas: {
                 beers: 162,
-                establishment: 379
+                motorcyclings: 379
             }
         }];
 
