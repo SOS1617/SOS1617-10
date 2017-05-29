@@ -303,6 +303,7 @@ angular
             dashboard('#dashboard', datatograph);
 
         });
+        console.log(datatograph);
 
 
         var freqData = [{
