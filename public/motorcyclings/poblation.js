@@ -9,13 +9,26 @@ angular
     var country = ["United Kingdom", "Italy", "Spain"];
     var population = [];
     var name = [];
+    var motorcyclingsVis = [];
     
     $http.get(url + "/?" + apikey).then(function(response){
               var res = response.data;
                 res.forEach((x) => {
                     poblationData.push([x.pilot, 2017-x.year]);
                 });
+            var cont = 0;
+            response.data.forEach((x) => {
+                motorcyclingsVis.push({
+                    id:cont,
+                    content:x.pilot,
+                    start:x.year+"-01-01",
+                    end:x.year+"-12-31"
+                });
+                cont++;
             });
+        
+        
+    });
     
         
     $http.get("http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo").then(function(response){
@@ -30,20 +43,10 @@ angular
         
         
               var container = document.getElementById('visualization');
-                var items = [
-                    {x: '2014-06-11', y: 10},
-                    {x: '2014-06-12', y: 25},
-                    {x: '2014-06-13', y: 30},
-                    {x: '2014-06-14', y: 10},
-                    {x: '2014-06-15', y: 15},
-                    {x: '2014-06-16', y: 30}
-                  ];
+                var items = motorcyclingsVis;
                 
                   var dataset = new vis.DataSet(items);
-                  var options = {
-                    start: '2014-06-10',
-                    end: '2014-06-18'
-                  };
+                  var options = {};
                   var graph2d = new vis.Graph2d(container, dataset, options);
 
     
