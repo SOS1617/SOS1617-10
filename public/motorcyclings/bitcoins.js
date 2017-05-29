@@ -23,7 +23,7 @@ angular
         
     $http.get("http://api.coindesk.com/v1/bpi/currentprice.json").then(function(response){
         
-        bitcoinsData = response.data;
+        bitcoinsData = response.data.bpi;
                 
         for(var i=0; i<bitcoinsData.length; i++){
             name.push(bitcoinsData[i].name);
