@@ -2,18 +2,18 @@ angular
     .module("SOS161710")
     .controller("Lastfm", ["$http", function($http) {
         console.log("controller initialized");
-        var motorcyclingsCountry = [];
-        var country = ["United Kingdom", "Italy", "Spain"];
+        var motorcyclingsPilot = [];
+        var pilot = ["Jorge Lorenzo", "Valentino Rossi"];
         var lastfmData = [];
         lastfmData.push(['Name', 'Number']);
 
         $http.get("http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats?apikey=davbotcab")
             .then(function(response) {
-                var countries = new Set(response.data.map(function(x){
-                    return x.country;
+                var pilots = new Set(response.data.map(function(x){
+                    return x.pilot;
                 }));
-                countries.forEach((country) => {
-                    motorcyclingsCountry.push(getFromCountry(country, response.data));
+                pilots.forEach((pilot) => {
+                    motorcyclingsPilot.push(getFromPilot(pilot, response.data));
                 });
             });
 
@@ -26,30 +26,29 @@ angular
                     lastfmData.push([aux[i].name, aux[i].playcount]);
                 }
 
-                google.charts.load('current', {
-                    'packages': ['corechart']
-                });
-                google.charts.setOnLoadCallback(drawChart);
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawVisualization);
 
-                function drawChart() {
+                function drawVisualization() {
+                // Some raw data (not necessarily accurate)
+                var data = google.visualization.arrayToDataTable(lastfmData);
 
-                    var data = google.visualization.arrayToDataTable(lastfmData);
+                var options = {
+                    title : 'Lastfm ft. Motorcyclings Spanish',
+                    vAxis: {title: 'Number'},
+                    hAxis: {title: 'Name'},
+                    seriesType: 'bars',
+                    series: {5: {type: 'line'}}
+                };
 
-                    var options = {
-                        title: 'LastFM locations integrated with Motorcyclings'
-                    };
-
-                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-                    chart.draw(data, options);
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
                 }
-            });
     
-    
-    function getFromCountry(country, data) {
+    function getFromPilot(country, data) {
         var response;
-        response = [country, data.filter((x) => {
-            return x.country == country;
+        response = [pilot, data.filter((x) => {
+            return x.pilot == pilot;
         }).length];
         return response;
     }
