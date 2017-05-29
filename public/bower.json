@@ -1,0 +1,28 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/SOS1617/SOS1617-10",
+  "authors": [
+    "sos161710dbc <david.bote.cabeza@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.6.4",
+    "angular": "^1.6.4",
+    "bootstrap": "^3.3.7",
+    "chart.js": "^2.6.0",
+    "c3": "^0.4.11",
+    "highcharts": "^5.0.10",
+    "vis": "^4.19.1",
+    "bootbox.js": "bootbox#^4.4.0",
+    "cheet.js": "^0.3.3"
+  }
+}

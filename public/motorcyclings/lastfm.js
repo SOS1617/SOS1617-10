@@ -26,20 +26,23 @@ angular
                     lastfmData.push([aux[i].name, aux[i].playcount]);
                 }
 
-            var container = document.getElementById('visualization');
-                var items = lastfmData;
-            
-                var dataset = new vis.DataSet(items);
-                var options = {
-                    style:'bar',
-                    barChart: {width:50, align:'center'}, // align: left, center, right
-                    drawPoints: false,
-                    dataAxis: {
-                        icons:true
-                    },
-                    orientation:'top',
-                };
-                var graph2d = new vis.Graph2d(container, items, options);
+            var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: lastfmData
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
             });
     
     
