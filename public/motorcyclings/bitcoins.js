@@ -26,7 +26,7 @@ angular
         bitcoinsData = response.data.bpi;
                 
         for(var i=0; i<bitcoinsData.length; i++){
-            name.push(bitcoinsData[i].name);
+            name.push(bitcoinsData[i].code);
             rate_float.push(Number(bitcoinsData[i].rate_float));
         }
         
