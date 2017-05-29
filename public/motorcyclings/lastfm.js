@@ -6,25 +6,21 @@ angular
     var apikey = "apikey=davbotcab";
     var lastfmData = [];
     lastfmData.push(['Name', 'Number']);
-    var pilot = ["Valentino Rossi", "Jorge Lorenzo"];
     
     $http.get(url + "/?" + apikey).then(function(response){
-            var pilots = new Set(response.data.map(function(x){
-                return x.pilot;
-            }));
-            pilots.forEach((country) => {
-                lastfmData.push(pilot, getFromPilot(pilot, response.data));
-            
-        });
-    });
+              var res = response.data;
+                res.forEach((x) => {
+                    lastfmData.push([x.pilot, 2017-x.year]);
+                });
+            });
     
         
     $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json").then(function(response){
         
-        var aux = response.data.artists.artist;
+        var res = response.data.artists.artist;
                 
         for(var i=0; i<aux.length; i++){
-            lastfmData.push([aux[i].name, aux[i].playcount]);
+            lastfmData.push([res[i].name, res[i].playcount]);
         }
         
         
@@ -45,11 +41,10 @@ angular
     
 });
 
-
-function getFromPilot(pilot, data) {
+    function getFromCountry(country, data) {
         var response;
-        response = [pilot, data.filter((x) => {
-            return x.pilot == pilot;
+        response = [country, data.filter((x) => {
+            return x.country == country;
         }).length];
         return response;
     }
