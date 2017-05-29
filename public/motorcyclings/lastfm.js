@@ -15,7 +15,7 @@ angular
                 countries.forEach((country) => {
                     motorcyclingsCountry.push(getFromCountry(country, response.data));
                 });
-            });
+        });
 
         $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json")
             .then(function(response) {
