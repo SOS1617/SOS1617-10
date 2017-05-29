@@ -95,7 +95,7 @@ module.exports.register_motorcyclings_apiv3 = function(app) {
         var offset = request.query.offset;
         var yearfrom = request.query.from;
         var yearto = request.query.to;
-        var keyprovided = request.query.apikey;
+        var keyprovided = apikey;
         if(CheckKey(keyprovided, response)) {
             console.log("INFO: New GET request to /motorcycling-stats");
             dbMotorcycling.find({}).toArray(function(err, motorcycling) {
