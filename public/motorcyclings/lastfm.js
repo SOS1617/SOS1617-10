@@ -11,7 +11,7 @@ angular
     $http.get(url + "/?" + apikey).then(function(response){
               var aux = response.data;
                 aux.forEach((x) => {
-                    countrii.push([x.pilot, 2017-x.year]);
+                    lastfmData.push([x.pilot, 2017-x.year]);
                 });
             });
     
