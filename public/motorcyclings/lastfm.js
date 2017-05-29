@@ -7,6 +7,7 @@ angular
     var lastfmData = {};
     var name = [];
     var playcount = [];
+    var countrii = [];
         
     
     $http.get(url + "/?" + apikey).then(function(response){
@@ -14,7 +15,7 @@ angular
             return x.country;
         }));
         countries.forEach((country) => {
-            lastfmData.push(getFromCountry(country, response.data));
+            countrii.push(getFromCountry(country, response.data));
             
         });
     });
