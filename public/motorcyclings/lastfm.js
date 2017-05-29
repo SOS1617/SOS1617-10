@@ -26,24 +26,20 @@ angular
                     lastfmData.push([aux[i].name, aux[i].playcount]);
                 }
 
-            google.charts.load('current', {'packages':['corechart']});
-                google.charts.setOnLoadCallback(drawChart);
+            var container = document.getElementById('visualization');
+                var items = lastfmData;
             
-                function drawChart() {
-            
-                  var data = new google.visualization.DataTable();
-                  data.addColumn('string', 'Pizza');
-                  data.addColumn('number', 'Populartiy');
-                  data.addRows(lastfmData);
-            
-                  var options = {
-                    title: 'Popularity of Types of Pizza',
-                    sliceVisibilityThreshold: .2
-                  };
-            
-                  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-                  chart.draw(data, options);
-                }
+                var dataset = new vis.DataSet(items);
+                var options = {
+                    style:'bar',
+                    barChart: {width:50, align:'center'}, // align: left, center, right
+                    drawPoints: false,
+                    dataAxis: {
+                        icons:true
+                    },
+                    orientation:'top',
+                };
+                var graph2d = new vis.Graph2d(container, items, options);
             });
     
     
