@@ -8,9 +8,9 @@ angular
     lastfmData.push(['Name', 'Number']);
     
     $http.get(url + "/?" + apikey).then(function(response){
-                          var aux = response.data;
+              var aux = response.data;
                 aux.forEach((x) => {
-                    lastfmData.push([x.pilot, x.year]);
+                    lastfmData.push([x.pilot, 2017-x.year]);
                 });
             });
     
@@ -24,20 +24,23 @@ angular
         }
         
         
-              google.charts.load("current", {packages:["corechart"]});
-              google.charts.setOnLoadCallback(drawChart);
-              function drawChart() {
-                var data = google.visualization.arrayToDataTable(lastfmData);
-        
-                var options = {
-                  title: 'My Daily Activities',
-                  pieHole: 0.4,
-                };
-        
-                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-                chart.draw(data, options);
-              }
+                              google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
 
+                function drawChart() {
+
+                    var data = google.visualization.arrayToDataTable(foursquareData);
+
+                    var options = {
+                        title: 'Foursquare locations integrated with Establishments'
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                    chart.draw(data, options);
+                }
     
 });
 
