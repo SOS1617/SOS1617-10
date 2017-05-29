@@ -26,24 +26,46 @@ angular
                     lastfmData.push([aux[i].name, aux[i].playcount]);
                 }
 
-                  google.charts.load('current', {'packages':['corechart']});
-                  google.charts.setOnLoadCallback(drawVisualization);
-            
-                  function drawVisualization() {
-                    // Some raw data (not necessarily accurate)
-                    var data = google.visualization.arrayToDataTable(lastfmData);
-            
-                var options = {
-                  title : 'LastFM ft. Motorcyclings',
-                  vAxis: {title: 'Number'},
-                  hAxis: {title: 'Name'},
-                  seriesType: 'bars',
-                  series: {5: {type: 'line'}}
-                };
-            
-                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-              }
+                google.charts.load('current', {packages: ['corechart', 'bar']});
+                google.charts.setOnLoadCallback(drawAnnotations);
+                
+                function drawAnnotations() {
+                      var data = google.visualization.arrayToDataTable(lastfmData);
+                
+                      var data = google.visualization.arrayToDataTable(lastfmData);
+                
+                      var options = {
+                        title: 'Population of Largest U.S. Cities',
+                        chartArea: {width: '50%'},
+                        annotations: {
+                          alwaysOutside: true,
+                          textStyle: {
+                            fontSize: 12,
+                            auraColor: 'none',
+                            color: '#555'
+                          },
+                          boxStyle: {
+                            stroke: '#ccc',
+                            strokeWidth: 1,
+                            gradient: {
+                              color1: '#f3e5f5',
+                              color2: '#f3e5f5',
+                              x1: '0%', y1: '0%',
+                              x2: '100%', y2: '100%'
+                            }
+                          }
+                        },
+                        hAxis: {
+                          title: 'Number',
+                          minValue: 0,
+                        },
+                        vAxis: {
+                          title: 'Name'
+                        }
+                      };
+                      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+                      chart.draw(data, options);
+                    }
             });
     
     
