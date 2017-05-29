@@ -289,7 +289,7 @@ angular
                 var beersdata = response.data;
                 $http.get("api/v2/motorcycling-stats/"+x+"?apikey=davbotcab").then(function(response) {
                     var motorcyclingsdata = response.data;
-                    datatograph.push({Country:x,datas:{beers:beersdata.length,motorcyclings:motorcyclingsdata.length}});
+                    datatograph.push({Country: x,datas:{beers:beersdata.length,motorcyclings:motorcyclingsdata.length}});
                     
 
 
@@ -300,10 +300,14 @@ angular
 
             });
 
-            dashboard('#dashboard', datatograph);
+            
 
         });
+        sleep(1000);
+        
         console.log(datatograph);
+        var graph=[datatograph.forEach( (x)=>{return x})];
+        dashboard('#dashboard', graph);
 
 
         var freqData = [{
@@ -367,6 +371,15 @@ angular
                 motorcyclings: 379
             }
         }];
-
-        dashboard('#dashboard', freqData);
+        console.log(freqData);
+        
+          function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds) {
+                    break;
+                }
+            }
+        }
+       
     }]);
