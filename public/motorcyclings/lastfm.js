@@ -36,7 +36,7 @@ angular
                     var data = google.visualization.arrayToDataTable(lastfmData);
 
                     var options = {
-                        title: 'LastFM locations integrated with Establishments'
+                        title: 'LastFM locations integrated with Motorcyclings'
                     };
 
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
