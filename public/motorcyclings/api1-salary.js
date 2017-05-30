@@ -27,7 +27,6 @@ angular
                 
         for(var indice=0; indice<salaryData.length; indice++){
             smiyear.push(salaryData[indice].country, Number(salaryData[indice]["smi-year"]));
-            }
         }
         
         
@@ -46,7 +45,7 @@ angular
                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
         },
         xAxis: {
-            categories: country
+            categories: salaryData.country
         },
         yAxis: {
             title: {
