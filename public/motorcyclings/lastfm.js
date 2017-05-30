@@ -4,8 +4,8 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    $scope.name = [];
-    $scope.playcount = [];
+    var name = [];
+    var playcount = [];
     
     
     $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=rj&format=json").then(function(response){
@@ -13,8 +13,8 @@ angular
         var res = response.data.artists.artist;
                 
         for(var i=0; i<res.length; i++){
-            $scope.name.push(res[i].name);
-            $scope.playcount.push(res[i].playcount);
+            name.push(res[i].name);
+            playcount.push(res[i].playcount);
         }
         
         
@@ -54,7 +54,7 @@ angular
 
                     },
                     "labels": 
-                        $scope.name
+                        name
                     
                 },
                 "scale-y": {
@@ -108,7 +108,7 @@ angular
                 
                 "series": [
                 {
-                    "values": $scope.playcount,
+                    "values": playcount,
                     "text": "Title",
                     "line-color": "#007790",
                     "legend-item":{
