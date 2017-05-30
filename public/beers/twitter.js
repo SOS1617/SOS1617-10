@@ -233,7 +233,7 @@ angular
                 options: {
                     title: {
                         display: true,
-                        text: 'Distribution in % of world population'
+                        text: "Beer's Tweets Opinion"
                     }
                 }
             });
