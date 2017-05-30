@@ -219,7 +219,7 @@ module.exports.register_establishments_apiv2 = function(app) {
         var key = request.query.apikey;
         var offset = request.query.offset;
         var limit = Number(request.query.limit);
-        var from = Number(request.query.from);
+        var from = request.query.from;
         var to = request.query.to;
         var parameter = request.params.parameter;
         var country;
