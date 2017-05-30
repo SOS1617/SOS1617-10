@@ -26,9 +26,8 @@ angular
         
                 
         for(var indice=0; indice<salaryData.length; indice++){
-            smiyear.push(Number(salaryData[indice]["smi-year"]));
-                
-            
+            smiyear.push(salaryData[indice].country, Number(salaryData[indice]["smi-year"]));
+            }
         }
         
         
