@@ -24,7 +24,7 @@ angular
       },
       legend: {}, // Creates an interactive legend
       series: [  // Insert your series data here.
-          { name: [playcount]}
+          { name: [03]}
       ]
     };
     zingchart.render({ // Render Method[3]
