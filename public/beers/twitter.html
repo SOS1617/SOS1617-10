@@ -1,12 +1,12 @@
-<div id="chart_div"></div>
+<div id="twittergraph"><div id="tweetLoader" class="loader"></div></div>
 <br/>
 <div id="btn-group">
-    <button class="button button-blue" id="none">No Format</button>
-    <button class="button button-blue" id="scientific">Scientific Notation</button>
-    <button class="button button-blue" id="decimal">Decimal</button>
-    <button class="button button-blue" id="short">Short</button>
+    <button class="btn btn-primary" id="none">No Format</button>
+    <button class="btn btn-primary" id="scientific">Scientific Notation</button>
+    <button class="btn btn-primary" id="decimal">Decimal</button>
+    <button class="btn btn-primary" id="short">Short</button>
 </div>
-<table class="table table-inverse">
+<table id="tabletwitter" class="table">
     <tr>
         <th>
             Image
@@ -18,11 +18,10 @@
             Tweet
         </th>
     </tr>
-    <tr class="bg-info" ng-repeat="tweet in tweetsToShow">
-        <td><img src="{{tweet.image}}" height="50"></img></td>
+    <tr ng-repeat="tweet in tweetsToShow">
+        <td><img class="twitterthumb" src="{{tweet.image}}" height="50"></img></td>
         <td>{{tweet.user}}</td>
         <td>{{tweet.message}}</td>
     </tr>
-    <div id="tweetLoader" class="loader"></div>
 </table>
 
