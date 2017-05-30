@@ -36,7 +36,7 @@ angular
                 x: numberTics,
                 y: countriesTics,
                 name: 'Number of tablets at home',
-                mode: 'lines+markers',
+                mode: 'lines',
                 type: 'scatter'
             };
 
