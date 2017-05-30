@@ -249,8 +249,10 @@ th {
     margin-left: 10px;
     margin-right: 20px;
     margin-bottom: 10px;
-    width: 98%;
+    width: auto;
     background-image: url("twitter.jpg");
+    background-size: 100% 100%;
+
 }
 .twitterthumb{
     border: 1px solid #ddd;
@@ -264,8 +266,8 @@ th {
     padding: 3px;
 }
 #twittergraph {
-    width: 99%;
-    height: 420px;
+    width: auto;
+    height: 30.76%;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
