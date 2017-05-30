@@ -5,7 +5,7 @@ angular
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
     var salaryData = {};
-    var country = ["United Kingdom", "Italy", "Spain"];
+    var country = ["United Kingdom", "Italy", "Spain", "China", "Australia", "Pakistan", "Indonesia", "Portugal"];
     var smiyear = [];
     
     var motorcyclingsCountry = [];
@@ -25,9 +25,11 @@ angular
         salaryData = response.data;
         
                 
-        for(var indice=0; indice<salaryData.length; indice++){
-            smiyear.push(salaryData[indice].country, Number(salaryData[indice]["smi-year"]));
-        }
+            for(var indice=0; indice<salaryData.length; indice++){
+                    smiyear.push(Number(salaryData[indice]["smi-year"]));
+                
+            }
+        
         
         
         
@@ -45,7 +47,7 @@ angular
                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
         },
         xAxis: {
-            categories: salaryData.country
+            categories: country
         },
         yAxis: {
             title: {
