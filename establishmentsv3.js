@@ -218,7 +218,7 @@ module.exports.register_establishments_apiv3 = function(app) {
     app.get(BASE_API_PATH + "/establishments/:parameter", function(request, response) {
         var key = apikey;
         var offset = request.query.offset;
-        var limit = request.query.limit;
+        var limit = Number(request.query.limit);
         var from = request.query.from;
         var to = request.query.to;
         var parameter = request.params.parameter;
