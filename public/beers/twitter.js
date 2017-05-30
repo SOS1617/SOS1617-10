@@ -95,6 +95,7 @@ angular
                                 Positiveplus.push(pplus);
                                 Positive.push(p);
                                 None.push(none);
+                                Negative.push(n);
                                 Negative.push(nplus);
                                 Ironic.push(ironic);
                                 beerCont++;
