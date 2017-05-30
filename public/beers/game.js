@@ -23,7 +23,7 @@ angular
             google.charts.setOnLoadCallback(drawChart);
 
             function drawChart() {
-                var container = document.getElementById('timeline');
+                var container = document.getElementById('d3');
                 var chart = new google.visualization.Timeline(container);
                 var dataTable = new google.visualization.DataTable();
 

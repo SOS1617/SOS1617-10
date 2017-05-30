@@ -304,7 +304,7 @@ angular
                     cont++;
 
                     if (cont == countries.length) {
-                        dashboard('#dashboard', datatograph);
+                        dashboard('#d3', datatograph);
                     }
 
 
