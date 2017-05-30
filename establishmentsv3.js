@@ -262,6 +262,7 @@ module.exports.register_establishments_apiv3 = function(app) {
         }];
         if (checkApikey(key, response)) {
             console.log("INFO: New GET request to /establishments/" + country + year);
+            console.log(mongoquery);
             db.find(
                 mongoquery
             ).limit(limit).skip(offset).toArray(function(err, filteredEstablishments) {
