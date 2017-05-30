@@ -4,10 +4,7 @@ angular
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var countrycode = [];
-    var population = [];
     var color = ["#50ADF5","#FF7965","#FFCB45","#6877e5","#6FB07F","B852F4","B0035F","33554F","00548F","FFFFF"];
-    var colorPie = [];
     var poblationData = [];
     
     
@@ -15,22 +12,16 @@ angular
         
     $http.get("http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=daboca92").then(function(response){
         
-                var res = response.data.geonames;
-                
-                        
-                for(var i=0; i<res.length; i++){
-                    colorPie.push(color[i]);
-                }
-                
+
                 var cont = 0;
                 response.data.geonames.forEach((x) => {
-                poblationData.push({
-                    values:x.population,
-                    text:x.countrycode,
-                    backgroundColor: colorPie
+                    poblationData.push({
+                        values:x.population,
+                        text:x.countrycode,
+                        backgroundColor: color[cont]
+                    });
+                    cont++;
                 });
-                cont++;
-            });
                 
                 
         
