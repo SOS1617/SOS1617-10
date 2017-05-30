@@ -8,7 +8,7 @@ angular
     lastfmData.push(['Name', 'Number']);
     
     
-    $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json").then(function(response){
+    $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=rj&format=json").then(function(response){
         
         var res = response.data.artists.artist;
                 
