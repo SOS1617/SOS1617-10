@@ -8,13 +8,14 @@ angular
     var population = [];
     var color = ["#50ADF5","#FF7965","#FFCB45","#6877e5","#6FB07F","B852F4","B0035F","33554F","00548F","FFFFF"];
     var colorPie = [];
-    var contador = 0;
+    
     
     
         
     $http.get("http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=daboca92").then(function(response){
         
                 var res = response.data.geonames;
+                var contador = 0;
                         
                 for(var i=0; i<res.length; i++){
                     countrycode.push(res[i].countrycode);
