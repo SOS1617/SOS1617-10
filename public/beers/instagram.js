@@ -28,6 +28,7 @@ angular
             selflikes.push(selflikesnumber);
             $scope.photototable=photototable;
             Plotly.newPlot('instagramgraph', data, layout);
+            document.getElementById("pleaselogin").className="loader-hidden";
         });
 
 
