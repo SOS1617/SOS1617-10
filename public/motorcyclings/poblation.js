@@ -16,7 +16,7 @@ angular
                 var cont = 0;
                 response.data.geonames.forEach((x) => {
                     poblationData.push({
-                        values:x.population,
+                        values:[x.population],
                         text:x.countrycode,
                         backgroundColor: color[cont]
                     });
