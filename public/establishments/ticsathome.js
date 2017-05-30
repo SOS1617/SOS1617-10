@@ -33,8 +33,8 @@ angular
             };
 
             var trace2 = {
-                x: numberTics,
-                y: countriesTics,
+                x: countriesTics,
+                y: numberTics,
                 name: 'Number of tablets at home',
                 mode: 'lines',
                 type: 'scatter'
