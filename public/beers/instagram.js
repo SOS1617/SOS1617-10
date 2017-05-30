@@ -15,7 +15,7 @@ angular
         $http.get("/usermedia").then(function(response) {
             var likesnumber = 0;
             var selflikesnumber = 0;
-            photos.push(response.data.length);
+            photos.push([0, response.data.length]);
 
             response.data.forEach((x) => {
                 photototable.push({
@@ -29,32 +29,35 @@ angular
                     selflikesnumber++;
                 }
             });
-            likes.push([0,likesnumber]);
-            selflikes.push([0,selflikesnumber]);
+            likes.push([0, likesnumber]);
+            selflikes.push([0, selflikesnumber]);
             $scope.photototable = photototable;
             document.getElementById("pleaselogin").className = "loader-hidden";
-            
-            
+
+
             var chart = new EJSC.Chart("instagramgraph", {
-            show_legend: false
+                show_legend: false
+            });
+            var stack = chart.addSeries(new EJSC.StackedBarSeries({
+                intervalOffset: 1
+            }));
+
+            stack.addSeries(new EJSC.BarSeries(
+                new EJSC.ArrayDataHandler(likes)
+            ));
+
+            stack.addSeries(new EJSC.BarSeries(
+                new EJSC.ArrayDataHandler(selflikes)
+            ));
+            stack.addSeries(new EJSC.BarSeries(
+                new EJSC.ArrayDataHandler(photos)
+            ));
         });
-        var stack = chart.addSeries(new EJSC.StackedBarSeries({
-            intervalOffset: 1
-        }));
-
-        stack.addSeries(new EJSC.BarSeries(
-            new EJSC.ArrayDataHandler(likes)
-        ));
-
-        stack.addSeries(new EJSC.BarSeries(
-            new EJSC.ArrayDataHandler(selflikes)
-        ));
-        });
 
 
 
 
-        
+
 
 
 
