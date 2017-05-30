@@ -283,90 +283,40 @@ angular
         }
         var countries = ["United Kingdom", "Spain", "Italy"];
         var datatograph = [];
+        var cont = 0;
 
         countries.forEach((x) => {
-            $http.get("/api/v2/beers-stats/"+x+"?apikey=jesusguerre").then(function(response) {
+            $http.get("/api/v2/beers-stats/" + x + "?apikey=jesusguerre").then(function(response) {
                 var beersdata = response.data;
-                $http.get("api/v2/motorcycling-stats/"+x+"?apikey=davbotcab").then(function(response) {
+                $http.get("api/v2/motorcycling-stats/" + x + "?apikey=davbotcab").then(function(response) {
                     var motorcyclingsdata = response.data;
-                    datatograph.push({Country:x,datas:{beers:beersdata.length,motorcyclings:motorcyclingsdata.length}});
-                    
+                    var item = {
+                        Country: x,
+                        datas: {
+                            beers: beersdata.length,
+                            motorcyclings: motorcyclingsdata.length
+                        }
+                    };
+                    console.log(item);
 
+
+                    datatograph.push(item);
+                    cont++;
+
+                    if (cont == countries.length) {
+                        dashboard('#dashboard', datatograph);
+                    }
 
 
                 });
 
-                
+
 
             });
 
-            dashboard('#dashboard', datatograph);
+
 
         });
-        console.log(datatograph);
 
 
-        var freqData = [{
-            Country: 'AL',
-            datas: {
-                beers: 4786,
-                motorcyclings: 1319
-            }
-        }, {
-            Country: 'AZ',
-            datas: {
-                beers: 1101,
-                motorcyclings: 412
-            }
-        }, {
-            Country: 'CT',
-            datas: {
-                beers: 932,
-                motorcyclings: 2149
-            }
-        }, {
-            Country: 'DE',
-            datas: {
-                beers: 832,
-                motorcyclings: 1152
-            }
-        }, {
-            Country: 'FL',
-            datas: {
-                beers: 4481,
-                motorcyclings: 3304
-            }
-        }, {
-            Country: 'GA',
-            datas: {
-                beers: 1619,
-                motorcyclings: 167
-            }
-        }, {
-            Country: 'IA',
-            datas: {
-                beers: 1819,
-                motorcyclings: 247
-            }
-        }, {
-            Country: 'IL',
-            datas: {
-                beers: 4498,
-                motorcyclings: 3852
-            }
-        }, {
-            Country: 'IN',
-            datas: {
-                beers: 797,
-                motorcyclings: 1849
-            }
-        }, {
-            Country: 'KS',
-            datas: {
-                beers: 162,
-                motorcyclings: 379
-            }
-        }];
-
-        dashboard('#dashboard', freqData);
     }]);
