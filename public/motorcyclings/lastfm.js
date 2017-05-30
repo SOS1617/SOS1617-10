@@ -53,8 +53,7 @@ angular
                         "fontColor":"#E3E3E5",
 
                     },
-                    "labels": 
-                        name
+                    "labels": name
                     
                 },
                 "scale-y": {
