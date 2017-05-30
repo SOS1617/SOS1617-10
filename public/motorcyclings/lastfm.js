@@ -24,7 +24,7 @@ angular
         
                 var options = {
                   title: 'LastFM playcount by Artist',
-                  pieHole: 0.4,
+                  pieHole: 0.1,
                 };
         
                 var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
