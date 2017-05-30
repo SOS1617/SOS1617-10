@@ -36,7 +36,7 @@ angular
 
 
             var chart = new EJSC.Chart("instagramgraph", {
-                show_legend: false
+                show_legend: true
             });
             var stack = chart.addSeries(new EJSC.StackedBarSeries({
                 intervalOffset: 1
