@@ -27,7 +27,7 @@ angular
             var trace1 = {
                 x: countriesEstablishments,
                 y: numberEstablishments,
-                name: 'Number of establishments',
+                name: 'Number of establishments per 1000',
                 mode: 'lines',
                 type: 'scatter'
             };
