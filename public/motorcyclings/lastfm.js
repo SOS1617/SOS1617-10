@@ -1,6 +1,6 @@
 angular
 .module("SOS161710")
-.controller("Lastfm", ["$http","scope", function($http,$scope){
+.controller("Lastfm", ["$http", function($http){
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
