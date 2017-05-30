@@ -20,6 +20,7 @@
   "homepage": "https://github.com/SOS1617/SOS1617-10#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "chart.js": "^2.6.0",
     "cors": "^2.8.3",
     "dateformat": "^2.0.0",
     "express": "^4.15.2",

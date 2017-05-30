@@ -5,6 +5,14 @@ angular
         var datatograph = [];
         datatograph.push(['Name', 'Number of Tweets', 'Positive+', 'Positive', 'None', 'Negative', 'Negative+', 'Ironic']);
         var tweetsToShow = [];
+        var Name = [];
+        var NumberOfTweets = [];
+        var Positiveplus = [];
+        var Positive = [];
+        var None = [];
+        var Negative = [];
+        var Negativeplus = [];
+        var Ironic = [];
 
         $http.get("/api/v2/beers-stats/Spain/?apikey=jesusguerre").then(function(response) {
             var beers = response.data;
@@ -81,13 +89,18 @@ angular
 
 
                             if (cont >= tweetsize) {
-                                console.log(tweetsize);
-                                console.log(datatograph);
-                                datatograph.push([x.name, tweetsize, pplus, p, none, n, nplus, ironic]);
+                                //datatograph.push([x.name, tweetsize, pplus, p, none, n, nplus, ironic]);
+                                Name.push(x.name);
+                                NumberOfTweets.push(tweetsize);
+                                Positiveplus.push(pplus);
+                                Positive.push(p);
+                                None.push(none);
+                                Negative.push(nplus);
+                                Ironic.push(ironic);
                                 beerCont++;
                             }
                             if (beerCont >= beers.length) {
-                                document.getElementById("tweetLoader").className = "loader-hidden";
+                               // document.getElementById("tweetLoader").className = "loader-hidden";
                                 show();
                             }
 
@@ -102,7 +115,7 @@ angular
 
             });
 
-            function show() {
+            /*function show() {
                 google.charts.load('current', {
                     'packages': ['bar']
                 });
@@ -142,41 +155,88 @@ angular
             }
 
 
-
+                */
 
 
         });
 
-        new Chart(document.getElementById("radar-chart"), {
-            type: 'radar',
-            data: {
-                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                datasets: [{
-                    label: "1950",
-                    fill: true,
-                    backgroundColor: "rgba(179,181,198,0.2)",
-                    borderColor: "rgba(179,181,198,1)",
-                    pointBorderColor: "#fff",
-                    pointBackgroundColor: "rgba(179,181,198,1)",
-                    data: [8.77, 55.61, 21.69, 6.62, 6.82]
-                }, {
-                    label: "2050",
-                    fill: true,
-                    backgroundColor: "rgba(255,99,132,0.2)",
-                    borderColor: "rgba(255,99,132,1)",
-                    pointBorderColor: "#fff",
-                    pointBackgroundColor: "rgba(255,99,132,1)",
-                    pointBorderColor: "#fff",
-                    data: [25.48, 54.16, 7.61, 8.06, 4.45]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Distribution in % of world population'
+        function show() {
+            new Chart(document.getElementById("radar-chart"), {
+                type: 'radar',
+                data: {
+                    labels: Name,
+                    datasets: [{
+                        label: "NumberOfTweets",
+                        fill: true,
+                        backgroundColor: "rgba(179,181,198,0.2)",
+                        borderColor: "rgba(179,181,198,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(179,181,198,1)",
+                        data: NumberOfTweets
+                    }, {
+                        label: "Positive+",
+                        fill: true,
+                        backgroundColor: "rgba(0, 204, 153,0.2)",
+                        borderColor: "rgba(0, 204, 153,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(0, 204, 153,1)",
+                        pointBorderColor: "#fff",
+                        data: Positiveplus
+                    }, {
+                        label: "Positive",
+                        fill: true,
+                        backgroundColor: "rgba(102, 255, 102,0.2)",
+                        borderColor: "rgba(102, 255, 102,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(102, 255, 102,1)",
+                        pointBorderColor: "#fff",
+                        data: Positive
+                    }, {
+                        label: "None",
+                        fill: true,
+                        backgroundColor: "rgba(51, 153, 255,0.2)",
+                        borderColor: "rgba(51, 153, 255,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(51, 153, 255,1)",
+                        pointBorderColor: "#fff",
+                        data: None
+                    }, {
+                        label: "Negative",
+                        fill: true,
+                        backgroundColor: "rgba(255, 102, 0,0.2)",
+                        borderColor: "rgba(255, 102, 0,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(255, 102, 0,1)",
+                        pointBorderColor: "#fff",
+                        data: Negative
+                    },{
+                        label: "Negative+",
+                        fill: true,
+                        backgroundColor: "rgba(255,99,132,0.2)",
+                        borderColor: "rgba(255,99,132,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(255,99,132,1)",
+                        pointBorderColor: "#fff",
+                        data: Negativeplus
+                    },{
+                        label: "Ironic",
+                        fill: true,
+                        backgroundColor: "rgba(0, 102, 204,0.2)",
+                        borderColor: "rgba(0, 102, 204,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(0, 102, 204,1)",
+                        pointBorderColor: "#fff",
+                        data: Ironic
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Distribution in % of world population'
+                    }
                 }
-            }
-        });
+            });
+        }
 
         function sleep(milliseconds) {
             var start = new Date().getTime();
