@@ -281,5 +281,20 @@ th {
     left: 42.5%;
     top: 25%;
 }
+#tableinstagram {
+    font-family: "Arial Black", Gadget, sans-serif;
+    color:white;
+    text-align: center;
+    box-shadow: 0 0 1em black;
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    width: auto;
+    background-image: url("instagram.jpg");
+    background-size: 100% 100%;
+
+}
 
 /*----------------Motorcycling----------------/
