@@ -215,11 +215,11 @@ th {
     padding: 10px;
 }
 .loader {
-  border: 5px solid #f3f3f3;
+  border: 15px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #3498db;
-  width: 50px;
-  height: 50px;
+  border-top: 15px solid #3498db;
+  width: 200px;
+  height: 200px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 1s linear infinite;
   position: fixed;
@@ -239,11 +239,86 @@ th {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-#twitbar{
-    width: 40%;
-    position: fixed;
-    right: 10px;
-    top: 10px;
+#tabletwitter {
+    font-family: "Arial Black", Gadget, sans-serif;
+    color:white;
+    text-align: center;
+    box-shadow: 0 0 1em black;
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    width: auto;
+    background-image: url("twitter.jpg");
+    background-size: 100% 100%;
+
+}
+.twitterthumb{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+#btn-group{
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 3px;
+}
+#twittergraph {
+    width: auto;
+    height: 30.76%;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    box-shadow: 0 0 1em black;
+    padding: 10px;
+}
+#tweetLoader{
+    position: relative;
+    left: 42.5%;
+    top: 25%;
+}
+#tableinstagram {
+    font-family: "Arial Black", Gadget, sans-serif;
+    color:white;
+    text-align: center;
+    box-shadow: 0 0 1em black;
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    width: 99%;
+    background-image: url("instagram.jpg");
+    background-size: 100% 100%;
+
+}
+#instagramgraph{
+    width: 99%;
+    height: 650px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 1em black;
+    padding: 20px;
+}
+#pleaselogin{
+    text-align: center;
+}
+#d3{
+    width: auto;
+    height: auto;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 1em black;
+    padding: 20px;
+    text-align: center;
 }
 
 

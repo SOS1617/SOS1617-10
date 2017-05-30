@@ -254,7 +254,7 @@ angular
                 }
 
                 function getLegend(d, aD) { // Utility function to compute percentage.
-                    return d3.format("%")(d.datas / d3.sum(aD.map(function(v) {
+                    return d3.format("%") (d.datas / d3.sum(aD.map(function(v) {
                         return v.datas;
                     })));
                 }
@@ -304,7 +304,7 @@ angular
                     cont++;
 
                     if (cont == countries.length) {
-                        dashboard('#dashboard', datatograph);
+                        dashboard('#d3', datatograph);
                     }
 
 
