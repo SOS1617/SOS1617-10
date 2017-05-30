@@ -108,6 +108,36 @@ module.exports.register_establishments_apiv2 = function(app) {
                         "number": 1419,
                         "beds": 58100,
                         "nights": 5800000
+                    }, {
+                        "country": "ireland",
+                        "year": 2014,
+                        "number": 6574,
+                        "beds": 205900,
+                        "nights": 29200000
+                    }, {
+                        "country": "greece",
+                        "year": 2014,
+                        "number": 34522,
+                        "beds": 1238600,
+                        "nights": 95100000
+                    }, {
+                        "country": "spain",
+                        "year": 2014,
+                        "number": 47689,
+                        "beds": 3483000,
+                        "nights": 404000000
+                    }, {
+                        "country": "france",
+                        "year": 2014,
+                        "number": 28895,
+                        "beds": 5109900,
+                        "nights": 402300000
+                    }, {
+                        "country": "united kingdom",
+                        "year": 2013,
+                        "number": 87079,
+                        "beds": 4001000,
+                        "nights": 303600000
                     }];
                     db.insert(initialEstablishments);
                     response.sendStatus(201);
@@ -219,7 +249,7 @@ module.exports.register_establishments_apiv2 = function(app) {
         var key = request.query.apikey;
         var offset = request.query.offset;
         var limit = Number(request.query.limit);
-        var from = Number(request.query.from);
+        var from = request.query.from;
         var to = request.query.to;
         var parameter = request.params.parameter;
         var country;
