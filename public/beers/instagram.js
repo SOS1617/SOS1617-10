@@ -27,7 +27,7 @@ angular
             likes.push(likesnumber);
             selflikes.push(selflikesnumber);
             $scope.photototable=photototable;
-            Plotly.newPlot('twittergraph', data, layout);
+            Plotly.newPlot('instagramgraph', data, layout);
         });
 
 
