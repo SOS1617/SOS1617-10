@@ -215,11 +215,11 @@ th {
     padding: 10px;
 }
 .loader {
-  border: 15px solid #f3f3f3;
+  border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 15px solid #3498db;
-  width: 200px;
-  height: 200px;
+  border-top: 5px solid #3498db;
+  width: 50px;
+  height: 50px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 1s linear infinite;
   position: fixed;
@@ -265,9 +265,9 @@ th {
     margin-bottom: 5px;
     padding: 3px;
 }
-#twittergraph {
-    width: auto;
-    height: 30.76%;
+#radar-chart {
+    width: 99%;
+    height: auto;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
@@ -277,9 +277,9 @@ th {
     padding: 10px;
 }
 #tweetLoader{
-    position: relative;
-    left: 42.5%;
-    top: 25%;
+    position: fixed;
+    right: 10px;
+    top: 10px;
 }
 #tableinstagram {
     font-family: "Arial Black", Gadget, sans-serif;
