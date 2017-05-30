@@ -19,7 +19,7 @@ angular
                 
         
         
-                var myConfig = {
+                var myChart = {
                	type: "pie", 
                	backgroundColor: "#2B313B",
                	plot: {
@@ -71,36 +71,16 @@ angular
                	},
               	series : [
               		{
-              			values : [11.38],
-              			text: "Internet Explorer",
+              			values : poblationData[1],
+              			text: poblationData[0],
               		  backgroundColor: '#50ADF5',
-              		},
-              		{
-              		  values: [56.94],
-              		  text: "Chrome",
-              		  backgroundColor: '#FF7965'
-              		},
-              		{
-              		  values: [14.52],
-              		  text: 'Firefox',
-              		  backgroundColor: '#FFCB45'
-              		},
-              		{
-              		  text: 'Safari',
-              		  values: [9.69],
-              		  backgroundColor: '#6877e5'
-              		},
-              		{
-              		  text: 'Other',
-              		  values: [7.48],
-              		  backgroundColor: '#6FB07F'
               		}
               	]
               };
                
               zingchart.render({ 
               	id : 'myChart', 
-              	data : myConfig, 
+              	data : myChart, 
               	height: 500, 
               	width: 725 
               });
