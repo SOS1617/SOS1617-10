@@ -8,7 +8,7 @@ angular
     var population = [];
     var color = ["#50ADF5","#FF7965","#FFCB45","#6877e5","#6FB07F","B852F4","B0035F","33554F","00548F","FFFFF"];
     var colorPie = [];
-    var contador = [];
+    var contador = 0;
     
     
         
