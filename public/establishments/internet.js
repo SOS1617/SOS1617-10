@@ -46,6 +46,7 @@ angular
             };
 
             Plotly.newPlot('InternetEstablishmentsPlotly', data, layout);
+            
         });
 
     }]);
