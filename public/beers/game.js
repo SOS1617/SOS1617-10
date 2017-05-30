@@ -31,7 +31,5 @@ angular
         });
 
 
-        console.log("eee");
-
 
     }]);
