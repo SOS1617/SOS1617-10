@@ -12,7 +12,7 @@ angular
 
             response.data.forEach((x) => {
                 countriesEstablishments.push(x.country);
-                numberEstablishments.push(x.number);
+                numberEstablishments.push(x.number/1000);
             });
 
         });
@@ -28,7 +28,7 @@ angular
             var trace1 = {
                 x: countriesEstablishments,
                 y: numberEstablishments,
-                name: 'Number of establishments',
+                name: 'Number of establishments per 1000',
                 type: 'bar'
             };
 
