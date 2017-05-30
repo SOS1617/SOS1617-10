@@ -296,5 +296,16 @@ th {
     background-size: 100% 100%;
 
 }
+#instagramgraph{
+    width: auto;
+    height: auto;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    box-shadow: 0 0 1em black;
+    padding: 10px;
+}
 
 /*----------------Motorcycling----------------/
