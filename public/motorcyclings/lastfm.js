@@ -7,14 +7,7 @@ angular
     var lastfmData = [];
     lastfmData.push(['Name', 'Number']);
     
-    $http.get(url + "/?" + apikey).then(function(response){
-              var res = response.data;
-                res.forEach((x) => {
-                    lastfmData.push([x.pilot, 2017-x.year]);
-                });
-            });
     
-        
     $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=DeiVi92&format=json").then(function(response){
         
         var res = response.data.artists.artist;
@@ -30,7 +23,7 @@ angular
                 var data = google.visualization.arrayToDataTable(lastfmData);
         
                 var options = {
-                  title: 'My Daily Activities',
+                  title: 'LastFM playcount by Artist',
                   pieHole: 0.4,
                 };
         
@@ -39,16 +32,6 @@ angular
               }
 
     
-});
-
-    function getFromCountry(country, data) {
-        var response;
-        response = [country, data.filter((x) => {
-            return x.country == country;
-        }).length];
-        return response;
-    }
-
-
+    });
     
 }]);

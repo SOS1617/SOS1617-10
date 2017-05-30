@@ -31,7 +31,7 @@ angular
     });
     
         
-    $http.get("http://geodata.grid.unep.ch/api/countries/DE/variables/1").then(function(response){
+    $http.get("http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo").then(function(response){
         
                 poblationData = response.data;
                         
@@ -42,7 +42,7 @@ angular
                 
         
         
-                var names = ['centripetal', 'chordal', 'uniform', 'disabled'];
+                 var names = ['centripetal', 'chordal', 'uniform', 'disabled'];
                 var groups = new vis.DataSet();
                 groups.add({
                     id: 0,
