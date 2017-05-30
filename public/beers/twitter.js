@@ -101,7 +101,7 @@ angular
                                 beerCont++;
                             }
                             if (beerCont >= beers.length) {
-                               // document.getElementById("tweetLoader").className = "loader-hidden";
+                                document.getElementById("tweetLoader").className = "loader-hidden";
                                 show();
                             }
 

@@ -265,9 +265,9 @@ th {
     margin-bottom: 5px;
     padding: 3px;
 }
-#twittergraph {
+#radar-chart {
     width: auto;
-    height: 30.76%;
+    height: auto;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
