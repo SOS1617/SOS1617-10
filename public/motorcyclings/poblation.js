@@ -8,7 +8,7 @@ angular
     var population = [];
     var color = ["#50ADF5","#FF7965","#FFCB45","#6877e5","#6FB07F","B852F4","B0035F","33554F","00548F","FFFFF"];
     var colorPie = [];
-    var contador = 0;
+    var poblationData = [];
     
     
     
@@ -19,12 +19,18 @@ angular
                 
                         
                 for(var i=0; i<res.length; i++){
-                    countrycode.push(res[i].countrycode);
-                    population.push(res[i].population);
                     colorPie.push(color[i]);
                 }
                 
-                
+                var cont = 0;
+                response.data.geonames.forEach((x) => {
+                poblationData.push({
+                    values:x.population,
+                    text:x.countrycode,
+                    backgroundColor: colorPie
+                });
+                cont++;
+            });
                 
                 
         
@@ -78,13 +84,7 @@ angular
                	plotarea: {
                	  margin: "20 0 0 0"  
                	},
-              	series : [
-              		{
-              			values : [population[contador]],
-              			text: countrycode[contador],
-              		  backgroundColor: colorPie[contador],
-              		}
-              	]
+              	series : poblationData
               };
                
               zingchart.render({ 
