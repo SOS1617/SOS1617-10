@@ -5,11 +5,11 @@ angular
         var datatograph = [];
         datatograph.push(['Name', 'Number of Tweets', 'Positive+', 'Positive', 'None', 'Negative', 'Negative+', 'Ironic']);
         var tweetsToShow = [];
-
+        
         $http.get("/api/v2/beers-stats/Spain/?apikey=jesusguerre").then(function(response) {
             var beers = response.data;
             var beerCont = 0;
-
+           
             beers.forEach((x) => {
                 $http.get("/api/v2/twitsearch/" + x.name.toLocaleLowerCase()).then(function(response) {
                     var tweets = [];
@@ -28,7 +28,7 @@ angular
                         tweetsToShow.push(tweets[index]);
                     }
                     $scope.tweetsToShow = tweetsToShow;
-
+                    
                     console.log(tweets);
                     var tweetsize = response.data.statuses.length;
                     var cont = 0;
@@ -38,11 +38,11 @@ angular
                     var n = 0;
                     var nplus = 0;
                     var ironic = 0;
-
-
+                   
+                    
                     tweets.forEach((y) => {
-                        sleep(180);
-
+                       sleep(180);
+                        
                         console.log("ejecuta");
                         $http.post("/api/v2/sentimentAnalisis", y).then(function(response) {
 
@@ -75,8 +75,8 @@ angular
                                 ironic++;
                                 cont++;
                             }
-
-
+                            
+                            
 
 
 
@@ -87,14 +87,14 @@ angular
                                 beerCont++;
                             }
                             if (beerCont >= beers.length) {
-                                document.getElementById("tweetLoader").className = "loader-hidden";
+                                document.getElementById("tweetLoader").className="loader-hidden";
                                 show();
                             }
 
                         });
 
                     });
-
+                    
 
 
 
@@ -147,36 +147,7 @@ angular
 
         });
 
-        new Chart(document.getElementById("radar-chart"), {
-            type: 'radar',
-            data: {
-                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                datasets: [{
-                    label: "1950",
-                    fill: true,
-                    backgroundColor: "rgba(179,181,198,0.2)",
-                    borderColor: "rgba(179,181,198,1)",
-                    pointBorderColor: "#fff",
-                    pointBackgroundColor: "rgba(179,181,198,1)",
-                    data: [8.77, 55.61, 21.69, 6.62, 6.82]
-                }, {
-                    label: "2050",
-                    fill: true,
-                    backgroundColor: "rgba(255,99,132,0.2)",
-                    borderColor: "rgba(255,99,132,1)",
-                    pointBorderColor: "#fff",
-                    pointBackgroundColor: "rgba(255,99,132,1)",
-                    pointBorderColor: "#fff",
-                    data: [25.48, 54.16, 7.61, 8.06, 4.45]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Distribution in % of world population'
-                }
-            }
-        });
+
 
         function sleep(milliseconds) {
             var start = new Date().getTime();
