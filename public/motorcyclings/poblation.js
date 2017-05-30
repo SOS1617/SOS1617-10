@@ -75,9 +75,17 @@ angular
                	},
               	series : [
               		{
-              			values : [population],
-              			text: countrycode,
-              		  backgroundColor: colorPie,
+              			values : [population[0]],
+              			text: countrycode[0],
+              		  backgroundColor: colorPie[0],
+              		},{
+              			values : [population[1]],
+              			text: countrycode[1],
+              		  backgroundColor: colorPie[1],
+              		},{
+              			values : [population[2]],
+              			text: countrycode[2],
+              		  backgroundColor: colorPie[2],
               		}
               	]
               };
