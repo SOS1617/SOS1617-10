@@ -45,13 +45,14 @@ angular
             stack.addSeries(new EJSC.BarSeries(
                 new EJSC.ArrayDataHandler(likes)
             ));
+            stack.addSeries(new EJSC.BarSeries(
+                new EJSC.ArrayDataHandler(photos)
+            ));
 
             stack.addSeries(new EJSC.BarSeries(
                 new EJSC.ArrayDataHandler(selflikes)
             ));
-            stack.addSeries(new EJSC.BarSeries(
-                new EJSC.ArrayDataHandler(photos)
-            ));
+            
         });
 
 
