@@ -75,7 +75,7 @@ angular
                	},
               	series : [
               		{
-              			values : population,
+              			values : [population],
               			text: countrycode,
               		  backgroundColor: colorPie,
               		}
