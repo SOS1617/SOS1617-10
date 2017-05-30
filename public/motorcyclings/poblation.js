@@ -8,6 +8,7 @@ angular
     var population = [];
     var color = ["#50ADF5","#FF7965","#FFCB45","#6877e5","#6FB07F","B852F4","B0035F","33554F","00548F","FFFFF"];
     var colorPie = [];
+    var contador = [];
     
     
         
@@ -19,9 +20,12 @@ angular
                     countrycode.push(res[i].countrycode);
                     population.push(res[i].population);
                     colorPie.push(color[i]);
+                    contador++;
                 }
                 
-        
+                
+                
+                
         
                 var myChart = {
                	type: "pie", 
@@ -75,17 +79,9 @@ angular
                	},
               	series : [
               		{
-              			values : [population[0]],
-              			text: countrycode[0],
-              		  backgroundColor: colorPie[0],
-              		},{
-              			values : [population[1]],
-              			text: countrycode[1],
-              		  backgroundColor: colorPie[1],
-              		},{
-              			values : [population[2]],
-              			text: countrycode[2],
-              		  backgroundColor: colorPie[2],
+              			values : [population[contador]],
+              			text: countrycode[contador],
+              		  backgroundColor: colorPie[contador],
               		}
               	]
               };
