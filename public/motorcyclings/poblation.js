@@ -9,26 +9,7 @@ angular
     var country = ["United Kingdom", "Italy", "Spain"];
     var population = [];
     var name = [];
-    var motorcyclingsVis = [];
     
-    $http.get(url + "/?" + apikey).then(function(response){
-              var res = response.data;
-                res.forEach((x) => {
-                    poblationData.push([x.pilot, 2017-x.year]);
-                });
-            var cont = 0;
-            response.data.forEach((x) => {
-                motorcyclingsVis.push({
-                    id:cont,
-                    content:x.pilot,
-                    start:x.year+"-01-01",
-                    end:x.year+"-12-31"
-                });
-                cont++;
-            });
-        
-        
-    });
     
         
     $http.get("http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo").then(function(response){
@@ -42,83 +23,94 @@ angular
                 
         
         
-                 var names = ['centripetal', 'chordal', 'uniform', 'disabled'];
-                var groups = new vis.DataSet();
-                groups.add({
-                    id: 0,
-                    content: names[0],
-                    options: {
-                        drawPoints: false,
-                        interpolation: {
-                            parametrization: 'centripetal'
-                        }
-                    }});
-            
-                groups.add({
-                    id: 1,
-                    content: names[1],
-                    options: {
-                        drawPoints: false,
-                        interpolation: {
-                            parametrization: 'chordal'
-                        }
-                    }});
-            
-                groups.add({
-                    id: 2,
-                    content: names[2],
-                    options: {
-                        drawPoints: false,
-                        interpolation: {
-                            parametrization: 'uniform'
-                        }
-                    }
-                });
-            
-                groups.add({
-                    id: 3,
-                    content: names[3],
-                    options: {
-                        drawPoints: { style: 'circle' },
-                        interpolation: false
-                    }});
-            
-                var container = document.getElementById('visualization');
-                var dataset = new vis.DataSet();
-                for (var i = 0; i < names.length; i++) {
-                    dataset.add( [
-                        {x: '2014-06-12', y: 0 , group: i},
-                        {x: '2014-06-13', y: 40, group: i},
-                        {x: '2014-06-14', y: 10, group: i},
-                        {x: '2014-06-15', y: 15, group: i},
-                        {x: '2014-06-15', y: 30, group: i},
-                        {x: '2014-06-17', y: 10, group: i},
-                        {x: '2014-06-18', y: 15, group: i},
-                        {x: '2014-06-19', y: 52, group: i},
-                        {x: '2014-06-20', y: 10, group: i},
-                        {x: '2014-06-21', y: 20, group: i}
-                    ]);
+                var myChart = {
+             	type: "pie", 
+             	backgroundColor: "#2B313B",
+             	plot: {
+             	  borderColor: "#2B313B",
+             	  borderWidth: 5,
+             	  // slice: 90,
+             	  valueBox: {
+             	    placement: 'out',
+             	    text: '%t\n%npv%',
+             	    fontFamily: "Open Sans"
+             	  },
+             	  tooltip:{
+             	    fontSize: '18',
+             	    fontFamily: "Open Sans",
+             	    padding: "5 10",
+             	    text: "%npv%"
+             	  },
+             	  animation:{
+                  effect: 2, 
+                  method: 5,
+                  speed: 500,
+                  sequence: 1
                 }
-            
-                var options = {
-                    drawPoints: false,
-                    dataAxis: {visible: false},
-                    legend: true,
-                    start: '2014-06-11',
-                    end: '2014-06-22'
-                };
-                var graph2d = new vis.Graph2d(container, dataset, groups, options);
+             	},
+             	source: {
+             	  text: 'gs.statcounter.com',
+             	  fontColor: "#8e99a9",
+             	  fontFamily: "Open Sans"
+             	},
+             	title: {
+             	  fontColor: "#fff",
+             	  text: 'Global Browser Usage',
+             	  align: "left",
+             	  offsetX: 10,
+             	  fontFamily: "Open Sans",
+             	  fontSize: 25
+             	},
+             	subtitle: {
+             	  offsetX: 10,
+             	  offsetY: 10,
+             	  fontColor: "#8e99a9",
+             	  fontFamily: "Open Sans",
+             	  fontSize: "16",
+             	  text: 'May 2016',
+             	  align: "left"
+             	},
+             	plotarea: {
+             	  margin: "20 0 0 0"  
+             	},
+            	series : [
+            		{
+            			values : [11.38],
+            			text: "Internet Explorer",
+            		  backgroundColor: '#50ADF5',
+            		},
+            		{
+            		  values: [56.94],
+            		  text: "Chrome",
+            		  backgroundColor: '#FF7965'
+            		},
+            		{
+            		  values: [14.52],
+            		  text: 'Firefox',
+            		  backgroundColor: '#FFCB45'
+            		},
+            		{
+            		  text: 'Safari',
+            		  values: [9.69],
+            		  backgroundColor: '#6877e5'
+            		},
+            		{
+            		  text: 'Other',
+            		  values: [7.48],
+            		  backgroundColor: '#6FB07F'
+            		}
+            	]
+            };
+             
+            zingchart.render({ 
+            	id : 'myChart', 
+            	data : myChart, 
+            	height: 500, 
+            	width: 725 
+            });
 
     
 });
-
-    function getFromCountry(country, data) {
-        var response;
-        response = [country, data.filter((x) => {
-            return x.country == country;
-        }).length];
-        return response;
-    }
 
 
     
