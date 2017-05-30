@@ -103,7 +103,6 @@ angular
 
             Plotly.newPlot('TicsEstablishmentsPlotly', data, layout);
 
-
         });
 
     }]);

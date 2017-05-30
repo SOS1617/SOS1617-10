@@ -52,6 +52,10 @@ angular.module("SOS161710", ["ngRoute"]).config(function($routeProvider) {
         templateUrl: "/establishments/ticsathome.html",
         controller: "TicsEstablishments"
 
+    }).when("/establishments/graphs/internet-establishments", {
+        templateUrl: "/establishments/internet.html",
+        controller: "Internet-Establishments"
+
     }).when("/motorcyclings/", {
         templateUrl: "/motorcyclings/motorcyclings-list.html",
         controller: "MotorcyclingsCtrl"
