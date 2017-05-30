@@ -1,11 +1,11 @@
 angular
 .module("SOS161710")
-.controller("Lastfm", ["$http", function($http){
+.controller("Lastfm", ["$http","scope", function($http,$scope){
     console.log("Controller initialized");
     var url = "http://sos1617-10.herokuapp.com/api/v2/motorcycling-stats";
     var apikey = "apikey=davbotcab";
-    var name = [];
-    var playcount = [];
+    $scope.name = [];
+    $scope.playcount = [];
     
     
     $http.get("http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=d9c117e532f10f87c74f225f43a7f843&user=rj&format=json").then(function(response){
@@ -13,8 +13,8 @@ angular
         var res = response.data.artists.artist;
                 
         for(var i=0; i<res.length; i++){
-            name.push(res[i].name);
-            playcount.push(res[i].playcount);
+            $scope.name.push(res[i].name);
+            $scope.playcount.push(res[i].playcount);
         }
         
         
@@ -54,7 +54,7 @@ angular
 
                     },
                     "labels": 
-                        name
+                        $scope.name
                     
                 },
                 "scale-y": {
@@ -108,7 +108,7 @@ angular
                 
                 "series": [
                 {
-                    "values": playcount,
+                    "values": $scope.playcount,
                     "text": "Title",
                     "line-color": "#007790",
                     "legend-item":{
